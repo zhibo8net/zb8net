@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html layout:decorator="layout/layout">
+<head>
+    <title>体育图片</title>
+    <link rel="stylesheet" th:href="@{/styles_1/collection.css}" />
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <div class="col-md-9 left-content">
+            <div class="row">
+                <div class="col-md-12 breadcrumbs">首页 > 体育图片</div>
+            </div>
+            <div class="collection-gallery">
+                <div class="row">
+                    <div class="col-md-12 title">
+                        <i class="iconfont icon-swticonzuqiu"></i>
+                        <b>足球图片</b>
+                        <a class="pull-right" th:href="${'/projectImage_1?project=足球'}">更多>></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 collection-item" th:each="fi:${footballImages}">
+                        <a th:href="${'/viewImage_1/'+fi.id + '/1'}" ><img class="img-responsive" th:src="${webImageBase + fi.images[0].name}"/></a>
+                        <a th:href="${'/viewImage_1/'+fi.id + '/1'}" th:text="${fi.title}" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="collection-gallery">
+                <div class="row">
+                    <div class="col-md-12 title">
+                        <i class="iconfont icon-swticonlanqiu"></i>
+                        <b>篮球图片</b>
+                        <a class="pull-right" th:href="${'/projectImage_1?project=篮球'}">更多>></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 collection-item" th:each="bi:${basketballImages}">
+                        <a th:href="${'/viewImage_1/'+bi.id}" ><img class="img-responsive" th:src="${webImageBase + bi.images[0].name}"/></a>
+                        <a th:href="${'/viewImage_1/'+bi.id}" th:text="${bi.title}" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 right-content">
+            <div th:replace="layout/right :: channel"></div>
+            <div th:replace="layout/right :: collection"></div>
+            <div th:replace="layout/right :: video"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

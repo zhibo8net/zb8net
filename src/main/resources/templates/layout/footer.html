@@ -1,0 +1,34 @@
+<div class="footer" th:fragment="footer">
+    <div class="container">
+        <div class="link-div hidden-xs hidden-sm">
+            <div class="title">友情链接</div>
+            <div class="links">
+                <a th:href="${f.link}" th:each="f:${friendLinks}" th:text="${f.name}" target="_blank"></a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="copyright">
+            <p class="hidden-xs hidden-sm">
+                <span>|</span>
+                触屏版
+                <span>|</span>
+                广告合作
+                <span>|</span>
+                联系我们
+                <span>|</span>
+                RSS订阅
+                <span>|</span>
+                网站地图
+                <span>|</span>
+                <script th:src="@{'https://s13.cnzz.com/z_stat.php'(id=1273166609, web_id=1273166609)}" language="JavaScript"></script>
+                <span>|</span>
+            </p>
+            <p class="hidden-xs hidden-sm">
+                Copyright © 2006-2018  备案号:沪ICP备13048152号-1   友情链接AD:5583670   <a href="http://www.zhibo8.net/">直播吧</a> All Rights Reserved.
+            </p>
+            <p>
+                直播吧所有直播信号和视频录像均由用户手机和互联网，我们自身不提供任何直播信号和视频内容，如有侵犯您的权益联系我们
+            </p>
+        </div>
+    </div>
+</div>

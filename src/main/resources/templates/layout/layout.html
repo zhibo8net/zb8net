@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title layout:title-pattern="$DECORATOR_TITLE" th:text="${'直播吧-【NBA直播8_cctv5在线直播_足球直播_球赛直播_体育直播】'}"></title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <meta name="keyword" content="NBA直播,比分直播吧,足球直播,球赛直播,体育直播" />
+    <meta name="description" content="直播8(www.zhibo8.net)是一个专注于提供NBA直播、比分直播吧、足球赛事现场直播、球赛直播、体育直播、英超直播、CBA直播、NBA视频直播等体育赛事直播！" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico"/>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_555662_t67o4k4mesuivn29.css" />
+    <link rel="stylesheet" th:href="@{/styles_1/common.css}" />
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="container">
+    <div layout:fragment="content"></div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>
