@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-md-9 left-content">
             <div class="row">
-                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a href="/projectVideo_1?project=${entity.project}"><span th:text="${entity.project + '视频'}"></span></a> >  <span th:text="${entity.name}"></span></div>
+                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/projectVideo_1?project='+entity.project}"><span th:text="${entity.project + '集锦'}"></span> </a>>  <span th:text="${entity.name}"></span></div>
             </div>
             <div class="row collection-title">
                 <div class="col-md-12">
