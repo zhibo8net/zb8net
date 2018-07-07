@@ -33,12 +33,15 @@ public class LiveController extends BaseEndPoint {
         if(! (projectWhiteList.contains(project))) {
             throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
         }
+
         model.addAttribute("project", project);
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
         if(game != null) {
             model.addAttribute("game", game);
+            model.addAttribute("pageTitle", game+"直播");
         }else {
             model.addAttribute("game", project);
+            model.addAttribute("pageTitle", project+"直播");
         }
         
         List<Ended> projectEndedEntitys = liveService.findEndeds(project);

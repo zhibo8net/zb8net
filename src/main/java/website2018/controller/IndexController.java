@@ -30,7 +30,7 @@ public class IndexController extends BaseEndPoint {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public String index(HttpServletRequest request, HttpServletResponse response) {
-        
+        request.setAttribute("pageTitle", "体育直播吧");
         List<Ended> footballEndedEntitys = indexService.findEndeds("足球");
         List<EndedDTO> footballEndeds = Lists.newArrayList();
         List<EndedDTO> footballEndeds2 = Lists.newArrayList();

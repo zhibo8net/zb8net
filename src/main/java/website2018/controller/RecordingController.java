@@ -38,7 +38,7 @@ public class RecordingController extends BaseEndPoint {
         if(! (all || gameWhiteList.contains(game))) {
             throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
         }
-        
+        model.addAttribute("pageTitle", project);
         model.addAttribute("project", project);
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
         model.addAttribute("game", game);
@@ -47,6 +47,7 @@ public class RecordingController extends BaseEndPoint {
         if(!all) {
             requestMap.put("project", project);
             requestMap.put("game", game);
+            model.addAttribute("pageTitle", game+"录像");
         }
         requestMap.put("type", "录像");
         Page page = videoDao.findAll(buildSpecification(requestMap, Video.class), new PageRequest(pageNumber, 12, getSort("id", "DIRE")));

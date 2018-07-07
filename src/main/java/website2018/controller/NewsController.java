@@ -47,9 +47,9 @@ public class NewsController extends BaseEndPoint {
         model.addAttribute("project", project);
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
         model.addAttribute("game", game);
-        
+        model.addAttribute("pageTitle", "新闻资讯");
         Map<String, Object> requestMap = Maps.newHashMap();
-        if(!all) {
+        if (!all) {
             requestMap.put("project", project);
             requestMap.put("game", game);
         }
@@ -86,10 +86,10 @@ public class NewsController extends BaseEndPoint {
     public String newsInner(@PathVariable Long id, Model model) {
         News news = newsDao.findOne(id);
         model.addAttribute("news", news);
-        
+
         String project = news.project;
         String game = news.game;
-        
+        model.addAttribute("pageTitle", news.title);
         model.addAttribute("game", game);
         model.addAttribute("videos", videoQueryer.findByProjectGameTypeCount(project, game, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT));
         model.addAttribute("luxiangs", videoQueryer.findByProjectGameTypeCount(project, game, "录像", BaseEndPoint.RIGHT_LUXIANG_COUNT, true));

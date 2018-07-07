@@ -41,7 +41,7 @@ public class VideoController extends BaseEndPoint {
         model.addAttribute("entity", entity);
 
         model.addAttribute("project", entity.project);
-        
+        model.addAttribute("pageTitle", entity.name);
         List<Video> videos = videoQueryer.findByProjectGameTypeCount(entity.project, null, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT);
         model.addAttribute("videos", videos);
 
@@ -59,6 +59,7 @@ public class VideoController extends BaseEndPoint {
             throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
         }
         model.addAttribute("project", project);
+        model.addAttribute("pageTitle", project+"集锦");
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
         List<String> games = Lists.newArrayList();
         if(project.equals("篮球")) {
@@ -101,7 +102,7 @@ public class VideoController extends BaseEndPoint {
         model.addAttribute("project", project);
         model.addAttribute("game", game);
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
-        
+        model.addAttribute("pageTitle", game);
         Map<String, Object> requestMap = Maps.newHashMap();
         requestMap.put("project", project);
         requestMap.put("game", game);
