@@ -11,13 +11,13 @@
     <div class="row">
         <div class="col-md-9 left-content">
             <div class="row">
-                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a href="/image_1">体育图片</a> > <span th:text="${imageBag.title}"></span></div>
-            </div>
+                 <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a href="/image_1">体育图片</a> > <span th:text="${imageBag.title}"></span></div>
+           </div>
             <div class="row">
                 <div class="col-md-12">
                     <h1 th:text="${imageBag.title}"></h1>
                     <p th:if="${imageBag.addTime != null}" th:text="${#dates.format(imageBag.addTime, 'yyyy-MM-dd')}"></p>
-                    <a href="javascript:void(0);"><img class="img-responsive js-image" th:src="${webImageBase + image.name}"/></a>
+                    <a href="javascript:void(0);"><img class="img-responsive js-image" th:src="${webImageBase + image.name}" th:alt="${imageBag.title}"/></a>
                     <div>
                         <a th:href="${'/viewImage_1/'+imageBag.id+'/'+(index-1)}" th:if="${index&gt;1}" id="js-prev">上一张</a>
                         <span th:text="${'('+index+'/'+imageBag.images.size()+')'}"></span>

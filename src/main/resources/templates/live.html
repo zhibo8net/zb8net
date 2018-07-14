@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html layout:decorator="layout/layout">
 <head>
-    <title th:text="${project + '直播'}"></title>
+    <title th:text="|${project=='篮球'?'篮球直播_NBA直播_CBA直播_篮球视频直播-直播吧':''}${project=='足球'?'足球直播_世界杯直播_英超直播_足球比赛直播-直播吧':''}|"></title>
+	<meta name="keywords" th:content="|${project=='篮球'?'篮球直播,篮球视频直播,篮球直播吧,NBA直播,CBA直播':''}${project=='足球'?'足球直播,世界杯直播,足球比赛直播,英超直播,欧冠直播':''}|" />
+    <meta name="description" th:content="|${project=='篮球'?'篮球直播频道为您提供最新的NBA直播、CBA直播、篮球视频直播、篮球比分直播等，更多精彩篮球赛事直播尽在直播吧。':''}${project=='足球'?'足球直播频道为您提供最新的足球直播、世界杯直播、英超直播、欧冠直播、德甲直播、意甲直播等赛事，更多精彩足球赛事尽在直播吧':''}|" />
     <link rel="stylesheet" th:href="@{styles_1/index.css}" />
     <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
     <script th:src="@{js_1/index.js}"></script>
@@ -11,8 +13,8 @@
     <div class="row">
         <div class="col-md-9 left-content">
             <div class="row">
-                <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/live_1?project='+project}"><span style="color:#4184f3" th:text="${project + '直播'}"></span></a> <span th:text="${'&gt; ' + game + '直播'}" th:if="${project != game}"></span></div>
-            </div>
+           <div class="col-md-12 breadcrumbs"><a href="/">首页</a>  > <a th:href="${'/live_1?project='+project}"><span style="color:#4184f3" th:text="${project + '直播'}"></span></a> <span th:text="${'&gt; ' + game + '直播'}" th:if="${project != game}"></span></div>
+          </div>
             <div class="hidden-xs hidden-sm">
                 <div class="row collection-title">
                     <div class="col-md-6">

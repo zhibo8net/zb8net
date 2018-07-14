@@ -102,7 +102,7 @@ public class VideoController extends BaseEndPoint {
         model.addAttribute("project", project);
         model.addAttribute("game", game);
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
-        model.addAttribute("pageTitle", game);
+        model.addAttribute("pageTitle", game+"集锦");
         Map<String, Object> requestMap = Maps.newHashMap();
         requestMap.put("project", project);
         requestMap.put("game", game);

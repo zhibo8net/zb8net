@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html layout:decorator="layout/layout">
 <head>
-    <title>体育图片</title>
+    <title>体育图片_NBA图片_CBA图片_足球图片_篮球图片-直播吧</title>
+    <meta name="keywords" content="体育图片,NBA图片,CBA图片,足球图片,篮球图片" />
+    <meta name="description" content="体育图片频道为您提供最新的NBA图片、CBA图片、足球图片、篮球图片等，更多精彩好看的体育图片尽在直播吧" />
     <link rel="stylesheet" th:href="@{/styles_1/collection.css}" />
 </head>
 <body>
@@ -36,8 +38,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3 collection-item" th:each="bi:${basketballImages}">
-                        <a th:href="${'/viewImage_1/'+bi.id+ '/1'}" ><img class="img-responsive" th:src="${webImageBase + bi.images[0].name}"  th:alt="${bi.title}"/></a>
-                        <a th:href="${'/viewImage_1/'+bi.id+ '/1'}" th:text="${bi.title}" target="_blank"></a>
+                        <a th:href="${'/viewImage_1/'+bi.id}" ><img class="img-responsive" th:src="${webImageBase + bi.images[0].name}" th:alt="${bi.title}"/></a>
+                        <a th:href="${'/viewImage_1/'+bi.id}" th:text="${bi.title}" target="_blank"></a>
                     </div>
                 </div>
             </div>
