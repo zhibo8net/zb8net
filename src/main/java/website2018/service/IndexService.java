@@ -153,9 +153,9 @@ public class IndexService {
             List<Match> matches = matchDao.findByPlayDateStrOrderByPlayDateAsc(dateStrForQueryFormat.format(todayCal.getTime()));
             matchLoop:
             for (Match m : matches) {
-                if(StringUtils.isBlank(m.name)) {
-                    continue matchLoop;
-                }
+//                if(StringUtils.isBlank(m.name)) {
+//                    continue matchLoop;
+//                }
                 //只有当前时间之前2小时之后开球的比赛才显示（例：现在9点，则7点后开球的才显示）
                 if(m.playDate.getTime() > twoHourBeforeNowMills) {
 
