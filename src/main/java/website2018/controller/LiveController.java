@@ -57,9 +57,9 @@ public class LiveController extends BaseEndPoint {
                 }
             }
             if(ed.hasJijin || ed.hasLuxiang) {
-                if(ed.name.length() < 13) {
+                if(ed.name.length() < 13 && ed.name.length() > 3) {
                     projectEndeds.add(ed);
-                }else {
+                }else if(ed.name.length() > 13){
                     projectEndeds2.add(ed);
                 }
             }
