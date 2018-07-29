@@ -67,6 +67,7 @@ public class BaseSpider {
 
     }
 
+
     @PreDestroy
     public void closeClient() {
         if (httpClient != null) {
