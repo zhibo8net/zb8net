@@ -47,7 +47,7 @@ public class LiveSpider extends BaseSpider {
     @Autowired
     LiveDao liveDao;
 
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED && !MyApplication.TEST_LIVE_SPIDER) {
