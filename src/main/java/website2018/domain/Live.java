@@ -23,7 +23,7 @@ public class Live extends BaseEntity {
     public String name;
     public String link;
     public String videoLink;
-
+    public String gameId;
     @ManyToOne
     @JoinColumn(name = "match_id")
     public Match match;

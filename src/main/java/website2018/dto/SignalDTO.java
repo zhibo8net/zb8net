@@ -6,5 +6,6 @@ public class SignalDTO {
     public String name;
     public String link;
     public Long liveId;
+    public String gameId;
     public String videoLink;
 }

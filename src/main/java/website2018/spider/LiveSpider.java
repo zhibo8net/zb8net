@@ -618,6 +618,7 @@ public class LiveSpider extends BaseSpider {
                                             Live live = new Live();
                                             live.match = maybeExistedEntity;
                                             live.name = text;
+                                            live.gameId= lk.substring(lk.indexOf("?id=") + 4);
                                             live.addTime = new Date();
                                             if (text.matches(".*(PPTV).*")) {
                                                 live.link = "http://pub.pptv.com/player/iframe/index.html?#w=1000&h=480&rcc_id=500W&id=" + lk.substring(lk.indexOf("?id=") + 4);
@@ -673,7 +674,7 @@ public class LiveSpider extends BaseSpider {
                                                         for( Element ve1:velsurl) {
 
                                                             int b=ve1.html().indexOf("data=\\\"");
-                                                            String v=  ve1.html().substring(b+7, b + 274)+"&gameId="+ lk.substring(lk.indexOf("?id=") + 4);
+                                                            String v=  ve1.html().substring(b+7, b + 274);
                                                             live.videoLink=v;
                                                             break;
                                                         }
