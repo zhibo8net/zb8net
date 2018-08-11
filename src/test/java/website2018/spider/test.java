@@ -58,18 +58,18 @@ public class test {
         if(matcher.matches()) {
             System.out.println("ddd");
         }
-        Document d= readDocFromByJsoup("http://sportstream365.com/");
-        Elements es = d.select("script");
-        for( Element e1:es){
+        Document d= readDocFromByJsoup("w.zhibo.me:8088/pptv.php?id=301202");
+        Elements elsurl = d.select("script");
+        for( Element e1:elsurl) {
+            System.out.println(e1.html());
 
-            if(e1.html().matches(".*(var tagz =).*")){
-                System.out.println(e1.html());
-                String s=e1.html();
+            String dd="http://sportstream365.com/VideoPlayerSportstream.swf?s=m7zO0NBYz9DASM_MQs_QyPj6f0bJZoNoZaYzjatCi1OLdB3TU_NKbub65ldl5uQk6pvqGShohGfmpeSXFyv4hSiY6RlaK4T7h5uZaCo4FhTkpIanJnlnluibGpvrGZspaHh7hPj66CjkZGanKrinJmfnayo4ZxTl56bqmxnrGegZGxlb6hkaGykEJ6YlFmVCtQEA&v=1529021531439";
+            System.out.println(dd.length());
+                int b=e1.html().indexOf("data=\\\"");
+              String v=  e1.html().substring(b+7, b + 274);
+                System.out.println(v);
 
-                System.out.println(s.substring(12,s.length()-2));
-            }
         }
-
     }
 
 

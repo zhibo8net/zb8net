@@ -622,6 +622,7 @@ public class LiveSpider extends BaseSpider {
                                             if (text.matches(".*(PPTV).*")) {
                                                 live.link = "http://pub.pptv.com/player/iframe/index.html?#w=1000&h=480&rcc_id=500W&id=" + lk.substring(lk.indexOf("?id=") + 4);
                                                 live.name ="PPTV";
+                                                live.videoLink="http://pub.pptv.com/player/iframe/index.html?rcc_id=500W#w=1000&h=480&id="+ lk.substring(lk.indexOf("?id=") + 4);
                                             } else if (text.matches(".*(CCTV).*")) {
                                                 live.link = "http://tv.cctv.com/live/cctv5/";
                                                 if(text.matches(".*(CCTV5).*")){
@@ -666,6 +667,15 @@ public class LiveSpider extends BaseSpider {
                                                         System.out.println(tagz);
                                                         live.link = "http://sportstream365.com/viewer?sport=1&game="+ lk.substring(lk.indexOf("?id=") + 4)+"&tagz="+tagz;
                                                         live.name ="俄罗斯体育频道";
+                                                        Document vd= readDocFromByJsoup(lk);
+                                                        Elements velsurl = vd.select("script");
+                                                        for( Element ve1:velsurl) {
+
+                                                            int b=ve1.html().indexOf("data=\\\"");
+                                                            String v=  ve1.html().substring(b+7, b + 274);
+                                                            live.videoLink=v;
+                                                            break;
+                                                        }
                                                         break;
                                                     }
                                                 }
@@ -699,13 +709,10 @@ public class LiveSpider extends BaseSpider {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception{
 
-        String source = "http://m.azhibo.com" + "/abc#1234";
-        if (source.indexOf("#") != -1) {
-            source = source.substring(0, source.indexOf("#"));
-        }
-        System.out.println(source);
+
+
 
     }
 }

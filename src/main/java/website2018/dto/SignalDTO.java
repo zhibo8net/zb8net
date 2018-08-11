@@ -5,5 +5,6 @@ public class SignalDTO {
     public String indexName;
     public String name;
     public String link;
-
+    public Long liveId;
+    public String videoLink;
 }

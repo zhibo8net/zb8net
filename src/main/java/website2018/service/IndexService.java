@@ -196,6 +196,8 @@ public class IndexService {
                                 signalDTO.name = l.name;
                                 signalDTO.indexName = "信号" + signalsIndex;
                                 signalDTO.link = l.link;
+                                signalDTO.videoLink=l.videoLink;
+                                signalDTO.liveId=l.id;
                                 liveDTO.signals.add(signalDTO);
                             }
                         }
