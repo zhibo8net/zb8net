@@ -58,16 +58,15 @@ public class test {
         if(matcher.matches()) {
             System.out.println("ddd");
         }
-        Document d= readDocFromByJsoup("w.zhibo.me:8088/pptv.php?id=301202");
+        Document d= readDocFromByJsoup("http://w.zhibo.me:8088/tv/elstv.php?id=1605946");
         Elements elsurl = d.select("script");
-        for( Element e1:elsurl) {
-            System.out.println(e1.html());
 
-            String dd="http://sportstream365.com/VideoPlayerSportstream.swf?s=m7zO0NBYz9DASM_MQs_QyPj6f0bJZoNoZaYzjatCi1OLdB3TU_NKbub65ldl5uQk6pvqGShohGfmpeSXFyv4hSiY6RlaK4T7h5uZaCo4FhTkpIanJnlnluibGpvrGZspaHh7hPj66CjkZGanKrinJmfnayo4ZxTl56bqmxnrGegZGxlb6hkaGykEJ6YlFmVCtQEA&v=1529021531439";
-            System.out.println(dd.length());
-                int b=e1.html().indexOf("data=\\\"");
-              String v=  e1.html().substring(b+7, b + 274);
-                System.out.println(v);
+        for( Element ve1:elsurl) {
+
+            int b=ve1.html().indexOf("<object id=");
+            int b1=ve1.html().indexOf("</object>");
+            String v=  ve1.html().substring(b, b1+9);
+            System.out.println(v);
 
         }
     }
