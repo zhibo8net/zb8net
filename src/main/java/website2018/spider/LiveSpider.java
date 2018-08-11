@@ -630,7 +630,7 @@ public class LiveSpider extends BaseSpider {
                                                 }else{
                                                     live.name ="CCTV";
                                                 }
-                                                live.videoLink="http://mgzb.live.miguvideo.com:8088/wd_r2/cctv/cctv5hdnew/350/index.m3u8?msisdn=&mdspid=&spid=699004&netType=0&sid=5500516171&pid=2028597139&timestamp=20180811120501&Channel_ID=1004_10010001005&ProgramID=641886683&ParentNodeID=-99&assertID=5500516171&client_ip=122.228.208.14&SecurityKey=20180811120501&promotionId=&mvid=&mcid=&mpid=&encrypt=6019c8625cff77c97cffde213ef753c2";
+                                             //   live.videoLink="http://mgzb.live.miguvideo.com:8088/wd_r2/cctv/cctv5hdnew/350/index.m3u8?msisdn=&mdspid=&spid=699004&netType=0&sid=5500516171&pid=2028597139&timestamp=20180811120501&Channel_ID=1004_10010001005&ProgramID=641886683&ParentNodeID=-99&assertID=5500516171&client_ip=122.228.208.14&SecurityKey=20180811120501&promotionId=&mvid=&mcid=&mpid=&encrypt=6019c8625cff77c97cffde213ef753c2";
 
 
                                             } else if (text.matches(".*(企鹅).*")) {
