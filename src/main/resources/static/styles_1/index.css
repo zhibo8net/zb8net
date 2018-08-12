@@ -134,9 +134,18 @@
   font-weight: 300;
   margin-bottom: 0;
   padding: 0 20px;
-  font-size: 14px;
   background-color: #4184f3;
   color: #fff;
+  height: 100%;
+  font-weight: 400;
+  /* padding-left: 10px; */
+  font-size: 14px;
+  width: auto;
+  /* text-shadow: #555 0 0 1px; */
+  border-radius: 4px 4px 0 0;
+  line-height: 30px;
+  padding: 0 10px;
+  display: inline-block;
 }
 .schedule .day-div ul {
   margin: 0;

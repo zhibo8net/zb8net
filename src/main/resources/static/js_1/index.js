@@ -5,9 +5,11 @@ window.switchTo = function(tag){
 		$(".schedule li").hide();
 		$(".schedule li."+tag).show();
 	}
-	
+
+	$(".schedule-tabs li").show();
 	$(".schedule-tabs li").removeClass("active");
-	$("#tab-"+tag).addClass("active");
+
+	$(".schedule-tabs .tab-"+tag).addClass("active");
 }
 
 $(function(){
@@ -49,12 +51,12 @@ $(function(){
 			}
 		}
 	});
-	
+
 	//回到顶部
 	$(".up").click(function(){
 		$("body,html").animate({ scrollTop: $(".day").eq(0).offset().top}, "slow");
 	});
-	
+
 
 	//点击“加载更多”
 	$("#loadMore a").click(function(){
@@ -62,10 +64,10 @@ $(function(){
 		$("#loadMore").hide();
 		$("#scrollToTop").show();
 	});
-	
+
 	//点击“返回顶部”
 	$("#scrollToTop a").click(function(){
 		$("body,html").animate({ scrollTop: 0}, "slow");
 	});
-	
+
 });

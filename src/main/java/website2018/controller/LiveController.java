@@ -1,5 +1,7 @@
 package website2018.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -55,8 +57,9 @@ public class LiveController extends BaseEndPoint {
             model.addAttribute("liveAddress","false");
         }
         model.addAttribute("live",live);
-
-        model.addAttribute("match",live);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String dateString = formatter.format(live.match.playDate==null?new Date():live.match.playDate);
+        model.addAttribute("matchTime",dateString);
         return "detail";
     }
     @RequestMapping(value = "/zuqiubf")

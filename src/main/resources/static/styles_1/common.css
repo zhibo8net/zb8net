@@ -178,14 +178,14 @@ a {
 .right-content .video ul {
   margin-left: 10px;
 }
-.right-content.index-right-content > .collection,
-.right-content.index-right-content > .video {
+.right-content .collection,
+.right-content .video {
   height: auto;
   position: relative;
   margin-bottom: 10px;
 }
-.right-content.index-right-content > .collection label,
-.right-content.index-right-content > .video label {
+.right-content .collection label,
+.right-content .video label {
   background-color: #4184F3;
   border-radius: 4px 4px 0 0;
   height: 30px;
@@ -197,14 +197,14 @@ a {
   color: #fff;
   margin-bottom: 0;
 }
-.right-content.index-right-content > .collection label span,
-.right-content.index-right-content > .video label span {
+.right-content .collection label span,
+.right-content .video label span {
   color: #fff;
   line-height: 30px;
   font: 14px "宋体", "Arial Narrow", HELVETICA;
 }
-.right-content.index-right-content > .collection ul,
-.right-content.index-right-content > .video ul {
+.right-content .collection ul,
+.right-content .video ul {
   height: auto;
   overflow: hidden;
   border: solid 1px #4184F3;
@@ -212,17 +212,17 @@ a {
   padding: 0 0 0 5px;
   margin: 0;
 }
-.right-content.index-right-content > .collection ul li,
-.right-content.index-right-content > .video ul li {
+.right-content .collection ul li,
+.right-content .video ul li {
   line-height: 26px;
   font-size: 12px;
 }
-.right-content.index-right-content > .collection ul li span.list-style,
-.right-content.index-right-content > .video ul li span.list-style {
+.right-content .collection ul li span.list-style,
+.right-content .video ul li span.list-style {
   color: #333;
 }
-.right-content.index-right-content > .collection ul li a,
-.right-content.index-right-content > .video ul li a {
+.right-content .collection ul li a,
+.right-content .video ul li a {
   color: #0054AF;
   padding-left: 0;
 }
