@@ -123,7 +123,9 @@ p {
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ffffff', endColorStr='#4184f3', gradientType='0');
     padding: 15px 0;
 }
-
+.containerBf .body{
+    width: 1020px;
+}
 .body {
     width: 1000px;
     margin: 0 auto;
@@ -305,7 +307,9 @@ iframe {
     overflow: hidden;
     position: relative;
 }
-
+.zuqiubf,.lanqiubf{
+    height: 20000px;
+}
 a.play-out-link {
     margin: 150px auto;
     display: block;
