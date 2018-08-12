@@ -38,7 +38,7 @@ public class LiveController extends BaseEndPoint {
     public String live(@PathVariable Long id, Model model) {
        Live live=liveService.findById(id);
         if(live==null){
-            return "index";
+            return "redirect:/";
         }
         model.addAttribute("pageAds", indexService.pageAds());
         if(StringUtils.isNotEmpty(live.videoLink)){
