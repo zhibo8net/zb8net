@@ -32,6 +32,14 @@
 .schedule-tabs {
   border-bottom: none;
 }
+.schedule-tabs.mobilenav {
+  display: none;
+}
+@media (max-width: 1200px) {
+  .schedule-tabs.mobilenav {
+    display: block;
+  }
+}
 @media (max-width: 1200px) {
   .schedule-tabs li {
     width: 25%;
@@ -179,6 +187,12 @@
 }
 .schedule .day-div span {
   padding: 2px;
+  color: #000;
+  font-size: 12px;
+  font-family: Arial, "宋体";
+}
+.schedule .day-div span.list-style {
+  display: none;
 }
 .schedule .day-div a {
   font-size: 12px;
@@ -186,6 +200,11 @@
 .schedule .day-div .day-div-top {
   width: 100%;
   position: relative;
+}
+@media (max-width: 1200px) {
+  .schedule .day-div .day-div-top {
+    display: none;
+  }
 }
 .schedule .day-div .day-div-top label {
   height: 100%;
