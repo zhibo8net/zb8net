@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html layout:decorator="layout/layout">
+
 <head>
     <title>直播吧-足球直播_篮球直播_2018世界杯直播_CCTV5在线直播</title>
     <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
@@ -10,7 +11,7 @@
     <meta name="baidu-site-verification" content="FeM2EtCC8T" />
     <script>
         var _hmt = _hmt || [];
-        (function() {
+        (function () {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?aab079013b60296378945e415582815d";
             var s = document.getElementsByTagName("script")[0];
@@ -18,116 +19,225 @@
         })();
     </script>
 </head>
+
 <body>
-<div class="container" layout:fragment="content">
-    <div class="row">
-        <div class="col-md-9 left-content">
-            <div class="row collection-title margin-top-10" th:if="${pageAds['首页左侧顶部'].image != ''}">
-                <div class="col-md-12">
-                    <a th:href="${pageAds['首页左侧顶部'].link}" target="_blank"><img th:src="${pageAds['首页左侧顶部'].image}" class="img-responsive"/></a>
+    <div class="container" layout:fragment="content">
+        <div class="row">
+            <div class="col-md-9 left-content">
+                <div class="row collection-title margin-top-10" th:if="${pageAds['首页左侧顶部'].image != ''}">
+                    <div class="col-md-12">
+                        <a th:href="${pageAds['首页左侧顶部'].link}" target="_blank">
+                            <img th:src="${pageAds['首页左侧顶部'].image}" class="img-responsive" />
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="hidden-xs hidden-sm">
+                <div class="hidden-xs hidden-sm">
+                    <div class="row collection-title margin-top-10">
+                        <div class="col-md-6">
+                            <b>
+                                <img th:src="@{image_1/icon/football.png}" class="icon-24" />
+                                <span>足球集锦</span>
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row collections">
+                        <div class="col-md-3 col-sm-12" th:each="f:${footballEndeds}">
+                            <span th:text="${f.name}"></span>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                        </div>
+                        <div class="col-md-6 col-sm-12" th:each="f:${footballEndeds2}">
+                            <span th:text="${f.name}"></span>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                        </div>
+                    </div>
+                    <div class="row collection-title">
+                        <div class="col-md-6">
+                            <b>
+                                <img th:src="@{image_1/icon/basketball.png}" class="icon-24" />
+                                <span>篮球集锦</span>
+                            </b>
+                        </div>
+                    </div>
+                    <div class="row collections">
+                        <div class="col-md-3 col-sm-12" th:each="f:${basketballEndeds}">
+                            <span th:text="${f.name}"></span>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                        </div>
+                        <div class="col-md-6 col-sm-12" th:each="f:${basketballEndeds2}">
+                            <span th:text="${f.name}"></span>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a>
+                            <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="row collection-title margin-top-10">
-                    <div class="col-md-6">
-                        <b><img th:src="@{image_1/icon/football.png}" class="icon-24"/><span>足球集锦</span></b>
+                    <div class="col-md-12" th:if="${pageAds['首页集锦下方'].image != ''}">
+                        <a th:href="${pageAds['首页集锦下方'].link}" target="_blank">
+                            <img th:src="${pageAds['首页集锦下方'].image}" class="img-responsive" />
+                        </a>
                     </div>
                 </div>
-                <div class="row collections">
-                    <div class="col-md-3 col-sm-12" th:each="f:${footballEndeds}"><span th:text="${f.name}"></span> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a></div>
-                    <div class="col-md-6 col-sm-12" th:each="f:${footballEndeds2}"><span th:text="${f.name}"></span> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a></div>
-                </div>
-                <div class="row collection-title">
-                    <div class="col-md-6">
-                        <b><img th:src="@{image_1/icon/basketball.png}" class="icon-24"/><span>篮球集锦</span></b>
-                    </div>
-                </div>
-                <div class="row collections">
-                    <div class="col-md-3 col-sm-12" th:each="f:${basketballEndeds}"><span th:text="${f.name}"></span> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a></div>
-                    <div class="col-md-6 col-sm-12" th:each="f:${basketballEndeds2}"><span th:text="${f.name}"></span> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasJijin}">集锦</a> <a th:href="'/video_1/'+${f.id}" th:if="${f.hasLuxiang}">录像</a></div>
-                </div>
-            </div>
-            <div class="row collection-title margin-top-10">
-                <div class="col-md-12" th:if="${pageAds['首页集锦下方'].image != ''}">
-                    <a th:href="${pageAds['首页集锦下方'].link}" target="_blank"><img th:src="${pageAds['首页集锦下方'].image}" class="img-responsive"/></a>
-                </div>
-            </div>
-            <div id="js-schedule" class="row">
-                <div class="col-md-12">
-                    <ul class="nav nav-tabs schedule-tabs">
+                <div id="js-schedule" class="row">
+                    <div class="col-md-12">
+                        <!-- <ul class="nav nav-tabs schedule-tabs">
                         <li role="presentation" class="active" id="tab-all"><a href="javascript:switchTo('all')">全部</a></li>
                         <li role="presentation" id="tab-emphasis"><a href="javascript:switchTo('emphasis')"><img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0"/> <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1"/>重要</a></li>
                         <li role="presentation" id="tab-football"><a href="javascript:switchTo('football')"><img th:src="@{image_1/icon/football-0.png}" class="icon-20 icon0"/> <img th:src="@{image_1/icon/football-1.png}" class="icon-20 icon1"/>足球</a></li>
                         <li role="presentation" id="tab-basketball"><a href="javascript:switchTo('basketball')"><img th:src="@{image_1/icon/basketball-0.png}" class="icon-20 icon0"/> <img th:src="@{image_1/icon/basketball-1.png}" class="icon-20 icon1"/>篮球</a></li>
-                    </ul>
-                    <div class="scroller">
-                        <ul>
-                            <li th:each="d:${days}"><a href="#" th:classappend="${d=='今天'?'active':''}" th:text="${d}"></a></li>
-                        </ul>
-                        <div class="up"><a href="javascript:void(0);"><img th:src="@{image_1/icon/up.png}"/></a></div>
-                    </div>
-                    <div class="schedule max-height-600">
-                        <div th:each="dl,iter:${dailyLives}" class="day-div">
-                            <label th:text="${dl.dateStr}" class="day"></label>
-                            <ul class="list-unstyled">
-                                <li th:each="m:${dl.matches}" th:classappend="|${m.emphasis==1 ? 'emphasis' : ''} ${m.important==1 ? 'important' : ''} ${m.project=='足球' ? 'football' : ''} ${m.project=='篮球' ? 'basketball' : ''}|">
-                                    <span class="list-style">•</span>
-                                    <span class="time" th:text="${m.playTime}"></span>
-                                    <span class="game" th:text="${m.game}"></span>
-                                    <span class="match" th:text="${m.name}"></span>
-                                    <span class="live" th:each="l:${m.lives}">
-                                        <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
-                                            <span th:text="${l.name}"></span>(<a th:each="s:${l.signals}" th:href="${'/live_1/'+s.liveId}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
-                                        </div>
-                                        <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                            <a th:href="${'/live_1/'+l.signals[0].liveId}" th:text="${l.signals[0].name}"></a>
-                                        </div>
-                                    </span>
-
-                                    <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|" target="_blank"></a>
+                    </ul> -->
+                        <div class="scroller">
+                            <ul>
+                                <li th:each="d:${days}">
+                                    <a href="#" th:classappend="${d=='今天'?'active':''}" th:text="${d}"></a>
                                 </li>
                             </ul>
-                            <div th:if="${iter.index==0 &amp;&amp; pageAds['首页第一日直播下方'].image != ''}">
-                                <a th:href="${pageAds['首页第一日直播下方'].link}" target="_blank"><img th:src="${pageAds['首页第一日直播下方'].image}" class="img-responsive"/></a>
+                            <div class="up">
+                                <a href="javascript:void(0);">
+                                    <img th:src="@{image_1/icon/up.png}" />
+                                </a>
                             </div>
                         </div>
+                        <div class="schedule max-height-600">
+                            <div th:each="dl,iter:${dailyLives}" class="day-div">
+                                <div class="day-div-top">
+                                    <label th:text="${dl.dateStr}" class="day"></label>
+                                    <ul class="nav nav-tabs schedule-tabs">
+                                        <li role="presentation" class="active tab-all" id="">
+                                            <a href="javascript:switchTo('all')">
+                                                    <span class="iconfont icon0">&#xe636;</span>
+                                                    <span class="iconfont icon1">&#xe636;</span>
+                                                全部</a>
+                                        </li>
+                                        <li role="presentation" class="tab-emphasis">
+                                            <a href="javascript:switchTo('emphasis')">
+                                                <!-- <img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0" /> -->
+                                                <!-- <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1" /> -->
+                                                <span class="iconfont icon0">&#xe60a;</span>
+                                                <span class="iconfont icon1">&#xe60a;</span>
+                                                重要</a>
+                                        </li>
+                                        <li role="presentation" class="tab-football">
+                                            <a href="javascript:switchTo('football')">
+                                                <!-- <img th:src="@{image_1/icon/football-0.png}" class="icon-20 icon0" />
+                                                <img th:src="@{image_1/icon/football-1.png}" class="icon-20 icon1" /> -->
+                                                <span class="iconfont icon0">&#xe61a;</span>
+                                                <span class="iconfont icon1">&#xe61a;</span>
+                                                足球</a>
+                                        </li>
+                                        <li role="presentation" class="tab-basketball">
+                                            <a href="javascript:switchTo('basketball')">
+                                                <!-- <img th:src="@{image_1/icon/basketball-0.png}" class="icon-20 icon0" />
+                                                <img th:src="@{image_1/icon/basketball-1.png}" class="icon-20 icon1" /> -->
+                                                <span class="iconfont icon0">&#xe639;</span>
+                                                <span class="iconfont icon1">&#xe639;</span>
+                                                篮球</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li th:each="m:${dl.matches}" th:classappend="|${m.emphasis==1 ? 'emphasis' : ''} ${m.important==1 ? 'important' : ''} ${m.project=='足球' ? 'football' : ''} ${m.project=='篮球' ? 'basketball' : ''}|">
+                                        <span class="list-style">•</span>
+                                        <span class="time" th:text="${m.playTime}"></span>
+                                        <span class="game" th:text="${m.game}"></span>
+                                        <span class="match" th:text="${m.name}"></span>
+                                        <span class="live" th:each="l:${m.lives}">
+                                            <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
+                                                <span th:text="${l.name}"></span>(
+                                                <a th:each="s:${l.signals}" th:href="${'/live_1/'+s.liveId}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}"
+                                                    target="_blank"></a>)
+                                            </div>
+                                            <div th:if="${l.signals.size() == 1}" th:remove="tag">
+                                                <a th:href="${'/live_1/'+l.signals[0].liveId}" th:text="${l.signals[0].name}"></a>
+                                            </div>
+                                        </span>
+
+                                        <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|" target="_blank"></a>
+                                    </li>
+                                </ul>
+                                <div th:if="${iter.index==0 &amp;&amp; pageAds['首页第一日直播下方'].image != ''}">
+                                    <a th:href="${pageAds['首页第一日直播下方'].link}" target="_blank">
+                                        <img th:src="${pageAds['首页第一日直播下方'].image}" class="img-responsive" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="loadMore">
+                            <a href="javascript:void(0)">加载更多
+                                <img th:src="@{/image_1/icon/arrow-loadmore.png}" />
+                            </a>
+                        </div>
+                        <div id="scrollToTop">
+                            <a href="javascript:void(0)">返回顶部
+                                <img th:src="@{/image_1/icon/arrow-up.png}" />
+                            </a>
+                        </div>
                     </div>
-                    <div id="loadMore"><a href="javascript:void(0)">加载更多<img th:src="@{/image_1/icon/arrow-loadmore.png}"/></a></div>
-                    <div id="scrollToTop"><a href="javascript:void(0)">返回顶部<img th:src="@{/image_1/icon/arrow-up.png}"/></a></div>
+                </div>
+            </div>
+            <div class="col-md-3 right-content index-right-content">
+                <div class="margin-top-10" th:if="${pageAds['首页右侧顶部'].image != ''}">
+                    <a th:href="${pageAds['首页右侧顶部'].link}" target="_blank">
+                        <img th:src="${pageAds['首页右侧顶部'].image}" class="img-responsive" />
+                    </a>
+                </div>
+                <!-- <div th:replace="layout/right :: channel"></div> -->
+                <div class="collection margin-top-20">
+                    <label class="">
+                        <span class="iconfont">&#xe615;</span>
+                        <!-- <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" /> -->
+                        <span class="padding-left-10">视频集锦</span>
+                    </label>
+                    <ul class="list-unstyled">
+                        <li th:each="v:${videos}" class="video-li">
+                            <span class="list-style">•</span>
+                            <a th:href="${v.link}" th:text="${v.name}" target="_blank"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="margin-top-10" th:if="${pageAds['首页右侧视频集锦下方'].image != ''}">
+                    <a th:href="${pageAds['首页右侧视频集锦下方'].link}" target="_blank">
+                        <img th:src="${pageAds['首页右侧视频集锦下方'].image}" class="img-responsive" />
+                    </a>
+                </div>
+                <div class="video margin-top-20">
+                    <label class="">
+                        <!-- <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" /> -->
+                        <span class="iconfont">&#xe615;</span>
+                        <span class="padding-left-10">足球录像</span>
+                    </label>
+                    <ul class="list-unstyled">
+                        <li th:each="f:${footballLuxiangs}" class="luxiang-li">
+                            <!-- <img th:src="@{image_1/icon/video.png}" class="icon-24" /> -->
+                            <span class="list-style">•</span>
+                            <a th:href="${'/video_1/'+f.ended.id}" th:text="${f.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="video margin-top-20">
+                    <label class="">
+                        <!-- <img th:src="@{/image_1/icon/video-list.png}" class="icon-24" /> -->
+                        <span class="iconfont">&#xe615;</span>
+                        <span class="padding-left-10">篮球录像</span>
+                    </label>
+                    <ul class="list-unstyled">
+                        <li th:each="b:${basketballLuxiangs}" class="luxiang-li">
+                            <!-- <img th:src="@{image_1/icon/video.png}" class="icon-24" /> -->
+                            <span class="list-style">•</span>
+                            <a th:href="${'/video_1/'+b.ended.id}" th:text="${b.name}"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="margin-top-10" th:if="${pageAds['首页右侧下方'].image != ''}">
+                    <a th:href="${pageAds['首页右侧下方'].link}" target="_blank">
+                        <img th:src="${pageAds['首页右侧下方'].image}" class="img-responsive" />
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 right-content">
-            <div class="margin-top-10" th:if="${pageAds['首页右侧顶部'].image != ''}">
-                <a th:href="${pageAds['首页右侧顶部'].link}" target="_blank"><img th:src="${pageAds['首页右侧顶部'].image}" class="img-responsive"/></a>
-            </div>
-            <div th:replace="layout/right :: channel"></div>
-            <div class="collection">
-                <label class="margin-top-20 "><img th:src="@{/image_1/icon/video-list.png}" class="icon-24"/><span class="padding-left-10">视频集锦</span></label>
-                <ul class="list-unstyled">
-                    <li th:each="v:${videos}" class="video-li"><span class="list-style">•</span><a th:href="${v.link}" th:text="${v.name}" target="_blank"></a></li>
-                </ul>
-            </div>
-            <div class="margin-top-10" th:if="${pageAds['首页右侧视频集锦下方'].image != ''}">
-                <a th:href="${pageAds['首页右侧视频集锦下方'].link}" target="_blank"><img th:src="${pageAds['首页右侧视频集锦下方'].image}" class="img-responsive"/></a>
-            </div>
-            <div class="video">
-                <label class="margin-top-20"><img th:src="@{/image_1/icon/video-list.png}" class="icon-24"/><span class="padding-left-10">足球录像</span></label>
-                <ul class="list-unstyled">
-                    <li th:each="f:${footballLuxiangs}" class="luxiang-li"><img th:src="@{image_1/icon/video.png}" class="icon-24"/> <a th:href="${'/video_1/'+f.ended.id}" th:text="${f.name}"></a></li>
-                </ul>
-            </div>
-            <div class="video">
-                <label class="margin-top-20"><img th:src="@{/image_1/icon/video-list.png}" class="icon-24"/><span class="padding-left-10">篮球录像</span></label>
-                <ul class="list-unstyled">
-                    <li th:each="b:${basketballLuxiangs}" class="luxiang-li"><img th:src="@{image_1/icon/video.png}" class="icon-24"/> <a th:href="${'/video_1/'+b.ended.id}" th:text="${b.name}"></a></li>
-                </ul>
-            </div>
-            <div class="margin-top-10" th:if="${pageAds['首页右侧下方'].image != ''}">
-                <a th:href="${pageAds['首页右侧下方'].link}" target="_blank"><img th:src="${pageAds['首页右侧下方'].image}" class="img-responsive"/></a>
-            </div>
-        </div>
     </div>
-</div>
 </body>
+
 </html>

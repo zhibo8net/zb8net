@@ -65,7 +65,15 @@
         <div th:if="${liveAddress== 'PPTV'}">
           <iframe th:src="${live.videoLink}" frameborder="0"></iframe>
         </div>
-
+        <div th:if="${liveAddress== 'ELS'}">
+          <object th:id="${BridgeMovieObjectId}" type="application/x-shockwave-flash" th:data="${live.videoLink}" height="100%" width="100%">
+            <param name="menu" value="false"/>
+            <param name="wmode" value="window"/>
+            <param name="allowFullScreen" value="true"/>
+            <param name="AllowScriptAccess" value="always"/>
+            <param name="flashvars" th:value="${BridgeMovieObjectData}"/>
+          </object>
+        </div>
         <div class="noData" th:if="${liveAddress== 'false'}">
           <p class="first">提醒:此信号只能在源站观看,
             <a th:href="${live.link}" target="_blank">请带点击此处打开源站观看</a>

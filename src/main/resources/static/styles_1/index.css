@@ -10,6 +10,9 @@
 .important a {
   color: red;
 }
+.collection-title {
+  margin-top: 12px;
+}
 .collection-title b img {
   vertical-align: middle;
 }
@@ -84,7 +87,7 @@
   border: 1px solid #4184f3;
   border-radius: 0;
   background-color: #4184f3;
-  color: #ffffff;
+  color: #fff;
 }
 @media (max-width: 1200px) {
   .schedule-tabs li.active a .icon0 {
@@ -118,8 +121,10 @@
   line-height: 2;
 }
 .schedule .day-div {
-  margin-top: 10px;
   margin-bottom: 10px;
+}
+.schedule .day-div:first-child .day-div-top .schedule-tabs {
+  display: block;
 }
 .schedule .day-div label {
   display: block;
@@ -131,7 +136,7 @@
   padding: 0 20px;
   font-size: 14px;
   background-color: #4184f3;
-  color: #ffffff;
+  color: #fff;
 }
 .schedule .day-div ul {
   margin: 0;
@@ -168,6 +173,86 @@
 }
 .schedule .day-div a {
   font-size: 12px;
+}
+.schedule .day-div .day-div-top {
+  width: 100%;
+  position: relative;
+}
+.schedule .day-div .day-div-top label {
+  height: 100%;
+  font-weight: 400;
+  /* padding-left: 10px; */
+  font-size: 14px;
+  color: #fff;
+  width: auto;
+  background-color: #4184f3;
+  /* text-shadow: #555 0 0 1px; */
+  border-radius: 4px 4px 0 0;
+  line-height: 30px;
+  padding: 0 10px;
+  display: inline-block;
+}
+.schedule .day-div .day-div-top .schedule-tabs {
+  display: none;
+  border: none;
+  float: right;
+  /* margin-bottom: -1px; */
+  position: absolute;
+  right: 0px;
+  bottom: -1px;
+  background: #fff;
+  z-index: 2;
+  height: 30px;
+  border-right: 1px solid #ccc;
+}
+.schedule .day-div .day-div-top .schedule-tabs li {
+  height: 100%;
+  border-bottom: 1px solid #ccc;
+  line-height: 30px;
+  /* width: 48px; */
+  padding: 0 12px;
+  display: table-cell;
+  padding-left: 12px;
+  padding-right: 13px;
+  color: inherit;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-right: none;
+  width: 84px;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.tab-all a span {
+  color: #22a728;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.tab-emphasis a span {
+  color: #df4136;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.tab-football a span {
+  color: #74b5f7;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.tab-basketball a span {
+  color: #e19a46;
+}
+.schedule .day-div .day-div-top .schedule-tabs li a {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: #333;
+  border: 0;
+  line-height: 30px;
+  padding: 0;
+  overflow: hidden;
+}
+.schedule .day-div .day-div-top .schedule-tabs li a span {
+  font-size: 18px;
+  float: left;
+  padding: 0;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.active {
+  background: #fff;
+  border-bottom: 0;
+}
+.schedule .day-div .day-div-top .schedule-tabs li.active a {
+  color: #4184f3;
 }
 #loadMore {
   padding: 20px 0;
@@ -214,18 +299,18 @@
   padding: 7px 15px;
   border-bottom: 1px #4184f3 solid;
   text-decoration: none;
-  background-color: #ffffff;
+  background-color: #fff;
   color: #4184f3;
 }
 .scroller ul li a:hover,
 .scroller ul li a:active {
   background-color: #4184f3;
-  color: #ffffff;
+  color: #fff;
 }
 .scroller ul li a.active {
   position: relative;
   background-color: #4184f3;
-  color: #ffffff;
+  color: #fff;
 }
 .scroller .up {
   padding-top: 15px;

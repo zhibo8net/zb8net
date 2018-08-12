@@ -38,16 +38,19 @@ public class LiveController extends BaseEndPoint {
     public String live(@PathVariable Long id, Model model) {
        Live live=liveService.findById(id);
         if(live==null){
-            return "redirect:/";
+            return "redirect:http://www.zhibo8.net/";
         }
         model.addAttribute("pageAds", indexService.pageAds());
         if(StringUtils.isNotEmpty(live.videoLink)){
             if("PPTV".equals(live.name)){
                 model.addAttribute("liveAddress","PPTV");
             }
-//            if("PPTV".equals(live.name)){
-//                model.addAttribute("liveAddress","PPTV");
-//            }
+            if("俄罗斯体育频道".equals(live.name)){
+                model.addAttribute("liveAddress","ELS");
+                model.addAttribute("BridgeMovieObjectId","BridgeMovieObject"+live.gameId);
+               String s="ZonePlayGameId="+live.gameId+"&scaleMode=scaleAll&userID=0&videoID="+live.gameId+"&matchName=直播吧&startImmediately=true&gameId="+live.gameId+"&lng=cn&sport=0&ref=36";
+                model.addAttribute("BridgeMovieObjectData",s);
+                  }
         }else{
             model.addAttribute("liveAddress","false");
         }
