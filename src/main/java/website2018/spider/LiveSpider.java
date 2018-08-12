@@ -539,8 +539,8 @@ public class LiveSpider extends BaseSpider {
                                 oldLives.add(live);
                             }
 
-                         //   maybeExistedEntity.lives.clear();
-                           // liveDao.delete(oldLives);
+                            maybeExistedEntity.lives.clear();
+                            liveDao.delete(oldLives);
                         }
                     } else {
                         //System.out.println("将进行全新的入库……");
