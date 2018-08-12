@@ -196,7 +196,7 @@ public class ProjectSpider extends BaseSpider {
                 tm.updateTime=new Date();
                 tm.teamZh=str;
                 logger.info("保存球队{}",tm.teamZh);
-                teamDao.save(tm);
+               // teamDao.save(tm);
             }catch (Exception e){
                 logger.error("保存球队错误{}",e);
             }

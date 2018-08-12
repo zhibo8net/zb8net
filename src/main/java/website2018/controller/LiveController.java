@@ -2,9 +2,11 @@ package website2018.controller;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springside.modules.utils.mapper.BeanMapper;
@@ -12,13 +14,13 @@ import org.springside.modules.utils.mapper.BeanMapper;
 import com.google.common.collect.Lists;
 
 import website2018.base.BaseEndPoint;
-import website2018.domain.Ended;
-import website2018.domain.FriendLink;
-import website2018.domain.Video;
+import website2018.domain.*;
 import website2018.dto.DailyLivesDTO;
 import website2018.dto.EndedDTO;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
+import website2018.repository.MatchDao;
+import website2018.service.IndexService;
 import website2018.service.LiveService;
 
 @Controller
@@ -26,7 +28,39 @@ public class LiveController extends BaseEndPoint {
 
     @Autowired
     LiveService liveService;
-    
+    @Autowired
+    IndexService indexService;
+
+    @Autowired
+    MatchDao matchDao;
+
+    @RequestMapping(value = "/live_1/{id}")
+    public String live(@PathVariable Long id, Model model) {
+       Live live=liveService.findById(id);
+        if(live==null){
+            return "index";
+        }
+        model.addAttribute("pageAds", indexService.pageAds());
+        if(StringUtils.isNotEmpty(live.videoLink)){
+            if("PPTV".equals(live.name)){
+                model.addAttribute("liveAddress","PPTV");
+            }
+//            if("PPTV".equals(live.name)){
+//                model.addAttribute("liveAddress","PPTV");
+//            }
+        }else{
+            model.addAttribute("liveAddress","false");
+        }
+        model.addAttribute("live",live);
+
+        model.addAttribute("match",live);
+        return "detail";
+    }
+    @RequestMapping(value = "/zuqiubf")
+    public String zuqiubf( Model model) {
+        model.addAttribute("menu","bf");
+        return "zuqiubf";
+    }
     @RequestMapping(value = "/live_1", method = RequestMethod.GET)
     public String live(String project, String game, Model model) {
         

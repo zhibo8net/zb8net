@@ -27,6 +27,9 @@ import website2018.dto.SignalDTO;
 @Service
 public class LiveService extends IndexService{
 
+    public Live findById(Long id){
+       return liveDao.findById(id);
+    }
     public List<DailyLivesDTO> queryDailyLives(String project, String game) {
         LiveSource liveSource = liveSourceDao.findByActive(1);
         Pattern p = Pattern.compile(".*(" + liveSource.channels.replace(",", "|") + ").*");
@@ -109,6 +112,7 @@ public class LiveService extends IndexService{
                             signalDTO.name = l.name;
                             signalDTO.indexName = "信号" + signalsIndex;
                             signalDTO.link = l.link;
+                            signalDTO.liveId=l.id;
                             liveDTO.signals.add(signalDTO);
                         }
                     }

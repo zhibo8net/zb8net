@@ -29,9 +29,11 @@ import website2018.base.BaseSpider;
 import website2018.domain.Live;
 import website2018.domain.LiveSource;
 import website2018.domain.Match;
+import website2018.domain.Team;
 import website2018.repository.LiveDao;
 import website2018.repository.LiveSourceDao;
 import website2018.repository.MatchDao;
+import website2018.repository.TeamDao;
 import website2018.utils.SpringContextHolder;
 
 @Component
@@ -46,6 +48,9 @@ public class LiveSpider extends BaseSpider {
 
     @Autowired
     LiveDao liveDao;
+
+    @Autowired
+    TeamDao teamDao;
 
     @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
@@ -534,8 +539,8 @@ public class LiveSpider extends BaseSpider {
                                 oldLives.add(live);
                             }
 
-                            maybeExistedEntity.lives.clear();
-                            liveDao.delete(oldLives);
+                         //   maybeExistedEntity.lives.clear();
+                           // liveDao.delete(oldLives);
                         }
                     } else {
                         //System.out.println("将进行全新的入库……");
@@ -574,6 +579,10 @@ public class LiveSpider extends BaseSpider {
                             name = tds.get(4).html();
                             playDateStr = tds.get(7).attr("t");
                         } else {
+                          Team team1=  checkTeam(tds.get(4).select("strong").html());
+                            Team team2=  checkTeam(tds.get(6).select("strong").html());
+                            maybeExistedEntity.masterTeam=team1;
+                            maybeExistedEntity.guestTeam=team2;
                             name = tds.get(4).select("strong").html() + " VS " + tds.get(6).select("strong").html();
                             playDateStr = tds.get(9).attr("t");
                         }
@@ -615,7 +624,9 @@ public class LiveSpider extends BaseSpider {
                                         if (StringUtils.isNotBlank(lk)) {
 //
                                             text = text.replace("无插件直播", "");
+
                                             Live live = new Live();
+
                                             live.match = maybeExistedEntity;
                                             live.name = text;
                                             live.gameId= lk.substring(lk.indexOf("?id=") + 4);
@@ -684,6 +695,7 @@ public class LiveSpider extends BaseSpider {
 
                                             }
                                             if (!StringUtils.isEmpty(live.link)) {
+
                                                 maybeExistedEntity.lives.add(live);
                                             }
 
@@ -710,7 +722,20 @@ public class LiveSpider extends BaseSpider {
 
         }
     }
+    public Team checkTeam(String teamZh){
+        Team tm=teamDao.findByTeamZh(teamZh);
+        if(tm!=null){
+           return  tm;
+        }
 
+        tm=new Team();
+        tm.addTime=new Date();
+        tm.updateTime=new Date();
+        tm.teamZh = teamZh;
+        logger.info("保存球队{}",tm.teamZh);
+        return teamDao.save(tm);
+
+    }
     public static void main(String[] args)throws Exception{
 
 

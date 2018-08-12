@@ -54,7 +54,7 @@
                 </li>
                 <li th:classappend="${menu=='news'?'active':''}"><a href="/news_1">新闻资讯</a></li>
                 <li th:classappend="${menu=='image'?'active':''}"><a href="/image_1">体育图片</a></li>
-                <li><a href="http://live.qiu678.com/" target="_blank">比分直播</a></li>
+                <li  th:classappend="${menu=='bf'?'active':''}"><a href="/zuqiubf" >比分直播</a></li>
               </ul>
             </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->

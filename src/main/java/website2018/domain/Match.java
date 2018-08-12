@@ -3,14 +3,7 @@ package website2018.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.google.common.collect.Lists;
 
@@ -40,4 +33,12 @@ public class Match extends BaseEntity {
 
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Ad> ads = Lists.newArrayList();
+
+    @OneToOne
+    @JoinColumn(name = "master_team_id")
+    public Team masterTeam;
+
+    @OneToOne
+    @JoinColumn(name = "guest_team_id")
+    public Team guestTeam;
 }

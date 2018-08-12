@@ -37,13 +37,7 @@ import website2018.dto.DailyLivesDTO;
 import website2018.dto.LiveDTO;
 import website2018.dto.MatchDTO;
 import website2018.dto.SignalDTO;
-import website2018.repository.AdDao;
-import website2018.repository.ConfigDao;
-import website2018.repository.EndedDao;
-import website2018.repository.FriendLinkDao;
-import website2018.repository.LiveSourceDao;
-import website2018.repository.MatchDao;
-import website2018.repository.PageAdDao;
+import website2018.repository.*;
 
 @Service
 public class IndexService {
@@ -75,7 +69,9 @@ public class IndexService {
 
     @Autowired
     LiveSourceDao liveSourceDao;
-    
+
+    @Autowired
+    LiveDao liveDao;
     @PostConstruct
     public void init() {
         dailyLivesCache = CacheBuilder.newBuilder().maximumSize(1).build();
