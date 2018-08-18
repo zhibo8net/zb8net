@@ -93,14 +93,14 @@ public class IndexController extends BaseEndPoint {
         if(footballLuxiangs.size()<=8){
             request.setAttribute("footballLuxiangs", footballLuxiangs);
         }else{
-            request.setAttribute("footballLuxiangs", footballLuxiangs.subList(0,7));
+            request.setAttribute("footballLuxiangs", footballLuxiangs.subList(0,8));
         }
 
         List<Video> basketballLuxiangs = indexService.findLuxiangs("篮球");
         if(basketballLuxiangs.size()<=8) {
             request.setAttribute("basketballLuxiangs", basketballLuxiangs);
         }else{
-            request.setAttribute("basketballLuxiangs", basketballLuxiangs.subList(0,7));
+            request.setAttribute("basketballLuxiangs", basketballLuxiangs.subList(0,8));
         }
         
         List<String> days = indexService.days();
