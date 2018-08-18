@@ -25,4 +25,6 @@ public interface MatchDao extends PagingAndSortingRepository<Match, Long>, JpaSp
 
     List<Match> findByAddTimeGreaterThanAndProject(Date d,String project);
 
+    public Match findByNameAndPlayDate(String name,Date playDate);
+
 }

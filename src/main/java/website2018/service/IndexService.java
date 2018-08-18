@@ -256,7 +256,7 @@ public class IndexService {
     }
 
     public List<Video> findLuxiangs(String project){
-        return videoQueryer.findByProjectGameTypeCount(project, null, "录像", BaseEndPoint.RIGHT_LUXIANG_COUNT, true);
+        return videoQueryer.findByProjectGameTypeCount(project, null, "录像", 60, true);
     }
     
     public List<FriendLink> findFriendLinks(){

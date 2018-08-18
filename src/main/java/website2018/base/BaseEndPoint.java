@@ -62,7 +62,7 @@ public class BaseEndPoint {
     LoginService loginService;
     
     public static final int RIGHT_VIDEO_COUNT = 20;
-    public static final int RIGHT_LUXIANG_COUNT = 10;
+    public static final int RIGHT_LUXIANG_COUNT = 20;
     
     @Autowired
     protected VideoQueryer videoQueryer;

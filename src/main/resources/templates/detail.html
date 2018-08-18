@@ -45,12 +45,14 @@
 
 
       <span class="play-home" th:text="${live.match.masterTeam.teamZh}">
-      <!--<img src="http://m.heibaizhibo.com/static/images/upload/201707/5979b9216a900.png">-->
       </span>
+          <img th:if="${live.match.masterTeam.teamImgLink!=null}" th:src="${live.match.masterTeam.teamImgLink}"/>
+
           <span class="play-vs" th:text="${matchTime}"></span>
+          <img th:if="${live.match.guestTeam.teamImgLink!=null}" th:src="${live.match.guestTeam.teamImgLink}"/>
+
       <span class="play-away" th:text="${live.match.guestTeam.teamZh}">
-      <!--<img src="http://m.heibaizhibo.com/static/images/upload/201707/5979ba01f0f6b.png">广州恒大-->
-        </span>
+      </span>
         </div>
       </div>
       <div class="play-player" id="play_player">

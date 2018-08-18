@@ -514,11 +514,23 @@ public class LiveSpider extends BaseSpider {
                     source = link + asource.attr("href").replace("..", "");
                     break;
                 }
+                Elements tds = saishi.select("td");
+                String name = "";
+                String playDateStr = "";
+                if (tds.size() <= 8) {
+                    name = tds.get(4).html();
+                    playDateStr = tds.get(7).attr("t");
+                } else {
+                    name = tds.get(4).select("strong").html() + " VS " + tds.get(6).select("strong").html();
+                    playDateStr = tds.get(9).attr("t");
+                }
 
-                System.out.println(source);
+
+                Date playDate = sdf.parse(playDateStr);
+
                 Match maybeExistedEntity = null;
                 try {
-                    maybeExistedEntity = matchDao.findBySource(source);
+                    maybeExistedEntity = matchDao.findByNameAndPlayDate(name,playDate);
 
                     if (maybeExistedEntity != null) {// 已经抓取过
                         if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
@@ -551,7 +563,7 @@ public class LiveSpider extends BaseSpider {
                 }
                 try {
                     // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
-                    Elements tds = saishi.select("td");
+
                     if (willSaveMatch) {
 
                         String type = tds.get(0).select("img").attr("alt");
@@ -571,24 +583,14 @@ public class LiveSpider extends BaseSpider {
                         if (!StringUtils.isBlank(formated)) {
                             game = formated;
                         }
-
-                        // String timeStr = tds.get(0).html();
-                        String name = "";
-                        String playDateStr = "";
-                        if (tds.size() <= 8) {
-                            name = tds.get(4).html();
-                            playDateStr = tds.get(7).attr("t");
-                        } else {
-                          Team team1=  checkTeam(tds.get(4).select("strong").html());
+                        if (tds.size() > 8) {
+                            Team team1=  checkTeam(tds.get(4).select("strong").html());
                             Team team2=  checkTeam(tds.get(6).select("strong").html());
                             maybeExistedEntity.masterTeam=team1;
                             maybeExistedEntity.guestTeam=team2;
-                            name = tds.get(4).select("strong").html() + " VS " + tds.get(6).select("strong").html();
-                            playDateStr = tds.get(9).attr("t");
+
                         }
 
-
-                        Date playDate = sdf.parse(playDateStr);
                         String dateStr = playDateStr.split(" ")[0];
                         String timeStr = playDateStr.split(" ")[1];
 
@@ -611,6 +613,8 @@ public class LiveSpider extends BaseSpider {
                             String sc = asource.attr("href").replace("..", "");
                             if (!sc.startsWith("http")) {
                                 source = link + sc;
+                            }else {
+                                source=sc;
                             }
                             Document lives = readDocFrom(source);
                             if (lives != null) {

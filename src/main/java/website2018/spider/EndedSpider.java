@@ -3,6 +3,8 @@ package website2018.spider;
 import java.util.Date;
 import java.util.List;
 
+import freemarker.template.utility.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -47,7 +49,9 @@ public class EndedSpider extends BaseSpider {
     
     @Transactional
     public void fetchEnded() throws Exception {
-        
+        try {
+
+
         Document azhibo = readDocFrom("http://www.azhibo.com/");
         
         if(azhibo != null) {
@@ -72,9 +76,15 @@ public class EndedSpider extends BaseSpider {
                             endedDao.delete(ex);
                         }
                     }
-                    
-                    String innerGate = "http://www.azhibo.com" + e.select("a").get(0).attr("href");
+                    String innerGate=null;
+                    try {
+                         innerGate = "http://www.azhibo.com" + e.select("a").get(0).attr("href");
+                    }catch (Exception e1){
 
+                    }
+                    if(StringUtils.isEmpty(innerGate)){
+                        continue ;
+                    }
                     try {
                         Document inner = readDocFrom(innerGate);
                         Ended ended = new Ended();
@@ -119,12 +129,12 @@ public class EndedSpider extends BaseSpider {
                                         video.addTime = new Date();
                                         ended.videos.add(video);
         
-                                        //System.out.println("\t\t\t视频：" + text + " 地址：" + link);
+                                       System.out.println("\t\t\t视频：" + text + " 地址：" + link);
                                     }catch(Exception ex) {
                                         //System.out.println("抓取视频出现错误：" + source);
                                     }
                                     
-                                    Thread.sleep(100);
+                                    Thread.sleep(1000);
                                 }
                             }
                         }
@@ -134,10 +144,10 @@ public class EndedSpider extends BaseSpider {
                         }
                         
                     }catch(Exception ex) {
-                        //System.out.println("抓取视频出现错误：" + innerGate);
+                       ex.printStackTrace();
                     }
                     
-                    Thread.sleep(100);
+                    Thread.sleep(1000);
                 }
             }
 
@@ -148,7 +158,10 @@ public class EndedSpider extends BaseSpider {
                 }
             }
             endedDao.save(entitys);
-            logger.warn("添加了Ended条数：" + entitys.size());
+
+        }
+    }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
