@@ -1,5 +1,6 @@
 package website2018.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -14,4 +15,6 @@ public interface EndedDao extends PagingAndSortingRepository<Ended, Long>, JpaSp
     public List<Ended> findTop20ByProjectOrderByIdDesc(String project);
 
     public List<Ended> findTop6ByProjectAndGameOrderByIdDesc(String project, String game);
+
+    public List<Ended> findTop32ByAddTimeGreaterThanOrderByIdDesc(Date addTime);
 }

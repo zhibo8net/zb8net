@@ -6,5 +6,7 @@ public class EndedDTO {
     public String name;// 名称
     public boolean hasJijin;
     public boolean hasLuxiang;
-    
+    public boolean hasShiping;
+    public boolean isFirstRow;
+    public boolean other;
 }
