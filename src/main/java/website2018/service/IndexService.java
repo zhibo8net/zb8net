@@ -250,7 +250,9 @@ public class IndexService {
     public List<Ended> findEndeds(String project){
         return endedDao.findTop20ByProjectOrderByIdDesc(project);
     }
-    
+    public List<Ended> findNewEndeds(Date addTime){
+        return endedDao.findTop32ByAddTimeGreaterThanOrderByIdDesc(addTime);
+    }
     public List<Video> findVideos(){
         return videoQueryer.findByProjectGameTypeCount(null, null, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT);
     }
@@ -258,7 +260,9 @@ public class IndexService {
     public List<Video> findLuxiangs(String project){
         return videoQueryer.findByProjectGameTypeCount(project, null, "录像", 20, true);
     }
-    
+    public List<Video> findMyLuxiangs(String project){
+        return videoQueryer.findByProjectGameTypeCount(project, null, "录像", 20, true);
+    }
     public List<FriendLink> findFriendLinks(){
         return (List<FriendLink>)friendLinkDao.findAll();
     }
