@@ -164,7 +164,7 @@
   }
 }
 .schedule .day-div ul li {
-  border-bottom: 1px #e1e1e1 dashed;
+  border-bottom: 1px #e1e1e1 dotted;
 }
 @media (max-width: 1200px) {
   .schedule .day-div ul li {
