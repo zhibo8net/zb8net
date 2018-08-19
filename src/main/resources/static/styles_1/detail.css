@@ -24,23 +24,23 @@ a img {
 }
 
 a:link {
-    color: #535353;
+    color: #0000ee;
     text-decoration: none;
     cursor: pointer;
 }
 
 a:visited {
-    color: #535353;
+    color: #0000ee;
     text-decoration: none;
 }
 
 a:hover {
-    color: #0092da;
+    color: #0000ee;
     text-decoration: none;
 }
 
 a:active {
-    color: #0092da;
+    color: #0000ee;
     text-decoration: none;
 }
 
@@ -76,14 +76,21 @@ p {
 /*** body ***/
 
 .top-container {
-    height: 52px;
-    background-color: #4184f3;
+    height: 50px;
+    /* background-color: #4184f3; */
+    border-bottom: 2px solid #4184f3
 }
 
 .top-body {
-    width: 960px;
+    width: 990px;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+.top-body::after{
+    content: "";
+    width: 0;
+    height: 0;
+    clear: both;
 }
 
 .top-right {
@@ -98,13 +105,24 @@ p {
 
 .top-right a {
     /* padding: 15px; */
-    color: #fff;
+    color: #555;
+    font-size: 15px;
+    padding-top: 10px;
+    display: block;
 }
 
 ._self {
     float: left;
+    height: 50px;
+    position: relative;
+    min-width: 148px;
 }
-
+._self img{
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 140px;
+}
 .foot-container {
     height: 40px;
 }
@@ -116,11 +134,13 @@ p {
     padding: 8px 0;
     font-size: 14px;
 }
-
+.footer .container{
+    margin: 0 auto;
+}
 .container1 {
     width: 100%;
-    background: linear-gradient(to bottom right, #fff, #4184f3);
-    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ffffff', endColorStr='#4184f3', gradientType='0');
+    /* background: linear-gradient(to bottom right, #fff, #4184f3);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#ffffff', endColorStr='#4184f3', gradientType='0'); */
     padding: 15px 0;
 }
 .containerBf .body{
@@ -258,6 +278,11 @@ p {
     vertical-align: middle;
 }
 
+.play-info span{
+    font-size: 18px;
+    color: white;
+}
+
 .play-info-soccer {
     background: url(../image_1/bg-soccer.png) no-repeat 0 0;
 }
@@ -306,6 +331,10 @@ iframe {
     height: 500px;
     overflow: hidden;
     position: relative;
+}
+.play-player{
+    border-radius: 5px;
+    background-color: #333;
 }
 .zuqiubf,.lanqiubf{
     height: 20000px;
