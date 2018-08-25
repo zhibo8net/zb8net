@@ -292,8 +292,16 @@
                                     <span class="list-style">•</span>
                                     <span class="time" th:text="${m.playTime}"></span>
                                     <span class="game" th:text="${m.game}"></span>
-                                    <span class="match" th:text="${m.name}"></span>
-                                        <span class="live" th:each="l:${m.lives}">
+                                    <span class="match" th:if="${m.teamFlag=='FALSE'}" th:text="${m.name}"></span>
+                                    <span  th:if="${m.teamFlag=='TRUE'}">
+                                        <span class="match" th:text="${m.masterTeamName}"></span>
+                                        <img  th:src="${m.masterTeamLink}"  height="20px" width="20px"/>
+                                        <span class="match"> - </span>
+                                        <img th:src="${m.guestTeamLink}" height="20px" width="20px"/>
+                                        <span class="match"  th:text="${m.guestTeamName}"></span>
+
+                                    </span>
+                                       <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                                 <span th:text="${l.name}"></span>(
                                                 <a th:each="s:${l.signals}" th:href="${'/live_1/'+s.liveId}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)

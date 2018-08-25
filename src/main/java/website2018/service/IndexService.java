@@ -1,10 +1,7 @@
 package website2018.service;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -156,6 +153,15 @@ public class IndexService {
                 if(m.playDate.getTime() > twoHourBeforeNowMills) {
 
                     MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
+                    if(m.guestTeam!=null&&m.masterTeam!=null){
+                        if(StringUtils.isNotEmpty(m.guestTeam.teamImgLink)&&StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
+                            mdto.teamFlag="TRUE";
+                            mdto.masterTeamName=m.masterTeam.teamZh;
+                            mdto.masterTeamLink=m.masterTeam.teamImgLink;
+                            mdto.guestTeamName=m.guestTeam.teamZh;
+                            mdto.guestTeamLink=m.guestTeam.teamImgLink;
+                        }
+                    }
                     mdto.lives = Lists.newArrayList();
                     
                     for(Live l : m.lives) {
@@ -251,7 +257,12 @@ public class IndexService {
         return endedDao.findTop20ByProjectOrderByIdDesc(project);
     }
     public List<Ended> findNewEndeds(Date addTime){
-        return endedDao.findTop32ByAddTimeGreaterThanOrderByIdDesc(addTime);
+        List<Ended> list1=endedDao.findTop16ByProjectOrderByAddTimeDesc("足球");
+        List<Ended> list2=endedDao.findTop16ByProjectOrderByAddTimeDesc("篮球");
+        list1=  (list1==null?new ArrayList():list1);
+        list2=  (list2==null?new ArrayList():list2);
+        list1.addAll(list2);
+        return list1;
     }
     public List<Video> findVideos(){
         return videoQueryer.findByProjectGameTypeCount(null, null, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT);

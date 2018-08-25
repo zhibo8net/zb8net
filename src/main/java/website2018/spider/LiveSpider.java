@@ -26,14 +26,8 @@ import com.google.common.collect.Lists;
 
 import website2018.MyApplication;
 import website2018.base.BaseSpider;
-import website2018.domain.Live;
-import website2018.domain.LiveSource;
-import website2018.domain.Match;
-import website2018.domain.Team;
-import website2018.repository.LiveDao;
-import website2018.repository.LiveSourceDao;
-import website2018.repository.MatchDao;
-import website2018.repository.TeamDao;
+import website2018.domain.*;
+import website2018.repository.*;
 import website2018.utils.SpringContextHolder;
 
 @Component
@@ -52,6 +46,8 @@ public class LiveSpider extends BaseSpider {
     @Autowired
     TeamDao teamDao;
 
+    @Autowired
+    LeagueDao leagueDao;
     @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
@@ -598,6 +594,8 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity.playDateStr = dateStr;
                         maybeExistedEntity.playTime = timeStr;
                         maybeExistedEntity.project = project;
+                        League lg=checkLeague(game);
+                        maybeExistedEntity.league=lg;
                         maybeExistedEntity.game = game;
                         maybeExistedEntity.name = name;
                         maybeExistedEntity.source = source;
@@ -738,6 +736,20 @@ public class LiveSpider extends BaseSpider {
         tm.teamZh = teamZh;
         logger.info("保存球队{}",tm.teamZh);
         return teamDao.save(tm);
+
+    }
+    public League checkLeague(String leagueZh){
+        League league=leagueDao.findByLeagueZh(leagueZh);
+        if(league!=null){
+            return  league;
+        }
+
+        league=new League();
+        league.addTime=new Date();
+        league.updateTime=new Date();
+        league.leagueZh = leagueZh;
+        logger.info("保存球队{}",league.leagueZh);
+        return leagueDao.save(league);
 
     }
     public static void main(String[] args)throws Exception{
