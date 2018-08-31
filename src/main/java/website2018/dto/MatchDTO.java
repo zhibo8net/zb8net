@@ -17,4 +17,10 @@ public class MatchDTO {
     public int emphasis;
     public int important;
 
+    public String teamFlag="FALSE";
+    public String guestTeamName;
+    public String guestTeamLink;
+    public String masterTeamName;
+    public String masterTeamLink;
+
 }

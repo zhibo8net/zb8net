@@ -41,4 +41,8 @@ public class Match extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "guest_team_id")
     public Team guestTeam;
+
+    @OneToOne
+    @JoinColumn(name = "league_id")
+    public League league;
 }

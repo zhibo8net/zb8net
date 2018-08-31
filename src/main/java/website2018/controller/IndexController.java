@@ -174,7 +174,15 @@ public class IndexController extends BaseEndPoint {
 
 
         //新闻
-        List<News> newsListx =   newsDao.findTop32ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
+        List<News> newsListx=Lists.newArrayList();
+         List<News> newsListxzq =   newsDao.findTop16ByProjectOrderByAddTimeDesc("足球");
+        List<News> newsListxlq =   newsDao.findTop16ByProjectOrderByAddTimeDesc("篮球");
+        if(newsListxzq!=null&&newsListxlq.size()!=0){
+            newsListx.addAll(newsListxzq);
+        }
+        if(newsListxlq!=null&&newsListxlq.size()!=0){
+            newsListx.addAll(newsListxlq);
+        }
 
         List<NewsDTO> newsList= Lists.newArrayList();
         int k=0;
