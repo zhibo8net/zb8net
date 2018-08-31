@@ -18,5 +18,5 @@ public interface EndedDao extends PagingAndSortingRepository<Ended, Long>, JpaSp
 
     public List<Ended> findTop32ByAddTimeGreaterThanOrderByIdDesc(Date addTime);
 
-    public List<Ended> findTop16ByProjectOrderByAddTimeDesc(String project);
+    public List<Ended> findTop16ByProjectAndNameNotInOrderByAddTimeDesc(String project,List list);
 }
