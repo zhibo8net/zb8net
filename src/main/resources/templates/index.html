@@ -206,6 +206,7 @@
             </div>
             <div id="js-schedule" class="row">
                 <div class="col-md-12">
+                    <!-- 移动端导航 -->
                     <ul class="nav nav-tabs schedule-tabs mobilenav">
                         <li role="presentation" class="active tab-all" id="">
                             <a href="javascript:switchTo('all')">
@@ -238,6 +239,7 @@
                                 篮球</a>
                         </li>
                     </ul>
+                    <!-- 左侧时间悬浮导航 -->
                     <div class="scroller">
                         <ul>
                             <li th:each="d:${days}">
@@ -257,32 +259,36 @@
                                 <ul class="nav nav-tabs schedule-tabs">
                                     <li role="presentation" class="active tab-all" id="">
                                         <a href="javascript:switchTo('all')">
-                                            <span class="iconfont icon0">&#xe636;</span>
-                                            <span class="iconfont icon1">&#xe636;</span>
+                                            <!-- <span class="iconfont icon0">&#xe636;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe636;</span> -->
                                             全部</a>
                                     </li>
                                     <li role="presentation" class="tab-emphasis">
                                         <a href="javascript:switchTo('emphasis')">
                                             <!-- <img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0" /> -->
                                             <!-- <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1" /> -->
-                                            <span class="iconfont icon0">&#xe60a;</span>
-                                            <span class="iconfont icon1">&#xe60a;</span>
+                                            <!-- <span class="iconfont icon0">&#xe60a;</span> -->
+                                            <!-- <span class="iconfont icon1">&#xe60a;</span> -->
+                                            <span class="iconImg"></span>
                                             重要</a>
                                     </li>
                                     <li role="presentation" class="tab-football">
                                         <a href="javascript:switchTo('football')">
                                             <!-- <img th:src="@{image_1/icon/football-0.png}" class="icon-20 icon0" />
                                             <img th:src="@{image_1/icon/football-1.png}" class="icon-20 icon1" /> -->
-                                            <span class="iconfont icon0">&#xe61a;</span>
-                                            <span class="iconfont icon1">&#xe61a;</span>
+                                            <!-- <span class="iconfont icon0">&#xe61a;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe61a;</span> -->
                                             足球</a>
                                     </li>
                                     <li role="presentation" class="tab-basketball">
                                         <a href="javascript:switchTo('basketball')">
                                             <!-- <img th:src="@{image_1/icon/basketball-0.png}" class="icon-20 icon0" />
                                             <img th:src="@{image_1/icon/basketball-1.png}" class="icon-20 icon1" /> -->
-                                            <span class="iconfont icon0">&#xe639;</span>
-                                            <span class="iconfont icon1">&#xe639;</span>
+                                            <!-- <span class="iconfont icon0">&#xe639;</span> -->
+                                            <span class="iconImg"></span>
+                                            <!-- <span class="iconfont icon1">&#xe639;</span> -->
                                             篮球</a>
                                     </li>
                                 </ul>
@@ -295,11 +301,10 @@
                                     <span class="match" th:if="${m.teamFlag=='FALSE'}" th:text="${m.name}"></span>
                                     <span  th:if="${m.teamFlag=='TRUE'}">
                                         <span class="match" th:text="${m.masterTeamName}"></span>
-                                        <img  th:src="${m.masterTeamLink}"  height="20px" width="20px"/>
+                                        <img class="matchImg"  th:src="${m.masterTeamLink}"  height="30px" width="auto"/>
                                         <span class="match"> - </span>
-                                        <img th:src="${m.guestTeamLink}" height="20px" width="20px"/>
+                                        <img class="matchImg" th:src="${m.guestTeamLink}" height="30px" width="auto"/>
                                         <span class="match"  th:text="${m.guestTeamName}"></span>
-
                                     </span>
                                        <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
