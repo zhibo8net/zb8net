@@ -10,6 +10,7 @@ public class MatchDTO {
     public String project;
     public String game;
     public String name;
+    public Long id;
 
     public List<LiveDTO> lives = Lists.newArrayList();
     public List<AdDTO> ads = Lists.newArrayList();

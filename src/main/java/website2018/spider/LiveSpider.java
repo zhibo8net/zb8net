@@ -228,6 +228,12 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity.project = project;
                         maybeExistedEntity.game = game;
                         maybeExistedEntity.name = StringUtils.isNotBlank(away) ? (home + " VS " + away) : home;
+                        if(StringUtils.isNotBlank(away)){
+                            Team team1=  checkTeam(home);
+                            Team team2=  checkTeam(away);
+                            maybeExistedEntity.masterTeam=team1;
+                            maybeExistedEntity.guestTeam=team2;
+                        }
                         maybeExistedEntity.source = source;
                         maybeExistedEntity.locked = 0;
                         maybeExistedEntity.emphasis = 0;

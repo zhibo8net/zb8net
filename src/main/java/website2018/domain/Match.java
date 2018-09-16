@@ -28,6 +28,11 @@ public class Match extends BaseEntity {
     public int emphasis;// 是否重点
     public String source;
 
+    //新浪直播url
+    public String sinaLiveUrl;
+    //新浪数据Url
+    public String sinaShujuUrl;
+
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Live> lives = Lists.newArrayList();
 

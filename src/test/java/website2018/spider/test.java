@@ -53,25 +53,60 @@ public class test {
     }
 
     public static  void main(String[] args)throws Exception{
-        Pattern p = Pattern.compile(".*(" + "PPTV|CCTV|企鹅|章鱼|直播迷|龙珠|腾讯|ZF|上海|俄罗斯".replace(",", "|") + ").*");
-        Matcher matcher = p.matcher("直播迷(直播TV)");
-        if(matcher.matches()) {
-            System.out.println("ddd");
-        }
-        Document d= readDocFromByJsoup("http://w.zhibo.me:8088/tv/elstv.php?id=1605946");
-        Elements elsurl = d.select("script");
+//        Pattern p = Pattern.compile(".*(" + "PPTV|CCTV|企鹅|章鱼|直播迷|龙珠|腾讯|ZF|上海|俄罗斯".replace(",", "|") + ").*");
+//        Matcher matcher = p.matcher("直播迷(直播TV)");
+//        if(matcher.matches()) {
+//            System.out.println("ddd");
+//        }
+//        Document d= readDocFromByJsoup("http://w.zhibo.me:8088/tv/elstv.php?id=1605946");
+//        Elements elsurl = d.select("script");
+//
+//        for( Element ve1:elsurl) {
+//
+//            int b=ve1.html().indexOf("<object id=");
+//            int b1=ve1.html().indexOf("</object>");
+//            String v=  ve1.html().substring(b, b1+9);
+//            System.out.println(v);
+//
+//        }
 
-        for( Element ve1:elsurl) {
-
-            int b=ve1.html().indexOf("<object id=");
-            int b1=ve1.html().indexOf("</object>");
-            String v=  ve1.html().substring(b, b1+9);
-            System.out.println(v);
-
-        }
+        testFetchFootballJsb();
     }
 
+    public static void testFetchBasketballRank(){
+        Document basketballRankDoc = readDocFromByJsoup("https://www.zhibo8.cc/nba/");
+        if (basketballRankDoc == null) {
 
+            return;
+        }
+
+        Elements tbodys = basketballRankDoc.select("tbody");
+        for (Element tbody : tbodys) {
+            for (Element tr : tbody.select("tr")) {
+                Elements tds = tr.select("td");
+                if (tds.size() >=6) {
+                    System.out.println(tds.get(4).html());
+                }
+            }
+        }
+    }
+    public static void testFetchFootballJsb(){
+        Document footballJsb = readDocFromByJsoup("https://www.zhibo8.cc/zuqiu/");
+        if (footballJsb == null) {
+
+            return;
+        }
+
+        Elements tbodys = footballJsb.select("#jfb tbody");
+        for (Element tbody : tbodys) {
+            for (Element tr : tbody.select("tr")) {
+                Elements tds = tr.select("td");
+                if (tds.size() >=5) {
+                    System.out.println(tds.get(1).html());
+                }
+            }
+        }
+    }
     public static Document readDocFromByJsoup(String url) {
         try {
             return Jsoup.connect(url).get();
