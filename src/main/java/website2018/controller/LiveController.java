@@ -60,6 +60,9 @@ public class LiveController extends BaseEndPoint {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(live.match.playDate==null?new Date():live.match.playDate);
         model.addAttribute("matchTime",dateString);
+        List<FriendLink> friendLinks = liveService.findFriendLinks();
+        model.addAttribute("friendLinks", friendLinks);
+
         return "detail";
     }
     @RequestMapping(value = "/zuqiubf")

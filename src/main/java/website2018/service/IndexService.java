@@ -257,8 +257,10 @@ public class IndexService {
         return endedDao.findTop20ByProjectOrderByIdDesc(project);
     }
     public List<Ended> findNewEndeds(Date addTime){
-        List<Ended> list1=endedDao.findTop16ByProjectOrderByAddTimeDesc("足球");
-        List<Ended> list2=endedDao.findTop16ByProjectOrderByAddTimeDesc("篮球");
+        List list=Lists.newArrayList();
+        list.add("VS");
+        List<Ended> list1=endedDao.findTop16ByProjectAndNameNotInOrderByAddTimeDesc("足球", list);
+        List<Ended> list2=endedDao.findTop16ByProjectAndNameNotInOrderByAddTimeDesc("篮球",list);
         list1=  (list1==null?new ArrayList():list1);
         list2=  (list2==null?new ArrayList():list2);
         list1.addAll(list2);
