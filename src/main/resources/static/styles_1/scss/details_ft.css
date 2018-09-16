@@ -918,6 +918,7 @@ a:active {
 .jd_show cite {
   height: 20px;
   line-height: 20px;
+  background-color: none;
 }
 
 .event_link {
