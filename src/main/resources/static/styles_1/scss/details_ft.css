@@ -79,6 +79,13 @@ body {
   overflow: hidden;
 }
 
+.wrap * {
+  color: inherit;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
 .clear {
   zoom: 1;
 }
@@ -123,8 +130,8 @@ a:active {
 /* ç›´æ’­å®¤è¡¨æ ¼é€šç”¨ */
 .livetable {
   margin: 0 5px;
-  _background: none;
-  _background: #5fa2e6;
+  background: none;
+  background: #5fa2e6;
   color: #fff;
   border: 0;
   overflow: hidden;
@@ -223,23 +230,6 @@ a:active {
 .ads {
   float: left;
   width: 670px;
-}
-
-.nav {
-  text-align: center;
-  background-color: #65afe8;
-  height: 36px;
-  line-height: 36px;
-}
-
-.nav .wrap a {
-  color: #fff;
-  margin: 0 10px;
-}
-
-.nav .wrap a:hover,
-.fav a:hover {
-  color: #f00;
 }
 
 .zb_left {
@@ -808,6 +798,10 @@ a:active {
   font-family: 'å®‹ä½“', arial;
 }
 
+.ft_bottom .ft_video strong {
+  color: #f00;
+}
+
 .ft_bottom .ft_video a {
   color: #0054af;
   font-size: 14px;
@@ -842,6 +836,7 @@ a:active {
   left: 0;
   top: 20px;
   background: #5299cf;
+  -moz-border-radius: 20px;
   border-radius: 20px;
 }
 
@@ -868,19 +863,29 @@ a:active {
   -webkit-flex-direction: row;
   -moz-flex-direction: row;
   -ms-o-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -moz-box-orient: horizontal;
+  -moz-box-direction: normal;
   flex-direction: row;
   -ms-align-content: space-around;
   -webkit-align-content: space-around;
   -moz-align-content: space-around;
   -o-align-content: space-around;
+  -ms-flex-line-pack: distribute;
   align-content: space-around;
   -ms-flex-align: center;
   -ms-align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -moz-box-align: center;
   align-items: center;
   -ms-justify-content: space-between;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
   -o-justify-content: space-between;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
   justify-content: space-between;
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
@@ -1006,6 +1011,7 @@ a:active {
   font-size: 30px;
   font-weight: bold;
   height: 35px;
+  color: #fff;
 }
 
 .tt_time .tt_mtime {
@@ -1154,7 +1160,6 @@ a:active {
   padding: 5px;
   border: 3px solid #dedede;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   z-index: 999999;
   position: fixed;
@@ -1206,6 +1211,7 @@ a:active {
   -ms-user-select: none;
   user-select: none;
   border: 1px solid #357ebd;
+  -moz-border-radius: 4px;
   border-radius: 4px;
   color: #fff;
   background-color: #428bca;
@@ -1222,6 +1228,7 @@ a:active {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -1256,6 +1263,7 @@ a:active {
 .text_box {
   text-indent: 2em;
   border: solid 1px #eee;
+  -moz-border-radius: 5px;
   border-radius: 5px;
   line-height: 30px;
   /* padding: 10px; */
@@ -1326,6 +1334,7 @@ a:active {
 }
 
 .noSelect {
+  -ms-user-select: none;
   user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
@@ -1704,7 +1713,7 @@ a:active {
 }
 
 /**/
-.topbar {
+.topbar1 {
   width: 620px;
   height: 35px;
   padding-top: 10px;
@@ -1732,7 +1741,9 @@ a:active {
 .tselect a:hover {
   color: #64afe8;
   background-color: #fff;
+  -moz-border-radius-topleft: 3px;
   border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
   border-top-right-radius: 3px;
 }
 
@@ -1856,6 +1867,7 @@ a.fankui {
   padding: 0px 4px;
   height: 18px;
   line-height: 18px;
+  -moz-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
   font-size: 12px;
@@ -2024,11 +2036,14 @@ a.fankui {
 
 .tibu li {
   float: left;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   width: 50%;
   height: 35px;
   line-height: 35px;
   background: url("qiuyi-tibu.png") 0 0 no-repeat;
+  -moz-background-size: 32px 30px;
   background-size: 32px 30px;
   padding-left: 35px;
   padding-right: 10px;
@@ -2069,6 +2084,7 @@ a.fankui {
 #goToTop a {
   background: none repeat scroll 0 0 #336699;
   border: 1px solid #cccccc;
+  -moz-border-radius: 3px;
   border-radius: 3px;
   -webkit-border-radius: 3px;
   color: #ff9966;

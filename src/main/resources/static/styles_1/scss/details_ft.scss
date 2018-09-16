@@ -77,6 +77,12 @@ body {
   width: 1020px;
   margin: 0 auto;
   overflow: hidden;
+  * {
+    color: inherit;
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
+  }
 }
 
 .clear {
@@ -126,8 +132,8 @@ a:active {
 
 .livetable {
   margin: 0 5px;
-  _background: none;
-  _background: #5fa2e6;
+  background: none;
+  background: #5fa2e6;
   color: #fff;
   border: 0;
   overflow: hidden;
@@ -135,12 +141,9 @@ a:active {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -o-border-radius: 5px;
-  box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1),
-    0px 4px 4px 0px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1),
-    0px 4px 4px 0px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1),
-    0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1), 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1), 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: inset 0 1px 6px 0px rgba(255, 255, 255, 1), 0px 4px 4px 0px rgba(0, 0, 0, 0.6);
 }
 
 .rad3 {
@@ -231,22 +234,6 @@ a:active {
   width: 670px;
 }
 
-.nav {
-  text-align: center;
-  background-color: #65afe8;
-  height: 36px;
-  line-height: 36px;
-}
-
-.nav .wrap a {
-  color: #fff;
-  margin: 0 10px;
-}
-
-.nav .wrap a:hover,
-.fav a:hover {
-  color: #f00;
-}
 
 .zb_left {
   width: 620px;
@@ -565,14 +552,12 @@ a:active {
 }
 
 .fbbx .yhm {
-  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/shang.png)
-    no-repeat;
+  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/shang.png) no-repeat;
   min-width: 60px;
 }
 
 .fbbx .xie {
-  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/xie.png)
-    no-repeat;
+  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/xie.png) no-repeat;
   padding-left: 20px;
   width: 80px;
 }
@@ -585,8 +570,7 @@ a:active {
 
 .fbbx .you {
   border-right: 1px solid #ccc;
-  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/you.png)
-    no-repeat;
+  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/you.png) no-repeat;
   padding-left: 0px;
 }
 
@@ -768,8 +752,7 @@ a:active {
 }
 
 .ft_time .ft_host_score,
-.ft_time .ft_visit_score {
-}
+.ft_time .ft_visit_score {}
 
 .ft_time .ft_mtime {
   /*margin:0 10px 0 10px;*/
@@ -829,6 +812,9 @@ a:active {
   float: left;
   font-size: 14px;
   font-family: 'å®‹ä½“', arial;
+  strong{
+    color: #f00;
+  }
 }
 
 .ft_bottom .ft_video a {
@@ -866,7 +852,8 @@ a:active {
   left: 0;
   top: 20px;
   background: #5299cf;
-  border-radius: 20px;
+  -moz-border-radius: 20px;
+       border-radius: 20px;
 }
 
 .jd_box:after {
@@ -892,20 +879,30 @@ a:active {
   -webkit-flex-direction: row;
   -moz-flex-direction: row;
   -ms-o-direction: row;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+     -moz-box-orient: horizontal;
+     -moz-box-direction: normal;
+          flex-direction: row;
   -ms-align-content: space-around;
   -webkit-align-content: space-around;
   -moz-align-content: space-around;
   -o-align-content: space-around;
-  align-content: space-around;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
   -ms-flex-align: center;
   -ms-align-items: center;
-  align-items: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+     -moz-box-align: center;
+          align-items: center;
   -ms-justify-content: space-between;
   -webkit-justify-content: space-between;
   -moz-justify-content: space-between;
   -o-justify-content: space-between;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+     -moz-box-pack: justify;
+          justify-content: space-between;
   -ms-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -moz-flex-wrap: nowrap;
@@ -944,8 +941,7 @@ a:active {
   vertical-align: middle;
   width: 15px;
   height: 20px;
-  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/event_bg2.png)
-    1000px 1000px no-repeat;
+  background: url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/event_bg2.png) 1000px 1000px no-repeat;
 }
 
 .bg_jinqiu {
@@ -1032,6 +1028,7 @@ a:active {
   font-size: 30px;
   font-weight: bold;
   height: 35px;
+  color: #fff;
 }
 
 .tt_time .tt_mtime {
@@ -1087,8 +1084,7 @@ a:active {
   margin-bottom: 6px;
 }
 
-.jc .jcli_box {
-}
+.jc .jcli_box {}
 
 .jc .jcli_rp {
   width: 170px;
@@ -1186,7 +1182,6 @@ a:active {
   padding: 5px;
   border: 3px solid #dedede;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
   z-index: 999999;
   position: fixed;
@@ -1238,7 +1233,8 @@ a:active {
   -ms-user-select: none;
   user-select: none;
   border: 1px solid #357ebd;
-  border-radius: 4px;
+  -moz-border-radius: 4px;
+       border-radius: 4px;
   color: #fff;
   background-color: #428bca;
   margin-left: 10px;
@@ -1254,7 +1250,8 @@ a:active {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  -moz-border-radius: 4px;
+       border-radius: 4px;
 }
 
 .earn_info {
@@ -1288,7 +1285,8 @@ a:active {
 .text_box {
   text-indent: 2em;
   border: solid 1px #eee;
-  border-radius: 5px;
+  -moz-border-radius: 5px;
+       border-radius: 5px;
   line-height: 30px;
   /* padding: 10px; */
   font-size: 14px;
@@ -1325,9 +1323,7 @@ a:active {
 
 #topjq1 .scrollbar,
 #topjq2 .scrollbar {
-  background: transparent
-    url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-track-y.png)
-    no-repeat 0 0;
+  background: transparent url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-track-y.png) no-repeat 0 0;
   position: relative;
   background-position: 0 0;
   float: right;
@@ -1337,9 +1333,7 @@ a:active {
 
 #topjq1 .thumb,
 #topjq2 .thumb {
-  background: transparent
-    url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-thumb-y.png)
-    no-repeat 50% 0%;
+  background: transparent url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-thumb-y.png) no-repeat 50% 0%;
   height: 10px;
   width: 6px;
   cursor: pointer;
@@ -1351,9 +1345,7 @@ a:active {
 
 #topjq1 .thumb .end,
 #topjq2 .thumb .end {
-  background: transparent
-    url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-thumb-y.png)
-    no-repeat 50% 0;
+  background: transparent url(http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/bg-scrollbar-thumb-y.png) no-repeat 50% 0;
   overflow: hidden;
   height: 5px;
   width: 6px;
@@ -1365,7 +1357,8 @@ a:active {
 }
 
 .noSelect {
-  user-select: none;
+  -ms-user-select: none;
+      user-select: none;
   -o-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
@@ -1400,8 +1393,7 @@ a:active {
   font-size: 14px;
 }
 
-.zhibo .jcli_box {
-}
+.zhibo .jcli_box {}
 
 .zhibo .jcli_rp {
   width: 150px;
@@ -1546,8 +1538,7 @@ a:active {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background: url(//pimg1.126.net/caipiao_info/img/library/t24no.png) no-repeat
-    0 0;
+  background: url(//pimg1.126.net/caipiao_info/img/library/t24no.png) no-repeat 0 0;
   line-height: 24px;
 }
 
@@ -1755,7 +1746,7 @@ a:active {
 
 /**/
 
-.topbar {
+.topbar1 {
   width: 620px;
   height: 35px;
   padding-top: 10px;
@@ -1783,8 +1774,10 @@ a:active {
 .tselect a:hover {
   color: #64afe8;
   background-color: #fff;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+       border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+       border-top-right-radius: 3px;
 }
 
 a.fankui {
@@ -1910,7 +1903,8 @@ a.fankui {
   padding: 0px 4px;
   height: 18px;
   line-height: 18px;
-  border-radius: 2px;
+  -moz-border-radius: 2px;
+       border-radius: 2px;
   text-align: center;
   font-size: 12px;
   background: rgba(0, 0, 0, 0.6);
@@ -2081,12 +2075,15 @@ a.fankui {
 
 .tibu li {
   float: left;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
   width: 50%;
   height: 35px;
   line-height: 35px;
   background: url('qiuyi-tibu.png') 0 0 no-repeat;
-  background-size: 32px 30px;
+  -moz-background-size: 32px 30px;
+       background-size: 32px 30px;
   padding-left: 35px;
   padding-right: 10px;
   position: relative;
@@ -2126,7 +2123,8 @@ a.fankui {
 #goToTop a {
   background: none repeat scroll 0 0 #336699;
   border: 1px solid #cccccc;
-  border-radius: 3px;
+  -moz-border-radius: 3px;
+       border-radius: 3px;
   -webkit-border-radius: 3px;
   color: #ff9966;
   font-size: 14px;
