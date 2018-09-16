@@ -63,7 +63,7 @@ public class LiveController extends BaseEndPoint {
         List<FriendLink> friendLinks = liveService.findFriendLinks();
         model.addAttribute("friendLinks", friendLinks);
 
-        return "detail";
+        return "detail-old";
     }
     @RequestMapping(value = "/zuqiubf")
     public String zuqiubf( Model model) {
