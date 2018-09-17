@@ -23,5 +23,11 @@ public class MatchDTO {
     public String guestTeamLink;
     public String masterTeamName;
     public String masterTeamLink;
+    //新浪直播url
+    public String sinaLiveUrl;
+    //新浪数据Url
+    public String sinaShujuUrl;
+
+    public String playDateStr;
 
 }

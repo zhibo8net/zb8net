@@ -12,6 +12,8 @@ import website2018.domain.Match;
 
 public interface MatchDao extends PagingAndSortingRepository<Match, Long>, JpaSpecificationExecutor<Match> {
 
+    public Match findById(Long id);
+
     public Match findBySource(String source);
 
     public List<Match> findByPlayDateStrOrderByPlayDateAsc(String dateStr);
