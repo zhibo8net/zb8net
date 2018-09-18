@@ -731,12 +731,24 @@ public class LiveSpider extends BaseSpider {
         }
     }
     public Team checkTeam(String teamZh){
-        Team tm=teamDao.findByTeamZh(teamZh);
-        if(tm!=null){
-           return  tm;
-        }
 
-        tm=new Team();
+        List<Team> tmList=teamDao.findByTeamZh(teamZh);
+        if(tmList!=null&&tmList.size()>=1){
+           return  tmList.get(0);
+        }
+        List<Team> tmList1=teamDao.findByTeamName1(teamZh);
+        if(tmList1!=null&&tmList1.size()>=1){
+            return  tmList1.get(0);
+        }
+        List<Team> tmList2=teamDao.findByTeamName2(teamZh);
+        if(tmList2!=null&&tmList2.size()>=1){
+            return  tmList1.get(0);
+        }
+        List<Team> tmList3=teamDao.findByTeamName3(teamZh);
+        if(tmList3!=null&&tmList3.size()>=1){
+            return  tmList1.get(0);
+        }
+       Team tm=new Team();
         tm.addTime=new Date();
         tm.updateTime=new Date();
         tm.teamZh = teamZh;

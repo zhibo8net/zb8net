@@ -25,4 +25,9 @@ public class MatchAdminDTO {
     
     public String unlockDateStr;
     public String unlockTimeStr;
+
+    //新浪直播url
+    public String sinaLiveUrl;
+    //新浪数据Url
+    public String sinaShujuUrl;
 }
