@@ -51,9 +51,12 @@
                                         <div th:if="${l.signals.size() == 1}" th:remove="tag">
                                             <a th:href="${'/match_1/'+m.id}" th:text="${l.signals[0].name}"></a>
                                         </div>
-                                           <div th:if="${m.sinaShujuUrl!=null}" th:remove="tag">
-                                               <a th:href="${'/match_1/'+m.id}" >图文直播</a>
-                                           </div>
+
+                                    </span>
+                                     <span th:if="${m.sinaShujuUrl!=null}">
+                                       <div  th:remove="tag">
+                                           <a th:href="${'/match_1/'+m.id}" >图文直播</a>
+                                       </div>
                                     </span>
                                     <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|" target="_blank"></a>
                                 </li>
