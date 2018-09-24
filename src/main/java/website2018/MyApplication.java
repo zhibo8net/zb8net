@@ -11,8 +11,10 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 
 import website2018.base.BaseEndPoint;
 import website2018.filter.RestFilter;
+import website2018.filter.UserRestFilter;
 import website2018.filter.WebFilter;
 import website2018.service.LoginService;
+import website2018.service.user.UserLoginService;
 
 @SpringBootApplication
 @EnableScheduling
@@ -22,7 +24,9 @@ public class MyApplication {
     public static boolean TEST_LIVE_SPIDER = false;
 
     @Autowired LoginService accountService;
-    
+
+    @Autowired
+    UserLoginService userLoginService;
     @Bean
     public TaskScheduler taskScheduler() {
         return new ConcurrentTaskScheduler();
@@ -36,13 +40,21 @@ public class MyApplication {
 
         return registrationBean;
     }
-
+    @Bean
+    public FilterRegistrationBean userRestFilter() {
+        FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+        registrationBean.setFilter(new UserRestFilter(userLoginService));
+        registrationBean.addUrlPatterns("/api/user/*");
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }
     @Bean
     public FilterRegistrationBean webFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new WebFilter());
         registrationBean.addUrlPatterns("/");
         registrationBean.addUrlPatterns("/live_1");
+        registrationBean.addUrlPatterns("/match_1/*");
         registrationBean.addUrlPatterns("/projectVideo_1");
         registrationBean.addUrlPatterns("/gameVideo_1");
         registrationBean.addUrlPatterns("/recording_1");

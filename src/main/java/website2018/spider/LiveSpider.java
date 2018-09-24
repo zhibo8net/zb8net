@@ -229,8 +229,8 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity.game = game;
                         maybeExistedEntity.name = StringUtils.isNotBlank(away) ? (home + " VS " + away) : home;
                         if(StringUtils.isNotBlank(away)){
-                            Team team1=  checkTeam(home);
-                            Team team2=  checkTeam(away);
+                            Team team1=  checkTeam(home,project);
+                            Team team2=  checkTeam(away,project);
                             maybeExistedEntity.masterTeam=team1;
                             maybeExistedEntity.guestTeam=team2;
                         }
@@ -586,8 +586,8 @@ public class LiveSpider extends BaseSpider {
                             game = formated;
                         }
                         if (tds.size() > 8) {
-                            Team team1=  checkTeam(tds.get(4).select("strong").html());
-                            Team team2=  checkTeam(tds.get(6).select("strong").html());
+                            Team team1=  checkTeam(tds.get(4).select("strong").html(),project);
+                            Team team2=  checkTeam(tds.get(6).select("strong").html(),project);
                             maybeExistedEntity.masterTeam=team1;
                             maybeExistedEntity.guestTeam=team2;
 
@@ -730,8 +730,15 @@ public class LiveSpider extends BaseSpider {
 
         }
     }
-    public Team checkTeam(String teamZh){
-
+    public Team checkTeam(String teamZh,String project){
+        List<Team> tmListproject=teamDao.findByTeamZh(teamZh+project);
+        if(tmListproject!=null&&tmListproject.size()>=1){
+            return  tmListproject.get(0);
+        }
+        List<Team> tmList11=teamDao.findByTeamName1(teamZh+project);
+        if(tmList11!=null&&tmList11.size()>=1){
+            return  tmList11.get(0);
+        }
         List<Team> tmList=teamDao.findByTeamZh(teamZh);
         if(tmList!=null&&tmList.size()>=1){
            return  tmList.get(0);

@@ -1,0 +1,19 @@
+package website2018.dto.user;
+
+import java.util.Date;
+
+/**
+ * Created by Administrator on 2018/9/24.
+ */
+public class UserDTO {
+    public String userName;
+
+    public String userNickName;
+
+    public String mobile;
+
+    public String password;
+
+    public Date addTime;
+    public Date updateTime;
+}
