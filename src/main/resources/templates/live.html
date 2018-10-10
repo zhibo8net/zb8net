@@ -5,7 +5,7 @@
 	<meta name="keywords" th:content="|${project=='篮球'?'篮球直播,篮球视频直播,篮球直播吧,NBA直播,CBA直播':''}${project=='足球'?'足球直播,世界杯直播,足球比赛直播,英超直播,欧冠直播':''}|" />
     <meta name="description" th:content="|${project=='篮球'?'篮球直播频道为您提供最新的NBA直播、CBA直播、篮球视频直播、篮球比分直播等，更多精彩篮球赛事直播尽在直播吧。':''}${project=='足球'?'足球直播频道为您提供最新的足球直播、世界杯直播、英超直播、欧冠直播、德甲直播、意甲直播等赛事，更多精彩足球赛事尽在直播吧':''}|" />
     <link rel="stylesheet" th:href="@{styles_1/index.css}" />
-    <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
     <script th:src="@{js_1/index.js}"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
                     <div class="col-md-6 col-sm-12" th:each="p:${projectEndeds2}"><span th:text="${p.name}"></span> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasJijin}">集锦</a> <a th:href="'/video_1/'+${p.id}" th:if="${p.hasLuxiang}">录像</a></div>
                 </div>
             </div>
-            
+
             <div id="js-schedule" class="row">
                 <div class="col-md-12">
                     <div class="scroller">
@@ -41,10 +41,10 @@
                             <ul class="list-unstyled">
                                 <li th:each="m:${dl.matches}" th:classappend="|${m.emphasis==1 ? 'emphasis' : ''} ${m.important==1 ? 'important' : ''} ${m.project=='足球' ? 'football' : ''} ${m.project=='篮球' ? 'basketball' : ''}|">
                                     <span class="list-style">•</span>
-                                    <span class="time" th:text="${m.playTime}"></span> 
+                                    <span class="time" th:text="${m.playTime}"></span>
                                     <span class="game" th:text="${m.game}"></span>
                                     <span class="match" th:text="${m.name}"></span>
-                                    <span class="live" th:each="l:${m.lives}"> 
+                                    <span class="live" th:each="l:${m.lives}">
                                         <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                             <span th:text="${l.name}"></span>(<a th:each="s:${l.signals}" th:href="${'/live_1/'+s.liveId}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                                         </div>
