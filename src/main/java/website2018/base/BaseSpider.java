@@ -20,6 +20,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Node;
@@ -102,7 +103,21 @@ public class BaseSpider {
             return null;
         }
     }
+    public String readDocFromByJsoupReqJson(String url) {
+        try {
+            Connection.Response res = Jsoup.connect(url).header("Accept", "*/*")
+                    .header("Accept-Encoding", "gzip, deflate")
+                    .header("Accept-Language","zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
+                    .header("Content-Type", "application/json;charset=UTF-8")
+                    .header("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0")
+                    .timeout(10000).ignoreContentType(true).execute();
 
+            return res.body();
+        }catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public String readFromUrl(String url) throws Exception {
         return this.readFromUrl(url, "UTF-8");
     }

@@ -186,12 +186,12 @@ public class ProjectSpider extends BaseSpider {
         //保存球队
         for(String str:team){
             try{
-                Team tm=teamDao.findByTeamZh(str);
-                if(tm!=null){
+                List<Team> tmList=teamDao.findByTeamZh(str);
+                if(tmList!=null){
                     continue;
                 }
 
-                tm=new Team();
+              Team  tm=new Team();
                 tm.addTime=new Date();
                 tm.updateTime=new Date();
                 tm.teamZh=str;

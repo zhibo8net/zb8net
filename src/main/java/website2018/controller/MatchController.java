@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import website2018.base.BaseEndPoint;
 import website2018.domain.FriendLink;
+import website2018.dto.MatchDTO;
+import website2018.service.IndexService;
 import website2018.service.LiveService;
 
 import java.util.List;
@@ -19,12 +21,18 @@ public class MatchController  extends BaseEndPoint {
 
     @Autowired
     LiveService liveService;
-
+    @Autowired
+    IndexService indexService;
     @RequestMapping(value = "/match_1/{id}")
     public String live(@PathVariable Long id, Model model) {
 
+      MatchDTO matchDTO= indexService.findMatchDTO(id);
+        if(matchDTO==null){
+            return "redirect:http://www.zhibo8.net/";
+        }
         List<FriendLink> friendLinks = liveService.findFriendLinks();
         model.addAttribute("friendLinks", friendLinks);
+        model.addAttribute("matchDTO", matchDTO);
 
         return "detail";
     }

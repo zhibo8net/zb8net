@@ -34,7 +34,7 @@ public class FootballJsbSpider extends BaseSpider {
 
     @Autowired
     private FootballSsbDao footballSsbDao;
-    @Scheduled(cron = "0 0/10 * * * *")
+    @Scheduled(cron = "0 0 0/2 * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED) {

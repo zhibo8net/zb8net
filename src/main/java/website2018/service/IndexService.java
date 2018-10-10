@@ -103,6 +103,78 @@ public class IndexService {
         dailyLivesCache.put("dailyLives", dailyLives);
     }
 
+    public MatchDTO findMatchDTO(Long id){
+        LiveSource liveSource = liveSourceDao.findByActive(1);
+        Pattern p = Pattern.compile(".*(" + liveSource.channels.replace(",", "|") + ").*");
+
+
+        Match m=   matchDao.findById(id);
+            MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
+        if(m.guestTeam!=null){
+            mdto.guestTeamName=m.guestTeam.teamZh;
+            if(StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
+                mdto.guestTeamLink=m.guestTeam.teamImgLink;
+            }
+        }
+        if(m.masterTeam!=null){
+            mdto.masterTeamName=m.masterTeam.teamZh;
+            if(StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
+                mdto.masterTeamLink=m.masterTeam.teamImgLink;
+            }
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
+        if(m.playDate!=null){
+            mdto.playDateStr=sdf.format(m.playDate);
+        }
+            mdto.lives = Lists.newArrayList();
+
+            for(Live l : m.lives) {
+                if(l.name.contains("CCTV5")) {
+                    mdto.emphasis = 1;
+                }
+                Matcher matcher = p.matcher(l.name);
+                if(matcher.matches()) {
+                    String tv = matcher.group(1);
+                    if(tv.equals("QQ")) {
+                        tv = "QQ直播";
+                    }
+                    LiveDTO liveDTO = null;
+                    for(LiveDTO ld : mdto.lives) {
+                        if(ld.name.equals(tv)) {
+                            liveDTO = ld;
+                        }
+                    }
+                    if(liveDTO == null) {
+                        liveDTO = new LiveDTO();
+                        liveDTO.name = tv;
+                        mdto.lives.add(liveDTO);
+                    }
+                    //链接重复的，只添加一次
+                    boolean existed = false;
+                    for(SignalDTO s : liveDTO.signals) {
+                        if(s.link.equals(l.link)) {
+                            existed = true;
+                        }
+                    }
+                    if(!existed) {
+                        int signalsIndex = liveDTO.signals.size() + 1;
+                        SignalDTO signalDTO = new SignalDTO();
+                        signalDTO.name = l.name;
+                        signalDTO.indexName = "信号" + signalsIndex;
+                        signalDTO.link = l.link;
+                        signalDTO.videoLink=l.videoLink;
+                        signalDTO.liveId=l.id;
+                        signalDTO.gameId=l.gameId;
+                        liveDTO.signals.add(signalDTO);
+                    }
+                }
+            }
+
+
+         return mdto;
+
+
+    }
     public List<DailyLivesDTO> queryDailyLives() {
         LiveSource liveSource = liveSourceDao.findByActive(1);
         
@@ -153,7 +225,7 @@ public class IndexService {
                 if(m.playDate.getTime() > twoHourBeforeNowMills) {
 
                     MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
-                    if(m.guestTeam!=null&&m.masterTeam!=null){
+                    if(m.guestTeam!=null){
                         if(StringUtils.isNotEmpty(m.guestTeam.teamImgLink)&&StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
                             mdto.teamFlag="TRUE";
                             mdto.masterTeamName=m.masterTeam.teamZh;
