@@ -159,11 +159,15 @@ public class LiveSpider extends BaseSpider {
 
                     if (maybeExistedEntity != null) {// 已经抓取过
                         if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
+                            if(maybeExistedEntity.unlockTime!=null){
                             if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
                                 willSaveMatch = false;
                             } else {// 锁定已过期
                                 // 解锁
                                 maybeExistedEntity.locked = 0;
+                            }
+                            }else{
+                                willSaveMatch = false;
                             }
                         }
                         if (willSaveMatch) {// 不是锁定状态，或者已经解锁，清空

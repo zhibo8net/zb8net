@@ -13,7 +13,7 @@ public class UserDTO {
     public String mobile;
 
     public String password;
-
+    public String rePassword;
     public Date addTime;
     public Date updateTime;
 }
