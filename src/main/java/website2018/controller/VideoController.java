@@ -111,9 +111,9 @@ public class VideoController extends BaseEndPoint {
             VideoDTO videoDTO=BeanMapper.map(video, VideoDTO.class);
             if(i==0){
                 videoDTO.isFisrt="TRUE";
-                if(video.name.length()>20){
-                    videoDTO.name=video.name.substring(0,20);
-                }
+            }
+            if(video.name.length()>20){
+                videoDTO.name=video.name.substring(0,20);
             }
             videoDTOList.add(videoDTO);
             i++;
@@ -183,9 +183,10 @@ public class VideoController extends BaseEndPoint {
             VideoDTO videoDTO=BeanMapper.map(video, VideoDTO.class);
             if(i==0){
                 videoDTO.isFisrt="TRUE";
-                if(video.name.length()>20){
-                    videoDTO.name=video.name.substring(0,20);
-                }
+
+            }
+            if(video.name.length()>20){
+                videoDTO.name=video.name.substring(0,20);
             }
             videoDTOList.add(videoDTO);
             i++;
