@@ -37,6 +37,7 @@ public class MyApplication {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new RestFilter(accountService));
         registrationBean.addUrlPatterns("/api/admin/*");
+        registrationBean.addUrlPatterns("/api/matchRank/*");
 
         return registrationBean;
     }
@@ -64,7 +65,8 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/projectImage_1");
         registrationBean.addUrlPatterns("/viewImage_1/*");
         registrationBean.addUrlPatterns("/video_1/*");
-
+        registrationBean.addUrlPatterns("/nba_video");
+        registrationBean.addUrlPatterns("/footer_video");
         return registrationBean;
     }
 
