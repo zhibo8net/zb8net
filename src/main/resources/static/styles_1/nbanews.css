@@ -146,6 +146,9 @@ a:active {
     color: #fff;
     width: 156px;
     padding: 0px 3px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
 .t_left ul li span a {
@@ -154,22 +157,6 @@ a:active {
 
 .t_left ul li span a:hover {
     text-decoration: underline;
-}
-
-@media screen {
-    /* åªæ”¯æŒIE6ã€7ã€8 */
-    .t_left ul li span {
-        background-color: #000000;
-        filter: Alpha(opacity=50);
-        position: static;
-        /* IE6ã€7ã€8åªèƒ½è®¾ç½®position:static(é»˜è®¤å±žæ€§) ï¼Œå¦åˆ™ä¼šå¯¼è‡´å­å…ƒç´ ç»§æ‰¿Alphaå€¼ */
-        *zoom: 1;
-        /* æ¿€æ´»IE6ã€7çš„haslayoutå±žæ€§ï¼Œè®©å®ƒè¯»æ‡‚Alpha */
-    }
-    .t_left ul li span p {
-        position: relative;
-        /* è®¾ç½®å­å…ƒç´ ä¸ºç›¸å¯¹å®šä½ï¼Œå¯è®©å­å…ƒç´ ä¸ç»§æ‰¿Alphaå€¼ */
-    }
 }
 
 .t_left ul li span p {
