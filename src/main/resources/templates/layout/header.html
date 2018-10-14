@@ -54,7 +54,12 @@
                     <li><a href="/recording_1?project=足球&amp;game=欧冠">欧冠录像</a></li>
                   </ul>
                 </li>
-                <li th:classappend="${menu=='news'?'active':''}"><a href="/news_1">新闻资讯</a></li>
+                <li class="dropdown" th:classappend="${menu=='news'?'active':''}">
+                  <a href="/news_1">新闻资讯</a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/nba_news.html">NBA新闻</a></li>
+                      <li><a href="/footer_news.html">足球新闻</a></li>
+                    </ul></li>
                 <li th:classappend="${menu=='image'?'active':''}"><a href="/image_1">体育图片</a></li>
                 <li  th:classappend="${menu=='bf'?'active':''}"><a href="/zuqiubf" >比分直播</a></li>
               </ul>
