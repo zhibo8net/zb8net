@@ -156,8 +156,7 @@ a:active {
     text-decoration: underline;
 }
 
-@media \0screen\,
-screen\9 {
+@media screen {
     /* åªæ”¯æŒIE6ã€7ã€8 */
     .t_left ul li span {
         background-color: #000000;
@@ -424,20 +423,20 @@ screen\9 {
 }
 
 .more_left {
-    background: url('https://www.zhibo8.cc/css/zixun/turn.png') no-repeat -10px 0px;
+    background: url('../image_1/turn.png') no-repeat -10px 0px;
 }
 
 .more_left_h {
-    background: url('https://www.zhibo8.cc/css/zixun/turn.png') no-repeat -30px 0px;
+    background: url('../image_1/turn.png') no-repeat -30px 0px;
 }
 
 .more_right {
-    background: url('https://www.zhibo8.cc/css/zixun/turn.png') no-repeat;
+    background: url('../image_1/turn.png') no-repeat;
     background-position: 2px 0px;
 }
 
 .more_right_h {
-    background: url('https://www.zhibo8.cc/css/zixun/turn.png') no-repeat;
+    background: url('../image_1/turn.png') no-repeat;
     background-position: -20px 0px;
 }
 
@@ -548,13 +547,13 @@ ul.m_r_team li {
     color: #f00 !important;
 }
 
-.container {
+/* .container {
     width: 990px;
     height: auto;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-}
+} */
 
 #luxian_main {
     width: 100%;
@@ -629,7 +628,7 @@ ul.m_r_team li {
     height: 18px;
     padding: 1px;
     border: solid 1px #ccc;
-    background: url('https://www.zhibo8.cc/css/zixun/more.png') center right no-repeat;
+    background: url('../image_1/more.png') center right no-repeat;
 }
 
 #luxian_main .c_btm {
@@ -1221,7 +1220,7 @@ ul.m_r_team li {
 /* prev, next, prevPage and nextPage buttons */
 
 a.browse {
-    background: url(//tu.zhibo8.cc/css/images//hori_large.png) no-repeat;
+    background: url('../image_1/hori_large.png') no-repeat;
     display: block;
     width: 30px;
     height: 30px;
@@ -1265,7 +1264,7 @@ a.left:active {
 
 a.up,
 a.down {
-    background: url(//tu.zhibo8.cc/css/images//vert_large.png) no-repeat;
+    background: url('../image_1/vert_large.png') no-repeat;
     float: none;
     margin: 10px 50px;
 }
@@ -1313,7 +1312,7 @@ a.disabled {
     height: 120px;
     /* custom decorations */
     border: 1px solid #ccc;
-    background: url(//tu.zhibo8.cc/css/images/h300.png) repeat-x;
+    background: url('../image_1/h300.png') repeat-x;
 }
 
 /*
@@ -1409,4 +1408,100 @@ a.disabled {
 #hot_video li:nth-child(2) span,
 #hot_video li:nth-child(3) span {
     background: red;
+}
+
+#slider {
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+
+#slider ul {
+    width: 2520px;
+    height: 300px;
+}
+
+#slider li {
+    width: 360px;
+    height: 300px;
+    overflow: hidden;
+    float: left;
+}
+
+#slider a {
+    display: block;
+    width: 360px;
+    height: 300px;
+    position: relative;
+}
+
+#slider img {
+    width: 360px;
+    height: 270px;
+}
+
+#slider ul,
+#slider li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#slider .info {
+    position: absolute;
+    font-size: 14px;
+    z-index: 2;
+    padding-left: 5px;
+    bottom: 0;
+    left: 0;
+    width: 360px;
+    height: auto;
+    overflow: hidden;
+    background: #222;
+    color: #fff;
+    line-height: 30px;
+    /*opacity: 0.7;filter:alpha(opacity=70);*/
+}
+
+#slider .info b {
+    color: #fff;
+}
+
+/*数字导航样式*/
+
+#flashnvanum {
+    z-index: 3;
+    bottom: 6px;
+    position: absolute;
+    right: 2px;
+    width: 120px;
+}
+
+#flashnvanum span {
+    background: transparent url(https://tu.zhibo8.cc/css/images/flashbutton.gif) no-repeat scroll -15px 0;
+    color: #86A2B8;
+    cursor: pointer;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    height: 15px;
+    line-height: 15px;
+    margin: 1px;
+    text-align: center;
+    width: 15px;
+}
+
+#flashnvanum span.on {
+    background: transparent url(https://tu.zhibo8.cc/css/images/flashbutton.gif) no-repeat scroll 0 0;
+    color: #FFFFFF;
+    height: 15px;
+    line-height: 15px;
+    width: 15px;
+}
+
+.adv_top_banner {
+    width: 990px;
+    height: auto;
+    overflow: hidden;
+    margin: 15px auto 0 auto;
 }
