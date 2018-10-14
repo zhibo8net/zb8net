@@ -63,6 +63,12 @@ public class UserLoginService {
             response.message="请求参数错误";
             return response;
         }
+
+        if(userDTO.password.equals(userDTO.rePassword)){
+            response.code="0005";
+            response.message="2次输入密码不一致";
+            return response;
+        }
         User user=   userDao.findByUserName(userDTO.userName);
         if(user==null){
             User  u = BeanMapper.map(userDTO, User.class);
