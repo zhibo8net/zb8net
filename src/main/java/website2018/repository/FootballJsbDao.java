@@ -13,6 +13,6 @@ public interface FootballJsbDao extends PagingAndSortingRepository<FootballJsb, 
 
     FootballJsb findByTypeAndTypeMoldAndTeamName(String type,String typeMold, String teamName);
 
-    List<FootballJsb> findByTypeAndTypeMoldOrderByScoreDesc(String type,String typeMold);
+    List<FootballJsb> findTop20ByTypeAndTypeMoldOrderByScoreDesc(String type,String typeMold);
 
 }
