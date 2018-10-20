@@ -118,11 +118,11 @@ public class MatchRankService {
 
     public BasketMatchRankDTO getBasketMatchRankDTO(){
         BasketMatchRankDTO basketMatchRankDTO=new BasketMatchRankDTO();
-        List<BasketballRank> basketballRankList=basketballRankDao.findByTypeOrderByWinRateDesc("NBA西部");
+        List<BasketballRank> basketballRankList=basketballRankDao.findTop20ByTypeOrderByWinRateDesc("NBA西部");
         basketMatchRankDTO.NBAWestMatchRankList=basketballRankList;
-        List<BasketballRank> basketballRankList1=basketballRankDao.findByTypeOrderByWinRateDesc("NBA东部");
+        List<BasketballRank> basketballRankList1=basketballRankDao.findTop20ByTypeOrderByWinRateDesc("NBA东部");
         basketMatchRankDTO.NBAEastMatchRankList=basketballRankList1;
-        List<BasketballRank> basketballRankList2=basketballRankDao.findByTypeOrderByWinRateDesc("CBA排名");
+        List<BasketballRank> basketballRankList2=basketballRankDao.findTop20ByTypeOrderByWinRateDesc("CBA排名");
         basketMatchRankDTO.CBAMatchRankList=basketballRankList2;
 
         return basketMatchRankDTO;
@@ -130,39 +130,39 @@ public class MatchRankService {
 
     public BasketMatchTelRankDTO getBasketMatchTelRankDTO(){
         BasketMatchTelRankDTO basketMatchTelRankDTO=new BasketMatchTelRankDTO();
-        basketMatchTelRankDTO.DSMatchTelRankList= basketballTelCommonDao.findByTypeOrderByScoreDesc("得分");
-        basketMatchTelRankDTO.LBMatchTelRankList= basketballTelCommonDao.findByTypeOrderByBackboardDesc("篮板");
-        basketMatchTelRankDTO.ZGMatchTelRankList= basketballTelCommonDao.findByTypeOrderByMatchAvgDesc("助攻");
-        basketMatchTelRankDTO.QDMatchTelRankList= basketballTelCommonDao.findByTypeOrderByMatchAvgDesc("抢断");
-        basketMatchTelRankDTO.GMMatchTelRankList= basketballTelCommonDao.findByTypeOrderByMatchAvgDesc("盖帽");
+        basketMatchTelRankDTO.DSMatchTelRankList= basketballTelCommonDao.findTop30ByTypeOrderByScoreDesc("得分");
+        basketMatchTelRankDTO.LBMatchTelRankList= basketballTelCommonDao.findTop30ByTypeOrderByBackboardDesc("篮板");
+        basketMatchTelRankDTO.ZGMatchTelRankList= basketballTelCommonDao.findTop30ByTypeOrderByMatchAvgDesc("助攻");
+        basketMatchTelRankDTO.QDMatchTelRankList= basketballTelCommonDao.findTop30ByTypeOrderByMatchAvgDesc("抢断");
+        basketMatchTelRankDTO.GMMatchTelRankList= basketballTelCommonDao.findTop30ByTypeOrderByMatchAvgDesc("盖帽");
 
         return basketMatchTelRankDTO;
     }
 
     public FootBallJSBRankDTO getFootBallJSBRankDTO(){
         FootBallJSBRankDTO footBallJSBRankDTO =new FootBallJSBRankDTO();
-        footBallJSBRankDTO.zcFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "中超");
-        footBallJSBRankDTO.ycFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "英超");
+        footBallJSBRankDTO.zcFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "中超");
+        footBallJSBRankDTO.ycFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "英超");
 
-        footBallJSBRankDTO.xjFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "西甲");
-        footBallJSBRankDTO.yjFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "意甲");
-        footBallJSBRankDTO.djFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "德甲");
-        footBallJSBRankDTO.fjFootballJsbList=footballJsbDao.findByTypeAndTypeMoldOrderByScoreDesc("积分榜", "法甲");
+        footBallJSBRankDTO.xjFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "西甲");
+        footBallJSBRankDTO.yjFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "意甲");
+        footBallJSBRankDTO.djFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "德甲");
+        footBallJSBRankDTO.fjFootballJsbList=footballJsbDao.findTop20ByTypeAndTypeMoldOrderByScoreDesc("积分榜", "法甲");
 
         return footBallJSBRankDTO;
     }
 
     public FootBallSSBRankDTO getFootBallSSBRankDTO(){
         FootBallSSBRankDTO footBallSSBRankDTO =new FootBallSSBRankDTO();
-        footBallSSBRankDTO.zcFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "中超");
-        footBallSSBRankDTO.ycFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "英超");
+        footBallSSBRankDTO.zcFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "中超");
+        footBallSSBRankDTO.ycFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "英超");
 
-        footBallSSBRankDTO.xjFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "西甲");
-        footBallSSBRankDTO.yjFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "意甲");
-        footBallSSBRankDTO.djFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "德甲");
-        footBallSSBRankDTO.fjFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "法甲");
-        footBallSSBRankDTO.ogFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "欧冠");
-        footBallSSBRankDTO.ygFootballSsbList=footballSsbDao.findByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "亚冠");
+        footBallSSBRankDTO.xjFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "西甲");
+        footBallSSBRankDTO.yjFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "意甲");
+        footBallSSBRankDTO.djFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "德甲");
+        footBallSSBRankDTO.fjFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "法甲");
+        footBallSSBRankDTO.ogFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "欧冠");
+        footBallSSBRankDTO.ygFootballSsbList=footballSsbDao.findTop50ByTypeAndTypeMoldOrderBySumNumDesc("射手榜", "亚冠");
 
         return footBallSSBRankDTO;
     }

@@ -14,12 +14,12 @@ public interface BasketballTelCommonDao extends PagingAndSortingRepository<Baske
     BasketballTelCommon findByTypeAndTeamName(String type, String teamName);
 
     //得分
-    List<BasketballTelCommon> findByTypeOrderByScoreDesc(String type);
+    List<BasketballTelCommon> findTop30ByTypeOrderByScoreDesc(String type);
     //篮板
-    List<BasketballTelCommon> findByTypeOrderByBackboardDesc(String type);
+    List<BasketballTelCommon> findTop30ByTypeOrderByBackboardDesc(String type);
 
     //助攻 抢断 盖帽
-    List<BasketballTelCommon> findByTypeOrderByMatchAvgDesc(String type);
+    List<BasketballTelCommon> findTop30ByTypeOrderByMatchAvgDesc(String type);
 
 
 }

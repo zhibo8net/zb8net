@@ -12,5 +12,5 @@ public interface BasketballRankDao extends PagingAndSortingRepository<Basketball
 
     BasketballRank findByTypeAndTeamName(String type,String teamName);
 
-    List<BasketballRank> findByTypeOrderByWinRateDesc(String type);
+    List<BasketballRank> findTop20ByTypeOrderByWinRateDesc(String type);
 }

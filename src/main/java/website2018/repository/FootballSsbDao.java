@@ -12,6 +12,6 @@ public interface FootballSsbDao extends PagingAndSortingRepository<FootballSsb, 
 
 
     List<FootballSsb> findByTypeAndTypeMoldAndTeamNameAndTeamMember(String type, String typeMold, String teamName,String teamMember);
-    List<FootballSsb> findByTypeAndTypeMoldOrderBySumNumDesc(String type,String typeMold);
+    List<FootballSsb> findTop50ByTypeAndTypeMoldOrderBySumNumDesc(String type,String typeMold);
 
 }

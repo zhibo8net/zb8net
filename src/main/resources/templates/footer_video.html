@@ -38,7 +38,7 @@
                 <ul>
                     <li th:each="v:${videos}">
                         <a th:href="${v.link}" th:if="${v.isFisrt=='TRUE'}" target="_blank">
-                            <img th:alt="${v.name}" th:src="${v.image}" class="first_img" onerror="javascript:this.src='/image_1/error.png';"/>
+                            <img th:alt="${v.name}" th:src="${webImageBase+v.image}" class="first_img" onerror="javascript:this.src='/image_1/error.png';"/>
                         </a>
                             <span th:if="${v.isFisrt=='TRUE'}" class="fist_span">
                                 <a th:href="${v.link}" target="_blank" th:text="${v.name}"></a>
