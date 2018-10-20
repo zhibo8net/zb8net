@@ -513,6 +513,7 @@ ul.m_r_team li {
 .teamNameText,
 .playerNameText {
     color: #0065ad;
+    width: 37%;
 }
 
 .odd {
