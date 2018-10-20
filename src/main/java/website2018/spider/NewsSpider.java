@@ -141,9 +141,10 @@ public class NewsSpider extends BaseSpider {
                         news.source = _insideUrl;
                         news.project = ns.project;
                         news.game = game(news.title);
-                        news.image = "";
+                        news.image="";
                         news.content = content;
                         news.addTime = new Date();
+                        news.updateTime = new Date();
                         entitys.add(news);
                     }
                     
