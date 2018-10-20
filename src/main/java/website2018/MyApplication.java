@@ -70,6 +70,23 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/news_detail/*");
         registrationBean.addUrlPatterns("/nba_news.html");
         registrationBean.addUrlPatterns("/footer_news.html");
+
+        registrationBean.addUrlPatterns("/live_1");
+        registrationBean.addUrlPatterns("/match_1/*");
+        registrationBean.addUrlPatterns("/projectVideo_1");
+        registrationBean.addUrlPatterns("/gameVideo_1");
+        registrationBean.addUrlPatterns("/recording_1");
+        registrationBean.addUrlPatterns("/news_1");
+        registrationBean.addUrlPatterns("/news_1/*");
+        registrationBean.addUrlPatterns("/image_1");
+        registrationBean.addUrlPatterns("/projectImage_1");
+        registrationBean.addUrlPatterns("/viewImage_1/*");
+        registrationBean.addUrlPatterns("/video_1/*");
+        registrationBean.addUrlPatterns("/nba_video");
+        registrationBean.addUrlPatterns("/footer_video");
+        registrationBean.addUrlPatterns("/news_detail/*");
+        registrationBean.addUrlPatterns("/nba_news");
+        registrationBean.addUrlPatterns("/footer_news");
         return registrationBean;
     }
 
