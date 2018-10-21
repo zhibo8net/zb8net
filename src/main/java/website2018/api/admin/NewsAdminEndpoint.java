@@ -89,10 +89,12 @@ public class NewsAdminEndpoint extends BaseEndPoint {
         assertAdmin();
 
         News news = BeanMapper.map(newsAdminDTO, News.class);
-
+        news.updateTime = new Date();
         news.addTime = new Date();
         if(news.image != null) {
             news.image = news.image.replace(this.webImageBase, "");
+        }else{
+            news.image ="";
         }
         
         newsService.create(news);
@@ -110,8 +112,10 @@ public class NewsAdminEndpoint extends BaseEndPoint {
         news.addTime = new Date();
         if(news.image != null) {
             news.image = news.image.replace(this.webImageBase, "");
+        }else{
+            news.image ="";
         }
-        
+        news.updateTime = new Date();
         newsService.modify(news);
 
         logService.log("修改新闻", "/newsForm/" + news.id);

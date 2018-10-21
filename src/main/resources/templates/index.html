@@ -31,29 +31,29 @@
 
                             <div th:if="${upEnds.leftEndedDTO!=null}">
                                 <li th:if="${upEnds.leftEndedDTO.isFirstRow}" class="head ico_fb">
-                                    <a  th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
                                     <span th:if="${upEnds.rightEndedDTO!=null}">
 
-                                    <a  th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
                                    </span>
                                 </li>
                                 <li th:if="${!upEnds.leftEndedDTO.isFirstRow}">
-                                    <a  th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
-                                    <a  th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}" target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 集锦 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 录像 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}+' 视频 '"></a>
+                                    <a  th:if="${upEnds.leftEndedDTO.other}" th:href="'/video_1/'+${upEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.leftEndedDTO.name}"></a>
                                     <span th:if="${upEnds.rightEndedDTO!=null}">|
 
-                                    <a  th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
-                                    <a  th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}" target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasJijin}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 集锦 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasLuxiang}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 录像 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.hasShiping}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}+' 视频 '"></a>
+                                    <a  th:if="${upEnds.rightEndedDTO.other}" th:href="'/video_1/'+${upEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${upEnds.rightEndedDTO.name}"></a>
                                    </span>
                                 </li>
                             </div>
@@ -65,15 +65,15 @@
 
                             <div th:if="${upNews.leftNewsDTO!=null}">
                                 <li th:if="${upNews.leftNewsDTO.isFirstRow}" class="head">
-                                    <a th:href="'/news_1/'+${upNews.leftNewsDTO.id}" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
                                     <span></span>
-                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_1/'+${upNews.rightNewsDTO.id}" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
 
                                 </li>
                                 <li th:if="${!upNews.leftNewsDTO.isFirstRow}">
-                                    <a th:href="'/news_1/'+${upNews.leftNewsDTO.id}" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
                                     <span>|</span>
-                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_1/'+${upNews.rightNewsDTO.id}" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
 
                                 </li>
                             </div>
@@ -87,16 +87,16 @@
 
                             <div th:if="${downEnds.leftEndedDTO!=null}">
                                 <li th:if="${downEnds.leftEndedDTO.isFirstRow}" class="head ico_bb">
-                                    <a th:href="'/video_1/'+${downEnds.leftEndedDTO.id}" target="_blank" th:text="${downEnds.leftEndedDTO.name}"></a>
+                                    <a th:href="'/video_1/'+${downEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${downEnds.leftEndedDTO.name}"></a>
                                     <span></span>
-                                    <a   th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}" target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
+                                    <a   th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
 
                                 </li>
                                 <li th:if="${!downEnds.leftEndedDTO.isFirstRow}">
-                                    <a  th:href="'/video_1/'+${downEnds.leftEndedDTO.id}" target="_blank" th:text="${downEnds.leftEndedDTO.name}"></a>
+                                    <a  th:href="'/video_1/'+${downEnds.leftEndedDTO.id}+'.html'" target="_blank" th:text="${downEnds.leftEndedDTO.name}"></a>
                                     <span>|</span>
 
-                                    <a th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}" target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
+                                    <a th:if="${downEnds.rightEndedDTO!=null}" th:href="'/video_1/'+${downEnds.rightEndedDTO.id}+'.html'" target="_blank" th:text="${downEnds.rightEndedDTO.name}"></a>
 
                                 </li>
                             </div>
@@ -109,15 +109,15 @@
 
                             <div th:if="${downNews.leftNewsDTO!=null}">
                                 <li th:if="${downNews.leftNewsDTO.isFirstRow}" class="head">
-                                    <a th:href="'/news_1/'+${downNews.leftNewsDTO.id}" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
                                     <span></span>
-                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_1/'+${downNews.rightNewsDTO.id}" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
 
                                 </li>
                                 <li th:if="${!downNews.leftNewsDTO.isFirstRow}">
-                                    <a th:href="'/news_1/'+${downNews.leftNewsDTO.id}" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
                                     <span>|</span>
-                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_1/'+${downNews.rightNewsDTO.id}" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
 
                                 </li>
                             </div>
@@ -134,9 +134,9 @@
 
                             <div th:if="${upImage.leftImageDTO!=null}">
                                 <li>
-                                    <a th:href="'/viewImage_1/'+${upImage.leftImageDTO.id}+'/1'" target="_blank" th:text="${upImage.leftImageDTO.title}"></a>
+                                    <a th:href="'/viewImage_1/'+${upImage.leftImageDTO.id}+'/1'+'.html'" target="_blank" th:text="${upImage.leftImageDTO.title}"></a>
                                     <span>|</span>
-                                    <a   th:if="${upImage.rightImageDTO!=null}" th:href="'/viewImage_1/'+${upImage.rightImageDTO.id}+'/1'" target="_blank" th:text="${upImage.rightImageDTO.title}"></a>
+                                    <a   th:if="${upImage.rightImageDTO!=null}" th:href="'/viewImage_1/'+${upImage.rightImageDTO.id}+'/1'+'.html'" target="_blank" th:text="${upImage.rightImageDTO.title}"></a>
                                 </li>
                             </div>
 
@@ -309,16 +309,16 @@
                                        <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                                 <span th:text="${l.name}"></span>(
-                                                <a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                                <a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id+'.html'}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                                             </div>
                                             <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                                <a th:href="${'/match_1/'+m.id}" th:text="${l.signals[0].name}"></a>
+                                                <a th:href="${'/match_1/'+m.id+'.html'}" th:text="${l.signals[0].name}"></a>
                                             </div>
 
                                         </span>
                                     <span th:if="${m.sinaShujuUrl!=null}">
                                        <div  th:remove="tag">
-                                           <a th:href="${'/match_1/'+m.id}" >图文直播</a>
+                                           <a th:href="${'/match_1/'+m.id+'.html'}" >图文直播</a>
                                        </div>
                                     </span>
 

@@ -17,7 +17,7 @@ public class News extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public Date addTime;
-
+    public Date updateTime;
     public String title;
     public String source;
     public String project;

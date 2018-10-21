@@ -1,5 +1,6 @@
 package website2018.service.admin;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public class NewsService {
         orginalNews.source = news.source;
         orginalNews.image = news.image;
         orginalNews.content = news.content;
-
+        orginalNews.updateTime=new Date();
         newsDao.save(orginalNews);
     }
 
