@@ -10,12 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/news_detail.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
     <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
-    <link rel="stylesheet" href="../static/styles_1/news_detail.css" /> -->
+    <link rel="stylesheet" href="../static/styles_1/news_detail.css" />
+    <link rel="stylesheet" href="../static/styles_1/login.css" /> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
     <script th:src="@{/js_1/news_detail.js}"></script>
-    <!-- <script src="../static/js_1/news_detail.js"></script> -->
+    <script th:src="@{/js_1/md5.js}"></script>
+    <!-- <script src="../static/js_1/news_detail.js"></script>
+    <script src="../static/js_1/md5.js"></script> -->
     <script>
         var _hmt = _hmt || [];
         (function () {
@@ -43,13 +47,14 @@
                         <a href="https://www.dailymail.co.uk/sport/football/article-6296263/Manchester-United-make-revised-contract-offer-Anthony-Martial.html?tdsourcetag=s_pctim_aiomsg"
                             target="_blank">每日邮报</a>
                         <a href="#pl_box">已有9条评论</a>
-                        <a href="http://www.wanjiashe.com/?biaoti" target="_blank">玩游戏就来玩家社</a>
+                        <!-- <a href="http://www.wanjiashe.com/?biaoti" target="_blank">玩游戏就来玩家社</a> -->
                     </span>
                 </div>
                 <div class="Line"></div>
                 <div id="signals" class="content">
                     <p style="text-align: center;">
-                        <img style="max-width:600px;" src="http://tu.qiumibao.com/uploads/day_180926/5baaaa54a799f.jpg" alt="邮报：曼联将再次为马夏尔提供续约合同">
+                        <img style="max-width:600px;" src="http://tu.qiumibao.com/uploads/day_180926/5baaaa54a799f.jpg" alt="邮报：曼联将再次为马夏尔提供续约合同"
+                        />
                     </p>
                     <p style="text-indent:2em;">直播吧10月20日讯 据《每日邮报》报道，未来几周，曼联预计将再次为马夏尔提供续约合同。马夏尔之前已经拒绝了俱乐部提供的续约合同，职业生涯发展不顺利的他正在考虑离开老特拉福德球场。</p>
                     <p style="text-indent:2em;">马夏尔目前和曼联的合同直到2020年到期，红魔也向埃雷拉提供了续约合同，正在等待对方的认可。曼联能够和马夏尔自动续约1年时间，但他们希望法国人能够长留俱乐部。如果马夏尔和俱乐部的续约无法达成一致的话，自动续约1年能够给俱乐部更多的时间去出售法国前锋，以免他以自由身离开老特拉福德。</p>
@@ -57,7 +62,16 @@
                     <p style="text-indent:2em;">（二怪）</p>
                 </div>
 
-
+                <div class="nextbot">
+                    <a href="" class="left">
+                        上一篇:
+                        <span>不知道是什么</span>
+                    </a>
+                    <a href="" class="right">
+                        下一篇:
+                        <span>不知道是什么</span>
+                    </a>
+                </div>
                 <!-- Baidu Button BEGIN -->
                 <!--repeat62137193235885540080864223876429:end-->
                 <div id="bdshare">
@@ -408,99 +422,7 @@
             <a class="btn btn-danger" ms-href="{{m_weibo_url}}">微博账号登录</a>  或者 论坛账号<a  href="javascript:void(0);" ms-click="showloginBox($event)">登录</a>,登录后才能发表评论和回复</font>-->
                         </div>
 
-                        <div style="display: none;">
-                            <div class="body-bg"></div>
-                            <div class="loginView model_view" style="position: absolute; top: 834.5px;">
-                                <span class="close-btn"></span>
-                                <div class="fl mobile-login" style="margin-top:0;">
-                                    <h1>登录中心</h1>
-                                    <div class="m-li m-tel set_border">
-                                        <input type="number" name="tel" placeholder="请输入手机号">
-                                        <span class="ck-status"></span>
-                                    </div>
-                                    <div class="m-li b-clear v-code">
-                                        <div class="fl input-code set_border">
-                                            <input type="text" name="vcode" placeholder="请输入图形验证码">
-                                        </div>
-                                        <div class="fr get-code">
-                                            <a href="javascript:;" id="code-img">
-                                                <img src="http://bbsimg.zhibo8.cc/bbsimg/data/image/2018-10-20/6fe89da828ba42ebe664421f7d3aa0ff.jpg">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="m-li validate-code b-clear">
-                                        <div class="fl input-code set_border">
-                                            <input type="number" name="code" placeholder="请输入验证码">
-                                        </div>
-                                        <div class="fr get-code">
-                                            <a href="javascript:;">发送验证码</a>
-                                        </div>
-                                        <span class="fr tip-info"></span>
-                                    </div>
-                                    <div class="m-li m-login-btn">
-                                        <a href="javascript:;">登录</a>
-                                    </div>
-                                    <div class="m-li mobile-tip"></div>
-                                    <div class="reg">
-                                        <a href="//bbs.zhibo8.cc/regist" target="_blank">没有账号？立即注册</a>
-                                    </div>
-                                </div>
-                                <div class="fr onekey-login">
-                                    <ul>
-                                        <li>
-                                            <span>一键登录</span>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" onclick="">
-                                                <span class="li li-qq"></span>
-                                                <br>QQ登录</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" onclick="">
-                                                <span class="li li-wechat"></span>
-                                                <br>微信登录</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;" onclick="">
-                                                <span class="li li-weibo"></span>
-                                                <br>微博登录</a>
-                                        </li>
-                                        <li class="sao-index">
-                                            <a href="javascript:;" class="login-sao">
-                                                <span class="li li-sao"></span>
-                                                <br>扫码登录</a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="javascript:;" class="fr forumLogin">旧版论坛登录</a>
-                                        </li> -->
-                                    </ul>
-                                    <div class="forumView" style="display: none;">
-                                        <div class="overlay forum-box">
-                                            <div class="">
-                                                <div class="li-line">
-                                                    <span>用户名:</span>
-                                                    <br>
-                                                    <input class="txt username_input" name="username" type="text">
-                                                    <br>
-                                                </div>
-                                                <div class="li-line">
-                                                    <span>密码:</span>
-                                                    <br>
-                                                    <input class="txt password_input" name="password" type="password">
-                                                </div>
-                                                <div class="li-line fg-h">
-                                                    <a href="//bbs.zhibo8.cc/password/send_email" class="forget-pwd" target="_blank">忘记密码?</a>
-
-                                                    <input class="fr login_input" type="button" value="登录" ng-show="!loging" style="">
-                                                    <span class="fr loging" style="display: none;">登录中...</span>
-                                                </div>
-                                            </div>
-                                            <a class="forum-close"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div th:replace="layout/login :: login"></div>
 
                         <!--绑定手机 start-->
                         <style type="text/css">
@@ -839,9 +761,9 @@
                             <div id="re">
                                 <div id="re_box" class="input_l_rel">
                                     <div class="left">
-                                        <a class="headpic" target="_blank" href="//home.zhibo8.cc/">
-                                            <!--旧方式获取头像：<img class="lazy" ms-src="//uc.zhibo8.cc/avatar.php?size=small&uid={{userid}}" width="45" height="45">-->
-                                            <img class="lazy" width="45" height="45" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png">
+                                        <a class="headpic" target="_blank" href="//home.zhibo8.net/">
+                                            <!--旧方式获取头像：<img class="lazy" ms-src="//uc.zhibo8.cc/avatar.php?size=small&uid={{userid}}" width="45" height="45"/>-->
+                                            <img class="lazy" width="45" height="45" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png" />
                                         </a>
                                     </div>
                                     <div class="input">
@@ -863,15 +785,15 @@
 
                                         <div id="editortip" style="width:500px; height:50px;line-height:25px; color:#A6CAF0; position:absolute; left:20px; top:40px; text-align:left;">
                                             1.电脑端新用户可以发表评论了！
-                                            <br>2.发言请遵守国家法律法规.
-                                            <br>3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.
-                                            <br>
+                                            <br/>2.发言请遵守国家法律法规.
+                                            <br/>3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.
+                                            <br/>
                                         </div>
 
                                         <!--表情-->
 
                                         <!-- '+face_lable_end+' -->
-                                        <input id="submit_btn" type="button" name="submit" value="回 复">&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input id="submit_btn" type="button" name="submit" value="回 复"/>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <!--ms-if-->
                                         <span>按Ctrl+Enter发表回复</span>
 
@@ -929,7 +851,8 @@
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">
                                                         <img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"
-                                                            data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0">
+                                                            data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -981,7 +904,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=7382919">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1033,7 +957,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1121528">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1085,7 +1010,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1598448">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1137,7 +1063,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5266364">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1190,7 +1117,8 @@
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3603551">
                                                         <img class="lazy" src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLBCFTUdGFibb2ibiazibadNym9ogfbE52Ksmjp57oC4CIhUsAqLueElAfsSIOF727zCD5my4cLbAFqjnQ/0"
-                                                            data-src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLBCFTUdGFibb2ibiazibadNym9ogfbE52Ksmjp57oC4CIhUsAqLueElAfsSIOF727zCD5my4cLbAFqjnQ/0">
+                                                            data-src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLBCFTUdGFibb2ibiazibadNym9ogfbE52Ksmjp57oC4CIhUsAqLueElAfsSIOF727zCD5my4cLbAFqjnQ/0"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1242,7 +1170,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1639725">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1294,7 +1223,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5728354">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg">
+                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1346,7 +1276,8 @@
                                             <td class="userPro" valign="top">
                                                 <div class="left">
                                                     <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=4772974">
-                                                        <img class="lazy" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png" data-src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png">
+                                                        <img class="lazy" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png" data-src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png"
+                                                        />
                                                         <!--ms-if-->
                                                         <!--ms-if-->
                                                         <!--ms-if-->
@@ -1545,14 +1476,14 @@
                                         <div id="varea">
                                             <div class="phonenum rad5 mtop10">
                                                 <div class="lh35">
-                                                    <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone" maxlength="11">
+                                                    <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone" maxlength="11"/>
                                                 </div>
                                             </div>
 
                                             <div class="mtop10">
                                                 <div class="wd48">
                                                     <div class="rad5 wd48_div">
-                                                        <input type="text" class="wd48_input lh35" placeholder="请输入验证码" maxlength="4" id="vcode">
+                                                        <input type="text" class="wd48_input lh35" placeholder="请输入验证码" maxlength="4" id="vcode"/>
                                                     </div>
                                                 </div>
 
@@ -1585,14 +1516,14 @@
                 <!-- 广告位：内页上方250*250 -->
                 <!--            <iframe src="//www.zhibo8.cc/proxy.html?id=292149" width="250" height="250" scrolling="no" frameborder="0" style="display:block;margin:0"></iframe>-->
                 <!-- 推广位Id:67224586 推广位名称:内页顶部方块 类型：固定 尺寸：250x250-->
-                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="">
+                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
             </div>
 
             <div class="advert" style="height: 1040px;">
 
                 <!-- 广告位：内页底部250*250 -->
-                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="">
-                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="">
+                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
+                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
             </div>
         </div>
     </div>
@@ -1602,16 +1533,13 @@
     <div th:replace="layout/footer :: footer"></div>
     <script>
         $(function () {
-            // $('#hot_video').hide();
-            // $("#slider").flashSlider();
-            // $('.m_r_team li').click(function () {
-            //     $(this).siblings().removeClass('a_cur');
-            //     $(this).addClass('a_cur');
-            //     var li_index = $(this).index();
-            //     $(this).parent().parent().parent().parent().nextAll('table').addClass('dis_none');
-            //     $(this).parent().parent().parent().parent().nextAll('table').eq(li_index).removeClass(
-            //         'dis_none');
-            // })
+            $('.close-btn').click(function () {
+                $('.loginBox').fadeOut();
+            });
+            $('.l-b-l').click(function () {
+                $('.loginBox').fadeIn();
+            })
+
         })
     </script>
 </body>
