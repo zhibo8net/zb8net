@@ -61,7 +61,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/recording_1.html");
         registrationBean.addUrlPatterns("/news_1.html");
         registrationBean.addUrlPatterns("/news_1/*");
-        registrationBean.addUrlPatterns("/image_1");
+        registrationBean.addUrlPatterns("/image_1.html");
         registrationBean.addUrlPatterns("/projectImage_1.html");
         registrationBean.addUrlPatterns("/viewImage_1/*");
         registrationBean.addUrlPatterns("/video_1/*");

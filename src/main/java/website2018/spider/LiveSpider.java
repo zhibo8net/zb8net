@@ -753,11 +753,11 @@ public class LiveSpider extends BaseSpider {
         }
         List<Team> tmList2=teamDao.findByTeamName2(teamZh);
         if(tmList2!=null&&tmList2.size()>=1){
-            return  tmList1.get(0);
+            return  tmList2.get(0);
         }
         List<Team> tmList3=teamDao.findByTeamName3(teamZh);
         if(tmList3!=null&&tmList3.size()>=1){
-            return  tmList1.get(0);
+            return  tmList3.get(0);
         }
        Team tm=new Team();
         tm.addTime=new Date();

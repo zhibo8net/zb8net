@@ -65,15 +65,15 @@
 
                             <div th:if="${upNews.leftNewsDTO!=null}">
                                 <li th:if="${upNews.leftNewsDTO.isFirstRow}" class="head">
-                                    <a th:href="'/news_1/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
                                     <span></span>
-                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_1/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
 
                                 </li>
                                 <li th:if="${!upNews.leftNewsDTO.isFirstRow}">
-                                    <a th:href="'/news_1/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.leftNewsDTO.title}"></a>
                                     <span>|</span>
-                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_1/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${upNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${upNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${upNews.rightNewsDTO.title}"></a>
 
                                 </li>
                             </div>
@@ -109,15 +109,15 @@
 
                             <div th:if="${downNews.leftNewsDTO!=null}">
                                 <li th:if="${downNews.leftNewsDTO.isFirstRow}" class="head">
-                                    <a th:href="'/news_1/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
                                     <span></span>
-                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_1/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
 
                                 </li>
                                 <li th:if="${!downNews.leftNewsDTO.isFirstRow}">
-                                    <a th:href="'/news_1/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
+                                    <a th:href="'/news_detail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.leftNewsDTO.title}"></a>
                                     <span>|</span>
-                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_1/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
+                                    <a   th:if="${downNews.rightNewsDTO!=null}" th:href="'/news_detail/'+${downNews.rightNewsDTO.id}+'.html'" target="_blank" th:text="${downNews.rightNewsDTO.title}"></a>
 
                                 </li>
                             </div>
