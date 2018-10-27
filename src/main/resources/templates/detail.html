@@ -202,7 +202,7 @@
                     </font>:
                      <span th:if="${matchDTO.matchStreamUrl!=null}">
                                        <div  th:remove="tag">
-                                           <a th:href="${'/match_old_1/'+m.id+'.html'}" >视频直播</a>
+                                           <a th:href="${'/match_old_1/'+matchDTO.id+'.html'}" >视频直播</a>
                                        </div>
                                     </span>
                         <span  th:each="l:${matchDTO.lives}">

@@ -38,48 +38,29 @@
   <div class="body">
     <div class="play-left">
       <div class="play-info play-info-soccer">
-        <div th:if="${live.match.guestTeam==null}">
-          <span th:text="${live.match.name}"></span>
+        <div th:if="${matchDTO.teamFlag=='FALSE'}">
+          <span th:text="${matchDTO.name}"></span>
         </div>
-        <div th:if="${live.match.guestTeam!=null}">
+        <div th:if="${matchDTO.teamFlag!='FALSE'}">
 
 
-      <span class="play-home" th:text="${live.match.masterTeam.teamZh}">
+      <span class="play-home" th:text="${matchDTO.masterTeamName}">
       </span>
-          <img th:if="${live.match.masterTeam.teamImgLink!=null}" th:src="${live.match.masterTeam.teamImgLink}"/>
+          <img th:if="${matchDTO.masterTeamLink!=null}" th:src="${matchDTO.masterTeamLink}"/>
 
-          <span class="play-vs" th:text="${matchTime}"></span>
-          <img th:if="${live.match.guestTeam.teamImgLink!=null}" th:src="${live.match.guestTeam.teamImgLink}"/>
+          <span class="play-vs" th:text="${matchDTO.playTime}"></span>
+          <img th:if="${matchDTO.guestTeamLink!=null}" th:src="${matchDTO.guestTeamLink}"/>
 
-      <span class="play-away" th:text="${live.match.guestTeam.teamZh}">
+      <span class="play-away" th:text="${matchDTO.guestTeamName}">
       </span>
         </div>
       </div>
       <div class="play-player" id="play_player">
         <div class="play-animate"></div>
         <div class="play-nosignal"></div>
-        <!-- <div id='myElement'></div> -->
 
+        <div class="noData">
 
-        <!-- 插入iframe的地方 -->
-        <!-- pptv视频 -->
-        <!--<iframe src="http://pub.pptv.com/player/iframe/index.html?rcc_id=500W#w=1000&h=480&id=304467" frameborder="0"></iframe>-->
-        <div th:if="${liveAddress== 'PPTV'}">
-          <iframe th:src="${live.videoLink}" frameborder="0"></iframe>
-        </div>
-        <div th:if="${liveAddress== 'ELS'}">
-          <object th:id="${BridgeMovieObjectId}" type="application/x-shockwave-flash" th:data="${live.videoLink}" height="500px" width="100%">
-            <param name="menu" value="false"/>
-            <param name="wmode" value="window"/>
-            <param name="allowFullScreen" value="true"/>
-            <param name="AllowScriptAccess" value="always"/>
-            <param name="flashvars" th:value="${BridgeMovieObjectData}"/>
-          </object>
-        </div>
-        <div class="noData" th:if="${liveAddress== 'false'}">
-          <p class="first">提醒:此信号只能在源站观看,
-            <a th:href="${live.link}" target="_blank">请带点击此处打开源站观看</a>
-          </p >
           <p>如果上面的链接无法观看比赛,请点击下方的【回到首页】选择其他信号观看</p >
           <p>【
             <a href="/" target="_blank">回到首页</a>】</p >
