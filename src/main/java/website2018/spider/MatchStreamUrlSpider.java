@@ -71,7 +71,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     continue;
                 }
                 if (match.name.equals(matchStream.matchName)){
-                    String matchStreamUrl="http://liveplay.oadql.cn/live/"+matchStream.matchStreamName+".m3u8";
+                    String matchStreamUrl="http://27498.liveplay.myqcloud.com/live/27498_"+matchStream.matchStreamName+".m3u8";
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                }
@@ -84,7 +84,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     continue;
                 }
                 if(match.masterTeam.id.equals(matchStream.masterTeam.id)&&match.guestTeam.id.equals(matchStream.guestTeam.id)){
-                    String matchStreamUrl="http://liveplay.oadql.cn/live/"+matchStream.matchStreamName+".m3u8";
+                    String matchStreamUrl="http://27498.liveplay.myqcloud.com/live/27498_"+matchStream.matchStreamName+".m3u8";
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                 }
