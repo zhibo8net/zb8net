@@ -48,7 +48,7 @@
       </span>
           <img th:if="${matchDTO.masterTeamLink!=null}" th:src="${matchDTO.masterTeamLink}"/>
 
-          <span class="play-vs" th:text="${matchDTO.playTime}"></span>
+          <span class="play-vs" th:text="${matchDTO.playDateStr}"></span>
           <img th:if="${matchDTO.guestTeamLink!=null}" th:src="${matchDTO.guestTeamLink}"/>
 
       <span class="play-away" th:text="${matchDTO.guestTeamName}">

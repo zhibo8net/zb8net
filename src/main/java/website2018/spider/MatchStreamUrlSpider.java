@@ -55,7 +55,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Transactional
     public void matchStreamFetch() throws Exception {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR, -8);
+        calendar.add(Calendar.HOUR, -4);
         Date d=calendar.getTime();
         List<Match> matchList=matchDao.findByPlayDateGreaterThan(d);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThan(d);
@@ -71,7 +71,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     continue;
                 }
                 if (match.name.equals(matchStream.matchName)){
-                    String matchStreamUrl="http://27498.liveplay.myqcloud.com/live/27498_"+matchStream.matchStreamName+".m3u8";
+                    String matchStreamUrl="http://liveplay.oadql.cn/live/"+matchStream.matchStreamName+".m3u8";
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                }
@@ -84,7 +84,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     continue;
                 }
                 if(match.masterTeam.id.equals(matchStream.masterTeam.id)&&match.guestTeam.id.equals(matchStream.guestTeam.id)){
-                    String matchStreamUrl="http://27498.liveplay.myqcloud.com/live/27498_"+matchStream.matchStreamName+".m3u8";
+                    String matchStreamUrl="http://liveplay.oadql.cn/live/"+matchStream.matchStreamName+".m3u8";
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                 }
