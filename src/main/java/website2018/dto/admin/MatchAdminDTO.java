@@ -30,4 +30,7 @@ public class MatchAdminDTO {
     public String sinaLiveUrl;
     //新浪数据Url
     public String sinaShujuUrl;
+
+    //sstream365 url
+    public String matchStreamUrl;
 }

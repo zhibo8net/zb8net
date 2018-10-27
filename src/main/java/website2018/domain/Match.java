@@ -33,6 +33,9 @@ public class Match extends BaseEntity {
     //新浪数据Url
     public String sinaShujuUrl;
 
+    //sstream365 url
+    public String matchStreamUrl;
+
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Live> lives = Lists.newArrayList();
 

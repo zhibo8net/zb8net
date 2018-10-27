@@ -28,6 +28,8 @@ public class MatchDTO {
     //新浪数据Url
     public String sinaShujuUrl;
 
+    public String matchStreamUrl;
+
     public String playDateStr;
 
 }

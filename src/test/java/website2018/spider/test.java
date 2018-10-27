@@ -10,6 +10,7 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -70,11 +71,22 @@ public class test {
 //
 //        }
 
-        testFetchFootballJsb();
+        testFetchBasketballRank();
     }
-
+    public static Document readDocFrom(String url) {
+        try {
+            String html = readFromUrl(url);
+            if(html == null) {
+                return null;
+            }
+            Document doc = Jsoup.parse(html);
+            return doc;
+        }catch(Exception e) {
+            return null;
+        }
+    }
     public static void testFetchBasketballRank(){
-        Document basketballRankDoc = readDocFromByJsoup("https://www.zhibo8.cc/nba/");
+        Document basketballRankDoc = readDocFrom("http://api.sstream365.com?id=1");
         if (basketballRankDoc == null) {
 
             return;
@@ -115,6 +127,63 @@ public class test {
             return null;
         }
     }
+    public static String readFromUrl(String url) throws Exception {
+        return readFromUrl(url, "UTF-8");
+    }
 
+    public static String readFromUrl(String url, String encoding) throws Exception {
 
+        CloseableHttpResponse remoteResponse = null;
+
+        InputStream entityInputStream = null;
+
+        try {
+
+            HttpGet httpGet = new HttpGet(url);
+
+            remoteResponse = httpClient.execute(httpGet);
+
+            HttpEntity entity = remoteResponse.getEntity();
+
+            entityInputStream = entity.getContent();
+
+            String str = IOUtils.toString(entityInputStream, encoding);
+
+            return str;
+        } catch (Exception e) {
+          e.printStackTrace();
+            return null;
+        } finally {
+            if (entityInputStream != null) {
+                try {
+                    entityInputStream.close();
+                } catch (Exception e) {
+                    // ...
+                }
+            }
+            if (remoteResponse != null) {
+                try {
+                    remoteResponse.close();
+                } catch (Exception e) {
+                    // ...
+                }
+            }
+        }
+
+    }
+    public static String readDocFromByJsoupReqJson(String url) {
+        try {
+            Connection.Response res = Jsoup.connect(url).header("Accept", "*/*")
+                    .header("Accept-Encoding", "gzip, deflate")
+                    .header("Accept-Language","zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
+                    .header("Content-Type", "application/json;charset=UTF-8")
+                    .header("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0")
+                    .timeout(10000).ignoreContentType(true).execute();
+
+            return res.body();
+        }catch(Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

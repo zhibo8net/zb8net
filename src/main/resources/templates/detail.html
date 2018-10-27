@@ -200,6 +200,11 @@
                     <font style="color: #f00;">
                         <strong>直播信号</strong>
                     </font>:
+                     <span th:if="${matchDTO.matchStreamUrl!=null}">
+                                       <div  th:remove="tag">
+                                           <a th:href="${'/match_old_1/'+m.id+'.html'}" >视频直播</a>
+                                       </div>
+                                    </span>
                         <span  th:each="l:${matchDTO.lives}">
                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                 <span th:text="${l.name}"></span>(

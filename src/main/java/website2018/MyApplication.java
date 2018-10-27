@@ -70,6 +70,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/news_detail/*");
         registrationBean.addUrlPatterns("/nba_news.html");
         registrationBean.addUrlPatterns("/footer_news.html");
+        registrationBean.addUrlPatterns("/match_old_1/*");
 
         registrationBean.addUrlPatterns("/live_1");
         registrationBean.addUrlPatterns("/match_1/*");

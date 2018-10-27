@@ -36,4 +36,16 @@ public class MatchController  extends BaseEndPoint {
 
         return "detail";
     }
+
+    @RequestMapping(value = "/match_old_1/{id}")
+    public String match_old_1(@PathVariable Long id, Model model) {
+
+        MatchDTO matchDTO= indexService.findMatchDTO(id);
+        if(matchDTO==null){
+            return "redirect:http://www.zhibo8.net/";
+        }
+        model.addAttribute("matchDTO", matchDTO);
+
+        return "detail-old";
+    }
 }
