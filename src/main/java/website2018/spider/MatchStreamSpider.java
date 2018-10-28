@@ -177,12 +177,7 @@ public class MatchStreamSpider extends BaseSpider {
         if(tmList3!=null&&tmList3.size()>=1){
             return  tmList3.get(0);
         }
-        Team tm=new Team();
-        tm.addTime=new Date();
-        tm.updateTime=new Date();
-        tm.teamZh = teamZh;
-        logger.info("保存球队{}",tm.teamZh);
-        return teamDao.save(tm);
+        return null;
 
     }
 }

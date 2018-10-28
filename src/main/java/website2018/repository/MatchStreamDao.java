@@ -11,5 +11,5 @@ import java.util.List;
 public interface MatchStreamDao extends PagingAndSortingRepository<MatchStream, Long>, JpaSpecificationExecutor<MatchStream> {
 
     List<MatchStream> findByMatchNameAndUpdateTimeGreaterThan(String matchName,Date updateTime);
-    List<MatchStream> findByUpdateTimeGreaterThan(Date updateTime);
+    List<MatchStream> findByUpdateTimeGreaterThanAndUpdateTimeLessThan(Date updateTime,Date d1);
 }
