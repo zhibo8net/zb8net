@@ -65,9 +65,9 @@ public class MatchStreamUrlSpider extends BaseSpider {
         String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://27498.liveplay.myqcloud.com/live/27498_":sysParamMap.get("LIVE_URL_PRE");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR, -4);
+        calendar.add(Calendar.HOUR, -2);
         Date d=calendar.getTime();
-        calendar.add(Calendar.HOUR, 8);
+        calendar.add(Calendar.HOUR, 4);
         Date d1=calendar.getTime();
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThanAndUpdateTimeLessThan(d, d1);
@@ -92,6 +92,28 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     matchDao.save(match);
                     break inner;
                }
+                String lvStr= sysParamMap.get("LIVE_LV_MATCH")==null?"0.5": sysParamMap.get("LIVE_LV_MATCH");
+                float lv1=Float.parseFloat(lvStr);
+                float lv=  baoWeiService.checkNameAlike(match.name, matchStream.matchName);
+                if(lv>lv1){
+                    logger.warn("相似度匹配成功 "+match.name);
+                    liveFlag=true;
+                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+                    match.matchStreamUrl=matchStreamUrl;
+                    matchDao.save(match);
+                    break inner;
+                }
+
+                lv=  baoWeiService.checkNameAlike(matchStream.matchName,match.name);
+                if(lv>lv1){
+                    logger.warn("相似度匹配成功 "+match.name);
+                    liveFlag=true;
+                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+                    match.matchStreamUrl=matchStreamUrl;
+                    matchDao.save(match);
+                    break inner;
+                }
+
                 if(match.guestTeam==null||match.masterTeam==null){
                     logger.warn("match 比赛guestTeam masterTeam 为空退出循环");
                     continue;
@@ -114,9 +136,18 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     matchDao.save(match);
                     break inner;
                 }
-               String lvStr= sysParamMap.get("LIVE_LV_MATCH")==null?"0.5": sysParamMap.get("LIVE_LV_MATCH");
-            float lv1=Float.parseFloat(lvStr);
-              float lv=  baoWeiService.checkNameAlike(match.name,matchStream.matchName);
+              String mn= match.masterTeam.teamZh+"VS"+match.guestTeam.teamZh;
+                lv=  baoWeiService.checkNameAlike(mn, matchStream.matchName);
+                if(lv>lv1){
+                    logger.warn("相似度匹配成功 "+match.name);
+                    liveFlag=true;
+                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+                    match.matchStreamUrl=matchStreamUrl;
+                    matchDao.save(match);
+                    break inner;
+                }
+
+                lv=  baoWeiService.checkNameAlike(matchStream.matchName,mn);
                 if(lv>lv1){
                     logger.warn("相似度匹配成功 "+match.name);
                     liveFlag=true;
@@ -141,7 +172,9 @@ public class MatchStreamUrlSpider extends BaseSpider {
         if(!"TRUE".equals(sysParamMap.get("LIVE_SAVE_MATCH"))){
            return;
         }
-       if(StringUtils.isEmpty( matchStream.playTime)){
+        String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://27498.liveplay.myqcloud.com/live/27498_":sysParamMap.get("LIVE_URL_PRE");
+
+        if(StringUtils.isEmpty( matchStream.playTime)){
            return;
        }
 
@@ -158,9 +191,9 @@ public class MatchStreamUrlSpider extends BaseSpider {
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Match matchSave=new Match();
         matchSave.name=matchStream.matchName;
-        matchSave.project=matchSave.project;
-        matchSave.game=matchSave.game;
-
+        matchSave.project=matchStream.project;
+        matchSave.game=matchStream.game;
+        matchSave.matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
         matchSave.playDate=sdf1.parse(sdf.format(date)+"-"+playTimeStr[0]+" "+playTimeStr[1]);
         matchSave.playTime=playTimeStr[1];
         matchSave.playDateStr=sdf.format(date)+"-"+playTimeStr[0];

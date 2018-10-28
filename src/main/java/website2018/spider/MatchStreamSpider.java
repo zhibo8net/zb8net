@@ -53,9 +53,10 @@ public class MatchStreamSpider extends BaseSpider {
 
     @Transactional
     public void matchStreamFetch() throws Exception {
-        for(int fetchMatchId=1;fetchMatchId<=6;fetchMatchId++){
+    //    for(int fetchMatchId=1;fetchMatchId<=6;fetchMatchId++){
+        int fetchMatchId=1;
             try {
-                Document matchStreamDoc = readDocFrom("http://api.sstream365.com/?id=" + fetchMatchId);
+                Document matchStreamDoc = readDocFrom("http://api.sstream365.com");
                 if (matchStreamDoc == null) {
                     logger.info("http://api.sstream365.com/?id="+fetchMatchId+" 抓取数据为空");
                     return;
@@ -125,7 +126,7 @@ public class MatchStreamSpider extends BaseSpider {
             }catch (Exception e){
                 logger.error("抓取 fetchMatchId="+fetchMatchId,e);
             }
-        }
+      //  }
 
     }
     public List<Team> checkSteamTeam(String project,String matchName) {
