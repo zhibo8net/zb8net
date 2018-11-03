@@ -29,7 +29,10 @@ public interface MatchDao extends PagingAndSortingRepository<Match, Long>, JpaSp
 
     public Match findByNameAndPlayDate(String name,Date playDate);
 
-    List<Match> findByPlayDateGreaterThan(Date d);
+    List<Match> findByPlayDateGreaterThanAndPlayDateLessThan(Date d0,Date d1);
+    List<Match> findByPlayDateGreaterThan(Date playDate);
+
+    public List<Match> findByNameAndPlayTimeAndPlayDateStr(String name,String playTime,String playDateStr);
 
 
 }

@@ -63,7 +63,10 @@ public class MatchService {
         if (orginalMatch == null) {
             throw new ServiceException("比赛不存在", ErrorCode.BAD_REQUEST);
         }
-        
+
+        orginalMatch.sinaLiveUrl=match.sinaLiveUrl;
+        orginalMatch.sinaShujuUrl=match.sinaShujuUrl;
+        orginalMatch.matchStreamUrl=match.matchStreamUrl;
         orginalMatch.name = match.name;
         orginalMatch.locked = match.locked;
         orginalMatch.unlockTime = match.unlockTime;

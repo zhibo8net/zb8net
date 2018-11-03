@@ -121,6 +121,7 @@ public class IndexService {
             if(StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
                 mdto.masterTeamLink=m.masterTeam.teamImgLink;
             }
+            mdto.teamFlag="TRUE";
         }
         SimpleDateFormat sdf = new SimpleDateFormat("MM-dd hh:mm");
         if(m.playDate!=null){

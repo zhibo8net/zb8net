@@ -53,9 +53,10 @@ public class MatchStreamSpider extends BaseSpider {
 
     @Transactional
     public void matchStreamFetch() throws Exception {
-        for(int fetchMatchId=1;fetchMatchId<=6;fetchMatchId++){
+    //    for(int fetchMatchId=1;fetchMatchId<=6;fetchMatchId++){
+        int fetchMatchId=1;
             try {
-                Document matchStreamDoc = readDocFrom("http://api.sstream365.com/?id=" + fetchMatchId);
+                Document matchStreamDoc = readDocFrom("http://api.sstream365.com");
                 if (matchStreamDoc == null) {
                     logger.info("http://api.sstream365.com/?id="+fetchMatchId+" 抓取数据为空");
                     return;
@@ -78,7 +79,7 @@ public class MatchStreamSpider extends BaseSpider {
                             List<MatchStream> matchStreamList=     matchStreamDao.findByMatchNameAndUpdateTimeGreaterThan(matchName, d);
                                 if(matchStreamList!=null&&matchStreamList.size()>=1){
                                    if(matchStreamList.get(0).masterTeam==null||matchStreamList.get(0).guestTeam==null){
-                                       List<Team> listTeam=checkSteamTeam(matchName,tds.get(1).select("b").html());
+                                       List<Team> listTeam=checkSteamTeam(tds.get(1).select("b").html(),matchName);
                                        if(listTeam!=null&&listTeam.size()>=1){
                                            matchStreamList.get(0).masterTeam=listTeam.get(0);
                                            if(listTeam.size()>=2){
@@ -101,7 +102,7 @@ public class MatchStreamSpider extends BaseSpider {
                                 matchStream.addTime=date;
                                 matchStream.updateTime=date;
 
-                               List<Team> listTeam=checkSteamTeam(matchName,matchStream.project);
+                               List<Team> listTeam=checkSteamTeam(matchStream.project,matchName);
                                 if(listTeam!=null&&listTeam.size()>=1){
                                     matchStream.masterTeam=listTeam.get(0);
                                     if(listTeam.size()>=2){
@@ -125,7 +126,7 @@ public class MatchStreamSpider extends BaseSpider {
             }catch (Exception e){
                 logger.error("抓取 fetchMatchId="+fetchMatchId,e);
             }
-        }
+      //  }
 
     }
     public List<Team> checkSteamTeam(String project,String matchName) {
@@ -177,12 +178,7 @@ public class MatchStreamSpider extends BaseSpider {
         if(tmList3!=null&&tmList3.size()>=1){
             return  tmList3.get(0);
         }
-        Team tm=new Team();
-        tm.addTime=new Date();
-        tm.updateTime=new Date();
-        tm.teamZh = teamZh;
-        logger.info("保存球队{}",tm.teamZh);
-        return teamDao.save(tm);
+        return null;
 
     }
 }
