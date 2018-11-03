@@ -63,10 +63,11 @@
         <div class="play-player" id="play_player">
           <div class="play-animate"></div>
           <div class="play-nosignal"></div>
-          <div th:if="${matchDTO.matchStreamUrl!=null}" data-url="${matchDTO.matchStreamUrl}" id="id_test_video" style="width:100%; height:auto;"></div>
+          <div th:if="${matchDTO.matchStreamUrl!=null}" id="id_test_video" style="width:100%; height:auto;"></div>
+          <span class="geturl" th:text="${matchDTO.matchStreamUrl}" style="display:none;"></span>
           <script>
             $(function () {
-              var dataurl = $("#id_test_video").data('url');
+              var dataurl = $(".geturl").html();
               var player = new TcPlayer('id_test_video', {
                 "m3u8": dataurl, //请替换成实际可用的播放地址
                 "autoplay": true, //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
