@@ -21,7 +21,7 @@ public class SysParamService {
 
 
     @Scheduled(cron = "0 0/10 * * * *")
-    public void refreshCache() {// 每5分钟刷新一次缓存
+    public void refreshCache() {// 每10分钟刷新一次缓存
 
         try{
             Map<String, String> sysParamMap = SysConstants.sysParamMap;

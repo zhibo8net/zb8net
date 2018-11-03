@@ -208,7 +208,7 @@ public class IndexService {
 
         int index = 0;
         Calendar twoHourBeforeNow = Calendar.getInstance();
-        twoHourBeforeNow.add(Calendar.HOUR, -2);
+        twoHourBeforeNow.add(Calendar.HOUR, -3);
         long twoHourBeforeNowMills = twoHourBeforeNow.getTime().getTime();
         do {
             DailyLivesDTO dailylives = new DailyLivesDTO();

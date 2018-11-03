@@ -28,6 +28,7 @@ import website2018.MyApplication;
 import website2018.base.BaseSpider;
 import website2018.domain.*;
 import website2018.repository.*;
+import website2018.service.TeamCheckService;
 import website2018.utils.SpringContextHolder;
 
 @Component
@@ -48,6 +49,10 @@ public class LiveSpider extends BaseSpider {
 
     @Autowired
     LeagueDao leagueDao;
+
+    @Autowired
+    TeamCheckService teamService;
+
     @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
@@ -159,14 +164,14 @@ public class LiveSpider extends BaseSpider {
 
                     if (maybeExistedEntity != null) {// 已经抓取过
                         if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
-                            if(maybeExistedEntity.unlockTime!=null){
-                            if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
-                                willSaveMatch = false;
-                            } else {// 锁定已过期
-                                // 解锁
-                                maybeExistedEntity.locked = 0;
-                            }
-                            }else{
+                            if (maybeExistedEntity.unlockTime != null) {
+                                if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
+                                    willSaveMatch = false;
+                                } else {// 锁定已过期
+                                    // 解锁
+                                    maybeExistedEntity.locked = 0;
+                                }
+                            } else {
                                 willSaveMatch = false;
                             }
                         }
@@ -232,11 +237,11 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity.project = project;
                         maybeExistedEntity.game = game;
                         maybeExistedEntity.name = StringUtils.isNotBlank(away) ? (home + " VS " + away) : home;
-                        if(StringUtils.isNotBlank(away)){
-                            Team team1=  checkTeam(home,project);
-                            Team team2=  checkTeam(away,project);
-                            maybeExistedEntity.masterTeam=team1;
-                            maybeExistedEntity.guestTeam=team2;
+                        if (StringUtils.isNotBlank(away)) {
+                            Team team1 = teamService.checkTeamSaveTeam(home, project);
+                            Team team2 = teamService.checkTeamSaveTeam(away, project);
+                            maybeExistedEntity.masterTeam = team1;
+                            maybeExistedEntity.guestTeam = team2;
                         }
                         maybeExistedEntity.source = source;
                         maybeExistedEntity.locked = 0;
@@ -536,7 +541,7 @@ public class LiveSpider extends BaseSpider {
 
                 Match maybeExistedEntity = null;
                 try {
-                    maybeExistedEntity = matchDao.findByNameAndPlayDate(name,playDate);
+                    maybeExistedEntity = matchDao.findByNameAndPlayDate(name, playDate);
 
                     if (maybeExistedEntity != null) {// 已经抓取过
                         if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
@@ -565,7 +570,7 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity = new Match();
                     }
                 } catch (Exception e) {
-                   continue;
+                    continue;
                 }
                 try {
                     // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
@@ -590,10 +595,10 @@ public class LiveSpider extends BaseSpider {
                             game = formated;
                         }
                         if (tds.size() > 8) {
-                            Team team1=  checkTeam(tds.get(4).select("strong").html(),project);
-                            Team team2=  checkTeam(tds.get(6).select("strong").html(),project);
-                            maybeExistedEntity.masterTeam=team1;
-                            maybeExistedEntity.guestTeam=team2;
+                            Team team1 = teamService.checkTeamSaveTeam(tds.get(4).select("strong").html(), project);
+                            Team team2 = teamService.checkTeamSaveTeam(tds.get(6).select("strong").html(), project);
+                            maybeExistedEntity.masterTeam = team1;
+                            maybeExistedEntity.guestTeam = team2;
 
                         }
 
@@ -604,8 +609,8 @@ public class LiveSpider extends BaseSpider {
                         maybeExistedEntity.playDateStr = dateStr;
                         maybeExistedEntity.playTime = timeStr;
                         maybeExistedEntity.project = project;
-                        League lg=checkLeague(game);
-                        maybeExistedEntity.league=lg;
+                        League lg = checkLeague(game);
+                        maybeExistedEntity.league = lg;
                         maybeExistedEntity.game = game;
                         maybeExistedEntity.name = name;
                         maybeExistedEntity.source = source;
@@ -621,8 +626,8 @@ public class LiveSpider extends BaseSpider {
                             String sc = asource.attr("href").replace("..", "");
                             if (!sc.startsWith("http")) {
                                 source = link + sc;
-                            }else {
-                                source=sc;
+                            } else {
+                                source = sc;
                             }
                             Document lives = readDocFrom(source);
                             if (lives != null) {
@@ -641,64 +646,64 @@ public class LiveSpider extends BaseSpider {
 
                                             live.match = maybeExistedEntity;
                                             live.name = text;
-                                            live.gameId= lk.substring(lk.indexOf("?id=") + 4);
+                                            live.gameId = lk.substring(lk.indexOf("?id=") + 4);
                                             live.addTime = new Date();
                                             if (text.matches(".*(PPTV).*")) {
                                                 live.link = "http://pub.pptv.com/player/iframe/index.html?#w=1000&h=480&rcc_id=500W&id=" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="PPTV";
-                                                live.videoLink="http://pub.pptv.com/player/iframe/index.html?rcc_id=500W#w=1000&h=480&id="+ lk.substring(lk.indexOf("?id=") + 4);
+                                                live.name = "PPTV";
+                                                live.videoLink = "http://pub.pptv.com/player/iframe/index.html?rcc_id=500W#w=1000&h=480&id=" + lk.substring(lk.indexOf("?id=") + 4);
                                             } else if (text.matches(".*(CCTV).*")) {
                                                 live.link = "http://tv.cctv.com/live/cctv5/";
-                                                if(text.matches(".*(CCTV5).*")){
-                                                    live.name ="CCTV5";
-                                                }else{
-                                                    live.name ="CCTV";
+                                                if (text.matches(".*(CCTV5).*")) {
+                                                    live.name = "CCTV5";
+                                                } else {
+                                                    live.name = "CCTV";
                                                 }
-                                             //   live.videoLink="http://mgzb.live.miguvideo.com:8088/wd_r2/cctv/cctv5hdnew/350/index.m3u8?msisdn=&mdspid=&spid=699004&netType=0&sid=5500516171&pid=2028597139&timestamp=20180811120501&Channel_ID=1004_10010001005&ProgramID=641886683&ParentNodeID=-99&assertID=5500516171&client_ip=122.228.208.14&SecurityKey=20180811120501&promotionId=&mvid=&mcid=&mpid=&encrypt=6019c8625cff77c97cffde213ef753c2";
+                                                //   live.videoLink="http://mgzb.live.miguvideo.com:8088/wd_r2/cctv/cctv5hdnew/350/index.m3u8?msisdn=&mdspid=&spid=699004&netType=0&sid=5500516171&pid=2028597139&timestamp=20180811120501&Channel_ID=1004_10010001005&ProgramID=641886683&ParentNodeID=-99&assertID=5500516171&client_ip=122.228.208.14&SecurityKey=20180811120501&promotionId=&mvid=&mcid=&mpid=&encrypt=6019c8625cff77c97cffde213ef753c2";
 
 
                                             } else if (text.matches(".*(企鹅).*")) {
                                                 live.link = "http://live.qq.com/" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="企鹅超清直播";
+                                                live.name = "企鹅超清直播";
                                             } else if (text.matches(".*(章鱼).*")) {
                                                 live.link = "http://www.zhangyu.tv/" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="章鱼直播";
+                                                live.name = "章鱼直播";
                                             } else if (text.matches(".*(直播迷).*")) {
                                                 live.link = "http://v.zhibo.leagueoffists.com/" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="直播迷(直播TV)";
+                                                live.name = "直播迷(直播TV)";
                                             } else if (text.matches(".*(龙珠体育频道).*")) {
                                                 live.link = "http://star.longzhu.com/" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="龙珠体育频道";
+                                                live.name = "龙珠体育频道";
                                             } else if (text.matches(".*(腾讯).*")) {
                                                 live.link = "https://sports.qq.com/kbsweb/game.htm?mid=" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="腾讯高清直播";
-                                            }else if (text.matches(".*(ZF).*")) {
+                                                live.name = "腾讯高清直播";
+                                            } else if (text.matches(".*(ZF).*")) {
                                                 live.link = "http://www.entgroup.com/" + lk.substring(lk.indexOf("?id=") + 4);
-                                                live.name ="ZF直播";
-                                            }else if (text.matches(".*(上海).*")) {
+                                                live.name = "ZF直播";
+                                            } else if (text.matches(".*(上海).*")) {
                                                 live.link = "http://www.qwball.com/tv/wxty.html";
-                                                live.name ="上海五星体育";
-                                            }else if (text.matches(".*(俄罗斯).*")) {
+                                                live.name = "上海五星体育";
+                                            } else if (text.matches(".*(俄罗斯).*")) {
                                                 Document els = readDocFrom("http://sportstream365.com/");
                                                 Elements elsurl = els.select("script");
-                                                for( Element e1:elsurl){
+                                                for (Element e1 : elsurl) {
 
-                                                    if(e1.html().matches(".*(var tagz =).*")){
+                                                    if (e1.html().matches(".*(var tagz =).*")) {
 
-                                                        String s=e1.html();
+                                                        String s = e1.html();
 
 
-                                                        String tagz=s.substring(12,s.length()-2);
+                                                        String tagz = s.substring(12, s.length() - 2);
                                                         System.out.println(tagz);
-                                                        live.link = "http://sportstream365.com/viewer?sport=1&game="+ lk.substring(lk.indexOf("?id=") + 4)+"&tagz="+tagz;
-                                                        live.name ="俄罗斯体育频道";
-                                                        Document vd= readDocFromByJsoup(lk);
+                                                        live.link = "http://sportstream365.com/viewer?sport=1&game=" + lk.substring(lk.indexOf("?id=") + 4) + "&tagz=" + tagz;
+                                                        live.name = "俄罗斯体育频道";
+                                                        Document vd = readDocFromByJsoup(lk);
                                                         Elements velsurl = vd.select("script");
-                                                        for( Element ve1:velsurl) {
+                                                        for (Element ve1 : velsurl) {
 
-                                                            int b=ve1.html().indexOf("data=\\\"");
-                                                            String v=  ve1.html().substring(b+7, b + 274);
-                                                            live.videoLink=v;
+                                                            int b = ve1.html().indexOf("data=\\\"");
+                                                            String v = ve1.html().substring(b + 7, b + 274);
+                                                            live.videoLink = v;
                                                             break;
                                                         }
                                                         break;
@@ -734,56 +739,25 @@ public class LiveSpider extends BaseSpider {
 
         }
     }
-    public Team checkTeam(String teamZh,String project){
-        List<Team> tmListproject=teamDao.findByTeamZh(teamZh+project);
-        if(tmListproject!=null&&tmListproject.size()>=1){
-            return  tmListproject.get(0);
-        }
-        List<Team> tmList11=teamDao.findByTeamName1(teamZh+project);
-        if(tmList11!=null&&tmList11.size()>=1){
-            return  tmList11.get(0);
-        }
-        List<Team> tmList=teamDao.findByTeamZh(teamZh);
-        if(tmList!=null&&tmList.size()>=1){
-           return  tmList.get(0);
-        }
-        List<Team> tmList1=teamDao.findByTeamName1(teamZh);
-        if(tmList1!=null&&tmList1.size()>=1){
-            return  tmList1.get(0);
-        }
-        List<Team> tmList2=teamDao.findByTeamName2(teamZh);
-        if(tmList2!=null&&tmList2.size()>=1){
-            return  tmList2.get(0);
-        }
-        List<Team> tmList3=teamDao.findByTeamName3(teamZh);
-        if(tmList3!=null&&tmList3.size()>=1){
-            return  tmList3.get(0);
-        }
-       Team tm=new Team();
-        tm.addTime=new Date();
-        tm.updateTime=new Date();
-        tm.teamZh = teamZh;
-        logger.info("保存球队{}",tm.teamZh);
-        return teamDao.save(tm);
 
-    }
-    public League checkLeague(String leagueZh){
-        League league=leagueDao.findByLeagueZh(leagueZh);
-        if(league!=null){
-            return  league;
+
+
+    public League checkLeague(String leagueZh) {
+        League league = leagueDao.findByLeagueZh(leagueZh);
+        if (league != null) {
+            return league;
         }
 
-        league=new League();
-        league.addTime=new Date();
-        league.updateTime=new Date();
+        league = new League();
+        league.addTime = new Date();
+        league.updateTime = new Date();
         league.leagueZh = leagueZh;
-        logger.info("保存球队{}",league.leagueZh);
+        logger.info("保存球队{}", league.leagueZh);
         return leagueDao.save(league);
 
     }
-    public static void main(String[] args)throws Exception{
 
-
+    public static void main(String[] args) throws Exception {
 
 
     }

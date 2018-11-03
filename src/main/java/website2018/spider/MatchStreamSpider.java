@@ -15,6 +15,7 @@ import website2018.MyApplication;
 import website2018.base.BaseSpider;
 import website2018.domain.*;
 import website2018.repository.*;
+import website2018.service.TeamCheckService;
 
 import java.util.*;
 
@@ -28,6 +29,9 @@ public class MatchStreamSpider extends BaseSpider {
 
     @Autowired
     TeamDao teamDao;
+
+    @Autowired
+    TeamCheckService teamService;
 
     @Scheduled(cron = "0 0/5 * * * *")
     @Transactional
@@ -62,7 +66,7 @@ public class MatchStreamSpider extends BaseSpider {
                     return;
                 }
                 Calendar calendar = Calendar.getInstance();
-                calendar.add(Calendar.DATE, -1);
+                calendar.add(Calendar.HOUR, -3);
                 Date d=calendar.getTime();
                 List<MatchStream> saveMatchList= Lists.newArrayList();
                 Date date=new Date();
@@ -124,7 +128,7 @@ public class MatchStreamSpider extends BaseSpider {
                 }
 
             }catch (Exception e){
-                logger.error("抓取 fetchMatchId="+fetchMatchId,e);
+                logger.error("抓取 fetchMatchId=" + fetchMatchId, e);
             }
       //  }
 
@@ -132,7 +136,7 @@ public class MatchStreamSpider extends BaseSpider {
     public List<Team> checkSteamTeam(String project,String matchName) {
 
         List<Team> list=Lists.newArrayList();
-
+        try{
         if (StringUtils.isEmpty(matchName)) {
             return null;
         }
@@ -140,45 +144,23 @@ public class MatchStreamSpider extends BaseSpider {
             return null;
         }
         String[] teamZhs=matchName.split("VS");
-        Team team1=   checkTeam(teamZhs[0].trim(), project);
+        if(teamZhs.length<=1){
+            return null;
+        }
+        Team team1=   teamService.checkTeamNotSave(teamZhs[0].trim(), project);
 
         if(team1!=null){
             list.add(team1);
         }
-        Team team2=   checkTeam(teamZhs[1].trim(),project);
+        Team team2=   teamService.checkTeamNotSave(teamZhs[1].trim(), project);
         if(team2!=null){
             list.add(team2);
+        }}catch (Exception e){
+            e.printStackTrace();
         }
        return list;
 
     }
 
-    public Team checkTeam(String teamZh,String project){
-        List<Team> tmListproject=teamDao.findByTeamZh(teamZh+project);
-        if(tmListproject!=null&&tmListproject.size()>=1){
-            return  tmListproject.get(0);
-        }
-        List<Team> tmList11=teamDao.findByTeamName1(teamZh+project);
-        if(tmList11!=null&&tmList11.size()>=1){
-            return  tmList11.get(0);
-        }
-        List<Team> tmList=teamDao.findByTeamZh(teamZh);
-        if(tmList!=null&&tmList.size()>=1){
-            return  tmList.get(0);
-        }
-        List<Team> tmList1=teamDao.findByTeamName1(teamZh);
-        if(tmList1!=null&&tmList1.size()>=1){
-            return  tmList1.get(0);
-        }
-        List<Team> tmList2=teamDao.findByTeamName2(teamZh);
-        if(tmList2!=null&&tmList2.size()>=1){
-            return  tmList2.get(0);
-        }
-        List<Team> tmList3=teamDao.findByTeamName3(teamZh);
-        if(tmList3!=null&&tmList3.size()>=1){
-            return  tmList3.get(0);
-        }
-        return null;
 
-    }
 }

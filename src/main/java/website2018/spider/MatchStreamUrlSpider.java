@@ -72,7 +72,11 @@ public class MatchStreamUrlSpider extends BaseSpider {
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThanAndUpdateTimeLessThan(d, d1);
         outer: for(MatchStream matchStream:matchStreamList){
-
+            String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+            if(!baoWeiService.isConnect(matchStreamUrl)){
+                logger.warn("连接地址无效："+matchStreamUrl);
+                continue;
+            }
            boolean liveFlag=false;
 
             inner: for(Match match:matchList){
@@ -87,7 +91,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                 }
                 if (match.name.equals(matchStream.matchName)){
                     liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                     break inner;
@@ -98,21 +102,21 @@ public class MatchStreamUrlSpider extends BaseSpider {
                 if(lv>lv1){
                     logger.warn("相似度匹配成功 "+match.name);
                     liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                     break inner;
                 }
 
-                lv=  baoWeiService.checkNameAlike(matchStream.matchName,match.name);
-                if(lv>lv1){
-                    logger.warn("相似度匹配成功 "+match.name);
-                    liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
-                    match.matchStreamUrl=matchStreamUrl;
-                    matchDao.save(match);
-                    break inner;
-                }
+//                lv=  baoWeiService.checkNameAlike(matchStream.matchName,match.name);
+//                if(lv>lv1){
+//                    logger.warn("相似度匹配成功 "+match.name);
+//                    liveFlag=true;
+//
+//                    match.matchStreamUrl=matchStreamUrl;
+//                    matchDao.save(match);
+//                    break inner;
+//                }
 
                 if(match.guestTeam==null||match.masterTeam==null){
                     logger.warn("match 比赛guestTeam masterTeam 为空退出循环");
@@ -124,14 +128,14 @@ public class MatchStreamUrlSpider extends BaseSpider {
                 }
                 if(match.masterTeam.id.equals(matchStream.masterTeam.id)&&match.guestTeam.id.equals(matchStream.guestTeam.id)){
                     liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                     break inner;
                 }
                 if(match.masterTeam.id.equals(matchStream.guestTeam.id)&&match.guestTeam.id.equals(matchStream.masterTeam.id)){
                     liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                     break inner;
@@ -141,21 +145,21 @@ public class MatchStreamUrlSpider extends BaseSpider {
                 if(lv>lv1){
                     logger.warn("相似度匹配成功 "+match.name);
                     liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+
                     match.matchStreamUrl=matchStreamUrl;
                     matchDao.save(match);
                     break inner;
                 }
 
-                lv=  baoWeiService.checkNameAlike(matchStream.matchName,mn);
-                if(lv>lv1){
-                    logger.warn("相似度匹配成功 "+match.name);
-                    liveFlag=true;
-                    String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
-                    match.matchStreamUrl=matchStreamUrl;
-                    matchDao.save(match);
-                    break inner;
-                }
+//                lv=  baoWeiService.checkNameAlike(matchStream.matchName,mn);
+//                if(lv>lv1){
+//                    logger.warn("相似度匹配成功 "+match.name);
+//                    liveFlag=true;
+//
+//                    match.matchStreamUrl=matchStreamUrl;
+//                    matchDao.save(match);
+//                    break inner;
+//                }
             }
 
            if(! liveFlag){

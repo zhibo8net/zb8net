@@ -15,6 +15,8 @@ import website2018.base.BaseSpider;
 
 import website2018.domain.Match;
 import website2018.repository.MatchDao;
+import website2018.service.BaoWeiService;
+import website2018.utils.SysConstants;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,6 +30,8 @@ public class SinaLiveSpider extends BaseSpider {
     @Autowired
     MatchDao matchDao;
 
+    @Autowired
+    BaoWeiService baoWeiService;
 
     @Scheduled(cron = "0 0 0/2 * * *")
     @Transactional
@@ -105,6 +109,9 @@ public class SinaLiveSpider extends BaseSpider {
     }
 
     public void updateMatch(List<Match> matchList,String team1,String team2,Object sinaLiveUrl,Object resultUrl){
+        Map<String, String> sysParamMap = SysConstants.sysParamMap;
+        String lvStr= sysParamMap.get("LIVE_LV_SINA_TEAM")==null?"0.5": sysParamMap.get("LIVE_LV_SINA_TEAM");
+        float lv1=Float.parseFloat(lvStr);
 
         for(Match m:matchList){
             if(m.guestTeam!=null&&m.masterTeam!=null){
@@ -133,8 +140,27 @@ public class SinaLiveSpider extends BaseSpider {
                 if(StringUtils.isNotEmpty(m.masterTeam.teamName3)){
                     nameList.add(m.masterTeam.teamName3);
                 }
+            boolean flag=false;
+             inner: for(String str:nameList){
+                   float lv2=baoWeiService.checkNameAlike(str,team1);
+                    float lv3=baoWeiService.checkNameAlike(str,team2);
+                   if(lv2>lv1 && lv3>lv1 ){
+                       if(sinaLiveUrl!=null){
+                           m.sinaLiveUrl=sinaLiveUrl.toString();
+                       }
+                       if(resultUrl!=null){
+                           m.sinaShujuUrl=resultUrl.toString();
+                       }
+                       matchDao.save(m);
+                       flag=true;
+                       break inner;
+                    }
+                }
 
-
+                //跳过改比赛
+                if(flag){
+                    continue;
+                }
                 if(nameList.contains(team1)&&nameList.contains(team2)){
                     if(sinaLiveUrl!=null){
                         m.sinaLiveUrl=sinaLiveUrl.toString();
