@@ -63,13 +63,14 @@
         <div class="play-player" id="play_player">
           <div class="play-animate"></div>
           <div class="play-nosignal"></div>
-          <div th:if="${matchDTO.matchStreamUrl!=null}" id="id_test_video" style="width:100%; height:auto;"></div>
+          <div th:if="${matchDTO.matchStreamUrl!=null}" data-url="${matchDTO.matchStreamUrl}" id="id_test_video" style="width:100%; height:auto;"></div>
           <script>
             $(function () {
+              var dataurl = $("#id_test_video").data('url');
               var player = new TcPlayer('id_test_video', {
-                "m3u8": '${matchDTO.matchStreamUrl}', //请替换成实际可用的播放地址
+                "m3u8": dataurl, //请替换成实际可用的播放地址
                 "autoplay": true, //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
-                "coverpic": '/image_1/default.png',
+                "coverpic": 'https://www.zhibo8.net/image_1/default.png',
                 "width": '1000', //视频的显示宽度，请尽量使用视频分辨率宽度
                 "height": '500' //视频的显示高度，请尽量使用视频分辨率高度
               });
