@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.2.2.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="id_test_video" style="width:100%; height:auto;"></div>
+</body>
+<script>
+    window.onload = function () {
+        var player = new TcPlayer('id_test_video', {
+            "m3u8": "http://27498.liveplay.myqcloud.com/live/27498_stream1823426.m3u8", //请替换成实际可用的播放地址
+            "autoplay": true, //iOS下safari浏览器，以及大部分移动端浏览器是不开放视频自动播放这个能力的
+            "coverpic": "http://www.test.com/myimage.jpg",
+            "width": '480', //视频的显示宽度，请尽量使用视频分辨率宽度
+            "height": '320' //视频的显示高度，请尽量使用视频分辨率高度
+        });
+    }
+</script>
+
+</html>
