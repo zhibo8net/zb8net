@@ -42,7 +42,7 @@ public class BaoWeiService {
             int key2 = 0;
             int count2 = 0;
             int len2 = firstName.length();
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len2; i++) {
                 int bj = secondName.indexOf(firstName.charAt(i));
                 if (bj >= 0 && bj >= key2) {
                     count2++;
