@@ -1,5 +1,7 @@
 package website2018.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.common.collect.Maps;
 
+import org.springside.modules.utils.mapper.BeanMapper;
 import website2018.base.BaseEndPoint;
 import website2018.domain.News;
 import website2018.domain.Video;
+import website2018.dto.NewsDTO;
 import website2018.dto.match.BasketMatchRankDTO;
 import website2018.dto.match.BasketMatchTelRankDTO;
 import website2018.dto.match.FootBallJSBRankDTO;
@@ -297,16 +301,38 @@ public class NewsController extends BaseEndPoint {
     @RequestMapping(value = "/news_detail/{id}", method = RequestMethod.GET)
     public String news_new_1(@PathVariable Long id, Model model) {
         News news = newsDao.findOne(id);
-        model.addAttribute("news", news);
+        if(news==null){
+            return "redirect:http://www.zhibo8.net/";
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
+        for(int i=1;i<100;i++){
+            News nextNews = newsDao.findOne(id+i);
 
-        String project = news.project;
-        String game = news.game;
-        model.addAttribute("pageTitle", news.title);
-        model.addAttribute("game", game);
-        model.addAttribute("videos", videoQueryer.findByProjectGameTypeCount(project, game, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT));
-        model.addAttribute("luxiangs", videoQueryer.findByProjectGameTypeCount(project, game, "录像", BaseEndPoint.RIGHT_LUXIANG_COUNT, true));
+            if(nextNews!=null){
+                NewsDTO nextmdto = BeanMapper.map(nextNews, NewsDTO.class);
+                nextmdto.createTime=sdf.format(news.addTime==null?new Date():news.addTime);
+                model.addAttribute("nextNews", nextmdto);
+                break;
+            }
+        }
 
-        model.addAttribute("menu", "news");
-        return "newsInner";
+        for(int j=1;j<100;j++){
+            News preNews = newsDao.findOne(id-j);
+
+            if(preNews!=null) {
+                NewsDTO pretmdto = BeanMapper.map(preNews, NewsDTO.class);
+
+                pretmdto.createTime = sdf.format(news.addTime == null ? new Date() : news.addTime);
+                model.addAttribute("preNews", pretmdto);
+                break;
+            }
+        }
+        NewsDTO mdto = BeanMapper.map(news, NewsDTO.class);
+
+        mdto.createTime=sdf.format(news.addTime==null?new Date():news.addTime);
+        model.addAttribute("news", mdto);
+
+
+        return "news_detail";
     }
 }

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>体育新闻_篮球资讯_足球资讯-直播吧</title>
+    <title th:text="${news.title}"></title>
     <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
     <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
@@ -39,37 +39,26 @@
         <div id="main">
             <div class="breadcrumbs">
                 <a href="http://www.zhibo8.net">直播首页</a>&gt;
-                <a href="/zuqiu/">足球新闻</a>&gt;邮报：曼联将再次为马夏尔提供续约合同 </div>
+                <a href="/nba_news.html">足球新闻</a>&gt;<spn th:text="${news.title}"></spn> </div>
             <div class="box margin_top_10">
                 <div class="title">
-                    <h1>邮报：曼联将再次为马夏尔提供续约合同</h1>
-                    <span avalonctrl="title_controller">2018-10-20 11:43:55
-                        <a href="https://www.dailymail.co.uk/sport/football/article-6296263/Manchester-United-make-revised-contract-offer-Anthony-Martial.html?tdsourcetag=s_pctim_aiomsg"
-                            target="_blank">每日邮报</a>
-                        <a href="#pl_box">已有9条评论</a>
-                        <!-- <a href="http://www.wanjiashe.com/?biaoti" target="_blank">玩游戏就来玩家社</a> -->
-                    </span>
+                    <h1 th:text="${news.title}"></h1>
+                    <span avalonctrl="title_controller" th:text="${news.createTime}">
+                      </span>
                 </div>
                 <div class="Line"></div>
-                <div id="signals" class="content">
-                    <p style="text-align: center;">
-                        <img style="max-width:600px;" src="http://tu.qiumibao.com/uploads/day_180926/5baaaa54a799f.jpg" alt="邮报：曼联将再次为马夏尔提供续约合同"
-                        />
-                    </p>
-                    <p style="text-indent:2em;">直播吧10月20日讯 据《每日邮报》报道，未来几周，曼联预计将再次为马夏尔提供续约合同。马夏尔之前已经拒绝了俱乐部提供的续约合同，职业生涯发展不顺利的他正在考虑离开老特拉福德球场。</p>
-                    <p style="text-indent:2em;">马夏尔目前和曼联的合同直到2020年到期，红魔也向埃雷拉提供了续约合同，正在等待对方的认可。曼联能够和马夏尔自动续约1年时间，但他们希望法国人能够长留俱乐部。如果马夏尔和俱乐部的续约无法达成一致的话，自动续约1年能够给俱乐部更多的时间去出售法国前锋，以免他以自由身离开老特拉福德。</p>
-                    <p style="text-indent:2em;">本赛季迄今为止，马夏尔为曼联出战8场比赛，其中5次是首发出场。对阵纽卡的比赛，马夏尔为球队打进1球帮助球队以3比2的比分实现扭转。</p>
-                    <p style="text-indent:2em;">（二怪）</p>
+                <div id="signals" class="content"  th:utext="${news.content}">
+
                 </div>
 
                 <div class="nextbot">
-                    <a href="" class="left">
+                    <a th:if="${preNews!=null}" th:href="'/news_detail/'+${preNews.id}+'.html'" class="left">
                         上一篇:
-                        <span>不知道是什么</span>
+                        <span th:text="${preNews.title}"></span>
                     </a>
-                    <a href="" class="right">
+                    <a th:if="${nextNews!=null}" th:href="'/news_detail/'+${nextNews.id}+'.html'"  class="right">
                         下一篇:
-                        <span>不知道是什么</span>
+                        <span th:text="${nextNews.title}"></span>
                     </a>
                 </div>
                 <!-- Baidu Button BEGIN -->
@@ -831,7 +820,7 @@
                             <div class="tip-pos">
                                 <!--ms-if-->
                             </div>
-                            <div>已有9条评论。
+                            <div>已有0条评论。
                                 <a href="javascript:void(0);" class="reloadData">刷新评论</a>
                             </div>
 
@@ -843,486 +832,61 @@
                             </div>
 
                             <div id="pllist" class="pllist">
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">
-                                                        <img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"
-                                                            data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">春哥也有事业线</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:59:50
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
 
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596666" uid="0">顶(
-                                                                <font class="up_cnt">0</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596666" uid="0">踩(
-                                                                <font class="down_cnt">0</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596666">举报</span> 9楼</div>
-                                                    </div>
-                                                    <p class="word">这货到曼联几年了，有过正常表现么？！这还能续约？！</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat513559921760873738887156706113024:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=7382919">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/m_7382919.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=7382919">Ronnie2018</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:59:33
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
+                                <!--<table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">-->
+                                    <!--<tbody>-->
+                                        <!--<tr>-->
+                                            <!--<td class="userPro" valign="top">-->
+                                                <!--<div class="left">-->
+                                                    <!--<a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">-->
+                                                        <!--<img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                                            <!--data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                                        <!--/>-->
+                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                    <!--</a>-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                            <!--<td class="commentTextList" valign="top">-->
+                                                <!--<div class="comment">-->
+                                                    <!--<div class="info">-->
+                                                        <!--<div class="left">-->
+                                                            <!--<a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">春哥也有事业线</a>-->
+                                                            <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                            <!--<span class="dev_info">2018-10-20 11:59:50-->
+                                                                <!--<span>-->
+                                                                    <!--<a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>-->
+                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                                                <!--</span>-->
+                                                            <!--</span>-->
 
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596604" uid="0">顶(
-                                                                <font class="up_cnt">0</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596604" uid="0">踩(
-                                                                <font class="down_cnt">0</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596604">举报</span> 8楼</div>
-                                                    </div>
-                                                    <p class="word">走就走吧，但只要有合同在身，场上表现的像个职业球员就可以了。 曼联没有欠你的，倒是这个奇葩合同让人一声叹息。</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat043528974233191918372878249968339:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1121528">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-06-11/105250_1450798_avatar_middle.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1121528">弗格森一代</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:54:33
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
+                                                        <!--</div>-->
+                                                        <!--<div class="right">-->
+                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596666" uid="0">顶(-->
+                                                                <!--<font class="up_cnt">0</font>)</span>-->
+                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596666" uid="0">踩(-->
+                                                                <!--<font class="down_cnt">0</font>)</span>-->
+                                                            <!--<a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>-->
+                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596666">举报</span> 9楼</div>-->
+                                                    <!--</div>-->
+                                                    <!--<p class="word">这货到曼联几年了，有过正常表现么？！这还能续约？！</p>-->
+                                                    <!--<div data-include-rendered="addClass" style="display: none;" class="dark">-->
+                                                        <!--&lt;!&ndash;ms-include&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;repeat513559921760873738887156706113024:end&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;ms-include-end&ndash;&gt;-->
+                                                    <!--</div>-->
+                                                    <!--&lt;!&ndash;<span ng-bind-html="echoChildrenOld(p.id)"></span>&ndash;&gt;-->
+                                                <!--</div>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                    <!--</tbody>-->
+                                <!--</table>-->
 
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123595430" uid="0">顶(
-                                                                <font class="up_cnt">3</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123595430" uid="0">踩(
-                                                                <font class="down_cnt">2</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123595430">举报</span> 7楼</div>
-                                                    </div>
-                                                    <p class="word">三德子你的合同什么时候到期，赶紧滚吧！</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat43712948456662386835654000083404:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1598448">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-10-14/235027_2221482_avatar_middle.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1598448">教练席上拴头驴</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:53:54
-                                                                <span>
-                                                                    <!--ms-if-->
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自苹果客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123595286" uid="0">顶(
-                                                                <font class="up_cnt">0</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123595286" uid="0">踩(
-                                                                <font class="down_cnt">0</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123595286">举报</span> 6楼</div>
-                                                    </div>
-                                                    <p class="word">心不在红魔，其他什么都不是决定性条件。对比卢克肖就知道，你需要用表现赢得尊重，当然还有合同。</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat04435536562910891653247955752585:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5266364">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-09-29/172910_4236895_avatar_middle.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5266364">l吊打全联盟l</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:51:38
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123594668" uid="0">顶(
-                                                                <font class="up_cnt">2</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123594668" uid="0">踩(
-                                                                <font class="down_cnt">0</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123594668">举报</span> 5楼</div>
-                                                    </div>
-                                                    <p class="word">如果厨师复出，第一个要挖的是不是就是马夏尔？</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat1740862728664942508871090156808781:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3603551">
-                                                        <img class="lazy" src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLBCFTUdGFibb2ibiazibadNym9ogfbE52Ksmjp57oC4CIhUsAqLueElAfsSIOF727zCD5my4cLbAFqjnQ/0"
-                                                            data-src="http://wx.qlogo.cn/mmopen/ajNVdqHZLLBCFTUdGFibb2ibiazibadNym9ogfbE52Ksmjp57oC4CIhUsAqLueElAfsSIOF727zCD5my4cLbAFqjnQ/0"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3603551">阿文0008</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:47:28
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123593457" uid="0">顶(
-                                                                <font class="up_cnt">4</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123593457" uid="0">踩(
-                                                                <font class="down_cnt">8</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123593457">举报</span> 4楼</div>
-                                                    </div>
-                                                    <p class="word">滚吧，强扭的瓜不甜</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat33174834755018012607067389084705:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1639725">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-02/012543_1407572_avatar_middle.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=1639725">Z执迷不悔</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:46:28
-                                                                <span>
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123593240" uid="0">顶(
-                                                                <font class="up_cnt">6</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123593240" uid="0">踩(
-                                                                <font class="down_cnt">7</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123593240">举报</span> 3楼</div>
-                                                    </div>
-                                                    <p class="word">就我一个人觉得马儿换个队/教练立马脱胎换骨嘛。</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat35983764422237328647265504373269:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5728354">
-                                                        <img class="lazy" src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg" data-src="http://bbsimg.zhibo8.cc/bbsimg/data/avatar/2018-07-21/033829_1063860_avatar_middle.jpg"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=5728354">rshhday</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:46:22
-                                                                <span>
-                                                                    <!--ms-if-->
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自苹果客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123593211" uid="0">顶(
-                                                                <font class="up_cnt">5</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123593211" uid="0">踩(
-                                                                <font class="down_cnt">1</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123593211">举报</span> 2楼</div>
-                                                    </div>
-                                                    <p class="word">鸟叔不是你喜欢的教练，刚好无论从风格还是精神鸟叔也看不上你，尴尬了俱乐部。</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat42957675976721227780681881730633:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275-->
-                                <table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">
-                                    <tbody>
-                                        <tr>
-                                            <td class="userPro" valign="top">
-                                                <div class="left">
-                                                    <a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=4772974">
-                                                        <img class="lazy" src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png" data-src="http://tu.zhibo8.cc/uploads/qqimages/logo_small.png"
-                                                        />
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                        <!--ms-if-->
-                                                    </a>
-                                                </div>
-                                            </td>
-                                            <td class="commentTextList" valign="top">
-                                                <div class="comment">
-                                                    <div class="info">
-                                                        <div class="left">
-                                                            <a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=4772974">麦克楼</a>
-                                                            <!--ms-if-->
-                                                            <span class="dev_info">2018-10-20 11:46:00
-                                                                <span>
-                                                                    <!--ms-if-->
-                                                                    <a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自苹果客户端</a>
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                    <!--ms-if-->
-                                                                </span>
-                                                            </span>
-
-                                                        </div>
-                                                        <div class="right">
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123593146" uid="0">顶(
-                                                                <font class="up_cnt">2</font>)</span>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123593146" uid="0">踩(
-                                                                <font class="down_cnt">0</font>)</span>
-                                                            <a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>
-                                                            <span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123593146">举报</span> 1楼</div>
-                                                    </div>
-                                                    <p class="word">想走的人留不住，何必呢？</p>
-                                                    <div data-include-rendered="addClass" style="display: none;" class="dark">
-                                                        <!--ms-include-->
-                                                        <!--repeat378971518698931335211146756456:end-->
-                                                        <!--ms-include-end-->
-                                                    </div>
-                                                    <!--<span ng-bind-html="echoChildrenOld(p.id)"></span>-->
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <!--repeat018010043674069335599888540372275:end-->
                             </div>
 
                             <div class="btn_loadmore">评论已全部加载完成</div>
@@ -1512,19 +1076,14 @@
             </div>
         </div>
         <div id="siderbar">
-            <div class="advert">
+            <div class="advert,last">
                 <!-- 广告位：内页上方250*250 -->
                 <!--            <iframe src="//www.zhibo8.cc/proxy.html?id=292149" width="250" height="250" scrolling="no" frameborder="0" style="display:block;margin:0"></iframe>-->
                 <!-- 推广位Id:67224586 推广位名称:内页顶部方块 类型：固定 尺寸：250x250-->
                 <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
             </div>
 
-            <div class="advert" style="height: 1040px;">
 
-                <!-- 广告位：内页底部250*250 -->
-                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
-                <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
-            </div>
         </div>
     </div>
 

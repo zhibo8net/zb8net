@@ -159,7 +159,7 @@ public class LiveSpider extends BaseSpider {
                     boolean willSaveMatch = true;// 标识是否将要把Entity入库，如果锁定且未过期，则为false
 
                     String source = "http:" + li.select("h2 a").attr("href");
-                    System.out.println(source);
+                  //  System.out.println(source);
                     Match maybeExistedEntity = matchDao.findBySource(source);
 
                     if (maybeExistedEntity != null) {// 已经抓取过

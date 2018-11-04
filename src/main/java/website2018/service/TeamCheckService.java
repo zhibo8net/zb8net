@@ -50,13 +50,13 @@ public class TeamCheckService {
         for(Team team:teamList){
             float lv=baoWeiService.checkNameAlike(teamZh+project,team.teamZh);
             if(lv>lv1){
-                logger.info("相似度匹球队配成功 "+ JSONObject.fromObject(team));
+                logger.info("相似度匹球队配成功 ", JSONObject.fromObject(team).toString());
                 return team;
             }
 
            lv=baoWeiService.checkNameAlike(teamZh,team.teamZh);
             if(lv>lv1){
-                logger.info("相似度匹球队配成功 " + JSONObject.fromObject(team));
+                logger.info("相似度匹球队配成功 " , JSONObject.fromObject(team).toString());
              return team;
             }
 
@@ -65,7 +65,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName1)){
                 lv=baoWeiService.checkNameAlike(team.teamName1,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 " + JSONObject.fromObject(team));
+                    logger.info("相似度匹球队配成功 " , JSONObject.fromObject(team).toString());
                     return team;
                 }
 
@@ -75,7 +75,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName2)){
                 lv=baoWeiService.checkNameAlike(team.teamName2,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 " + JSONObject.fromObject(team));
+                    logger.info("相似度匹球队配成功 ", JSONObject.fromObject(team).toString());
                     return team;
                 }
 
@@ -85,7 +85,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName3)){
                 lv=baoWeiService.checkNameAlike(team.teamName3,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 " + JSONObject.fromObject(team));
+                    logger.info("相似度匹球队配成功 ",JSONObject.fromObject(team).toString());
                     return team;
                 }
 
@@ -96,7 +96,7 @@ public class TeamCheckService {
 
     public Team checkTeamNotSave(String teamZh,String project){
         try{
-             Team t=   lVCheckTeam(teamZh,project);
+             Team t= lVCheckTeam(teamZh,project);
 
             if(t!=null){
                 return t;
@@ -138,14 +138,17 @@ public class TeamCheckService {
 
 
           Team t=  checkTeamNotSave(teamZh,project);
-            if(t==null){
-                Team tm = new Team();
-                tm.addTime = new Date();
-                tm.updateTime = new Date();
-                tm.teamZh = teamZh;
-                logger.info("保存球队{}", tm.teamZh);
-                return teamDao.save(tm);
+            if(t!=null){
+                return t;
             }
+
+            Team tm = new Team();
+            tm.addTime = new Date();
+            tm.updateTime = new Date();
+            tm.teamZh = teamZh;
+            logger.info("保存球队{}", tm.teamZh);
+            return teamDao.save(tm);
+
         } catch (Exception e) {
             logger.error("检查球队异常",e);
         }

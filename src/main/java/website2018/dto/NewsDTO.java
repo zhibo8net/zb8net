@@ -8,6 +8,7 @@ public class NewsDTO {
 
     public Long id;
     public Date addTime;
+    public String createTime;
 
     public String title;
     public String source;

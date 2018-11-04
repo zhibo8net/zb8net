@@ -151,6 +151,18 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     break inner;
                 }
 
+
+                String mn2= match.guestTeam.teamZh +"VS"+match.masterTeam.teamZh;
+                lv=  baoWeiService.checkNameAlike(mn2, matchStream.matchName);
+                if(lv>lv1){
+                    logger.warn("相似度匹配成功 "+match.name);
+                    liveFlag=true;
+
+                    match.matchStreamUrl=matchStreamUrl;
+                    matchDao.save(match);
+                    break inner;
+                }
+
 //                lv=  baoWeiService.checkNameAlike(matchStream.matchName,mn);
 //                if(lv>lv1){
 //                    logger.warn("相似度匹配成功 "+match.name);

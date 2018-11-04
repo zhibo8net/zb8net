@@ -3,6 +3,7 @@ package website2018.domain;
 import website2018.base.BaseEntity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "zhibo_team")
-public class Team extends BaseEntity {
+public class Team extends BaseEntity implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

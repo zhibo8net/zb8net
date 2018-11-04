@@ -25,6 +25,27 @@ public class BaoWeiService {
             if (StringUtils.isEmpty(firstName) || StringUtils.isEmpty(secondName)) {
                 return 0;
             }
+            float lv1 =checkAlike(firstName,secondName);
+            float lv2 =checkAlike(secondName,firstName);
+            if(lv1>lv2){
+                return lv1;
+            }else{
+                return lv2;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    public float checkAlike(String firstName, String secondName) {
+        try {
+
+            if (StringUtils.isEmpty(firstName) || StringUtils.isEmpty(secondName)) {
+                return 0;
+            }
             firstName = firstName.replaceAll(" ", "");
             secondName = secondName.replaceAll(" ", "");
             int len = secondName.length();
@@ -38,24 +59,8 @@ public class BaoWeiService {
                 }
             }
 
-
-            int key2 = 0;
-            int count2 = 0;
-            int len2 = firstName.length();
-            for (int i = 0; i < len2; i++) {
-                int bj = secondName.indexOf(firstName.charAt(i));
-                if (bj >= 0 && bj >= key2) {
-                    count2++;
-                    key2++;
-                }
-            }
             float lv1 = (float) count / (float) len;
-            float lv2 = (float) count2 / (float) len2;
-            if(lv1>lv2){
-                return lv1;
-            }else{
-                return lv2;
-            }
+             return lv1;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,6 +68,7 @@ public class BaoWeiService {
 
         return 0;
     }
+
 
     public static void main(String[] args) {
         float lv1 = Float.parseFloat("0.60");
