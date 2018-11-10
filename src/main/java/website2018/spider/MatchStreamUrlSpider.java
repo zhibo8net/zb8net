@@ -39,7 +39,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Autowired
     BaoWeiService baoWeiService;
 
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 0/2 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED) {
@@ -64,7 +64,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Transactional
     public void matchStreamFetch() throws Exception {
         Map<String, String> sysParamMap = SysConstants.sysParamMap;
-        String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://27498.liveplay.myqcloud.com/live/27498_":sysParamMap.get("LIVE_URL_PRE");
+        String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://liveplay.oadql.cn/live/":sysParamMap.get("LIVE_URL_PRE");
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, -150);
@@ -181,7 +181,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
         if(!"TRUE".equals(sysParamMap.get("LIVE_SAVE_MATCH"))){
            return;
         }
-        String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://27498.liveplay.myqcloud.com/live/27498_":sysParamMap.get("LIVE_URL_PRE");
+        String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://liveplay.oadql.cn/live/":sysParamMap.get("LIVE_URL_PRE");
 
         if(StringUtils.isEmpty( matchStream.playTime)){
            return;
