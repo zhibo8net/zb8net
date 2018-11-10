@@ -40,6 +40,7 @@ public class UserLoginService {
         User user=   userDao.findByUserName(userDTO.userName);
         if(user==null){
             User  u = BeanMapper.map(userDTO, User.class);
+            u.password=MD5Util.MD5(userDTO.password);
             userDao.save(u);
         }else{
             String password= MD5Util.MD5(userDTO.password);
