@@ -11,5 +11,6 @@ public class LiveSourceAdminDTO {
     public Date lastFetch;
     public String channels;
     public int active;
+    public String innerPlayChannels;
 
 }

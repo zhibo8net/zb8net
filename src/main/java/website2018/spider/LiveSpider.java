@@ -28,6 +28,7 @@ import website2018.MyApplication;
 import website2018.base.BaseSpider;
 import website2018.domain.*;
 import website2018.repository.*;
+import website2018.service.BaoWeiService;
 import website2018.service.TeamCheckService;
 import website2018.utils.SpringContextHolder;
 
@@ -52,6 +53,9 @@ public class LiveSpider extends BaseSpider {
 
     @Autowired
     TeamCheckService teamService;
+
+    @Autowired
+    BaoWeiService baoWeiService;
 
     @Scheduled(cron = "0 0/3 * * * *")
     @Transactional
@@ -110,16 +114,17 @@ public class LiveSpider extends BaseSpider {
     public void fetchLive(LiveSource liveSource) {
 
         String channels = ".*(" + liveSource.channels.replace(",", "|") + ").*";
+        String playChannels = ".*(" + liveSource.innerPlayChannels.replace(",", "|") + ").*";
         List<Match> entitys = Lists.newArrayList();
         try {
             if (liveSource.name.equals("直播吧")) {
-                fetchFromZhibo8(entitys, channels);
+                fetchFromZhibo8(entitys, channels, playChannels);
             } else if (liveSource.name.equals("CCAV5")) {
-                fetchFromCcav5(entitys, channels);
+                fetchFromCcav5(entitys, channels, playChannels);
             } else if (liveSource.name.equals("A直播")) {
-                fetchFromAzhibo(entitys, channels);
+                fetchFromAzhibo(entitys, channels, playChannels);
             } else if (liveSource.name.equals("无插件直播")) {
-                fetchFromWuchajian(entitys, channels, liveSource.link);
+                fetchFromWuchajian(entitys, channels, liveSource.link, playChannels);
             }
         } catch (Exception e) {
             logger.error(e.getLocalizedMessage(), e);
@@ -143,7 +148,26 @@ public class LiveSpider extends BaseSpider {
         }
     }
 
-    public void fetchFromZhibo8(List<Match> entitys, String channels) throws Exception {
+    public void lockMatch(Match maybeExistedEntity, boolean willSaveMatch) {
+        if (maybeExistedEntity != null) {// 已经抓取过
+            if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
+                if (maybeExistedEntity.unlockTime != null) {
+                    if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
+                        willSaveMatch = false;
+                    } else {// 锁定已过期
+                        // 解锁
+                        maybeExistedEntity.locked = 0;
+                    }
+                } else {
+                    willSaveMatch = false;
+                }
+            }
+        } else {
+            maybeExistedEntity = new Match();
+        }
+    }
+
+    public void fetchFromZhibo8(List<Match> entitys, String channels, String playChannel) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -154,47 +178,26 @@ public class LiveSpider extends BaseSpider {
 
             Elements saishis = mzhibo8.select(".saishi");
             for (Element saishi : saishis) {
-                // String playDateStr = saishi.select("h2.current").html();
                 for (Element li : saishi.select("li")) {
-                    boolean willSaveMatch = true;// 标识是否将要把Entity入库，如果锁定且未过期，则为false
-
+                    boolean willSaveMatch = true;// 标识是否将要把Entity入库，如果锁定且未过期，则为fals
                     String source = "http:" + li.select("h2 a").attr("href");
-                  //  System.out.println(source);
                     Match maybeExistedEntity = matchDao.findBySource(source);
-
-                    if (maybeExistedEntity != null) {// 已经抓取过
-                        if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
-                            if (maybeExistedEntity.unlockTime != null) {
-                                if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
-                                    willSaveMatch = false;
-                                } else {// 锁定已过期
-                                    // 解锁
-                                    maybeExistedEntity.locked = 0;
-                                }
-                            } else {
-                                willSaveMatch = false;
-                            }
-                        }
-                        if (willSaveMatch) {// 不是锁定状态，或者已经解锁，清空
-                            //System.out.println("将清空Match的直播链接，比赛：" + maybeExistedEntity.name + "长度："
-                            //        + maybeExistedEntity.lives.size());
-
-                            List<Live> oldLives = Lists.newArrayList();
-
-                            for (Live live : maybeExistedEntity.lives) {
-                                oldLives.add(live);
-                            }
-
-                            maybeExistedEntity.lives.clear();
-                            liveDao.delete(oldLives);
-                        }
-                    } else {
-                        //System.out.println("将进行全新的入库……");
+                    if (maybeExistedEntity == null) {
                         maybeExistedEntity = new Match();
                     }
+                    List<Live> matchLive = maybeExistedEntity.lives;
+                    List<Live> effLive = Lists.newArrayList();
+                    List<String> liveStr = Lists.newArrayList();
+                    for (Live live : matchLive) {
+                        if (baoWeiService.isConnect(live.link)) {
+                            effLive.add(live);
+                            liveStr.add(live.link);
+                        } else {
+                            liveDao.delete(live);
+                        }
 
-                    // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
-
+                    }
+                    maybeExistedEntity.lives = effLive;
                     if (willSaveMatch) {
 
                         String type = li.attr("type").trim();
@@ -255,15 +258,21 @@ public class LiveSpider extends BaseSpider {
                                 String text = l.html();
                                 String link = l.attr("href");
                                 if (text.matches(channels)) {
-                                    //System.out.println(text + "匹配");
-                                    Live live = new Live();
-                                    live.match = maybeExistedEntity;
-                                    live.name = text;
-                                    live.link = link;
-                                    live.addTime = new Date();
-                                    maybeExistedEntity.lives.add(live);
-                                } else {
-                                    //System.out.println(text + "不匹配");
+                                    if (!liveStr.contains(link)) {
+                                        Live live = new Live();
+                                        if (text.matches(playChannel)) {
+                                            //站内播放
+                                            live.playFlag = "INNER";
+                                        } else {
+                                            live.playFlag = "OUTER";
+                                        }
+                                        live.match = maybeExistedEntity;
+                                        live.name = text;
+                                        live.link = link;
+                                        live.addTime = new Date();
+                                        maybeExistedEntity.lives.add(live);
+                                    }
+
                                 }
                             }
                             maybeExistedEntity.addTime = new Date();
@@ -277,7 +286,7 @@ public class LiveSpider extends BaseSpider {
         }
     }
 
-    public void fetchFromCcav5(List<Match> entitys, String channels) throws Exception {
+    public void fetchFromCcav5(List<Match> entitys, String channels, String playChannel) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -296,35 +305,22 @@ public class LiveSpider extends BaseSpider {
                 String playDateStr = m.select("a").get(1).attr("timefrom");
                 Match maybeExistedEntity = matchDao.findBySource(source);
 
-                if (maybeExistedEntity != null) {// 已经抓取过
-                    if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
-                        if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
-                            willSaveMatch = false;
-                        } else {// 锁定已过期
-                            // 解锁
-                            maybeExistedEntity.locked = 0;
-                        }
-                    }
-                    if (willSaveMatch) {// 不是锁定状态，或者已经解锁，清空
-                        System.out.println("将清空Match的直播链接，ID：" + maybeExistedEntity.id + "长度："
-                                + maybeExistedEntity.lives.size());
-
-                        List<Live> oldLives = Lists.newArrayList();
-
-                        for (Live live : maybeExistedEntity.lives) {
-                            oldLives.add(live);
-                        }
-
-                        maybeExistedEntity.lives.clear();
-                        liveDao.delete(oldLives);
-                    }
-                } else {
-                    System.out.println("将进行全新的入库……");
+                if (maybeExistedEntity == null) {
                     maybeExistedEntity = new Match();
                 }
+                List<Live> matchLive = maybeExistedEntity.lives;
+                List<Live> effLive = Lists.newArrayList();
+                List<String> liveStr = Lists.newArrayList();
+                for (Live live : matchLive) {
+                    if (baoWeiService.isConnect(live.link)) {
+                        effLive.add(live);
+                        liveStr.add(live.link);
+                    } else {
+                        liveDao.delete(live);
+                    }
 
-                // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
-
+                }
+                maybeExistedEntity.lives = effLive;
                 if (willSaveMatch) {
                     Document innerDoc = readDocFrom(source);
 
@@ -365,12 +361,20 @@ public class LiveSpider extends BaseSpider {
                         String text = l.html();
                         String link = l.attr("href");
                         if (text.matches(channels)) {
-                            Live live = new Live();
-                            live.match = maybeExistedEntity;
-                            live.name = text;
-                            live.link = link;
-                            live.addTime = new Date();
-                            maybeExistedEntity.lives.add(live);
+                            if (!liveStr.contains(link)) {
+                                Live live = new Live();
+                                if (text.matches(playChannel)) {
+                                    //站内播放
+                                    live.playFlag = "INNER";
+                                } else {
+                                    live.playFlag = "OUTER";
+                                }
+                                live.match = maybeExistedEntity;
+                                live.name = text;
+                                live.link = link;
+                                live.addTime = new Date();
+                                maybeExistedEntity.lives.add(live);
+                            }
                         }
                     }
                     maybeExistedEntity.addTime = new Date();
@@ -384,7 +388,7 @@ public class LiveSpider extends BaseSpider {
         }
     }
 
-    public void fetchFromAzhibo(List<Match> entitys, String channels) throws Exception {
+    public void fetchFromAzhibo(List<Match> entitys, String channels, String playChannel) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -430,35 +434,24 @@ public class LiveSpider extends BaseSpider {
                         }
                         Match maybeExistedEntity = matchDao.findBySource(source);
 
-                        if (maybeExistedEntity != null) {// 已经抓取过
-                            if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
-                                if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
-                                    willSaveMatch = false;
-                                } else {// 锁定已过期
-                                    // 解锁
-                                    maybeExistedEntity.locked = 0;
-                                }
-                            }
-                            if (willSaveMatch) {// 不是锁定状态，或者已经解锁，清空
-                                //System.out.println("将清空Match的直播链接，ID：" + maybeExistedEntity.id + "长度："
-                                //        + maybeExistedEntity.lives.size());
+                        if (maybeExistedEntity == null) {// 已经抓取过
 
-                                List<Live> oldLives = Lists.newArrayList();
-
-                                for (Live live : maybeExistedEntity.lives) {
-                                    oldLives.add(live);
-                                }
-
-                                maybeExistedEntity.lives.clear();
-                                liveDao.delete(oldLives);
-                            }
-                        } else {
-                            //System.out.println("将进行全新的入库……");
                             maybeExistedEntity = new Match();
                         }
 
-                        // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
+                        List<Live> matchLive = maybeExistedEntity.lives;
+                        List<Live> effLive = Lists.newArrayList();
+                        List<String> liveStr = Lists.newArrayList();
+                        for (Live live : matchLive) {
+                            if (baoWeiService.isConnect(live.link)) {
+                                effLive.add(live);
+                                liveStr.add(live.link);
+                            } else {
+                                liveDao.delete(live);
+                            }
 
+                        }
+                        maybeExistedEntity.lives = effLive;
                         if (willSaveMatch) {
                             Document innerDoc = readDocFrom(source);
 
@@ -482,15 +475,20 @@ public class LiveSpider extends BaseSpider {
                                 String text = l.text();
                                 String link = l.attr("href");
                                 if (text.matches(channels)) {
-                                    //System.out.println(text + "匹配");
-                                    Live live = new Live();
-                                    live.match = maybeExistedEntity;
-                                    live.name = text;
-                                    live.link = link;
-                                    live.addTime = new Date();
-                                    maybeExistedEntity.lives.add(live);
-                                } else {
-                                    //System.out.println(text + "不匹配");
+                                    if (!liveStr.contains(link)) {
+                                        Live live = new Live();
+                                        if (text.matches(playChannel)) {
+                                            //站内播放
+                                            live.playFlag = "INNER";
+                                        } else {
+                                            live.playFlag = "OUTER";
+                                        }
+                                        live.match = maybeExistedEntity;
+                                        live.name = text;
+                                        live.link = link;
+                                        live.addTime = new Date();
+                                        maybeExistedEntity.lives.add(live);
+                                    }
                                 }
                             }
                             maybeExistedEntity.addTime = new Date();
@@ -508,7 +506,7 @@ public class LiveSpider extends BaseSpider {
 
     }
 
-    public void fetchFromWuchajian(List<Match> entitys, String channels, String link) throws Exception {
+    public void fetchFromWuchajian(List<Match> entitys, String channels, String link, String playChannel) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
@@ -543,38 +541,27 @@ public class LiveSpider extends BaseSpider {
                 try {
                     maybeExistedEntity = matchDao.findByNameAndPlayDate(name, playDate);
 
-                    if (maybeExistedEntity != null) {// 已经抓取过
-                        if (maybeExistedEntity.locked == 1) {// 如果是锁定状态
-                            if (maybeExistedEntity.unlockTime.getTime() > new Date().getTime()) {// 锁定未过期
-                                willSaveMatch = false;
-                            } else {// 锁定已过期
-                                // 解锁
-                                maybeExistedEntity.locked = 0;
-                            }
-                        }
-                        if (willSaveMatch) {// 不是锁定状态，或者已经解锁，清空
-                            //System.out.println("将清空Match的直播链接，比赛：" + maybeExistedEntity.name + "长度："
-                            //        + maybeExistedEntity.lives.size());
+                    if (maybeExistedEntity == null) {// 已经抓取过
 
-                            List<Live> oldLives = Lists.newArrayList();
-
-                            for (Live live : maybeExistedEntity.lives) {
-                                oldLives.add(live);
-                            }
-
-                            maybeExistedEntity.lives.clear();
-                            liveDao.delete(oldLives);
-                        }
-                    } else {
-                        //System.out.println("将进行全新的入库……");
                         maybeExistedEntity = new Match();
                     }
                 } catch (Exception e) {
                     continue;
                 }
                 try {
-                    // 至此，maybeExistedEntity可能是新对象（新增的情况）或已清空直播的老对象（修改的情况），用于将抓取到的数据填充进去
+                    List<Live> matchLive = maybeExistedEntity.lives;
+                    List<Live> effLive = Lists.newArrayList();
+                    List<String> liveStr = Lists.newArrayList();
+                    for (Live live : matchLive) {
+                        if (baoWeiService.isConnect(live.link)) {
+                            effLive.add(live);
+                            liveStr.add(live.link);
+                        } else {
+                            liveDao.delete(live);
+                        }
 
+                    }
+                    maybeExistedEntity.lives = effLive;
                     if (willSaveMatch) {
 
                         String type = tds.get(0).select("img").attr("alt");
@@ -636,14 +623,20 @@ public class LiveSpider extends BaseSpider {
                                     String text = l.select(".video_tit").html();
                                     String lk = l.select(".media iframe").attr("src");
                                     if (text.matches(channels)) {
-                                        //System.out.println(text + "匹配");
-
+                                        if (liveStr.contains(link)) {
+                                            continue;
+                                        }
                                         if (StringUtils.isNotBlank(lk)) {
 //
                                             text = text.replace("无插件直播", "");
 
                                             Live live = new Live();
-
+                                            if (text.matches(playChannel)) {
+                                                //站内播放
+                                                live.playFlag = "INNER";
+                                            } else {
+                                                live.playFlag = "OUTER";
+                                            }
                                             live.match = maybeExistedEntity;
                                             live.name = text;
                                             live.gameId = lk.substring(lk.indexOf("?id=") + 4);
@@ -659,8 +652,6 @@ public class LiveSpider extends BaseSpider {
                                                 } else {
                                                     live.name = "CCTV";
                                                 }
-                                                //   live.videoLink="http://mgzb.live.miguvideo.com:8088/wd_r2/cctv/cctv5hdnew/350/index.m3u8?msisdn=&mdspid=&spid=699004&netType=0&sid=5500516171&pid=2028597139&timestamp=20180811120501&Channel_ID=1004_10010001005&ProgramID=641886683&ParentNodeID=-99&assertID=5500516171&client_ip=122.228.208.14&SecurityKey=20180811120501&promotionId=&mvid=&mcid=&mpid=&encrypt=6019c8625cff77c97cffde213ef753c2";
-
 
                                             } else if (text.matches(".*(企鹅).*")) {
                                                 live.link = "http://live.qq.com/" + lk.substring(lk.indexOf("?id=") + 4);
@@ -741,7 +732,6 @@ public class LiveSpider extends BaseSpider {
     }
 
 
-
     public League checkLeague(String leagueZh) {
         League league = leagueDao.findByLeagueZh(leagueZh);
         if (league != null) {
@@ -755,6 +745,18 @@ public class LiveSpider extends BaseSpider {
         logger.info("保存球队{}", league.leagueZh);
         return leagueDao.save(league);
 
+    }
+
+    public List<String> checkLiveLink(List<Live> lives) {
+
+        List<String> stringList = Lists.newArrayList();
+        for (Live live : lives) {
+            if (StringUtils.isNotEmpty(live.link)) {
+                stringList.add(live.link);
+            }
+        }
+
+        return stringList;
     }
 
     public static void main(String[] args) throws Exception {

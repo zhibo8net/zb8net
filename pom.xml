@@ -2,7 +2,7 @@
 <modelVersion>4.0.0</modelVersion>
 <groupId>net.studio427</groupId>
 <artifactId>zhibo82018</artifactId>
-<version>1.38.4</version>
+<version>1.38.5</version>
 <packaging>jar</packaging>
  
 <parent>

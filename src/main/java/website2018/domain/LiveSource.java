@@ -24,4 +24,6 @@ public class LiveSource extends BaseEntity {
     public Date lastFetch;
     public String channels;
     public int active;
+
+    public String innerPlayChannels;
 }
