@@ -209,7 +209,7 @@
                                 <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?s.link:'/live_play_inner/'+s.liveId+'.html'}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                             </div>
                         <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                            <a th:href="${l.signals[0].playFlag!='INNER'?l.signals[0].link:'/live_play_inner/'+l.signals[0].liveId+'.html'}" th:text="${l.signals[0].name}"></a>
+                            <a th:href="${l.signals[0].playFlag!='INNER'?l.signals[0].link:'/live_play_inner/'+l.signals[0].liveId+'.html'}" th:text="${l.signals[0].name}"  target="_blank"></a>
                         </div>
                         </span>
                     <a href="javascript:window.location.reload();" onclick=";" target="_blank">互动图文直播</a>

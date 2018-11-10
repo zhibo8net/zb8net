@@ -83,7 +83,7 @@ public class BasketballRankSpider extends BaseSpider {
                             basketballRank.winNum=tds.get(2).html();
                             basketballRank.failNum=tds.get(3).html();
                             basketballRank.winRate=tds.get(4).html();
-                            if(i==7){
+                            if(i==8){
                                 basketballRank.victories="-";
                                 basketballRank.currentRemark=tds.get(5).html();
                             }else{
