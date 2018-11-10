@@ -50,13 +50,13 @@ public class TeamCheckService {
         for(Team team:teamList){
             float lv=baoWeiService.checkNameAlike(teamZh+project,team.teamZh);
             if(lv>lv1){
-                logger.info("相似度匹球队配成功 ", JSONObject.fromObject(team).toString());
+                logger.info("相似度匹球队配成功{} ",team.teamZh );
                 return team;
             }
 
            lv=baoWeiService.checkNameAlike(teamZh,team.teamZh);
             if(lv>lv1){
-                logger.info("相似度匹球队配成功 " , JSONObject.fromObject(team).toString());
+                logger.info("相似度匹球队配成功{} " ,team.teamZh);
              return team;
             }
 
@@ -65,7 +65,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName1)){
                 lv=baoWeiService.checkNameAlike(team.teamName1,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 " , JSONObject.fromObject(team).toString());
+                    logger.info("相似度匹球队配成功 {}",team.teamZh);
                     return team;
                 }
 
@@ -75,7 +75,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName2)){
                 lv=baoWeiService.checkNameAlike(team.teamName2,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 ", JSONObject.fromObject(team).toString());
+                    logger.info("相似度匹球队配成功 {}",team.teamZh);
                     return team;
                 }
 
@@ -85,7 +85,7 @@ public class TeamCheckService {
             if(StringUtils.isNotEmpty(team.teamName3)){
                 lv=baoWeiService.checkNameAlike(team.teamName3,teamZh);
                 if(lv>lv1){
-                    logger.info("相似度匹球队配成功 ",JSONObject.fromObject(team).toString());
+                    logger.info("相似度匹球队配成功{}",JSONObject.fromObject(team).toString());
                     return team;
                 }
 

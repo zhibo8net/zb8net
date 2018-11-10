@@ -86,6 +86,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/nba_video");
         registrationBean.addUrlPatterns("/footer_video");
         registrationBean.addUrlPatterns("/news_detail/*");
+        registrationBean.addUrlPatterns("/live_play_inner/*");
         registrationBean.addUrlPatterns("/nba_news");
         registrationBean.addUrlPatterns("/footer_news");
         return registrationBean;

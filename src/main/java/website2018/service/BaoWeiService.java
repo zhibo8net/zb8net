@@ -94,7 +94,9 @@ public class BaoWeiService {
         if (urlStr == null || urlStr.length() <= 0) {
             return false;
         }
-
+        if(!urlStr.startsWith("http")){
+            return false;
+        }
         try {
             URL url = new URL(urlStr);
 

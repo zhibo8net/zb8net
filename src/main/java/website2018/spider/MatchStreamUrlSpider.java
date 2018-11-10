@@ -1,5 +1,6 @@
 package website2018.spider;
 
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import website2018.MyApplication;
 import website2018.base.BaseSpider;
+import website2018.domain.Live;
 import website2018.domain.Match;
 import website2018.domain.MatchStream;
 import website2018.repository.MatchDao;
@@ -65,9 +67,9 @@ public class MatchStreamUrlSpider extends BaseSpider {
         String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://27498.liveplay.myqcloud.com/live/27498_":sysParamMap.get("LIVE_URL_PRE");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.HOUR, -2);
+        calendar.add(Calendar.MINUTE, -150);
         Date d=calendar.getTime();
-        calendar.add(Calendar.HOUR, 4);
+        calendar.add(Calendar.MINUTE, 200);
         Date d1=calendar.getTime();
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThanAndUpdateTimeLessThan(d, d1);
@@ -80,6 +82,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
            boolean liveFlag=false;
 
             inner: for(Match match:matchList){
+
                if(StringUtils.isEmpty(match.name)){
                    logger.warn("比赛名称为空退出循环");
                    continue;
@@ -93,6 +96,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                }
@@ -104,19 +108,12 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                 }
 
-//                lv=  baoWeiService.checkNameAlike(matchStream.matchName,match.name);
-//                if(lv>lv1){
-//                    logger.warn("相似度匹配成功 "+match.name);
-//                    liveFlag=true;
-//
-//                    match.matchStreamUrl=matchStreamUrl;
-//                    matchDao.save(match);
-//                    break inner;
-//                }
+
 
                 if(match.guestTeam==null||match.masterTeam==null){
                     logger.warn("match 比赛guestTeam masterTeam 为空退出循环");
@@ -130,6 +127,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                 }
@@ -137,6 +135,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                 }
@@ -147,6 +146,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                 }
@@ -159,19 +159,12 @@ public class MatchStreamUrlSpider extends BaseSpider {
                     liveFlag=true;
 
                     match.matchStreamUrl=matchStreamUrl;
+                    addLive(match,matchStreamUrl);
                     matchDao.save(match);
                     break inner;
                 }
 
-//                lv=  baoWeiService.checkNameAlike(matchStream.matchName,mn);
-//                if(lv>lv1){
-//                    logger.warn("相似度匹配成功 "+match.name);
-//                    liveFlag=true;
-//
-//                    match.matchStreamUrl=matchStreamUrl;
-//                    matchDao.save(match);
-//                    break inner;
-//                }
+
             }
 
            if(! liveFlag){
@@ -214,10 +207,36 @@ public class MatchStreamUrlSpider extends BaseSpider {
         matchSave.playTime=playTimeStr[1];
         matchSave.playDateStr=sdf.format(date)+"-"+playTimeStr[0];
         matchSave.addTime=new Date();
-
+        Live live=new Live();
+        live.playFlag = "INNER";
+        live.match = matchSave;
+        live.name = "直播视频";
+        live.link = matchSave.matchStreamUrl;
+        live.addTime = new Date();
+        matchSave.lives.add(live);
         matchDao.save(matchSave);
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public void addLive(Match match,String url){
+        List<Live> liveList= match.lives;
+        boolean flag=false;
+       for(Live live:liveList){
+           if(url.equals(live.link)){
+               flag=true;
+               break;
+           }
+       }
+        if(!flag){
+            Live live=new Live();
+            live.playFlag = "INNER";
+            live.match = match;
+            live.name = "直播视频";
+            live.link =url;
+            live.addTime = new Date();
+            match.lives.add(live);
         }
     }
 }

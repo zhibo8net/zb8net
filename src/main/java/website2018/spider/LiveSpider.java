@@ -191,11 +191,10 @@ public class LiveSpider extends BaseSpider {
                     for (Live live : matchLive) {
                         if (baoWeiService.isConnect(live.link)) {
                             effLive.add(live);
-                            liveStr.add(live.link);
                         } else {
                             liveDao.delete(live);
                         }
-
+                        liveStr.add(live.link);
                     }
                     maybeExistedEntity.lives = effLive;
                     if (willSaveMatch) {
@@ -314,11 +313,11 @@ public class LiveSpider extends BaseSpider {
                 for (Live live : matchLive) {
                     if (baoWeiService.isConnect(live.link)) {
                         effLive.add(live);
-                        liveStr.add(live.link);
+
                     } else {
                         liveDao.delete(live);
                     }
-
+                    liveStr.add(live.link);
                 }
                 maybeExistedEntity.lives = effLive;
                 if (willSaveMatch) {
@@ -445,11 +444,11 @@ public class LiveSpider extends BaseSpider {
                         for (Live live : matchLive) {
                             if (baoWeiService.isConnect(live.link)) {
                                 effLive.add(live);
-                                liveStr.add(live.link);
+
                             } else {
                                 liveDao.delete(live);
                             }
-
+                            liveStr.add(live.link);
                         }
                         maybeExistedEntity.lives = effLive;
                         if (willSaveMatch) {
@@ -555,11 +554,11 @@ public class LiveSpider extends BaseSpider {
                     for (Live live : matchLive) {
                         if (baoWeiService.isConnect(live.link)) {
                             effLive.add(live);
-                            liveStr.add(live.link);
+
                         } else {
                             liveDao.delete(live);
                         }
-
+                        liveStr.add(live.link);
                     }
                     maybeExistedEntity.lives = effLive;
                     if (willSaveMatch) {

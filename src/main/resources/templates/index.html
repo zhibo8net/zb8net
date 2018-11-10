@@ -306,24 +306,24 @@
                                         <img class="matchImg" th:src="${m.guestTeamLink}" height="30px" width="auto"/>
                                         <span class="match"  th:text="${m.guestTeamName}"></span>
                                     </span>
-                                      <span th:if="${m.matchStreamUrl!=null}">
-                                       <div  th:remove="tag">
-                                           <a th:href="${'/match_old_1/'+m.id+'.html'}" >视频直播</a>
-                                       </div>
-                                    </span>
+                                      <!--<span th:if="${m.matchStreamUrl!=null}">-->
+                                       <!--<div  th:remove="tag">-->
+                                           <!--<a th:href="${'/match_old_1/'+m.id+'.html'}" target="_blank">视频直播</a>-->
+                                       <!--</div>-->
+                                    <!--</span>-->
                                        <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                                 <span th:text="${l.name}"></span>(
-                                                <a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id+'.html'}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                                <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+s.liveId+'.html'}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                                             </div>
                                             <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                                <a th:href="${'/match_1/'+m.id+'.html'}" th:text="${l.signals[0].name}"></a>
-                                            </div>
+                                                <a th:href="${l.signals[0].playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+l.signals[0].liveId+'.html'}" th:text="${l.signals[0].name}" target="_blank"></a>
+                                             </div>
 
                                         </span>
                                     <span th:if="${m.sinaShujuUrl!=null}">
                                        <div  th:remove="tag">
-                                           <a th:href="${'/match_1/'+m.id+'.html'}" >图文直播</a>
+                                           <a th:href="${'/match_1/'+m.id+'.html'}" target="_blank">图文直播</a>
                                        </div>
                                     </span>
 

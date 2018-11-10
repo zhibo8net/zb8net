@@ -5,8 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springside.modules.utils.mapper.BeanMapper;
 import website2018.base.BaseEndPoint;
 import website2018.domain.FriendLink;
+import website2018.domain.Live;
+import website2018.dto.LiveDTO;
 import website2018.dto.MatchDTO;
 import website2018.service.IndexService;
 import website2018.service.LiveService;
@@ -47,5 +50,24 @@ public class MatchController  extends BaseEndPoint {
         model.addAttribute("matchDTO", matchDTO);
 
         return "detail-old";
+    }
+
+    @RequestMapping(value = "/live_play_inner/{id}")
+    public String live_play_inner(@PathVariable Long id, Model model) {
+        Live live=liveService.findById(id);
+        if(live==null||live.match==null){
+            return "redirect:http://www.zhibo8.net/";
+        }
+        LiveDTO liveDTO = BeanMapper.map(live, LiveDTO.class);
+        liveDTO.link=live.link;
+        model.addAttribute("liveDTO", liveDTO);
+
+        MatchDTO matchDTO= indexService.findMatchDTO(live.match.id);
+        if(matchDTO==null){
+            return "redirect:http://www.zhibo8.net/";
+        }
+        model.addAttribute("matchDTO", matchDTO);
+
+        return "live-old";
     }
 }
