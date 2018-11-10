@@ -30,6 +30,9 @@ a {
   color: #4184f3;
   font-size: 24px;
 }
+a[title='站长统计'] {
+  display: none;
+}
 @media (min-width: 1200px) {
   .navbar {
     margin-left: -12px;

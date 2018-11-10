@@ -29,7 +29,6 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script> -->
-    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
 </head>
 
 <body>
@@ -40,15 +39,16 @@
         <div id="main">
             <div class="breadcrumbs">
                 <a href="http://www.zhibo8.net">直播首页</a>&gt;
-                <a href="/nba_news.html">足球新闻</a>&gt;<spn th:text="${news.title}"></spn> </div>
+                <a href="/nba_news.html">足球新闻</a>&gt;<spn th:text="${news.title}"></spn>
+            </div>
             <div class="box margin_top_10">
                 <div class="title">
                     <h1 th:text="${news.title}"></h1>
                     <span avalonctrl="title_controller" th:text="${news.createTime}">
-                      </span>
+                    </span>
                 </div>
                 <div class="Line"></div>
-                <div id="signals" class="content"  th:utext="${news.content}">
+                <div id="signals" class="content" th:utext="${news.content}">
 
                 </div>
 
@@ -57,7 +57,7 @@
                         上一篇:
                         <span th:text="${preNews.title}"></span>
                     </a>
-                    <a th:if="${nextNews!=null}" th:href="'/news_detail/'+${nextNews.id}+'.html'"  class="right">
+                    <a th:if="${nextNews!=null}" th:href="'/news_detail/'+${nextNews.id}+'.html'" class="right">
                         下一篇:
                         <span th:text="${nextNews.title}"></span>
                     </a>
@@ -775,15 +775,112 @@
 
                                         <div id="editortip" style="width:500px; height:50px;line-height:25px; color:#A6CAF0; position:absolute; left:20px; top:40px; text-align:left;">
                                             1.电脑端新用户可以发表评论了！
-                                            <br/>2.发言请遵守国家法律法规.
-                                            <br/>3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.
-                                            <br/>
+                                            <br />2.发言请遵守国家法律法规.
+                                            <br />3.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.
+                                            <br />
                                         </div>
 
                                         <!--表情-->
-
+                                        <div class="pl-emoji" style="display:none;">
+                                            <!--repeat94649307830618385651042927249896-->
+                                            <!--ms-if-->
+                                            <div class="e-area">
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="微笑"><img src="https://tu.qiumibao.com/emoji/common/ic_weixiao@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="再见"><img src="https://tu.qiumibao.com/emoji/common/ic_zaijian@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="笑哭"><img src="https://tu.qiumibao.com/emoji/common/ic_xiaoku@2x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="爱慕"><img src="https://tu.qiumibao.com/emoji/common/ic_xianmu@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="捂脸"><img src="https://tu.qiumibao.com/emoji/common/ic_wulian@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="睡觉"><img src="https://tu.qiumibao.com/emoji/common/ic_shuijiao@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="衰"><img src="https://tu.qiumibao.com/emoji/common/ic_shuai@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="呕吐"><img src="https://tu.qiumibao.com/emoji/common/ic_outu@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="震惊"><img src="https://tu.qiumibao.com/emoji/common/ic_zhenjing@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="眩晕"><img src="https://tu.qiumibao.com/emoji/common/ic_xuanyun@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="流汗"><img src="https://tu.qiumibao.com/emoji/common/ic_liuhan@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="厉害"><img src="https://tu.qiumibao.com/emoji/common/ic_lihai@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="酷"><img src="https://tu.qiumibao.com/emoji/common/ic_ku@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="可怜"><img src="https://tu.qiumibao.com/emoji/common/ic_kelian@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="滑稽"><img src="https://tu.qiumibao.com/emoji/common/ic_huaji@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="哈哈"><img src="https://tu.qiumibao.com/emoji/common/ic_haha@2x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="愤怒"><img src="https://tu.qiumibao.com/emoji/common/ic_fennu@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="大哭"><img src="https://tu.qiumibao.com/emoji/common/ic_daku@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="加油"><img src="https://tu.qiumibao.com/emoji/common/ic_jiayou@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109-->
+                                                <div class="img" title="祈祷"><img src="https://tu.qiumibao.com/emoji/common/ic_qidao@3x.png"></div>
+                                                <!--repeat40374341037096765339595004683109:end-->
+                                            </div>
+                                            <!--repeat94649307830618385651042927249896-->
+                                            <div class="e-area">
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="黑锅"><img src="https://tu.qiumibao.com/emoji/sport/ic_heiguo@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="xjbd"><img src="https://tu.qiumibao.com/emoji/sport/ic_xjbd@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="xjbt"><img src="https://tu.qiumibao.com/emoji/sport/ic_xjbt@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="下课"><img src="https://tu.qiumibao.com/emoji/sport/ic_xiake@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="mvp"><img src="https://tu.qiumibao.com/emoji/sport/ic_mvp@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="黄牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_huangpai@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="红牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_hongpai@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="助威"><img src="https://tu.qiumibao.com/emoji/sport/ic_zhuwei@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="背锅"><img src="https://tu.qiumibao.com/emoji/sport/ic_beiguo@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="奖杯"><img src="https://tu.qiumibao.com/emoji/sport/ic_jiangbei@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="饮水机"><img src="https://tu.qiumibao.com/emoji/sport/ic_yinshuiji@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="哨子"><img src="https://tu.qiumibao.com/emoji/sport/ic_shaozi@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="足球"><img src="https://tu.qiumibao.com/emoji/sport/ic_zuqiu@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="篮球"><img src="https://tu.qiumibao.com/emoji/sport/ic_lanqiu@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="投降"><img src="https://tu.qiumibao.com/emoji/sport/ic_touxiang@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="战术板"><img src="https://tu.qiumibao.com/emoji/sport/ic_zhanshuban@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="啤酒"><img src="https://tu.qiumibao.com/emoji/sport/ic_pijiu@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="金牌"><img src="https://tu.qiumibao.com/emoji/sport/ic_jinpai@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="撸串"><img src="https://tu.qiumibao.com/emoji/sport/ic_luchuan@3x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254-->
+                                                <div class="img" title="击掌"><img src="https://tu.qiumibao.com/emoji/sport/ic_jizhang@2x.png"></div>
+                                                <!--repeat0763009477249043744408128911502254:end-->
+                                            </div>
+                                            <!--repeat94649307830618385651042927249896:end-->
+                                            <div class="pl-e-s">
+                                                <!--repeat079879934352972147348297080005337--><span class="e-switch">通用</span>
+                                                <!--repeat079879934352972147348297080005337--><span class="e-switch e-cur">体育</span>
+                                                <!--repeat079879934352972147348297080005337:end-->
+                                                <!--<span class="e-close" ms-click="show_smiley_box(false)">X</span>-->
+                                            </div>
+                                        </div>
                                         <!-- '+face_lable_end+' -->
-                                        <input id="submit_btn" type="button" name="submit" value="回 复"/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input id="submit_btn" type="button" name="submit" value="回 复" />&nbsp;&nbsp;&nbsp;&nbsp;
                                         <!--ms-if-->
                                         <span>按Ctrl+Enter发表回复</span>
 
@@ -835,57 +932,57 @@
                             <div id="pllist" class="pllist">
 
                                 <!--<table data-repeat-rendered="showimg" cellspacing="0" cellpadding="0" border="0" width="680">-->
-                                    <!--<tbody>-->
-                                        <!--<tr>-->
-                                            <!--<td class="userPro" valign="top">-->
-                                                <!--<div class="left">-->
-                                                    <!--<a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">-->
-                                                        <!--<img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
-                                                            <!--data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
-                                                        <!--/>-->
-                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                    <!--</a>-->
-                                                <!--</div>-->
-                                            <!--</td>-->
-                                            <!--<td class="commentTextList" valign="top">-->
-                                                <!--<div class="comment">-->
-                                                    <!--<div class="info">-->
-                                                        <!--<div class="left">-->
-                                                            <!--<a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">春哥也有事业线</a>-->
-                                                            <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                            <!--<span class="dev_info">2018-10-20 11:59:50-->
-                                                                <!--<span>-->
-                                                                    <!--<a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>-->
-                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                                    <!--&lt;!&ndash;ms-if&ndash;&gt;-->
-                                                                <!--</span>-->
-                                                            <!--</span>-->
+                                <!--<tbody>-->
+                                <!--<tr>-->
+                                <!--<td class="userPro" valign="top">-->
+                                <!--<div class="left">-->
+                                <!--<a target="_blank" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">-->
+                                <!--<img class="lazy" src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                <!--data-src="http://wx.qlogo.cn/mmopen/YHRExvrGMhicMOiaBiawzZKkPmNIcicXawtXhOfq8LVMfibWzzp9iaypak42M59CwSEFP3Ru0ezRC1PTMySRzrBnb9J7ftjw7v5ic3W/0"-->
+                                <!--/>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--</a>-->
+                                <!--</div>-->
+                                <!--</td>-->
+                                <!--<td class="commentTextList" valign="top">-->
+                                <!--<div class="comment">-->
+                                <!--<div class="info">-->
+                                <!--<div class="left">-->
+                                <!--<a target="_blank" class="user_name" href="//home.zhibo8.cc/user.html?platform=mobile&amp;uid=3265204">春哥也有事业线</a>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--<span class="dev_info">2018-10-20 11:59:50-->
+                                <!--<span>-->
+                                <!--<a class="dev_info" href="//www.zhibo8.cc/shouji.htm" target="_blank" ng-if="p.device!==''">来自安卓客户端</a>-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-if&ndash;&gt;-->
+                                <!--</span>-->
+                                <!--</span>-->
 
-                                                        <!--</div>-->
-                                                        <!--<div class="right">-->
-                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596666" uid="0">顶(-->
-                                                                <!--<font class="up_cnt">0</font>)</span>-->
-                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596666" uid="0">踩(-->
-                                                                <!--<font class="down_cnt">0</font>)</span>-->
-                                                            <!--<a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>-->
-                                                            <!--<span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596666">举报</span> 9楼</div>-->
-                                                    <!--</div>-->
-                                                    <!--<p class="word">这货到曼联几年了，有过正常表现么？！这还能续约？！</p>-->
-                                                    <!--<div data-include-rendered="addClass" style="display: none;" class="dark">-->
-                                                        <!--&lt;!&ndash;ms-include&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;repeat513559921760873738887156706113024:end&ndash;&gt;-->
-                                                        <!--&lt;!&ndash;ms-include-end&ndash;&gt;-->
-                                                    <!--</div>-->
-                                                    <!--&lt;!&ndash;<span ng-bind-html="echoChildrenOld(p.id)"></span>&ndash;&gt;-->
-                                                <!--</div>-->
-                                            <!--</td>-->
-                                        <!--</tr>-->
-                                    <!--</tbody>-->
+                                <!--</div>-->
+                                <!--<div class="right">-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="up_btn" cid="123596666" uid="0">顶(-->
+                                <!--<font class="up_cnt">0</font>)</span>-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="down_btn" cid="123596666" uid="0">踩(-->
+                                <!--<font class="down_cnt">0</font>)</span>-->
+                                <!--<a class="reply" cid="{{el.id}}" href="javascript:void(0);">回复</a>-->
+                                <!--<span style="cursor:pointer; color:#4E84AE;" class="report_btn" uid="{{el.userid}}" cid="123596666">举报</span> 9楼</div>-->
+                                <!--</div>-->
+                                <!--<p class="word">这货到曼联几年了，有过正常表现么？！这还能续约？！</p>-->
+                                <!--<div data-include-rendered="addClass" style="display: none;" class="dark">-->
+                                <!--&lt;!&ndash;ms-include&ndash;&gt;-->
+                                <!--&lt;!&ndash;repeat513559921760873738887156706113024:end&ndash;&gt;-->
+                                <!--&lt;!&ndash;ms-include-end&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;<span ng-bind-html="echoChildrenOld(p.id)"></span>&ndash;&gt;-->
+                                <!--</div>-->
+                                <!--</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
                                 <!--</table>-->
 
                             </div>
@@ -1041,14 +1138,16 @@
                                         <div id="varea">
                                             <div class="phonenum rad5 mtop10">
                                                 <div class="lh35">
-                                                    <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone" maxlength="11"/>
+                                                    <input type="text" class="input_100 lh35" placeholder="请输入手机号" id="phone"
+                                                        maxlength="11" />
                                                 </div>
                                             </div>
 
                                             <div class="mtop10">
                                                 <div class="wd48">
                                                     <div class="rad5 wd48_div">
-                                                        <input type="text" class="wd48_input lh35" placeholder="请输入验证码" maxlength="4" id="vcode"/>
+                                                        <input type="text" class="wd48_input lh35" placeholder="请输入验证码"
+                                                            maxlength="4" id="vcode" />
                                                     </div>
                                                 </div>
 
@@ -1102,6 +1201,8 @@
 
         })
     </script>
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+
 </body>
 
 </html>
