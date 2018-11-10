@@ -14,8 +14,10 @@
     <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/details_ft.min.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/details_common.min.css}" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
-    <script>
+    <script th:src="@{/js_1/md5.js}"></script>
+    <!-- <script>
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -23,7 +25,8 @@
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(hm, s);
         })();
-    </script>
+    </script> -->
+    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
 </head>
 
 <body>
@@ -279,12 +282,17 @@
                 <div class="clear"></div>
                 <!--ms-if-->
                 <div id="logindiv" style="display:none;width:100%; height:40px; line-height:40px; position: relative; ">
-                    <font color="red">请使用直播吧论坛账号
+                    <span class="login-info">登录后才能发表评论和回复</span>
+                            <span class="login-btn-area">
+                                <a href="javascript:;" class="l-b-l">登录</a> |
+                                <a class="l-b-r" href="//bbs.zhibo8.cc/regist">注册</a>
+                            </span>
+                    <!-- <font color="red">请使用直播吧论坛账号
                         <a href="javascript:void(0);">登录</a> |
                         <a href="#">
                             <img src="http://tu.zhibo8.cc/uploads/qqimages/qq_login.gif" />
                         </a> 或者
-                        <a href="#">注册</a>,登录后才能发表评论和回复</font>
+                        <a href="#">注册</a>,登录后才能发表评论和回复</font> -->
                 </div>
 
 
@@ -448,91 +456,7 @@ input[type="number"]{-moz-appearance:textfield;}
                 </style>
 
                 <!--ms-if-->
-
-                <div style="display: none;">
-                    <div class="body-bg"></div>
-                    <div class="loginView model_view">
-                        <span class="close-btn"></span>
-                        <div class="fl mobile-login">
-                            <h1>登录中心</h1>
-                            <div class="m-li m-tel set_border">
-                                <input type="number" name="tel" placeholder="请输入手机号" />
-                                <span class="ck-status"></span>
-                            </div>
-                            <div class="m-li validate-code b-clear">
-                                <div class="fl input-code set_border">
-                                    <input type="number" name="code" placeholder="请输入验证码" />
-                                </div>
-                                <div class="fr get-code">
-                                    <a href="javascript:;">发送验证码</a>
-                                </div>
-                                <span class="fr tip-info"></span>
-                            </div>
-                            <div class="m-li m-login-btn">
-                                <a href="javascript:;">登录</a>
-                            </div>
-                            <div class="m-li mobile-tip"></div>
-                            <div class="reg">
-                                <a href="javascript:;" target="_blank">没有账号？立即注册</a>
-                            </div>
-                        </div>
-                        <div class="fr onekey-login">
-                            <ul>
-                                <li>
-                                    <span>一键登录</span>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" onclick="login_qq('https:http://graph.qq.com/oauth2.0/authorize?response_type=code&amp;client_id=101169587&amp;state=test&amp;scope=get_user_info,add_share,get_info,add_t&amp;redirect_uri=https%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Findex.php')">
-                                        <span class="li li-qq"></span>
-                                        QQ登录</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" onclick="login_wechat('https:http://pl.zhibo8.cc/usercenter/oauth/weixin_url.php?url='+encodeURIComponent(window.location.href))">
-                                        <span class="li li-wechat"></span>
-                                        微信登录</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" onclick="login_weibo('https:http://api.weibo.com/oauth2/authorize?client_id=1475264871&amp;response_type=code&amp;redirect_uri=https%3A%2F%2Fpl.zhibo8.cc%2Fusercenter%2Foauth%2Fweibo.php%3FredirectURL%3D'+location.href)">
-                                        <span class="li li-weibo"></span>
-                                        微博登录</a>
-                                </li>
-                                <li class="sao-index">
-                                    <a href="javascript:;" class="login-sao">
-                                        <span class="li li-sao"></span>
-                                        扫码登录</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;" class="fr forumLogin">旧版论坛登录</a>
-                                </li>
-                            </ul>
-                            <div class="forumView" style="display: none;">
-                                <div class="overlay forum-box">
-                                    <div class="">
-                                        <div class="li-line">
-                                            <span>用户名:</span>
-                                            <br>
-                                            <input class="txt username_input" name="username" type="text" />
-                                            </br>
-                                        </div>
-                                        <div class="li-line">
-                                            <br>
-                                            <span>密码:</span>
-                                            </br>
-                                            <input class="txt password_input" name="password" type="password" />
-                                        </div>
-                                        <div class="li-line fg-h">
-                                            <a href="http://bbs.zhibo8.cc/password/send_email" class="forget-pwd" target="_blank">忘记密码?</a>
-
-                                            <input class="fr login_input" type="button" value="登录" ng-show="!loging" style="" />
-                                            <span class="fr loging" style="display: none;">登录中...</span>
-                                        </div>
-                                    </div>
-                                    <a class="forum-close"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div th:replace="layout/login :: login"></div>
 
                 <!--绑定手机 start-->
                 <style type="text/css">
