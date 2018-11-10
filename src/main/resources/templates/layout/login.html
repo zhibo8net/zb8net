@@ -51,22 +51,22 @@
                     <li>
                         <a href="javascript:;" onclick="">
                             <span class="li li-qq"></span>
-                            <br/>QQ登录</a>
+                            <br />QQ登录</a>
                     </li>
                     <li>
                         <a href="javascript:;" onclick="">
                             <span class="li li-wechat"></span>
-                            <br/>微信登录</a>
+                            <br />微信登录</a>
                     </li>
                     <li>
                         <a href="javascript:;" onclick="">
                             <span class="li li-weibo"></span>
-                            <br/>微博登录</a>
+                            <br />微博登录</a>
                     </li>
                     <li class="sao-index">
                         <a href="javascript:;" class="login-sao">
                             <span class="li li-sao"></span>
-                            <br/>扫码登录</a>
+                            <br />扫码登录</a>
                     </li>
                     <!-- <li>
                     <a href="javascript:;" class="fr forumLogin">旧版论坛登录</a>
@@ -77,6 +77,12 @@
     </div>
     <script>
         $(function () {
+            $('.close-btn').click(function () {
+                $('.loginBox').fadeOut();
+            });
+            $('.l-b-l').click(function () {
+                $('.loginBox').fadeIn();
+            })
             var nowType = 1;
             $('.reg').click(function () {
                 nowType = 0;
@@ -94,9 +100,9 @@
             });
             $('.m-login-btn').click(function () {
                 if (!nowType) {
-                    login('http://www.zhibo8.net/api/user/register')
+                    login('/api/user/register')
                 } else {
-                    login('http://www.zhibo8.net/api/user/login')
+                    login('/api/user/login')
                 }
             })
             $('.onekey-login li').click(function () {
@@ -129,22 +135,27 @@
                     userName: phone,
                     password: hex_md5(password)
                 }
-                console.log(data)
                 $.ajax({
                     url: url,
                     type: 'POST',
                     data: JSON.stringify(data),
-                    contentType: 'application/json charset=utf-8',
-                    success: function () {
-                        if (!nowType) {
-                            alert('注册成功')
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            if (!nowType) {
+                                alert('注册成功')
+                            } else {
+                                alert('登录成功')
+                            }
+                            // window.location.reload();
+                            $('.loginBox').fadeOut();
                         } else {
-                            alert('登录成功')
+                            alert(resp.message)
                         }
-                        window.location.reload();
                     },
-                    fail: function () {
-
+                    fail: function (err) {
+                        alert(err)
                     }
                 })
             }
