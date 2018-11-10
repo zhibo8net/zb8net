@@ -26,13 +26,8 @@ public class BaoWeiService {
                 return 0;
             }
             float lv1 =checkAlike(firstName,secondName);
-            float lv2 =checkAlike(secondName,firstName);
-            if(lv1>lv2){
-                return lv1;
-            }else{
-                return lv2;
-            }
 
+            return lv1;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,6 +44,7 @@ public class BaoWeiService {
             firstName = firstName.replaceAll(" ", "");
             secondName = secondName.replaceAll(" ", "");
             int len = secondName.length();
+            int lenFirst=firstName.length();
             int key = 0;
             int count = 0;
             for (int i = 0; i < len; i++) {
@@ -58,8 +54,13 @@ public class BaoWeiService {
                     key++;
                 }
             }
+            float lv1 =0;
+            if(len>=lenFirst){
+                lv1 = (float) count / (float) len;
+            }else{
+                lv1 = (float) count / (float) lenFirst;
+            }
 
-            float lv1 = (float) count / (float) len;
              return lv1;
 
         } catch (Exception e) {
@@ -76,6 +77,16 @@ public class BaoWeiService {
         if (lv > lv1) {
             System.out.print("dd");
         }
+        try { String urlStr=   "http://v.pptv.com/show/ibZsCgOhOvvxf3UU.html";
+        URL url = new URL(urlStr);
+
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setConnectTimeout(5000);
+        con.setReadTimeout(30000);
+        int state = con.getResponseCode(); } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
     }
 
     public boolean isConnect(String urlStr) {
@@ -83,7 +94,9 @@ public class BaoWeiService {
         if (urlStr == null || urlStr.length() <= 0) {
             return false;
         }
-
+        if(!urlStr.startsWith("http")){
+            return false;
+        }
         try {
             URL url = new URL(urlStr);
 

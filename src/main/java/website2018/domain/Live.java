@@ -19,7 +19,7 @@ public class Live extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public Date addTime;
-
+    public String playFlag;
     public String name;
     public String link;
     public String videoLink;

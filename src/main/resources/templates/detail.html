@@ -203,22 +203,18 @@
                     <font style="color: #f00;">
                         <strong>直播信号</strong>
                     </font>:
-                     <span th:if="${matchDTO.matchStreamUrl!=null}">
-                                       <div  th:remove="tag">
-                                           <a th:href="${'/match_old_1/'+matchDTO.id+'.html'}" >视频直播</a>
-                                       </div>
-                                    </span>
+
                         <span  th:each="l:${matchDTO.lives}">
                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
                                 <span th:text="${l.name}"></span>(
-                                <a th:each="s:${l.signals}" th:href="${s.link}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?s.link:'/live_play_inner/'+s.liveId+'.html'}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                             </div>
                         <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                            <a th:href="${l.signals[0].link}" th:text="${l.signals[0].name}"></a>
+                            <a th:href="${l.signals[0].playFlag!='INNER'?l.signals[0].link:'/live_play_inner/'+l.signals[0].liveId+'.html'}" th:text="${l.signals[0].name}"></a>
                         </div>
                         </span>
                     <a href="javascript:window.location.reload();" onclick=";" target="_blank">互动图文直播</a>
-                    <a href="http://www.zhibo8.net/zuqiubf" target="_blank">比分直播</a>
+                    <a href="http://www.zhibo8.net/zuqiubf.html" target="_blank">比分直播</a>
                     <!-- 以下为附加信息 -->
                 </div>
                 <div class="cls"></div>

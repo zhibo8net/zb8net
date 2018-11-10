@@ -1,7 +1,6 @@
 package website2018.dto.match;
 
 
-import website2018.domain.FootballJsb;
 import website2018.domain.FootballSsb;
 
 import java.util.List;

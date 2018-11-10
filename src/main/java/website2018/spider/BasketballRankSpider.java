@@ -72,9 +72,9 @@ public class BasketballRankSpider extends BaseSpider {
                     if (tds.size() >=6) {
                        // System.out.println(tds.html());
                         //NBA西部 NBA东部抓取
-                        if(i==0||i==1||i==7){
+                        if(i==0||i==1||i==8){
                             String type=(i==0?"NBA西部":"NBA东部");
-                            type=(i==7?"CBA排名":type);
+                            type=(i==8?"CBA排名":type);
                             String teamName=tds.get(1).select("a").html();
                             Date date=new Date();
                              BasketballRank basketballRank=   checkBasketballRank(type,teamName);

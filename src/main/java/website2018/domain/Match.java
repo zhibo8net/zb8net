@@ -39,6 +39,7 @@ public class Match extends BaseEntity {
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Live> lives = Lists.newArrayList();
 
+
     @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Ad> ads = Lists.newArrayList();
 

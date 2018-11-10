@@ -113,6 +113,7 @@ public class LiveService extends IndexService{
                             signalDTO.indexName = "信号" + signalsIndex;
                             signalDTO.link = l.link;
                             signalDTO.liveId=l.id;
+                            signalDTO.playFlag=l.playFlag;
                             liveDTO.signals.add(signalDTO);
                         }
                     }

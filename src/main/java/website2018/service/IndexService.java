@@ -166,6 +166,7 @@ public class IndexService {
                         signalDTO.videoLink=l.videoLink;
                         signalDTO.liveId=l.id;
                         signalDTO.gameId=l.gameId;
+                        signalDTO.playFlag=l.playFlag;
                         liveDTO.signals.add(signalDTO);
                     }
                 }
@@ -208,7 +209,7 @@ public class IndexService {
 
         int index = 0;
         Calendar twoHourBeforeNow = Calendar.getInstance();
-        twoHourBeforeNow.add(Calendar.HOUR, -3);
+        twoHourBeforeNow.add(Calendar.MINUTE, -150);
         long twoHourBeforeNowMills = twoHourBeforeNow.getTime().getTime();
         do {
             DailyLivesDTO dailylives = new DailyLivesDTO();
@@ -273,6 +274,7 @@ public class IndexService {
                                 signalDTO.link = l.link;
                                 signalDTO.videoLink=l.videoLink;
                                 signalDTO.liveId=l.id;
+                                signalDTO.playFlag=l.playFlag;
                                 signalDTO.gameId=l.gameId;
                                 liveDTO.signals.add(signalDTO);
                             }
