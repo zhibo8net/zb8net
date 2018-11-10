@@ -36,7 +36,7 @@ public class Match extends BaseEntity {
     //sstream365 url
     public String matchStreamUrl;
 
-    @OneToMany(mappedBy = "match", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "match", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Live> lives = Lists.newArrayList();
 
 
