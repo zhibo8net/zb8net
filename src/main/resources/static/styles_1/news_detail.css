@@ -582,7 +582,7 @@
     padding: 0;
     height: auto;
     margin: 0 auto;
-    overflow: hidden;
+    /* overflow: hidden; */
     position: relative;
 }
 

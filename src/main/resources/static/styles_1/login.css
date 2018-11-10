@@ -113,6 +113,9 @@ input[type="number"] {
     border-left: 1px solid #EEEEEE;
     text-indent: 5px;
     outline: 0;
+    color:#333;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei', 'simsun';
 }
 
 .loginView .mobile-login .m-tel:before {

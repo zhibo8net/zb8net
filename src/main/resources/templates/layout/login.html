@@ -124,7 +124,15 @@
                     return true
                 }
             }
-
+            // 评论输入区域点击 隐藏提示语 评论区获取焦点
+            $('#editortip').click(function(){
+                // $(this).hide();
+                // $('#post_content').focus();
+                alert('评论功能即将开放，敬请期待')
+            });
+            $('#submit_btn').click(function(){
+                alert('评论功能即将开放，敬请期待')
+            })
             function login(url) {
                 var phone = $('input[name="tel"]').val(),
                     password = $('input[name="password"]').val();
@@ -156,7 +164,9 @@
                                 alert('登录成功')
                             }
                             // window.location.reload();
-                            $('.loginBox').fadeOut();
+                            $('.loginBox').fadeOut();// 隐藏登录弹窗
+                            $("#nouserinfo").hide(); // 隐藏登录注册框
+                            $('.yhm').hide(); // 图文直播页用户信息
                         } else {
                             alert(resp.message)
                         }
