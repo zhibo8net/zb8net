@@ -77,13 +77,20 @@
     </div>
     <script>
         $(function () {
+            var nowType = 1;
             $('.close-btn').click(function () {
                 $('.loginBox').fadeOut();
             });
             $('.l-b-l').click(function () {
                 $('.loginBox').fadeIn();
             })
-            var nowType = 1;
+            $('.l-b-r').click(function () {
+                nowType = 0;
+                $('.reg').hide();
+                $('.m-login-btn a').html('注册');
+                $('.mobile-login h1').html('注册中心');
+                $('.reg-login-text').show();
+            })
             $('.reg').click(function () {
                 nowType = 0;
                 $(this).hide();
