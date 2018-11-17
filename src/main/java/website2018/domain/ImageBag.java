@@ -27,7 +27,7 @@ public class ImageBag extends BaseEntity {
     public String title;
     public String source;
     public String project;
-
+    public Integer readCount;
     @OneToMany(mappedBy = "bag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<Image> images = Lists.newArrayList();
     

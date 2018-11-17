@@ -46,6 +46,8 @@
                     <h1 th:text="${news.title}"></h1>
                     <span avalonctrl="title_controller" th:text="${news.createTime}">
                     </span>
+                     <span avalonctrl="title_controller" th:text="' 浏览次数:'+${news.readCount}">
+                    </span>
                 </div>
                 <div class="Line"></div>
                 <div id="signals" class="content" th:utext="${news.content}">

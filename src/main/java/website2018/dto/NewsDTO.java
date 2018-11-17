@@ -16,6 +16,6 @@ public class NewsDTO {
     public String game;
     public String image;
     public String content;
-
+    public Integer readCount;
     public boolean isFirstRow;
 }

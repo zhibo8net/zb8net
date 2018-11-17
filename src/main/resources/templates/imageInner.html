@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 th:text="${imageBag.title}"></h1>
-                    <p th:if="${imageBag.addTime != null}" th:text="${#dates.format(imageBag.addTime, 'yyyy-MM-dd')}"></p>
+                    <p th:if="${imageBag.addTime != null}" th:text="${#dates.format(imageBag.addTime, 'yyyy-MM-dd')}+' 浏览量:'+${imageBag.readCount}"></p>
                     <a href="javascript:void(0);"><img class="img-responsive js-image" th:src="${webImageBase + image.name}" th:alt="${imageBag.title}"/></a>
                     <div>
                         <a th:href="${'/viewImage_1/'+imageBag.id+'/'+(index-1)}" th:if="${index&gt;1}" id="js-prev">上一张</a>

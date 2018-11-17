@@ -24,5 +24,6 @@ public class News extends BaseEntity {
     public String game;
     public String image;
     public String content;
+    public Integer readCount;
     
 }

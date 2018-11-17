@@ -9,6 +9,7 @@ import website2018.base.BaseEndPoint;
 import website2018.dto.user.ReturnResponse;
 import website2018.dto.user.UserDTO;
 import website2018.service.user.UserLoginService;
+import website2018.utils.SysConstants;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -31,4 +32,22 @@ public class UserController extends BaseEndPoint {
 
         return userLoginService.doUserRegister(request, userDTO);
     }
-}
+
+    @RequestMapping(value = "/checkUser",produces = MediaTypes.JSON_UTF_8)
+    public ReturnResponse checkUser(HttpServletRequest request) {
+        UserDTO userDTO= (UserDTO) request.getSession().getAttribute(SysConstants.USER_LOGIN_FLAG);
+        ReturnResponse response=new ReturnResponse();
+
+        if(userDTO==null){
+            response.code="0001";
+            response.message="用户未登录";
+            return response;
+        }
+        response.code="0000";
+        response.message="用户已登录";
+        userDTO.password="";
+        userDTO.rePassword="";
+        response.data=userDTO;
+        return response;
+    }
+    }

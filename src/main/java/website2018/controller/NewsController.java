@@ -285,6 +285,11 @@ public class NewsController extends BaseEndPoint {
     public String newsInner(@PathVariable Long id, Model model) {
         News news = newsDao.findOne(id);
         model.addAttribute("news", news);
+            if(news==null){
+                return "redirect:http://www.zhibo8.net/";
+            }
+        news.readCount=   news.readCount==null?1: news.readCount+1;
+        newsDao.save(news);
 
         String project = news.project;
         String game = news.game;
@@ -304,6 +309,11 @@ public class NewsController extends BaseEndPoint {
         if(news==null){
             return "redirect:http://www.zhibo8.net/";
         }
+
+
+        news.readCount=   news.readCount==null?1: news.readCount+1;
+        newsDao.save(news);
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
         for(int i=1;i<100;i++){
             News nextNews = newsDao.findOne(id+i);

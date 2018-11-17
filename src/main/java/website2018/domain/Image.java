@@ -25,6 +25,6 @@ public class Image extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "bag_id")
     public ImageBag bag;
-    
+
     
 }

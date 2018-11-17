@@ -71,7 +71,8 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/nba_news.html");
         registrationBean.addUrlPatterns("/footer_news.html");
         registrationBean.addUrlPatterns("/match_old_1/*");
-
+        registrationBean.addUrlPatterns("/checkUser.html");
+        registrationBean.addUrlPatterns("/checkUser");
         registrationBean.addUrlPatterns("/live_1");
         registrationBean.addUrlPatterns("/match_1/*");
         registrationBean.addUrlPatterns("/projectVideo_1");

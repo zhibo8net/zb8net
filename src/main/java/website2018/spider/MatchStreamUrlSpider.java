@@ -1,6 +1,6 @@
 package website2018.spider;
 
-import com.google.common.collect.Lists;
+
 import org.apache.commons.lang3.StringUtils;
 
 import org.slf4j.Logger;
@@ -39,8 +39,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Autowired
     BaoWeiService baoWeiService;
 
-    @Scheduled(cron = "0 0/2 * * * *")
-    @Transactional
+    @Scheduled(cron = "0 0/5 * * * *")
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED) {
             return;
@@ -81,8 +80,8 @@ public class MatchStreamUrlSpider extends BaseSpider {
             }
            boolean liveFlag=false;
 
-            inner: for(Match match:matchList){
-
+            inner: for(Match m:matchList){
+                Match match=matchDao.findById(m.id);
                if(StringUtils.isEmpty(match.name)){
                    logger.warn("比赛名称为空退出循环");
                    continue;
@@ -221,22 +220,30 @@ public class MatchStreamUrlSpider extends BaseSpider {
     }
 
     public void addLive(Match match,String url){
-        List<Live> liveList= match.lives;
-        boolean flag=false;
-       for(Live live:liveList){
-           if(url.equals(live.link)){
-               flag=true;
-               break;
-           }
-       }
-        if(!flag){
-            Live live=new Live();
-            live.playFlag = "INNER";
-            live.match = match;
-            live.name = "直播视频";
-            live.link =url;
-            live.addTime = new Date();
-            match.lives.add(live);
+        try{
+            List<Live> liveList= match.lives;
+            boolean flag=false;
+            for(Live live:liveList){
+                if(url.equals(live.link)){
+                    flag=true;
+                    break;
+                }
+            }
+            if(flag){
+                return;
+            }
+            if(!flag){
+                Live live=new Live();
+                live.playFlag = "INNER";
+                live.match = match;
+                live.name = "直播视频";
+                live.link =url;
+                live.addTime = new Date();
+                match.lives.add(live);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
     }
 }

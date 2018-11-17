@@ -8,6 +8,8 @@ public class ReturnResponse {
     public String message;
 
     public String code;
+
+    public Object data;
     public ReturnResponse(){
 
     }

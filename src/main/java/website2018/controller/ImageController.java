@@ -82,7 +82,9 @@ public class ImageController extends BaseEndPoint {
         if(imageBag == null) {
             throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
         }
-        
+        imageBag.readCount=imageBag.readCount==null?1:imageBag.readCount+1;
+        imageBagDao.save(imageBag);
+
         Image image = imageBag.images.get(index - 1);//1则取0
         model.addAttribute("imageBag", imageBag);
         model.addAttribute("image", image);
