@@ -34,6 +34,7 @@ public class UserRestFilter extends GenericFilterBean {
     static {
         backList.add("/api/user/login");
         backList.add("/api/user/register");
+        backList.add("/api/user/getCommentList");
     }
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

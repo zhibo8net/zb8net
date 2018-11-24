@@ -9,6 +9,7 @@ import website2018.dto.user.ReturnResponse;
 import website2018.dto.user.UserDTO;
 import website2018.repository.UserDao;
 import website2018.utils.MD5Util;
+import website2018.utils.MobileUtils;
 import website2018.utils.SysConstants;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,11 @@ public class UserLoginService {
         if(userDTO==null|| StringUtils.isEmpty(userDTO.userName)||StringUtils.isEmpty(userDTO.password)){
             response.code="0002";
             response.message="请求参数错误";
+            return response;
+        }
+        if(!MobileUtils.isMobileNO(userDTO.userName)){
+            response.code="0009";
+            response.message="请输入正确的手机号";
             return response;
         }
         User user=   userDao.findByUserName(userDTO.userName);
@@ -64,7 +70,11 @@ public class UserLoginService {
             response.message="请求参数错误";
             return response;
         }
-
+        if(!MobileUtils.isMobileNO(userDTO.userName)){
+            response.code="0009";
+            response.message="请输入正确的手机号";
+            return response;
+        }
         if(userDTO.password.equals(userDTO.rePassword)){
             response.code="0005";
             response.message="2次输入密码不一致";
