@@ -39,7 +39,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Autowired
     BaoWeiService baoWeiService;
 
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 0/3 * * * *")
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED) {
             return;

@@ -3,6 +3,7 @@ package website2018.service.admin;
 import java.util.Date;
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,9 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springside.modules.utils.mapper.BeanMapper;
 import website2018.domain.News;
+import website2018.dto.NewsNoContentDTO;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
 import website2018.repository.NewsDao;
@@ -34,6 +37,20 @@ public class NewsService {
     @Transactional(readOnly = true)
     public Page<News> findAll(Specification<News> specification, Pageable pageable) {
         return newsDao.findAll(specification, pageable);
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<NewsNoContentDTO> findByMatchName(String matchName) {
+
+        List<News> newses=newsDao.findByMatchName(matchName);
+
+        List<NewsNoContentDTO> newsNoContentDTOs= Lists.newArrayList();
+        for(News news:newses){
+            NewsNoContentDTO mdto = BeanMapper.map(news, NewsNoContentDTO.class);
+            newsNoContentDTOs.add(mdto);
+        }
+        return newsNoContentDTOs;
     }
 
     @Transactional(readOnly = true)
@@ -61,6 +78,7 @@ public class NewsService {
         orginalNews.source = news.source;
         orginalNews.image = news.image;
         orginalNews.content = news.content;
+        orginalNews.matchName=news.matchName;
         orginalNews.updateTime=new Date();
         newsDao.save(orginalNews);
     }

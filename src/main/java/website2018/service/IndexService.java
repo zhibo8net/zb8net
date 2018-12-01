@@ -35,6 +35,7 @@ import website2018.dto.LiveDTO;
 import website2018.dto.MatchDTO;
 import website2018.dto.SignalDTO;
 import website2018.repository.*;
+import website2018.service.admin.NewsService;
 
 @Service
 public class IndexService {
@@ -66,7 +67,8 @@ public class IndexService {
 
     @Autowired
     LiveSourceDao liveSourceDao;
-
+    @Autowired
+    NewsService newsService;
     @Autowired
     LiveDao liveDao;
     @PostConstruct
@@ -79,7 +81,7 @@ public class IndexService {
         List<DailyLivesDTO> dailyLives = dailyLivesCache.getIfPresent("dailyLives");
 
         //暂时不使用缓存
-        if ((dailyLives != null) && false) {
+        if ((dailyLives != null) && true) {
 
             return dailyLives;
 
@@ -96,9 +98,7 @@ public class IndexService {
     @Scheduled(cron = "0 0/5 * * * *")
     @Transactional
     public void refreshCache() {// 每5分钟刷新一次缓存
-        if(MyApplication.DONT_RUN_SCHEDULED) {
-            return;
-        }
+
         List<DailyLivesDTO> dailyLives = queryDailyLives();
         dailyLivesCache.put("dailyLives", dailyLives);
     }
@@ -227,6 +227,11 @@ public class IndexService {
                 if(m.playDate.getTime() > twoHourBeforeNowMills) {
 
                     MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
+
+                    if(StringUtils.isNotEmpty(mdto.name)){
+                        mdto.newsNoContentDTOList=  newsService.findByMatchName(mdto.name+"-"+mdto.id);
+                    }
+
                     if(m.guestTeam!=null){
                         if(StringUtils.isNotEmpty(m.guestTeam.teamImgLink)&&StringUtils.isNotEmpty(m.masterTeam.teamImgLink)){
                             mdto.teamFlag="TRUE";

@@ -47,7 +47,20 @@ public class MatchAdminEndpoint extends BaseEndPoint {
 
         return BeanMapper.mapList(matchs, Match.class, MatchAdminDTO.class);
     }
+    @RequestMapping(value = "/api/admin/matchList", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public String listRelMatch() {
 
+        List<Match> matchs = matchService.findMatchRelList();
+        StringBuffer sb=new StringBuffer();
+
+        for(Match match:matchs){
+            if(StringUtils.isNotEmpty(match.name)){
+                sb.append(match.name).append("-").append(match.id).append("|");
+            }
+
+        }
+        return sb.toString();
+    }
     @RequestMapping(value = "/api/admin/matchs/page", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
     public Page<MatchAdminDTO> listByPage(HttpServletRequest request, Pageable pageable) {
 

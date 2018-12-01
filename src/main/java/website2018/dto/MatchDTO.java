@@ -3,6 +3,7 @@ package website2018.dto;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import website2018.domain.News;
 
 public class MatchDTO {
 
@@ -12,6 +13,7 @@ public class MatchDTO {
     public String name;
     public Long id;
 
+    public List<NewsNoContentDTO> newsNoContentDTOList =Lists.newArrayList();
     public List<LiveDTO> lives = Lists.newArrayList();
     public List<AdDTO> ads = Lists.newArrayList();
 

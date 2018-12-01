@@ -12,6 +12,8 @@ public interface NewsDao extends PagingAndSortingRepository<News, Long>, JpaSpec
 
     public List<News> findBySource(String source);
 
+    public List<News> findByMatchName(String matchName);
+
     public List<News> findTop32ByAddTimeGreaterThanOrderByIdDesc( Date addTime);
     public List<News> findTop16ByProjectOrderByAddTimeDesc( String  project);
 
