@@ -129,11 +129,17 @@
             $('#editortip').click(function(){
                 // $(this).hide();
                 // $('#post_content').focus();
-                alert('评论功能即将开放，敬请期待')
+                // alert('评论功能即将开放，敬请期待')
             });
             $('#submit_btn').click(function(){
-                alert('评论功能即将开放，敬请期待')
+                // alert('评论功能即将开放，敬请期待')
             })
+            $("#editortip").click(function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                $(this).remove();
+                $('.textfb').focus();
+             })
             function login(url) {
                 var phone = $('input[name="tel"]').val(),
                     password = $('input[name="password"]').val();
@@ -168,6 +174,7 @@
                             $('.loginBox').fadeOut();// 隐藏登录弹窗
                             $("#nouserinfo").hide(); // 隐藏登录注册框
                             $('.yhm').hide(); // 图文直播页用户信息
+                            window.location.reload();
                         } else {
                             alert(resp.message)
                         }
