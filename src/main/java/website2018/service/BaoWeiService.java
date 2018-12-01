@@ -102,7 +102,7 @@ public class BaoWeiService {
 
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setConnectTimeout(5000);
-            con.setReadTimeout(30000);
+            con.setReadTimeout(10000);
             int state = con.getResponseCode();
 
             if (state == 200) {

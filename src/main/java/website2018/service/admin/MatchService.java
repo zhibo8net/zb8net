@@ -1,5 +1,7 @@
 package website2018.service.admin;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,12 @@ public class MatchService {
     public List<Match> findAll(Specification spec) {
         return matchDao.findAll(spec);
     }
+    @Transactional(readOnly = true)
+    public List<Match> findMatchRelList() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+        return matchDao.findTop100ByPlayDateGreaterThanOrderByPlayDateAsc(new Date());
+    }
     @Transactional(readOnly = true)
     public Page<Match> findAll(Pageable pageable) {
         return matchDao.findAll(pageable);

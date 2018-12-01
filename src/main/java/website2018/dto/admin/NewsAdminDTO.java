@@ -10,5 +10,6 @@ public class NewsAdminDTO {
     public String game;
     public String image;
     public String content;
+    public String matchName;
 
 }
