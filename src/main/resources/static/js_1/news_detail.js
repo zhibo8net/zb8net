@@ -1,5 +1,5 @@
 $(function () {
-    $("#siderbar .advert:last").css('height', '1040px');
+    // $("#siderbar .advert:last").css('height', '1040px');
 
     //$("#siderbar .advert:last iframe:first").css('height','120px');
     $("#siderbar .advert:last iframe:eq(1)").css('margin-top', '0');

@@ -57,10 +57,15 @@
     overflow: hidden;
     clear: both;
 }
-
+.user_name{
+    margin-right: 10px;
+}
 .info .right a {
     font-size: 10px;
     letter-spacing: -2px;
+}
+.info .right a ,.info .right span{
+    margin: 0 5px;
 }
 
 .info .right .reply {

@@ -138,7 +138,7 @@
                 e.preventDefault();
                 e.stopPropagation();
                 $(this).remove();
-                $('.textfb').focus();
+                $('.textfb,.post_content').focus();
              })
             function login(url) {
                 var phone = $('input[name="tel"]').val(),
@@ -174,7 +174,6 @@
                             $('.loginBox').fadeOut();// 隐藏登录弹窗
                             $("#nouserinfo").hide(); // 隐藏登录注册框
                             $('.yhm').hide(); // 图文直播页用户信息
-                            window.location.reload();
                         } else {
                             alert(resp.message)
                         }
