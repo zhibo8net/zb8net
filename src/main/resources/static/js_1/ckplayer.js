@@ -1,14 +1,14 @@
 /*
-	软件名称：ckplayer
-	软件版本：X
-	软件作者：http://www.ckplayer.com
-	---------------------------------------------------------------------------------------------
-	开发说明：
-	使用的主要程序语言：javascript(js)及actionscript3.0(as3.0)(as3.0主要用于flashplayer部分的开发，不在该页面呈现)
-	功能：播放视频
-	特点：兼容HTML5-VIDEO(优先)以及FlashPlayer
-	=====================================================================================================================
-*/
+ 软件名称：ckplayer
+ 软件版本：X
+ 软件作者：http://www.ckplayer.com
+ ---------------------------------------------------------------------------------------------
+ 开发说明：
+ 使用的主要程序语言：javascript(js)及actionscript3.0(as3.0)(as3.0主要用于flashplayer部分的开发，不在该页面呈现)
+ 功能：播放视频
+ 特点：兼容HTML5-VIDEO(优先)以及FlashPlayer
+ =====================================================================================================================
+ */
 function ckplayerConfig() {
 	return {
 		flashvars: {}, //用来补充flashvars里的对象
@@ -78,11 +78,11 @@ function ckplayerConfig() {
 				offsetY: -40
 			},
 			//logo: {
-				//file: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFcAAAAUCAYAAAD4BKGuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAVTSURBVHja1Fl/aJVVGP4cw/mH5tUWi3I53cA0WbeIzMgaq6lQoVawm0S6glHhIKM/TELICotqCxMSGWQRdFfRLEhc9mMxqA0rbdS2wsV0GkZXuaKUWlHvgeeNh7f3u1du3Ft74eGcnXu+c873vD/Pt0nZbDZyZL2gWZAQTBH8IjggeEjgPZASPIB+g/P7EsGT6J/BfHfjHFIv2Jpjj/+dlDskvCm42Jk7X3C7YJOgw/z2oOBGwdEYRW0RVAjOCZ4ugNggqwU3CTLRBJFyQ+xuwVRY14igB78tE9QKpgmeEHwkGKRnq9AeMesHRWwEsYGUxwSdBZ51ecweE4Lct0DsOVjaZvptA8jfC4JfghWpXIJ2jMY+EDShf1pwh6DvX5x1GtpDE43cNFlfhyFWpQ9xd5FgFo3fRi++C+2nCBNBRgU3O6RsEyyEQv4QLMb4CcE9RlFBLqS1WZ6BZ83A35ofVhuvfE5QJrjWebdgCJOx51qM1QgewbMzsO57MDQrB9DeC8ObHd5Xyb2eiNiQQxmtgkZBr+OuZwV7BIcF1RgbF1wTE2MbEccX48VY9sMzBilhTke/m+b1Q9lefpgruI7OsYhIGzPJuAnn3+6EM7vu1YKl5vkrYRSfCGZivCxoMklk7M5j6eFlXyRNRSAvAoFf0Fo/CC7LkbwuQjsZsf0qwbuI9wlYgIqGl6NEzDYibJ/gbmAfxpKoMDRcaSK8xZzjZbK+NMhSYoNSngV5e+ksKXp+JdqZwDDmdpSbsqa9gNAyi5JalSGv3iQ+dtNK9HvI+sNBh2AhvNYVaH+msRtAdsa4ehoKCuQsoP2PY8+kCSkJ5IRWjD2FZ4/BOFSWYv9KhI40eUKQ31CqdnLM1c1OOnHufKSS+iEZvgHNhji8g1yT5VZKdCnHO+ajvrYK/I7GkuSWjwvq8Mzl5M79NF89aCHaBNXmWv0sQVUUZEDwsDnbr2i9s31lKyGuFs7kITEBC+snJaToRYIFrRN0CeYgoSUxJ23WUm85eB41b4IUuIvGtyIMVMY8lzHGMoYworF7J/onKYk10/wVQL6zXYr+Zq9aOEhuXZPDel8Q3If+HMzTeHPKlForEK+mws3SMfH2UMxNLIJbasKsoIQZwVLbKFkN4T1C3HxUMM+EkCAfgjwNV40Y304KriOP+jIHqa+jvYsqnH/kqzKaGCFZxWnoTqooxky8+dHUsOGwr6Jfi9jmlVVTHGLnot9L3qGWqCToWYYRF5fDa96mtb93yI2g8B0IWxlTHWmi/hOG00D4mEJfJ5WhQX7ySCsDUaNkJeud6+sgXCgs3OLEG2/xdZSh10JBeiB1zQU0HuQdSib60rOdm9kFToIL8hmFiRHzm1YM0ylet5k579OFpcUk4I0oD0/QuJ7tcBy5ERY6ixdrh5uNwN3bUV7pd4E+J958HmPxbRRydqK/in6vxj5aH9din/udEPKtuU1GqBL24xJwBInQWiHLcbQVKBXTzkVpHP0tWHsIpZUqPeWcrScXuX2ImRkqlufBhdQl15ig3WLKH0/SeAmtD+uprBqGx1ThhlWN5LKG4lcNKbDblFDjVDU0wWK7yLLqnPNk6cKzKsfXt1GQmQQXSuwymhd3tr9lkvPJMUV152kc2PsmUEMxtzdPRk2SNX2DQ3Vhr02Is18LXjHVAz/bG0NEK8johus3UBiwyfkYlDkQUyLaWrwZBrbHMaB8Z3PJLaYk8IIVKKPSJdxbv3ecynNzLNr33GKLV1YVW4IyfycXfq0UxP4X5HJdXCqX4Wv0AKqYkkipw4LG6WxMNi+GhAtH+M/K8wVe7wuWvwQYAFT+UsGCXmX3AAAAAElFTkSuQmCC',
-				//align: 'right',
-				//vAlign: 'top',
-				//offsetX: -100,
-				//offsetY: 10,
+			//file: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFcAAAAUCAYAAAD4BKGuAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAVTSURBVHja1Fl/aJVVGP4cw/mH5tUWi3I53cA0WbeIzMgaq6lQoVawm0S6glHhIKM/TELICotqCxMSGWQRdFfRLEhc9mMxqA0rbdS2wsV0GkZXuaKUWlHvgeeNh7f3u1du3Ft74eGcnXu+c873vD/Pt0nZbDZyZL2gWZAQTBH8IjggeEjgPZASPIB+g/P7EsGT6J/BfHfjHFIv2Jpjj/+dlDskvCm42Jk7X3C7YJOgw/z2oOBGwdEYRW0RVAjOCZ4ugNggqwU3CTLRBJFyQ+xuwVRY14igB78tE9QKpgmeEHwkGKRnq9AeMesHRWwEsYGUxwSdBZ51ecweE4Lct0DsOVjaZvptA8jfC4JfghWpXIJ2jMY+EDShf1pwh6DvX5x1GtpDE43cNFlfhyFWpQ9xd5FgFo3fRi++C+2nCBNBRgU3O6RsEyyEQv4QLMb4CcE9RlFBLqS1WZ6BZ83A35ofVhuvfE5QJrjWebdgCJOx51qM1QgewbMzsO57MDQrB9DeC8ObHd5Xyb2eiNiQQxmtgkZBr+OuZwV7BIcF1RgbF1wTE2MbEccX48VY9sMzBilhTke/m+b1Q9lefpgruI7OsYhIGzPJuAnn3+6EM7vu1YKl5vkrYRSfCGZivCxoMklk7M5j6eFlXyRNRSAvAoFf0Fo/CC7LkbwuQjsZsf0qwbuI9wlYgIqGl6NEzDYibJ/gbmAfxpKoMDRcaSK8xZzjZbK+NMhSYoNSngV5e+ksKXp+JdqZwDDmdpSbsqa9gNAyi5JalSGv3iQ+dtNK9HvI+sNBh2AhvNYVaH+msRtAdsa4ehoKCuQsoP2PY8+kCSkJ5IRWjD2FZ4/BOFSWYv9KhI40eUKQ31CqdnLM1c1OOnHufKSS+iEZvgHNhji8g1yT5VZKdCnHO+ajvrYK/I7GkuSWjwvq8Mzl5M79NF89aCHaBNXmWv0sQVUUZEDwsDnbr2i9s31lKyGuFs7kITEBC+snJaToRYIFrRN0CeYgoSUxJ23WUm85eB41b4IUuIvGtyIMVMY8lzHGMoYworF7J/onKYk10/wVQL6zXYr+Zq9aOEhuXZPDel8Q3If+HMzTeHPKlForEK+mws3SMfH2UMxNLIJbasKsoIQZwVLbKFkN4T1C3HxUMM+EkCAfgjwNV40Y304KriOP+jIHqa+jvYsqnH/kqzKaGCFZxWnoTqooxky8+dHUsOGwr6Jfi9jmlVVTHGLnot9L3qGWqCToWYYRF5fDa96mtb93yI2g8B0IWxlTHWmi/hOG00D4mEJfJ5WhQX7ySCsDUaNkJeud6+sgXCgs3OLEG2/xdZSh10JBeiB1zQU0HuQdSib60rOdm9kFToIL8hmFiRHzm1YM0ylet5k579OFpcUk4I0oD0/QuJ7tcBy5ERY6ixdrh5uNwN3bUV7pd4E+J958HmPxbRRydqK/in6vxj5aH9din/udEPKtuU1GqBL24xJwBInQWiHLcbQVKBXTzkVpHP0tWHsIpZUqPeWcrScXuX2ImRkqlufBhdQl15ig3WLKH0/SeAmtD+uprBqGx1ThhlWN5LKG4lcNKbDblFDjVDU0wWK7yLLqnPNk6cKzKsfXt1GQmQQXSuwymhd3tr9lkvPJMUV152kc2PsmUEMxtzdPRk2SNX2DQ3Vhr02Is18LXjHVAz/bG0NEK8johus3UBiwyfkYlDkQUyLaWrwZBrbHMaB8Z3PJLaYk8IIVKKPSJdxbv3ecynNzLNr33GKLV1YVW4IyfycXfq0UxP4X5HJdXCqX4Wv0AKqYkkipw4LG6WxMNi+GhAtH+M/K8wVe7wuWvwQYAFT+UsGCXmX3AAAAAElFTkSuQmCC',
+			//align: 'right',
+			//vAlign: 'top',
+			//offsetX: -100,
+			//offsetY: 10,
 			//},
 			advertisement: { //广告相关的配置
 				time: 5, //广告默认播放时长以及多个广告时每个广告默认播放时间，单位：秒
@@ -118,28 +118,28 @@ function ckplayerConfig() {
 	}();
 	var ckplayer = function(obj) {
 		/*
-			javascript部分开发所用的注释说明：
-			1：初始化-程序调用时即运行的代码部分
-			2：定义样式-定义容器（div,p,canvas等）的样式表，即css
-			3：监听动作-监听元素节点（单击-click，鼠标进入-mouseover，鼠标离开-mouseout，鼠标移动-mousemove等）事件
-			4：监听事件-监听视频的状态（播放，暂停，全屏，音量调节等）事件
-			5：共用函数-这类函数在外部也可以使用
-			6：全局变量-定义成全局使用的变量
-			7：其它相关注释
-			全局变量说明：
-			在本软件中所使用到的全局变量（变量（类型）包括Boolean，String，Int，Object（包含元素对象和变量对象），Array，Function等）
-			下面列出重要的全局变量：
-				V:Object：视频对象
-				VA:Array：视频列表（包括视频地址，类型，清晰度说明）
-				ID:String：视频ID
-				CB:Object：控制栏各元素的集合对象
-				PD:Object：内部视频容器对象
-			---------------------------------------------------------------------------------------------
-			程序开始
-			下面为需要初始化配置的全局变量
-			初始化配置
-			config：全局变量/变量类型：Object/功能：定义一些基本配置
-		*/
+		 javascript部分开发所用的注释说明：
+		 1：初始化-程序调用时即运行的代码部分
+		 2：定义样式-定义容器（div,p,canvas等）的样式表，即css
+		 3：监听动作-监听元素节点（单击-click，鼠标进入-mouseover，鼠标离开-mouseout，鼠标移动-mousemove等）事件
+		 4：监听事件-监听视频的状态（播放，暂停，全屏，音量调节等）事件
+		 5：共用函数-这类函数在外部也可以使用
+		 6：全局变量-定义成全局使用的变量
+		 7：其它相关注释
+		 全局变量说明：
+		 在本软件中所使用到的全局变量（变量（类型）包括Boolean，String，Int，Object（包含元素对象和变量对象），Array，Function等）
+		 下面列出重要的全局变量：
+		 V:Object：视频对象
+		 VA:Array：视频列表（包括视频地址，类型，清晰度说明）
+		 ID:String：视频ID
+		 CB:Object：控制栏各元素的集合对象
+		 PD:Object：内部视频容器对象
+		 ---------------------------------------------------------------------------------------------
+		 程序开始
+		 下面为需要初始化配置的全局变量
+		 初始化配置
+		 config：全局变量/变量类型：Object/功能：定义一些基本配置
+		 */
 		this.config = {
 			videoClick: true, //是否支持单击播放/暂停动作
 			videoDbClick: true, //是否支持双击全屏/退出全屏动作
@@ -343,10 +343,10 @@ function ckplayerConfig() {
 	};
 	ckplayer.prototype = {
 		/*
-			主要函数部分开始
-			主接口函数：
-			调用播放器需初始化该函数
-		*/
+		 主要函数部分开始
+		 主接口函数：
+		 调用播放器需初始化该函数
+		 */
 		embed: function(c) {
 			//c:Object：是调用接口传递的属性对象
 			if(window.location.href.substr(0, 7) == 'file://') {
@@ -392,9 +392,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			根据外部传递过来的video开始分析视频地址
-		*/
+		 内部函数
+		 根据外部传递过来的video开始分析视频地址
+		 */
 		analysedVideoUrl: function(video) {
 			var i = 0,
 				y = 0;
@@ -450,9 +450,9 @@ function ckplayerConfig() {
 					this.getVideo();
 				} else {
 					/*
-						如果video格式是对象形式，则分二种
-						如果video对象里包含type，则直接播放
-					*/
+					 如果video格式是对象形式，则分二种
+					 如果video对象里包含type，则直接播放
+					 */
 					if(!this.isUndefined(video['type'])) {
 						this.VA.push([video['file'], video['type'], '', 0]);
 						this.getVideo();
@@ -465,8 +465,8 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			对请求到的视频地址进行重新分析
-		*/
+		 对请求到的视频地址进行重新分析
+		 */
 		analysedUrl: function(data) {
 			this.vars = this.standardization(this.vars, data);
 			if(!this.isUndefined(data['video'])) {
@@ -475,9 +475,9 @@ function ckplayerConfig() {
 			this.analysedVideoUrl(this.vars['video']);
 		},
 		/*
-			内部函数
-			检查浏览器支持的视频格式，如果是则将支持的视频格式重新分组给播放列表
-		*/
+		 内部函数
+		 检查浏览器支持的视频格式，如果是则将支持的视频格式重新分组给播放列表
+		 */
 		getHtml5Video: function() {
 			var va = this.VA;
 			var nva = [];
@@ -539,9 +539,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			根据视频地址开始构建播放器
-		*/
+		 内部函数
+		 根据视频地址开始构建播放器
+		 */
 		getVideo: function() {
 			//如果存在字幕则加载
 			if(this.V) { //如果播放器已存在，则认为是从newVideo函数发送过来的请求
@@ -725,9 +725,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			发送播放器加载成功的消息
-		*/
+		 内部函数
+		 发送播放器加载成功的消息
+		 */
 		playerLoad: function() {
 			var thisTemp = this;
 			if(this.isFirst) {
@@ -738,9 +738,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			建立播放器的监听函数，包含操作监听及事件监听
-		*/
+		 内部函数
+		 建立播放器的监听函数，包含操作监听及事件监听
+		 */
 		addVEvent: function() {
 			var thisTemp = this;
 			//监听视频单击事件
@@ -826,9 +826,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			重置界面元素
-		*/
+		 内部函数
+		 重置界面元素
+		 */
 		resetPlayer: function() {
 			this.timeTextHandler();
 			if(this.showFace) {
@@ -846,8 +846,8 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			构建界面元素
+		 内部函数
+		 构建界面元素
 		 */
 		interFace: function() {
 			this.showFace = true;
@@ -861,8 +861,8 @@ function ckplayerConfig() {
 			var timeInto = this.formatTime(0) + ' / ' + this.formatTime(this.vars['duration']); //时间显示框默认显示内容
 			var randomS = this.randomString(10); //获取一个随机字符串
 			/*
-				以下定义界面各元素的ID，统一以ID结束
-			*/
+			 以下定义界面各元素的ID，统一以ID结束
+			 */
 			var controlBarBgID = 'controlbgbar' + randomS, //控制栏背景
 				controlBarID = 'controlbar' + randomS, //控制栏容器
 				timeProgressBgID = 'timeprogressbg' + randomS, //播放进度条背景
@@ -1668,16 +1668,16 @@ function ckplayerConfig() {
 			this.addListenerInside('resize', resize, window);
 		},
 		/*
-			内部函数
-			创建按钮，使用canvas画布
-		*/
+		 内部函数
+		 创建按钮，使用canvas画布
+		 */
 		newCanvas: function(id, width, height) {
 			return '<canvas class="' + id + '-canvas" width="' + width + '" height="' + height + '"></canvas>';
 		},
 		/*
-			内部函数
-			注册按钮，音量调节框，进度操作框事件
-		*/
+		 内部函数
+		 注册按钮，音量调节框，进度操作框事件
+		 */
 		addButtonEvent: function() {
 			var thisTemp = this;
 			//定义按钮的单击事件
@@ -1838,9 +1838,9 @@ function ckplayerConfig() {
 			this.addPlaybackrate();
 		},
 		/*
-			内部函数
-			注册单击视频动作
-		*/
+		 内部函数
+		 注册单击视频动作
+		 */
 		videoClick: function() {
 			var thisTemp = this;
 			var clearTimerClick = function() {
@@ -1876,9 +1876,9 @@ function ckplayerConfig() {
 
 		},
 		/*
-			内部函数
-			注册鼠标经过进度滑块的事件
-		*/
+		 内部函数
+		 注册鼠标经过进度滑块的事件
+		 */
 		timeButtonMouseDown: function() {
 			var thisTemp = this;
 			var timePrompt = function(time) {
@@ -1968,17 +1968,17 @@ function ckplayerConfig() {
 
 		},
 		/*
-			内部函数
-			注册调节框上单击事件，包含音量调节框和播放时度调节框
-		*/
+		 内部函数
+		 注册调节框上单击事件，包含音量调节框和播放时度调节框
+		 */
 		progressClick: function(obj) {
 			/*
-				refer:参考对象
-				fun:返回函数
-				refer:参考元素，即背景
-				grossValue:调用的参考值类型
-				pd:
-			*/
+			 refer:参考对象
+			 fun:返回函数
+			 refer:参考元素，即背景
+			 grossValue:调用的参考值类型
+			 pd:
+			 */
 			//建立参考元素的mouseClick事件，用来做为鼠标在其上按下时触发的状态
 			var thisTemp = this;
 			var referMouseClick = function(event) {
@@ -2016,23 +2016,23 @@ function ckplayerConfig() {
 		},
 
 		/*
-			内部函数
-			共用的注册滑块事件
-		*/
+		 内部函数
+		 共用的注册滑块事件
+		 */
 		slider: function(obj) {
 			/*
-				obj={
-					slider:滑块元素
-					follow:跟随滑块的元素
-					refer:参考元素，即背景
-					grossValue:调用的参考值类型
-					startFun:开始调用的元素
-					monitorFun:监听函数
-					endFun:结束调用的函数
-					overFun:鼠标放上去后调用的函数
-					pd:是否需要修正
-				}
-			*/
+			 obj={
+			 slider:滑块元素
+			 follow:跟随滑块的元素
+			 refer:参考元素，即背景
+			 grossValue:调用的参考值类型
+			 startFun:开始调用的元素
+			 monitorFun:监听函数
+			 endFun:结束调用的函数
+			 overFun:鼠标放上去后调用的函数
+			 pd:是否需要修正
+			 }
+			 */
 			var thisTemp = this;
 			var clientX = 0,
 				criterionWidth = 0,
@@ -2111,9 +2111,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			判断是否可以拖动进度按钮或点击进度栏
-		*/
+		 内部函数
+		 判断是否可以拖动进度按钮或点击进度栏
+		 */
 		checkSlideLeft: function(newX, sliderLeft, refer) {
 			var timeSA = this.ckplayerConfig['config']['timeScheduleAdjust'];
 			switch(timeSA) {
@@ -2158,9 +2158,9 @@ function ckplayerConfig() {
 			return true;
 		},
 		/*
-			内部函数
-			显示loading
-		*/
+		 内部函数
+		 显示loading
+		 */
 		loadingStart: function(rot) {
 			var thisTemp = this;
 			if(this.isUndefined(rot)) {
@@ -2212,9 +2212,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			判断是否需要显示上一集和下一集
-		*/
+		 内部函数
+		 判断是否需要显示上一集和下一集
+		 */
 		showFrontNext: function() {
 			if(!this.showFace) {
 				return;
@@ -2231,9 +2231,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			显示提示语
-		*/
+		 内部函数
+		 显示提示语
+		 */
 		promptShow: function(ele, data) {
 			if(!this.showFace) {
 				return;
@@ -2276,9 +2276,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听错误
-		*/
+		 内部函数
+		 监听错误
+		 */
 		timerErrorFun: function() {
 			var thisTemp = this;
 			this.errorSend = false;
@@ -2330,9 +2330,9 @@ function ckplayerConfig() {
 			//this.timerError.start();
 		},
 		/*
-			内部函数
-			构建判断全屏还是非全屏的判断
-		*/
+		 内部函数
+		 构建判断全屏还是非全屏的判断
+		 */
 		judgeFullScreen: function() {
 			var thisTemp = this;
 			if(this.timerFull != null) {
@@ -2347,9 +2347,9 @@ function ckplayerConfig() {
 			this.timerFull = new this.timer(20, fullFun);
 		},
 		/*
-			内部函数
-			判断是否是全屏
-		*/
+		 内部函数
+		 判断是否是全屏
+		 */
 		isFullScreen: function() {
 			if(!this.showFace) {
 				return;
@@ -2385,9 +2385,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			构建右键内容及注册相关动作事件
-		*/
+		 内部函数
+		 构建右键内容及注册相关动作事件
+		 */
 		newMenu: function() {
 			var thisTemp = this;
 			var i = 0;
@@ -2527,9 +2527,9 @@ function ckplayerConfig() {
 
 		},
 		/*
-			内部函数
-			构建控制栏隐藏事件
-		*/
+		 内部函数
+		 构建控制栏隐藏事件
+		 */
 		controlBarHide: function(hide) {
 			var thisTemp = this;
 			var client = {
@@ -2616,9 +2616,9 @@ function ckplayerConfig() {
 		},
 
 		/*
-			内部函数
-			注册键盘按键事件
-		*/
+		 内部函数
+		 注册键盘按键事件
+		 */
 		keypress: function() {
 			var thisTemp = this;
 			var keyDown = function(eve) {
@@ -2648,9 +2648,9 @@ function ckplayerConfig() {
 			this.addListenerInside('keydown', keyDown, window || document);
 		},
 		/*
-			内部函数
-			注册倍速相关
-		*/
+		 内部函数
+		 注册倍速相关
+		 */
 		playbackRate: function() {
 			if(!this.showFace) {
 				return;
@@ -2718,9 +2718,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			注册切换倍速播放相关事件
-		*/
+		 内部函数
+		 注册切换倍速播放相关事件
+		 */
 		addPlaybackrate: function() {
 			var thisTemp = this;
 			var setTimeOutP = null;
@@ -2750,9 +2750,9 @@ function ckplayerConfig() {
 			this.addListenerInside('mouseover', defMouseOver, thisTemp.CB['playbackrateP']);
 		},
 		/*
-			内部函数
-			切换倍速后发生的动作
-		*/
+		 内部函数
+		 切换倍速后发生的动作
+		 */
 		newPlaybackrate: function(title) {
 			var vArr = this.playbackRateArr;
 			var nVArr = [];
@@ -2772,9 +2772,9 @@ function ckplayerConfig() {
 		},
 
 		/*
-			内部函数
-			构建清晰度按钮及切换事件(Click事件)
-		*/
+		 内部函数
+		 构建清晰度按钮及切换事件(Click事件)
+		 */
 		definition: function() {
 			if(!this.showFace) {
 				return;
@@ -2853,9 +2853,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			注册清晰度相关事件
-		*/
+		 内部函数
+		 注册清晰度相关事件
+		 */
 		addDefListener: function() {
 			var thisTemp = this;
 			var setTimeOutP = null;
@@ -2885,9 +2885,9 @@ function ckplayerConfig() {
 			this.addListenerInside('mouseover', defMouseOver, thisTemp.CB['definitionP']);
 		},
 		/*
-			内部函数
-			切换清晰度后发生的动作
-		*/
+		 内部函数
+		 切换清晰度后发生的动作
+		 */
 		newDefinition: function(title) {
 			var vArr = this.VA;
 			var nVArr = [];
@@ -2934,9 +2934,9 @@ function ckplayerConfig() {
 			this.timerErrorFun();
 		},
 		/*
-			内置函数
-			播放hls
-		*/
+		 内置函数
+		 播放hls
+		 */
 		embedHls: function(url, autoplay) {
 			var thisTemp = this;
 			if(Hls.isSupported()) {
@@ -2952,9 +2952,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			构建提示点
-		*/
+		 内部函数
+		 构建提示点
+		 */
 		prompt: function() {
 			if(!this.showFace) {
 				return;
@@ -3040,9 +3040,9 @@ function ckplayerConfig() {
 			this.changePrompt();
 		},
 		/*
-			内部函数
-			计算提示文本的位置
-		*/
+		 内部函数
+		 计算提示文本的位置
+		 */
 		getPromptTest: function() {
 			var pW = this.previewWidth,
 				pT = this.getCoor(this.CB['timeButton'])['y'],
@@ -3067,9 +3067,9 @@ function ckplayerConfig() {
 			};
 		},
 		/*
-			内部函数
-			删除提示点
-		*/
+		 内部函数
+		 删除提示点
+		 */
 		deletePrompt: function() {
 			var arr = this.promptArr;
 			if(arr.length > 0) {
@@ -3082,9 +3082,9 @@ function ckplayerConfig() {
 			this.promptArr = [];
 		},
 		/*
-			内部函数
-			计算提示点坐标
-		*/
+		 内部函数
+		 计算提示点坐标
+		 */
 		changePrompt: function() {
 			if(this.promptArr.length == 0) {
 				return;
@@ -3108,9 +3108,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			构建预览图片效果
-		*/
+		 内部函数
+		 构建预览图片效果
+		 */
 		preview: function(obj) {
 			var thisTemp = this;
 			var preview = {
@@ -3270,9 +3270,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			删除预览图节点
-		*/
+		 内部函数
+		 删除预览图节点
+		 */
 		deletePreview: function() {
 			if(this.previewDiv != null) {
 				this.deleteChild(this.previewDiv);
@@ -3281,9 +3281,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			修改视频地址，属性
-		*/
+		 内部函数
+		 修改视频地址，属性
+		 */
 		changeVideo: function() {
 			if(!this.html5Video) {
 				this.getVarsObject();
@@ -3356,9 +3356,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			调整中间暂停按钮,缓冲loading，错误提示文本框的位置
-		*/
+		 内部函数
+		 调整中间暂停按钮,缓冲loading，错误提示文本框的位置
+		 */
 		elementCoordinate: function() {
 			this.pdCoor = this.getXY(this.PD);
 			this.css(this.CB['pauseCenter'], {
@@ -3380,9 +3380,9 @@ function ckplayerConfig() {
 			this.checkBarWidth();
 		},
 		/*
-			内部函数
-			当播放器尺寸变化时，显示和隐藏相关节点
-		*/
+		 内部函数
+		 当播放器尺寸变化时，显示和隐藏相关节点
+		 */
 		checkBarWidth: function() {
 			if(!this.showFace) {
 				return;
@@ -3470,9 +3470,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			初始化暂停或播放按钮
-		*/
+		 内部函数
+		 初始化暂停或播放按钮
+		 */
 		initPlayPause: function() {
 			if(!this.showFace) {
 				return;
@@ -3490,10 +3490,10 @@ function ckplayerConfig() {
 		},
 
 		/*
-			下面为监听事件
-			内部函数
-			监听元数据已加载
-		*/
+		 下面为监听事件
+		 内部函数
+		 监听元数据已加载
+		 */
 		loadedHandler: function() {
 			this.loaded = true;
 			if(this.vars['loaded'] != '') {
@@ -3505,9 +3505,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听播放
-		*/
+		 内部函数
+		 监听播放
+		 */
 		playingHandler: function() {
 			this.playShow(true);
 			if(this.needSeek > 0) {
@@ -3522,9 +3522,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			使用画布附加视频
-		*/
+		 内部函数
+		 使用画布附加视频
+		 */
 		sendVCanvas: function() {
 			if(this.timerVCanvas == null) {
 				this.css(this.V, 'display', 'none');
@@ -3545,9 +3545,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听暂停
-		*/
+		 内部函数
+		 监听暂停
+		 */
 		pauseHandler: function() {
 			this.playShow(false);
 			if(this.animatePauseArray.length > 0) {
@@ -3558,9 +3558,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			停止画布
-		*/
+		 内部函数
+		 停止画布
+		 */
 		stopVCanvas: function() {
 			if(this.timerVCanvas != null) {
 				this.css(this.V, 'display', 'block');
@@ -3572,9 +3572,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			根据当前播放还是暂停确认图标显示
-		*/
+		 内部函数
+		 根据当前播放还是暂停确认图标显示
+		 */
 		playShow: function(b) {
 			if(!this.showFace) {
 				return;
@@ -3594,9 +3594,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听seek结束
-		*/
+		 内部函数
+		 监听seek结束
+		 */
 		seekedHandler: function() {
 			this.resetTrack();
 			this.isTimeButtonMove = true;
@@ -3605,18 +3605,18 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听播放结束
-		*/
+		 内部函数
+		 监听播放结束
+		 */
 		endedHandler: function() {
 			if(!this.vars['loop']) {
 				this.videoPause();
 			}
 		},
 		/*
-			内部函数
-			监听音量改变
-		*/
+		 内部函数
+		 监听音量改变
+		 */
 		volumechangeHandler: function() {
 			if(!this.showFace) {
 				return;
@@ -3633,9 +3633,9 @@ function ckplayerConfig() {
 		},
 
 		/*
-			内部函数
-			监听播放时间调节进度条
-		*/
+		 内部函数
+		 监听播放时间调节进度条
+		 */
 		timeUpdateHandler: function() {
 			var duration = 0;
 			if(this.playerType == 'html5video') {
@@ -3653,9 +3653,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			按时间改变进度条
-		*/
+		 内部函数
+		 按时间改变进度条
+		 */
 		timeProgress: function(time, duration) {
 			if(!this.showFace) {
 				return;
@@ -3672,9 +3672,9 @@ function ckplayerConfig() {
 			this.css(this.CB['timeButton'], 'left', parseInt(timeBOW) + 'px');
 		},
 		/*
-			内部函数
-			监听播放时间改变时间显示文本框
-		*/
+		 内部函数
+		 监听播放时间改变时间显示文本框
+		 */
 		timeTextHandler: function() { //显示时间/总时间
 			if(!this.showFace) {
 				return;
@@ -3690,9 +3690,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			监听是否是缓冲状态
-		*/
+		 内部函数
+		 监听是否是缓冲状态
+		 */
 		bufferEdHandler: function() {
 			if(!this.showFace || this.playerType == 'flashplayer') {
 				return;
@@ -3728,9 +3728,9 @@ function ckplayerConfig() {
 			this.timerBuffer = new this.timer(200, bufferFun);
 		},
 		/*
-			内部函数
-			单独计算加载进度
-		*/
+		 内部函数
+		 单独计算加载进度
+		 */
 		changeLoad: function(loadTime) {
 			if(this.V == null) {
 				return;
@@ -3750,9 +3750,9 @@ function ckplayerConfig() {
 			this.css(this.CB['loadProgress'], 'width', loadW + 'px');
 		},
 		/*
-			内部函数
-			判断是否是直播
-		*/
+		 内部函数
+		 判断是否是直播
+		 */
 		judgeIsLive: function() {
 			var thisTemp = this;
 			if(this.timerError != null) {
@@ -3800,9 +3800,9 @@ function ckplayerConfig() {
 			this.definition();
 		},
 		/*
-			内部函数
-			加载字幕
-		*/
+		 内部函数
+		 加载字幕
+		 */
 		loadTrack: function() {
 			if(this.playerType == 'flashplayer' || this.vars['flashplayer'] == true) {
 				return;
@@ -3825,9 +3825,9 @@ function ckplayerConfig() {
 			this.ajax(obj);
 		},
 		/*
-			内部函数
-			重置字幕
-		*/
+		 内部函数
+		 重置字幕
+		 */
 		resetTrack: function() {
 			this.trackIndex = 0;
 			this.nowTrackShow = {
@@ -3835,9 +3835,9 @@ function ckplayerConfig() {
 			};
 		},
 		/*
-			内部函数
-			根据时间改变读取显示字幕
-		*/
+		 内部函数
+		 根据时间改变读取显示字幕
+		 */
 		trackShowHandler: function() {
 			if(!this.showFace) {
 				return;
@@ -3850,13 +3850,13 @@ function ckplayerConfig() {
 			}
 			var nowTrack = this.track[this.trackIndex]; //当前编号对应的字幕内容
 			/*
-				this.nowTrackShow=当前显示在界面上的内容
-				如果当前时间正好在nowTrack时间内，则需要判断
-			*/
+			 this.nowTrackShow=当前显示在界面上的内容
+			 如果当前时间正好在nowTrack时间内，则需要判断
+			 */
 			if(this.time >= nowTrack['startTime'] && this.time <= nowTrack['endTime']) {
 				/*
-				 	如果当前显示的内容不等于当前需要显示的内容时，则需要显示正确的内容
-				*/
+				 如果当前显示的内容不等于当前需要显示的内容时，则需要显示正确的内容
+				 */
 				var nowShow = this.nowTrackShow;
 				if(nowShow['sn'] != nowTrack['sn']) {
 					this.trackHide();
@@ -3871,9 +3871,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			显示字幕内容
-		*/
+		 内部函数
+		 显示字幕内容
+		 */
 		trackShow: function(track) {
 			this.nowTrackShow = track;
 			var arr = track['content'];
@@ -3894,9 +3894,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			隐藏字字幕内容
-		*/
+		 内部函数
+		 隐藏字字幕内容
+		 */
 		trackHide: function() {
 			for(var i = 0; i < this.trackElement.length; i++) {
 				this.deleteElement(this.trackElement[i]);
@@ -3904,9 +3904,9 @@ function ckplayerConfig() {
 			this.trackElement = [];
 		},
 		/*
-			内部函数
-			重新计算字幕的编号
-		*/
+		 内部函数
+		 重新计算字幕的编号
+		 */
 		checkTrack: function() {
 			var num = this.trackIndex;
 			var arr = this.track;
@@ -3919,10 +3919,10 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-		-----------------------------------------------------------------------------接口函数开始
-			接口函数
-			在播放和暂停之间切换
-		*/
+		 -----------------------------------------------------------------------------接口函数开始
+		 接口函数
+		 在播放和暂停之间切换
+		 */
 		playOrPause: function() {
 			if(!this.loaded) {
 				return;
@@ -3943,9 +3943,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			播放动作
-		*/
+		 接口函数
+		 播放动作
+		 */
 		videoPlay: function() {
 			if(!this.loaded) {
 				return;
@@ -3957,9 +3957,9 @@ function ckplayerConfig() {
 			this.V.play();
 		},
 		/*
-			接口函数
-			暂停动作
-		*/
+		 接口函数
+		 暂停动作
+		 */
 		videoPause: function() {
 			if(!this.loaded) {
 				return;
@@ -3971,9 +3971,9 @@ function ckplayerConfig() {
 			this.V.pause();
 		},
 		/*
-			接口函数
-			跳转时间动作
-		*/
+		 接口函数
+		 跳转时间动作
+		 */
 		videoSeek: function(time) {
 			if(!this.loaded) {
 				return;
@@ -3993,9 +3993,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			调节音量/获取音量
-		*/
+		 接口函数
+		 调节音量/获取音量
+		 */
 		changeVolume: function(vol, bg, button) {
 			if(this.loaded) {
 				if(this.playerType == 'flashplayer') {
@@ -4059,9 +4059,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			静音
-		*/
+		 接口函数
+		 静音
+		 */
 		videoMute: function() {
 			if(!this.loaded) {
 				return;
@@ -4074,9 +4074,9 @@ function ckplayerConfig() {
 			this.changeVolume(0);
 		},
 		/*
-			接口函数
-			取消静音
-		*/
+		 接口函数
+		 取消静音
+		 */
 		videoEscMute: function() {
 			if(!this.loaded) {
 				return;
@@ -4088,9 +4088,9 @@ function ckplayerConfig() {
 			this.changeVolume(this.volumeTemp > 0 ? this.volumeTemp : this.vars['volume']);
 		},
 		/*
-			接口函数
-			快退
-		*/
+		 接口函数
+		 快退
+		 */
 		fastBack: function() {
 			if(!this.loaded) {
 				return;
@@ -4106,9 +4106,9 @@ function ckplayerConfig() {
 			this.videoSeek(time);
 		},
 		/*
-			接口函数
-			快进
-		*/
+		 接口函数
+		 快进
+		 */
 		fastNext: function() {
 			if(!this.loaded) {
 				return;
@@ -4124,9 +4124,9 @@ function ckplayerConfig() {
 			this.videoSeek(time);
 		},
 		/*
-			接口函数
-			获取当前播放的地址
-		*/
+		 接口函数
+		 获取当前播放的地址
+		 */
 		getCurrentSrc:function(){
 			if(!this.loaded) {
 				return;
@@ -4137,9 +4137,9 @@ function ckplayerConfig() {
 			return this.V.currentSrc;
 		},
 		/*
-			内置函数
-			全屏/退出全屏动作，该动作只能是用户操作才可以触发，比如用户点击按钮触发该事件
-		*/
+		 内置函数
+		 全屏/退出全屏动作，该动作只能是用户操作才可以触发，比如用户点击按钮触发该事件
+		 */
 		switchFull: function() {
 			if(this.full) {
 				this.quitFullScreen();
@@ -4148,9 +4148,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			全屏动作，该动作只能是用户操作才可以触发，比如用户点击按钮触发该事件
-		*/
+		 内置函数
+		 全屏动作，该动作只能是用户操作才可以触发，比如用户点击按钮触发该事件
+		 */
 		fullScreen: function() {
 			if(this.html5Video && this.playerType == 'html5video') {
 				var element = this.PD;
@@ -4171,9 +4171,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			退出全屏动作
-		*/
+		 接口函数
+		 退出全屏动作
+		 */
 		quitFullScreen: function() {
 			if(this.html5Video && this.playerType == 'html5video') {
 				if(document.exitFullscreen) {
@@ -4410,9 +4410,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			清除视频
-		*/
+		 接口函数
+		 清除视频
+		 */
 		videoClear: function() {
 			if(!this.loaded) {
 				return;
@@ -4423,9 +4423,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			向播放器传递新的视频地址
-		*/
+		 接口函数
+		 向播放器传递新的视频地址
+		 */
 		newVideo: function(c) {
 			if(this.playerType == 'flashplayer') {
 				this.V.newVideo(c);
@@ -4435,9 +4435,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			截图
-		*/
+		 接口函数
+		 截图
+		 */
 		screenshot: function(obj, save, name) {
 			if(!this.loaded) {
 				return;
@@ -4469,9 +4469,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			改变播放器尺寸
-		*/
+		 接口函数
+		 改变播放器尺寸
+		 */
 		changeSize: function(w, h) {
 			if(this.isUndefined(w)) {
 				w = 0;
@@ -4490,9 +4490,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			接口函数
-			改变视频播放速度
-		*/
+		 接口函数
+		 改变视频播放速度
+		 */
 		changePlaybackRate: function(n) {
 			if(this.html5Video) {
 				var arr = this.playbackRateArr;
@@ -4503,9 +4503,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部函数
-			注册控制控制栏显示与隐藏函数
-		*/
+		 内部函数
+		 注册控制控制栏显示与隐藏函数
+		 */
 		changeControlBarShow: function(show) {
 			if(!this.loaded) {
 				return;
@@ -4523,16 +4523,16 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			-----------------------------------------------------------------------
-			调用flashplayer
-		*/
+		 -----------------------------------------------------------------------
+		 调用flashplayer
+		 */
 		embedSWF: function() {
 			var vid = this.randomString();
 			var flashvars = this.getFlashVars();
 			var param = this.getFlashplayerParam();
 			var flashplayerUrl = 'http://www.macromedia.com/go/getflashplayer';
 			var html = '',
-				src = javascriptPath + 'ckplayer.swf';
+				src ='https://douyuplayer.gz.bcebos.com/ckplayer/ckplayer.swf';
 			id = 'id="' + vid + '" name="' + vid + '" ';
 			html += '<object pluginspage="' + flashplayerUrl + '" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=11,3,0,0" width="100%" height="100%" ' + id + ' align="middle">';
 			html += param['v'];
@@ -4546,9 +4546,9 @@ function ckplayerConfig() {
 			//this.loaded=true;
 		},
 		/*
-			内置函数
-			将vars对象转换成字符
-		*/
+		 内置函数
+		 将vars对象转换成字符
+		 */
 		getFlashVars: function() {
 			this.getVarsObject();
 			var v = this.vars;
@@ -4578,9 +4578,9 @@ function ckplayerConfig() {
 			return z;
 		},
 		/*
-			内置函数
-			将vars格式化成flash能接受的对象。再由getFlashVars函数转化成字符串或由newVideo直接使用
-		*/
+		 内置函数
+		 将vars格式化成flash能接受的对象。再由getFlashVars函数转化成字符串或由newVideo直接使用
+		 */
 		getVarsObject: function() {
 			var v = this.vars;
 			var f = '',
@@ -4646,7 +4646,7 @@ function ckplayerConfig() {
 				v['volume'] = 0;
 			}
 			var newV = {};
-			
+
 			for(var k in v) {
 				if(v[k] != null) {
 					newV[k] = v[k];
@@ -4659,9 +4659,9 @@ function ckplayerConfig() {
 			this.vars = newV;
 		},
 		/*
-			内置函数
-			将embedSWF里的param的对象进行转换
-		*/
+		 内置函数
+		 将embedSWF里的param的对象进行转换
+		 */
 		getFlashplayerParam: function() {
 			var w = '',
 				v = '',
@@ -4683,12 +4683,12 @@ function ckplayerConfig() {
 		},
 
 		/*
-			操作动作结束
-			-----------------------------------------------------------------------
-			
-			接口函数
-			获取元数据部分
-		*/
+		 操作动作结束
+		 -----------------------------------------------------------------------
+
+		 接口函数
+		 获取元数据部分
+		 */
 		getMetaDate: function() {
 			if(!this.loaded || this.V == null) {
 				return false;
@@ -4722,9 +4722,9 @@ function ckplayerConfig() {
 			return false;
 		},
 		/*
-			接口函数
-			取当前提供给播放器播放的视频列表
-		*/
+		 接口函数
+		 取当前提供给播放器播放的视频列表
+		 */
 		getVideoUrl: function() {
 			if(this.playerType == 'flashplayer') {
 				return this.V.getVideoUrl();
@@ -4741,9 +4741,9 @@ function ckplayerConfig() {
 			return arr;
 		},
 		/*
-			内置函数
-			格式化函数
-		*/
+		 内置函数
+		 格式化函数
+		 */
 		clickEvent: function(call) {
 			if(call == 'none' || call == '' || call == null) {
 				return {
@@ -4828,9 +4828,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			向播放器界面添加一个文本
-		*/
+		 内置函数
+		 向播放器界面添加一个文本
+		 */
 		addElement: function(attribute) {
 			var thisTemp = this;
 			if(this.playerType == 'flashplayer') {
@@ -4958,8 +4958,8 @@ function ckplayerConfig() {
 			}
 			var objClickEvent = this.clickEvent(obj['clickEvent']);
 			/*if(objClickEvent['type']=='link'){
-				html = '<a href="'+objClickEvent['link']+'" target="'+objClickEvent['target']+'">' + html + '</a>';
-			}*/
+			 html = '<a href="'+objClickEvent['link']+'" target="'+objClickEvent['target']+'">' + html + '</a>';
+			 }*/
 			eid.innerHTML = '<div class="' + bgid + '"></div><div class="' + bgid + '_c">' + html + '</div>';
 			if(objClickEvent['type'] == 'javaScript' || objClickEvent['type'] == 'actionScript') {
 				var objClickHandler = function() {
@@ -5074,9 +5074,9 @@ function ckplayerConfig() {
 			return eid;
 		},
 		/*
-			内置函数
-			获取元件的属性，包括x,y,width,height,alpha
-		*/
+		 内置函数
+		 获取元件的属性，包括x,y,width,height,alpha
+		 */
 		getElement: function(element) {
 			if(this.playerType == 'flashplayer') {
 				return this.V.getElement(element);
@@ -5095,9 +5095,9 @@ function ckplayerConfig() {
 			};
 		},
 		/*
-			内置函数
-			根据节点的x,y计算在播放器里的坐标
-		*/
+		 内置函数
+		 根据节点的x,y计算在播放器里的坐标
+		 */
 		calculationCoor: function(ele) {
 			if(this.playerType == 'flashplayer') {
 				return this.V.calculationCoor(ele);
@@ -5198,9 +5198,9 @@ function ckplayerConfig() {
 
 		},
 		/*
-			内置函数
-			修改新增元件的坐标
-		*/
+		 内置函数
+		 修改新增元件的坐标
+		 */
 		changeElementCoor: function() {
 			for(var i = 0; i < this.elementArr.length; i++) {
 				if(this.getByElement(this.elementArr[i]) != []) {
@@ -5215,9 +5215,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			缓动效果集
-		*/
+		 内置函数
+		 缓动效果集
+		 */
 		tween: function() {
 			var Tween = {
 				None: { //均速运动
@@ -5388,15 +5388,15 @@ function ckplayerConfig() {
 			return Tween;
 		},
 		/*
-			接口函数
-			缓动效果
-			ele:Object=需要缓动的对象,
-			parameter:String=需要改变的属性：x,y,width,height,alpha,
-			effect:String=效果名称,
-			start:Int=起始值,
-			end:Int=结束值,
-			speed:Number=运动的总秒数，支持小数
-		*/
+		 接口函数
+		 缓动效果
+		 ele:Object=需要缓动的对象,
+		 parameter:String=需要改变的属性：x,y,width,height,alpha,
+		 effect:String=效果名称,
+		 start:Int=起始值,
+		 end:Int=结束值,
+		 speed:Number=运动的总秒数，支持小数
+		 */
 		animate: function(attribute) {
 			if(this.playerType == 'flashplayer') {
 				return this.V.animate(attribute);
@@ -5653,9 +5653,9 @@ function ckplayerConfig() {
 			return animateId;
 		},
 		/*
-			接口函数函数
-			继续运行animate
-		*/
+		 接口函数函数
+		 继续运行animate
+		 */
 		animateResume: function(id) {
 			if(this.playerType == 'flashplayer') {
 				this.V.animateResume(this.isUndefined(id) ? '' : id);
@@ -5680,9 +5680,9 @@ function ckplayerConfig() {
 
 		},
 		/*
-			接口函数
-			暂停运行animate
-		*/
+		 接口函数
+		 暂停运行animate
+		 */
 		animatePause: function(id) {
 			if(this.playerType == 'flashplayer') {
 				this.V.animatePause(this.isUndefined(id) ? '' : id);
@@ -5706,9 +5706,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			根据ID删除数组里对应的内容
-		*/
+		 内置函数
+		 根据ID删除数组里对应的内容
+		 */
 		deleteAnimate: function(id) {
 			if(this.playerType == 'flashplayer' && this.V) {
 				try {
@@ -5725,9 +5725,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			删除外部新建的元件
-		*/
+		 内置函数
+		 删除外部新建的元件
+		 */
 		deleteElement: function(ele) {
 			if(this.playerType == 'flashplayer' && this.V) {
 				try {
@@ -5745,11 +5745,11 @@ function ckplayerConfig() {
 
 		},
 		/*
-			--------------------------------------------------------------
-			共用函数部分
-			以下函数并非只能在本程序中使用，也可以在页面其它项目中使用
-			根据ID获取元素对象
-		*/
+		 --------------------------------------------------------------
+		 共用函数部分
+		 以下函数并非只能在本程序中使用，也可以在页面其它项目中使用
+		 根据ID获取元素对象
+		 */
 		getByElement: function(obj, parent) {
 			if(this.isUndefined(parent)) {
 				parent = document;
@@ -5786,25 +5786,25 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-		 	共用函数
-			功能：修改样式或获取指定样式的值，
-				elem：ID对象或ID对应的字符，如果多个对象一起设置，则可以使用数组
-				attribute：样式名称或对象，如果是对象，则省略掉value值
-				value：attribute为样式名称时，定义的样式值
-				示例一：
-				this.css(ID,'width','100px');
-				示例二：
-				this.css('id','width','100px');
-				示例三：
-				this.css([ID1,ID2,ID3],'width','100px');
-				示例四：
-				this.css(ID,{
-					width:'100px',
-					height:'100px'
-				});
-				示例五(获取宽度)：
-				var width=this.css(ID,'width');
-		*/
+		 共用函数
+		 功能：修改样式或获取指定样式的值，
+		 elem：ID对象或ID对应的字符，如果多个对象一起设置，则可以使用数组
+		 attribute：样式名称或对象，如果是对象，则省略掉value值
+		 value：attribute为样式名称时，定义的样式值
+		 示例一：
+		 this.css(ID,'width','100px');
+		 示例二：
+		 this.css('id','width','100px');
+		 示例三：
+		 this.css([ID1,ID2,ID3],'width','100px');
+		 示例四：
+		 this.css(ID,{
+		 width:'100px',
+		 height:'100px'
+		 });
+		 示例五(获取宽度)：
+		 var width=this.css(ID,'width');
+		 */
 		css: function(elem, attribute, value) {
 			var i = 0;
 			var k = '';
@@ -5857,9 +5857,9 @@ function ckplayerConfig() {
 
 		},
 		/*
-			内置函数
-			兼容型获取style
-		*/
+		 内置函数
+		 兼容型获取style
+		 */
 		getStyle: function(obj, attr) {
 			if(!this.isUndefined(obj.style[attr])) {
 				return obj.style[attr];
@@ -5872,9 +5872,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			判断变量是否存在或值是否为undefined
-		*/
+		 共用函数
+		 判断变量是否存在或值是否为undefined
+		 */
 		isUndefined: function(value) {
 			try {
 				if(value == 'undefined' || value == undefined) {
@@ -5884,9 +5884,9 @@ function ckplayerConfig() {
 			return false;
 		},
 		/*
-		 	共用函数
-			外部监听函数
-		*/
+		 共用函数
+		 外部监听函数
+		 */
 		addListener: function(name, funName) {
 			if(name && funName) {
 				if(this.playerType == 'flashplayer') {
@@ -5911,9 +5911,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			外部删除监听函数
-		*/
+		 共用函数
+		 外部删除监听函数
+		 */
 		removeListener: function(name, funName) {
 			if(name && funName) {
 				if(this.playerType == 'flashplayer') {
@@ -5934,10 +5934,10 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内部监听函数，调用方式：
-			this.addListenerInside('click',function(event){},[ID]);
-			d值为空时，则表示监听当前的视频播放器
-		*/
+		 内部监听函数，调用方式：
+		 this.addListenerInside('click',function(event){},[ID]);
+		 d值为空时，则表示监听当前的视频播放器
+		 */
 		addListenerInside: function(e, f, d, t) {
 			if(this.isUndefined(t)) {
 				t = false;
@@ -5959,14 +5959,14 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			删除内部监听函数，调用方式：
-			this.removeListenerInside('click',function(event){}[,ID]);
-			d值为空时，则表示监听当前的视频播放器
-		*/
+		 删除内部监听函数，调用方式：
+		 this.removeListenerInside('click',function(event){}[,ID]);
+		 d值为空时，则表示监听当前的视频播放器
+		 */
 		removeListenerInside: function(e, f, d, t) {
 			/*if(this.playerType=='flashplayer' && this.getParameterNames(f) && this.isUndefined(d)) {
-				return;
-			}*/
+			 return;
+			 }*/
 			if(this.isUndefined(t)) {
 				t = false;
 			}
@@ -5988,9 +5988,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			统一分配监听，以达到跟as3同样效果
-		*/
+		 共用函数
+		 统一分配监听，以达到跟as3同样效果
+		 */
 		sendJS: function(name, val) {
 			var list = this.listenerJsArr;
 			var obj = {
@@ -6030,9 +6030,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			获取函数名称，如 function ckplayer(){} var fun=ckplayer，则getParameterNames(fun)=ckplayer
-		*/
+		 共用函数
+		 获取函数名称，如 function ckplayer(){} var fun=ckplayer，则getParameterNames(fun)=ckplayer
+		 */
 		getParameterNames: function(fn) {
 			if(typeof(fn) !== 'function') {
 				return false;
@@ -6043,9 +6043,9 @@ function ckplayerConfig() {
 			return result === null ? false : result;
 		},
 		/*
-			共用函数
-			获取当前本地时间
-		*/
+		 共用函数
+		 获取当前本地时间
+		 */
 		getNowDate: function() {
 			var nowDate = new Date();
 			var month = nowDate.getMonth() + 1;
@@ -6066,11 +6066,11 @@ function ckplayerConfig() {
 			return tMonth + '/' + tDate + ' ' + tHours + ':' + tMinutes + ':' + tSeconds;
 		},
 		/*
-			共用函数
-			格式化时分秒
-			seconds:Int：秒数
-			ishours:Boolean：是否显示小时，如果设置成false，则会显示如80:20，表示1小时20分钟20秒
-		*/
+		 共用函数
+		 格式化时分秒
+		 seconds:Int：秒数
+		 ishours:Boolean：是否显示小时，如果设置成false，则会显示如80:20，表示1小时20分钟20秒
+		 */
 		formatTime: function(seconds, ishours) {
 			var tSeconds = '',
 				tMinutes = '',
@@ -6097,10 +6097,10 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			获取一个随机字符
-			len：随机字符长度
-		*/
+		 共用函数
+		 获取一个随机字符
+		 len：随机字符长度
+		 */
 		randomString: function(len) {
 			len = len || 16;
 			var chars = 'abcdefghijklmnopqrstuvwxyz';
@@ -6112,9 +6112,9 @@ function ckplayerConfig() {
 			return 'ch' + val;
 		},
 		/*
-			共用函数
-			获取字符串长度,中文算两,英文数字算1
-		*/
+		 共用函数
+		 获取字符串长度,中文算两,英文数字算1
+		 */
 		getStringLen: function(str) {
 			var len = 0;
 			for(var i = 0; i < str.length; i++) {
@@ -6127,9 +6127,9 @@ function ckplayerConfig() {
 			return len;
 		},
 		/*
-			内部函数
-			用来为ajax提供支持
-		*/
+		 内部函数
+		 用来为ajax提供支持
+		 */
 		createXHR: function() {
 			if(window.XMLHttpRequest) {
 				//IE7+、Firefox、Opera、Chrome 和Safari
@@ -6150,9 +6150,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			ajax调用
-		*/
+		 共用函数
+		 ajax调用
+		 */
 		ajax: function(cObj) {
 			var thisTemp = this;
 			var callback = null;
@@ -6233,9 +6233,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			动态加载js
-		*/
+		 内置函数
+		 动态加载js
+		 */
 		loadJs: function(path, success) {
 			var oHead = document.getElementsByTagName('HEAD').item(0);
 			var oScript = document.createElement('script');
@@ -6247,9 +6247,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			排除IE6-9
-		*/
+		 共用函数
+		 排除IE6-9
+		 */
 		isMsie: function() {
 			var browser = navigator.appName;
 			var b_version = navigator.appVersion;
@@ -6264,9 +6264,9 @@ function ckplayerConfig() {
 			return true;
 		},
 		/*
-			共用函数
-			判断是否安装了flashplayer
-		*/
+		 共用函数
+		 判断是否安装了flashplayer
+		 */
 		uploadFlash: function() {
 			var swf;
 			if(navigator.userAgent.indexOf('MSIE') > 0) {
@@ -6288,9 +6288,9 @@ function ckplayerConfig() {
 			return true;
 		},
 		/*
-			共用函数
-			检测浏览器是否支持HTML5-Video
-		*/
+		 共用函数
+		 检测浏览器是否支持HTML5-Video
+		 */
 		supportVideo: function() {
 			if(!this.isMsie()) {
 				return false;
@@ -6331,9 +6331,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			获取属性值
-		*/
+		 共用函数
+		 获取属性值
+		 */
 		getDataset: function(ele, z) {
 			try {
 				return ele.dataset[z];
@@ -6346,9 +6346,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			返回flashplayer的对象
-		*/
+		 共用函数
+		 返回flashplayer的对象
+		 */
 		getObjectById: function(id) {
 			var x = null;
 			var y = this.getByElement('#' + id);
@@ -6366,9 +6366,9 @@ function ckplayerConfig() {
 			return x;
 		},
 		/*
-			共用函数
-			对象转地址字符串
-		*/
+		 共用函数
+		 对象转地址字符串
+		 */
 		formatParams: function(data) {
 			var arr = [];
 			for(var i in data) {
@@ -6377,9 +6377,9 @@ function ckplayerConfig() {
 			return arr.join('&');
 		},
 		/*
-			内置函数
-			对地址进行冒泡排序
-		*/
+		 内置函数
+		 对地址进行冒泡排序
+		 */
 		arrSort: function(arr) {
 			var temp = [];
 			for(var i = 0; i < arr.length; i++) {
@@ -6394,9 +6394,9 @@ function ckplayerConfig() {
 			return arr;
 		},
 		/*
-			内置函数
-			判断文件后缀
-		*/
+		 内置函数
+		 判断文件后缀
+		 */
 		getFileExt: function(filepath) {
 			if(filepath != '' && !this.isUndefined(filepath)) {
 				if(filepath.indexOf('?') > -1) {
@@ -6408,9 +6408,9 @@ function ckplayerConfig() {
 			return '';
 		},
 		/*
-			内置函数
-			判断是否是移动端
-		*/
+		 内置函数
+		 判断是否是移动端
+		 */
 		isMobile: function() {
 			if(navigator.userAgent.match(/(iPhone|iPad|iPod|Android|ios)/i)) {
 				return true;
@@ -6418,16 +6418,16 @@ function ckplayerConfig() {
 			return false;
 		},
 		/*
-			内置函数
-			搜索字符串str是否包含key
-		*/
+		 内置函数
+		 搜索字符串str是否包含key
+		 */
 		isContains: function(str, key) {
 			return str.indexOf(key) > -1;
 		},
 		/*
-			内置函数
-			给地址添加随机数
-		*/
+		 内置函数
+		 给地址添加随机数
+		 */
 		getNewUrl: function(url) {
 			if(this.isContains(url, '?')) {
 				return url += '&' + this.randomString(8) + '=' + this.randomString(8);
@@ -6436,9 +6436,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			获取clientX和clientY
-		*/
+		 共用函数
+		 获取clientX和clientY
+		 */
 		client: function(event) {
 			var eve = event || window.event;
 			if(this.isUndefined(eve)) {
@@ -6453,9 +6453,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-			获取节点的绝对坐标
-		*/
+		 内置函数
+		 获取节点的绝对坐标
+		 */
 		getCoor: function(obj) {
 			var coor = this.getXY(obj);
 			return {
@@ -6477,9 +6477,9 @@ function ckplayerConfig() {
 			};
 		},
 		/*
-			内置函数
-			删除本对象的所有属性
-		*/
+		 内置函数
+		 删除本对象的所有属性
+		 */
 		removeChild: function() {
 			if(this.playerType == 'html5video') {
 				//删除计时器
@@ -6508,9 +6508,9 @@ function ckplayerConfig() {
 			this.CD.innerHTML = '';
 		},
 		/*
-			内置函数
-			画封闭的图形
-		*/
+		 内置函数
+		 画封闭的图形
+		 */
 		canvasFill: function(name, path) {
 			name.beginPath();
 			for(var i = 0; i < path.length; i++) {
@@ -6525,9 +6525,9 @@ function ckplayerConfig() {
 			name.fill();
 		},
 		/*
-			内置函数
-			画矩形
-		*/
+		 内置函数
+		 画矩形
+		 */
 		canvasFillRect: function(name, path) {
 			for(var i = 0; i < path.length; i++) {
 				var d = path[i];
@@ -6535,9 +6535,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			共用函数
-			删除容器节点
-		*/
+		 共用函数
+		 删除容器节点
+		 */
 		deleteChild: function(f) {
 			var def = this.arrIndexOf(this.elementArr, f.className);
 			if(def > -1) {
@@ -6559,9 +6559,9 @@ function ckplayerConfig() {
 			}
 		},
 		/*
-			内置函数
-		 	根据容器的宽高,内部节点的宽高计算出内部节点的宽高及坐标
-		*/
+		 内置函数
+		 根据容器的宽高,内部节点的宽高计算出内部节点的宽高及坐标
+		 */
 		getProportionCoor: function(stageW, stageH, vw, vh) {
 			var w = 0,
 				h = 0,
@@ -6584,9 +6584,9 @@ function ckplayerConfig() {
 			};
 		},
 		/*
-			共用函数
-			将字幕文件内容转换成数组
-		*/
+		 共用函数
+		 将字幕文件内容转换成数组
+		 */
 		parseSrtSubtitles: function(srt) {
 			var subtitles = [];
 			var textSubtitles = [];
@@ -6632,12 +6632,12 @@ function ckplayerConfig() {
 			return subtitles;
 		},
 		/*
-			共用函数
-			计时器,该函数模拟as3中的timer原理
-			time:计时时间,单位:毫秒
-			fun:接受函数
-			number:运行次数,不设置则无限运行
-		*/
+		 共用函数
+		 计时器,该函数模拟as3中的timer原理
+		 time:计时时间,单位:毫秒
+		 fun:接受函数
+		 number:运行次数,不设置则无限运行
+		 */
 		timer: function(time, fun, number) {
 			var thisTemp = this;
 			this.time = 10; //运行间隔
@@ -6678,9 +6678,9 @@ function ckplayerConfig() {
 			this.start();
 		},
 		/*
-			共用函数
-			将时分秒转换成秒
-		*/
+		 共用函数
+		 将时分秒转换成秒
+		 */
 		toSeconds: function(t) {
 			var s = 0.0;
 			if(t) {
@@ -6692,9 +6692,9 @@ function ckplayerConfig() {
 			return s;
 		},
 		/*
-			共用函数
-			将对象Object标准化
-		*/
+		 共用函数
+		 将对象Object标准化
+		 */
 		standardization: function(o, n) { //n替换进o
 			var h = {};
 			var k;
@@ -6716,16 +6716,16 @@ function ckplayerConfig() {
 			return h;
 		},
 		/*
-			共用函数
-			搜索数组
+		 共用函数
+		 搜索数组
 		 */
 		arrIndexOf: function(arr, key) {
 			var re = new RegExp(key, ['']);
 			return(arr.toString().replace(re, '┢').replace(/[^,┢]/g, '')).indexOf('┢');
 		},
 		/*
-			共用函数
-			去掉空格
+		 共用函数
+		 去掉空格
 		 */
 		trim: function(str) {
 			if(str!=''){
@@ -6734,18 +6734,18 @@ function ckplayerConfig() {
 			return '';
 		},
 		/*
-			共用函数
-			输出内容到控制台
-		*/
+		 共用函数
+		 输出内容到控制台
+		 */
 		log: function(val) {
 			try {
 				console.log(val);
 			} catch(e) {}
 		},
 		/*
-			共用函数
-			弹出提示
-		*/
+		 共用函数
+		 弹出提示
+		 */
 		eject: function(er, val) {
 			if(!this.vars['debug']) {
 				return;

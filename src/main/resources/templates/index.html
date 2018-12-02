@@ -460,11 +460,11 @@
                                     <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|"
                                        target="_blank"></a>
                                     <div th:if="${m.newsNoContentDTOList.size() == 1}" th:remove="tag">
-                                        <a th:each="a:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="赛事分析" th:classappend="important"
+                                        <a th:each="a:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="赛事前瞻" th:classappend="important"
                                            target="_blank"></a>
                                     </div>
                                     <div th:if="${m.newsNoContentDTOList.size() &gt; 1}" th:remove="tag">
-                                        <a th:each="a,iterStat:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="'赛事分析'+${iterStat.count}" th:classappend="important"
+                                        <a th:each="a,iterStat:${m.newsNoContentDTOList}" th:href="'/news_detail/'+${a.id}+'.html'" th:text="'赛事前瞻'+${iterStat.count}" th:classappend="important"
                                            target="_blank"></a>
                                     </div>
 
