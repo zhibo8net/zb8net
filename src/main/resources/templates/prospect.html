@@ -21,15 +21,16 @@
         <div class="row list">
             <ul class="row">
                 <li   th:each="ib:${page.content}">
-                    <a  th:href="'/news_detail/'+${ib.id}+'.html'">
+
                         <p class="col-md-9">
                             <span class="list-style">•</span>
                             [<span th:text="${ib.game}"></span>]
                             <span th:text="${ib.project}"></span>分析:
-                            <span th:text="${ib.title}"></span>
+                            <a  th:href="'/news_detail/'+${ib.id}+'.html'"  th:text="${ib.title}" target="_blank">  </a>
+
                         </p>
                         <p class="col-md-3" th:text="${#strings.substring(ib.updateTime,0,10)}"></p>
-                    </a>
+
                 </li>
 
             </ul>
