@@ -1,0 +1,692 @@
+/* `XHTML, HTML4, HTML5 Reset
+
+----------------------------------------------------------------------------------------------------*/
+
+
+
+a,
+
+abbr,
+
+acronym,
+
+address,
+
+applet,
+
+article,
+
+aside,
+
+audio,
+
+b,
+
+big,
+
+blockquote,
+
+body,
+
+canvas,
+
+caption,
+
+center,
+
+cite,
+
+code,
+
+dd,
+
+del,
+
+details,
+
+dfn,
+
+dialog,
+
+div,
+
+dl,
+
+dt,
+
+em,
+
+embed,
+
+fieldset,
+
+figcaption,
+
+figure,
+
+font,
+
+footer,
+
+form,
+
+h1,
+
+h2,
+
+h3,
+
+h4,
+
+h5,
+
+h6,
+
+header,
+
+hgroup,
+
+hr,
+
+html,
+
+i,
+
+iframe,
+
+img,
+
+ins,
+
+kbd,
+
+label,
+
+legend,
+
+li,
+
+mark,
+
+menu,
+
+meter,
+
+nav,
+
+object,
+
+ol,
+
+output,
+
+p,
+
+pre,
+
+progress,
+
+q,
+
+rp,
+
+rt,
+
+ruby,
+
+s,
+
+samp,
+
+section,
+
+small,
+
+span,
+
+strike,
+
+strong,
+
+sub,
+
+summary,
+
+sup,
+
+table,
+
+tbody,
+
+td,
+
+tfoot,
+
+th,
+
+thead,
+
+time,
+
+tr,
+
+tt,
+
+u,
+
+ul,
+
+var,
+
+video,
+
+xmp {
+
+    border: 0;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-size: 100%;
+
+}
+
+
+
+html,
+
+body {
+
+    height: 100%;
+
+}
+
+
+
+article,
+
+aside,
+
+details,
+
+figcaption,
+
+figure,
+
+footer,
+
+header,
+
+hgroup,
+
+menu,
+
+nav,
+
+section {
+
+    /*
+
+  Override the default (display: inline) for
+
+  browsers that do not recognize HTML5 tags.
+
+
+
+  IE8 (and lower) requires a shiv:
+
+  http://ejohn.org/blog/html5-shiv
+
+*/
+
+    display: block;
+
+}
+
+
+
+b,
+
+strong {
+
+    /*
+
+  Makes browsers agree.
+
+  IE + Opera = font-weight: bold.
+
+  Gecko + WebKit = font-weight: bolder.
+
+*/
+
+    font-weight: bold;
+
+}
+
+
+
+img {
+
+    color: transparent;
+
+    font-size: 0;
+
+    vertical-align: middle;
+
+    /*
+
+  For IE.
+
+  http://css-tricks.com/ie-fix-bicubic-scaling-for-images
+
+*/
+
+    -ms-interpolation-mode: bicubic;
+
+}
+
+
+
+li {
+
+    /*
+
+  For IE6 + IE7.
+
+*/
+
+    display: list-item;
+
+}
+
+
+
+table {
+
+    border-collapse: collapse;
+
+    border-spacing: 0;
+
+}
+
+
+
+th,
+
+td,
+
+caption {
+
+    font-weight: normal;
+
+    vertical-align: top;
+
+    text-align: left;
+
+}
+
+
+
+q {
+
+    quotes: none;
+
+}
+
+
+
+q:before,
+
+q:after {
+
+    content: '';
+
+    content: none;
+
+}
+
+
+
+sub,
+
+sup,
+
+small {
+
+    font-size: 75%;
+
+}
+
+
+
+sub,
+
+sup {
+
+    line-height: 0;
+
+    position: relative;
+
+    vertical-align: baseline;
+
+}
+
+
+
+sub {
+
+    bottom: -0.25em;
+
+}
+
+
+
+sup {
+
+    top: -0.5em;
+
+}
+
+
+
+svg {
+
+    /*
+
+  For IE9.
+
+*/
+
+    overflow: hidden;
+
+}
+
+
+
+li {
+
+    list-style: none;
+
+}
+
+a {
+
+    text-decoration: none;
+
+}
+
+
+.backToTop {
+    display: none;
+    width: 24px;
+    line-height: 1.2;
+    padding: 5px 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    position: fixed;
+    _position: absolute;
+    right: 0;
+    bottom: 290px;
+    _bottom: "auto";
+    cursor: pointer;
+    opacity: .6;
+    filter: Alpha(opacity=60);
+    z-index: 9999999;
+}
+
+.container {
+    width: 1000px;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+}
+
+#main {
+    margin-top: 20px;
+}
+
+.title {
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    background: url('https://www.zhibo8.net/image_1/down-tit.jpg') no-repeat;
+    background-position: center;
+    min-width: 1000px;
+}
+
+.title .fixed-box {
+    position: relative;
+    height: 700px;
+}
+
+.app-down {
+    position: absolute;
+    z-index: 999;
+    right: 52px;
+    top: 225px;
+}
+.appdownText{
+    position: absolute;
+    left: 521px;
+    top: 426px;
+    width: 500px;
+    font-size: 14px;
+    color: #fff;
+    text-align: left;
+}
+
+.app-down .down {
+    margin-bottom: 75px;
+    width: 190px;
+    height: 50px;
+    border: 1px solid white;
+    border-radius: 5px;
+    line-height: 50px;
+    text-align: left;
+    background: url('https://www.zhibo8.net/image_1/tub-2.png') no-repeat;
+    background-position: -10px -2px;
+}
+
+.app-down .down:nth-child(2) {
+    background-position: -65px -2px;
+}
+
+.app-down .down:nth-child(3) {
+    background-position: -115px -2px;
+}
+
+.app-down .down a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    width: 110px;
+    background-color: #3eabf9;
+    margin-left: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.content .down_type {
+    margin-top: 20px;
+}
+
+.content .apple {
+    width: 33%;
+    height: auto;
+    float: left;
+    text-align: center;
+    overflow: hidden;
+}
+
+.content a {
+    display: inline-block;
+}
+
+.apple a.apple_href {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.content .apple .butn_bg {
+    background-color: #3facfa
+}
+
+.content .android {
+    width: 33%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+
+.android a.android_href {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.content .android .butn_bg {
+    background-color: #a7c738
+}
+
+.content .pc {
+    width: 33%;
+    height: auto;
+    float: left;
+    text-align: center;
+}
+
+.pc a.pc_href {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+.content .pc .butn_bg {
+    background-color: #67227a
+}
+
+.content .butn_bg {
+    width: 190px;
+    height: 50px;
+    padding: 0;
+    margin: 10px auto;
+    display: inline-block;
+    color: #fff;
+    background: #3facfa;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+.apple_href img,
+.android_href img,
+.pc_href img,
+    {
+    display: block;
+    margin: 0 auto;
+    width: 160px;
+    height: 160px;
+}
+
+.content .moble {
+    width: 100%;
+    height: auto;
+    float: left;
+    text-align: center;
+    font-size: 22px;
+    padding: 25px 0;
+    line-height: 40px;
+}
+
+/*.content .moble:after{content:"\0020";clear:both;display:block;}*/
+.app-info p {
+    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
+}
+
+.app-info {
+    width: 85%;
+    height: auto;
+    text-align: center;
+    font-size: 23px;
+    overflow: hidden;
+    padding: 10px 35px 50px 35px;
+    line-height: 40px;
+    margin: 0 auto;
+}
+
+.app-info .app-left {
+    float: left;
+    width: 66.66%;
+}
+
+.app-info .app-left .app-shouji {
+    float: left;
+    height: 100px;
+    width: 65%;
+    text-align: left;
+}
+
+.app-info .app-left p {
+    color: gray;
+    text-indent: 5px;
+}
+
+.app-info .app-left h1 a {
+    color: #3facfa;
+    font-size: 40px;
+    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
+    text-decoration: underline;
+}
+
+.app-info .app-left .app-addr {
+    float: right;
+    height: 100px;
+    width: 35%;
+    line-height: 105px;
+    text-align: left;
+}
+
+.app-info .liji-visit {
+    display: inline-block;
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #3facfa;
+    border-radius: 5px;
+    color: white;
+}
+
+.app-info .remind div {
+    font-size: 16px;
+    text-align: left;
+    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
+}
+
+.app-info .remind div p {
+    height: 22px;
+    line-height: 22px;
+    font-size: 17px;
+    margin-left: -5px;
+}
+
+.app-info .app-right {
+    float: right;
+    width: 33.34%;
+}
+
+.app-info .app-model {
+    height: 250px;
+    margin-top: -20px;
+}
+
+.app-info .app-model img {
+    width: 250px;
+}
