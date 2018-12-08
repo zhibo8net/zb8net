@@ -17,6 +17,7 @@ import website2018.dto.user.UserDTO;
 import website2018.repository.CommentDao;
 import website2018.repository.UserDao;
 import website2018.utils.MobileUtils;
+import website2018.utils.StrUtils;
 import website2018.utils.SysConstants;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +76,8 @@ public class CommentService {
             Date d=new Date();
             comment.addTime=d;
             comment.updateTime=d;
+            comment.comment= StrUtils.stringFilter( comment.comment);
+            comment.comment= StrUtils.stringFilterScriptChar( comment.comment);
             commentDao.save(comment);
 
             returnResponse.code="0000";

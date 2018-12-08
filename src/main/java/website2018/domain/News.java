@@ -26,5 +26,6 @@ public class News extends BaseEntity {
     public String content;
     public Integer readCount;
     public String matchName;
+    public String matchPreFlag;
     
 }

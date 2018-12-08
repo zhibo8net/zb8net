@@ -20,15 +20,15 @@
         </div>
         <div class="row list">
             <ul class="row">
-                <li class="cur">
-                    <a href="">
+                <li   th:each="ib:${page.content}">
+                    <a  th:href="'/news_detail/'+${ib.id}+'.html'">
                         <p class="col-md-9">
                             <span class="list-style">•</span>
-                            [<span>欧冠杯</span>]
-                            <span>足球分析</span>:
-                            <span>热刺vs国际米兰</span>
+                            [<span th:text="${ib.game}"></span>]
+                            <span th:text="${ib.project}"></span>分析:
+                            <span th:text="${ib.title}"></span>
                         </p>
-                        <p class="col-md-3">2018-12-03</p>
+                        <p class="col-md-3" th:text="${#strings.substring(ib.updateTime,0,8)}"></p>
                     </a>
                 </li>
                 <li>

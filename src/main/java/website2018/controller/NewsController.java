@@ -345,4 +345,20 @@ public class NewsController extends BaseEndPoint {
 
         return "news_detail";
     }
+
+
+    @RequestMapping(value = "/prospect", method = RequestMethod.GET)
+    public String prospect(@RequestParam(defaultValue="0") Integer pageNumber, Model model) {
+
+
+        Map<String, Object> requestMap = Maps.newHashMap();
+        requestMap.put("matchPreFlag","1");
+        Page page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(pageNumber, 20, getSort("id", "DIRE")));
+
+        model.addAttribute("page", page);
+        String search = BaseEndPoint.encodeParameterStringWithPrefix(requestMap, "");
+        model.addAttribute("pageUrl", "?" + search);
+
+        return "prospect";
+    }
 }

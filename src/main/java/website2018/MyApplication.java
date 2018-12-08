@@ -90,6 +90,8 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/live_play_inner/*");
         registrationBean.addUrlPatterns("/nba_news");
         registrationBean.addUrlPatterns("/footer_news");
+        registrationBean.addUrlPatterns("/prospect");
+        registrationBean.addUrlPatterns("/prospect.html");
         return registrationBean;
     }
 
