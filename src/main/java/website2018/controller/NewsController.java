@@ -97,12 +97,12 @@ public class NewsController extends BaseEndPoint {
     public String nbaNews(Model model) {
 
         //查询滚动图片
-        List<News> sliderList=newsDao.findTop5ByProjectAndGameAndImageNotOrderByUpdateTimeDesc("篮球", "NBA", "");
+        List<News> sliderList=newsDao.findTop5ByProjectAndGameAndImageNotAndMatchPreFlagOrderByUpdateTimeDesc("篮球", "NBA", "", "0");
         model.addAttribute("sliderList", sliderList);
         Map<String, Object> requestMap = Maps.newHashMap();
         requestMap.put("project", "篮球");
         requestMap.put("game", "NBA");
-
+        requestMap.put("matchPreFlag","0");
         Page page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 33, getSort("updateTime", "DIRE")));
         List<News> topNewsList1=page.getContent();
         for(News n:topNewsList1){
@@ -138,13 +138,14 @@ public class NewsController extends BaseEndPoint {
         requestMap = Maps.newHashMap();
         requestMap.put("project", "篮球");
         requestMap.put("game", "CBA");
+        requestMap.put("matchPreFlag","0");
         page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 20, getSort("updateTime", "DIRE")));
         List<News> newsListCBA=page.getContent();
             model.addAttribute("newsListCBA", newsListCBA);
         requestMap = Maps.newHashMap();
         requestMap.put("project", "篮球");
         requestMap.put("game", "其他");
-
+        requestMap.put("matchPreFlag","0");
         page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 20, getSort("updateTime", "DIRE")));
         List<News> newsListOther=page.getContent();
         model.addAttribute("newsListOther", newsListOther);
@@ -172,11 +173,11 @@ public class NewsController extends BaseEndPoint {
     public String footerNews(Model model) {
 
         //查询滚动图片
-        List<News> sliderList=newsDao.findTop5ByProjectAndImageNotOrderByUpdateTimeDesc("足球", "");
+        List<News> sliderList=newsDao.findTop5ByProjectAndMatchPreFlagAndImageNotOrderByUpdateTimeDesc("足球", "0", "");
         model.addAttribute("sliderList", sliderList);
         Map<String, Object> requestMap = Maps.newHashMap();
         requestMap.put("project", "足球");
-
+        requestMap.put("matchPreFlag","0");
         Page page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 33, getSort("updateTime", "DIRE")));
         List<News> topNewsList1=page.getContent();
         for(News n:topNewsList1){
@@ -205,6 +206,7 @@ public class NewsController extends BaseEndPoint {
         requestMap = Maps.newHashMap();
         requestMap.put("project", "足球");
         requestMap.put("game", "英超");
+        requestMap.put("matchPreFlag","0");
 
         page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 20, getSort("updateTime", "DIRE")));
         List<News> newsListyc=page.getContent();
@@ -250,6 +252,7 @@ public class NewsController extends BaseEndPoint {
         requestMap = Maps.newHashMap();
         requestMap.put("project", "足球");
         requestMap.put("game", "其他");
+        requestMap.put("matchPreFlag","0");
 
         page = newsDao.findAll(buildSpecification(requestMap, News.class), new PageRequest(0, 20, getSort("updateTime", "DIRE")));
         List<News> newsListOther=page.getContent();

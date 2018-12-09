@@ -83,6 +83,8 @@ public class NewsService {
         orginalNews.updateTime=new Date();
         if(StringUtils.isNotEmpty(orginalNews.matchName)){
             orginalNews.matchPreFlag="1";
+        }else{
+            orginalNews.matchPreFlag="0";
         }
         newsDao.save(orginalNews);
     }
