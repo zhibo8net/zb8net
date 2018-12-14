@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -80,6 +81,11 @@ public class NewsService {
         orginalNews.content = news.content;
         orginalNews.matchName=news.matchName;
         orginalNews.updateTime=new Date();
+        if(StringUtils.isNotEmpty(orginalNews.matchName)){
+            orginalNews.matchPreFlag="1";
+        }else{
+            orginalNews.matchPreFlag="0";
+        }
         newsDao.save(orginalNews);
     }
 

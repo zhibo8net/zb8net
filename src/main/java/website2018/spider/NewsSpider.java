@@ -145,6 +145,7 @@ public class NewsSpider extends BaseSpider {
                         news.content = content;
                         news.addTime = new Date();
                         news.updateTime = new Date();
+                        news.matchPreFlag="0";
                         entitys.add(news);
                     }
                     
@@ -223,6 +224,8 @@ public class NewsSpider extends BaseSpider {
                         news.image = "";
                         news.content = content;
                         news.addTime = new Date();
+                        news.updateTime= new Date();
+                        news.matchPreFlag="0";
                         entitys.add(news);
                     }
                     System.out.println("从90VS成功抓取到一篇新闻……");

@@ -28,7 +28,7 @@ public class MobileUtils {
                 encryptionStr = "";
             }
             String xxStr = "";
-            String lenStr = str.trim().substring(startIndex, str.length()-endIndex);
+            String lenStr = str.trim().substring(startIndex,endIndex);
             for (int i = 0, len = lenStr.length(); i < len; i++) {
                 xxStr += encryptionStr;
             }

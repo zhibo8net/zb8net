@@ -14,11 +14,11 @@ public interface NewsDao extends PagingAndSortingRepository<News, Long>, JpaSpec
 
     public List<News> findByMatchName(String matchName);
 
-    public List<News> findTop32ByAddTimeGreaterThanOrderByIdDesc( Date addTime);
-    public List<News> findTop16ByProjectOrderByAddTimeDesc( String  project);
+    public List<News> findTop32ByAddTimeGreaterThanAndMatchPreFlagOrderByIdDesc( Date addTime,String matchPreFlag);
+    public List<News> findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc( String  project,String matchPreFlag);
 
-    public List<News> findTop5ByProjectAndGameAndImageNotOrderByUpdateTimeDesc( String  project,String game,String iamge);
+    public List<News> findTop5ByProjectAndGameAndImageNotAndMatchPreFlagOrderByUpdateTimeDesc( String  project,String game,String iamge,String matchPreFlag);
 
-    public List<News> findTop5ByProjectAndImageNotOrderByUpdateTimeDesc( String  project,String iamge);
+    public List<News> findTop5ByProjectAndMatchPreFlagAndImageNotOrderByUpdateTimeDesc( String  project,String matchPreFlag, String iamge);
 
 }

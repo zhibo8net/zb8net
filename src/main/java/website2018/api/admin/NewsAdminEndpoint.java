@@ -96,7 +96,13 @@ public class NewsAdminEndpoint extends BaseEndPoint {
         }else{
             news.image ="";
         }
-        
+
+        if(StringUtils.isNotEmpty(news.matchName)) {
+            news.matchPreFlag="1";
+        }
+        else{
+        news.matchPreFlag="0";
+    }
         newsService.create(news);
         
         logService.log("添加新闻", "/newsForm/" + news.id);
@@ -116,6 +122,7 @@ public class NewsAdminEndpoint extends BaseEndPoint {
             news.image ="";
         }
         news.updateTime = new Date();
+
         newsService.modify(news);
 
         logService.log("修改新闻", "/newsForm/" + news.id);
