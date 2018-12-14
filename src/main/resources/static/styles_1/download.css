@@ -7,247 +7,206 @@
     text-align: center;
 }
 
-#main {
-    margin-top: 20px;
+
+body{
+	padding: 0px 0 0;
+    background: #fff;
+    font: 12px/20px 'PingFang','PingFangSC-Regular','苹方',Tahoma, Helvetica, Arial,'微软雅黑',sans-serif;
+}
+a{
+    text-decoration: none !important;
 }
 
-.title {
-    width: 100%;
-    height: 700px;
-    overflow: hidden;
-    background: url('https://www.zhibo8.net/image_1/down-tit.jpg') no-repeat;
-    background-position: center;
-    min-width: 1000px;
+
+body{
+	padding: 0px 0 0;
+	background: #fff;
+}
+#Content{
+	max-width: none;
+	margin: 0 auto;
+}
+#Content *{
+    -webkit-box-sizing: content-box;
+       -moz-box-sizing: content-box;
+            box-sizing: content-box;
 }
 
-.title .fixed-box {
-    position: relative;
-    height: 700px;
+#Content img.bg{
+	width: 100%;
+	margin: 0 auto;
+	display: block;
 }
 
-.app-down {
-    position: absolute;
-    z-index: 999;
-    right: 52px;
-    top: 225px;
+.aboxF{
+	position: relative;
 }
-.appdownText{
-    position: absolute;
-    left: 521px;
-    top: 426px;
-    width: 500px;
-    font-size: 14px;
-    color: #fff;
-    text-align: left;
+.abox{
+	width: 12%;
+	margin-left: 1.2%;
+	position: absolute; top: 38%; left: 50%;
 }
-
-.app-down .down {
-    margin-bottom: 75px;
-    width: 190px;
-    height: 50px;
-    border: 1px solid white;
-    border-radius: 5px;
-    line-height: 50px;
-    text-align: left;
-    background: url('https://www.zhibo8.net/image_1/tub-2.png') no-repeat;
-    background-position: -10px -2px;
+.abox .link{
+	width: 100%;
+	padding-left: 22%; margin-bottom: 16%;
+	-moz-border-radius: 30px;
+	     border-radius: 30px;
+	background: rgba(255,255,255,0.2);
+	cursor: pointer;
 }
-
-.app-down .down:nth-child(2) {
-    background-position: -65px -2px;
+.abox .link p{
+	font-size: 22px; line-height: 60px; text-align: center; color: #fff;
 }
-
-.app-down .down:nth-child(3) {
-    background-position: -115px -2px;
+.abox .link.ios:before, .abox .link.android:before{
+	width: 34px; height: 60px;
+	position: absolute;
+	content: '';
+}
+.abox .link.ios:before{
+	background: url(http://static.dlfyb.com/img/pc/icon_ios_n2.png) no-repeat center; -moz-background-size: 34px; background-size: 34px;
+}
+.abox .link.android:before{
+	background: url(http://static.dlfyb.com/img/pc/icon_android_n2.png) no-repeat center; -moz-background-size: 34px; background-size: 34px;
 }
 
-.app-down .down a {
-    display: inline-block;
-    color: white;
-    text-decoration: none;
-    width: 110px;
-    background-color: #3eabf9;
-    margin-left: 50px;
-    font-size: 18px;
-    text-align: center;
+#Teach{
+	width: 50%;
+	margin: -40px auto -4px;
+	position: relative; z-index: 1;
+}
+#Teach .title{
+	margin-bottom: 16px;
+	position: relative;
+}
+#Teach .title:after{
+	height: 2px;
+	margin-top: 1px;
+	background: #c4d3ed;
+	position: absolute; top: 50%; right: 0; left: 0; z-index: 0;
+	content: '';
+}
+#Teach .title p{
+	min-width: 216px;
+	padding-right: 74px;
+	background: #fff;
+	font-size: 20px; line-height: 34px; text-align: left; color: #2b2d31; font-weight: bold;
+	position: relative; z-index: 1;
+	display: inline-block;
+}
+#Teach .title p:after{
+	height: 2px; width: 40px;
+	margin-top: 1px;
+	background: #e4ebf8;
+	position: absolute; top: 50%; right: 20px; z-index: 0;
+	content: '';
+}
+#Teach .title p span.b{
+	font-size: 34px; color: #5780d5;
+}
+#Teach .title p span.s{
+	font-size: 34px; color: #a4b0c8;
+}
+#Teach .con{
+	min-height: 60px;
+	padding-bottom: 30px;
+	font-size: 16px; line-height: 24px; text-align: left; color: #939aa9;
+}
+#Teach .con.ios, #Teach .con.android{
+	padding-left: 230px;
+}
+#Teach .con.ios{
+	background: url(http://static.dlfyb.com/img/pc/icon_ios_blue.png) no-repeat 40px 4px; -moz-background-size: 60px; background-size: 60px;
+}
+#Teach .con.android{
+	background: url(http://static.dlfyb.com/img/pc/icon_android_blue.png) no-repeat 40px 4px; -moz-background-size: 60px; background-size: 60px;
 }
 
-.content .down_type {
-    margin-top: 20px;
+.aboxF .warm{
+	width: 30%;
+	margin-left: -6%;
+	font-size: 14px; line-height: 24px; text-align: center; color: #fff;
+	position: absolute; bottom: 27%; left: 50%;
 }
 
-.content .apple {
-    width: 33%;
-    height: auto;
-    float: left;
-    text-align: center;
-    overflow: hidden;
+#Cover{
+	position: fixed; top: 0; bottom: 0; left: 0; right: 0; z-index: 100;
+}
+#Cover .inner{
+	height: 100%; max-width: none;
+	background: rgba(0,0,0,0.8);
+}
+#Cover .inner .title{
+	padding: 7% 0 2%;
+	font-size: 34px; line-height: 34px; text-align: center; color: #6facff;
+}
+#Cover .inner img{
+	width: 16%;
+	margin: 0 auto;
+	display: block;
+}
+#Cover .inner .con{
+	width: 440px;
+	padding-top: 3%; margin: 0 auto;
+}
+#Cover .inner .con p{
+	font-size: 16px; line-height: 26px; text-align: left; color: #fff;
+}
+#Cover .inner .con span{
+	padding-bottom: 18px;
+	font-size: 18px; line-height: 26px; text-align: center; color: #fff;
+	display: block;
 }
 
-.content a {
-    display: inline-block;
+@media \0screen\,screen\9 {/* 只支持IE6、7、8 */
+	.link{
+		background-color: #fff;
+		filter: Alpha(opacity=20);
+		position: static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+		*zoom: 1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+	}
+  	.link p{
+    	position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  	}
+
+  	#Cover .inner{
+  		background-color: #000;
+    	filter: Alpha(opacity=80);
+    	position: static; /* IE6、7、8只能设置position:static(默认属性) ，否则会导致子元素继承Alpha值 */
+    	*zoom: 1; /* 激活IE6、7的haslayout属性，让它读懂Alpha */
+  	}
+  	.link p{
+    	position: relative;/* 设置子元素为相对定位，可让子元素不继承Alpha值 */
+  	}
 }
 
-.apple a.apple_href {
-    display: block;
-    height: auto;
-    width: 100%;
-}
+@media screen and (max-width: 1300px){
+	.abox .link{
+		-moz-border-radius: 30px;
+		     border-radius: 30px;
+		background: rgba(255,255,255,0.2);
+	}
+	.abox .link p{
+		font-size: 1.5em; line-height: 2.6em; text-align: center; color: #fff;
+	}
+	.abox .link.ios:before, .abox .link.android:before{
+		height: 3.7em;
+	}
+	.abox .link.ios:before{
+		background: url(http://static.dlfyb.com/img/pc/icon_ios_n2.png) no-repeat center; -moz-background-size: 24px; background-size: 24px;
+	}
+	.abox .link.android:before{
+		background: url(http://static.dlfyb.com/img/pc/icon_android_n2.png) no-repeat center; -moz-background-size: 24px; background-size: 24px;
+	}
 
-.content .apple .butn_bg {
-    background-color: #3facfa
-}
+	.aboxF .warm{
+		font-size: 12px; line-height: 24px; text-align: center; color: #fff;
+	}
 
-.content .android {
-    width: 33%;
-    height: auto;
-    float: left;
-    text-align: center;
-}
+	#Teach .con{
+		font-size: 14px;
+	}
 
-.android a.android_href {
-    display: block;
-    height: auto;
-    width: 100%;
-}
-
-.content .android .butn_bg {
-    background-color: #a7c738
-}
-
-.content .pc {
-    width: 33%;
-    height: auto;
-    float: left;
-    text-align: center;
-}
-
-.pc a.pc_href {
-    display: block;
-    height: auto;
-    width: 100%;
-}
-
-.content .pc .butn_bg {
-    background-color: #67227a
-}
-
-.content .butn_bg {
-    width: 190px;
-    height: 50px;
-    padding: 0;
-    margin: 10px auto;
-    display: inline-block;
-    color: #fff;
-    background: #3facfa;
-    line-height: 50px;
-    text-align: center;
-    font-weight: 700;
-    border-radius: 5px;
-}
-
-.apple_href img,
-.android_href img,
-.pc_href img,
-    {
-    display: block;
-    margin: 0 auto;
-    width: 160px;
-    height: 160px;
-}
-
-.content .moble {
-    width: 100%;
-    height: auto;
-    float: left;
-    text-align: center;
-    font-size: 22px;
-    padding: 25px 0;
-    line-height: 40px;
-}
-
-/*.content .moble:after{content:"\0020";clear:both;display:block;}*/
-.app-info p {
-    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
-}
-
-.app-info {
-    width: 85%;
-    height: auto;
-    text-align: center;
-    font-size: 23px;
-    overflow: hidden;
-    padding: 10px 35px 50px 35px;
-    line-height: 40px;
-    margin: 0 auto;
-}
-
-.app-info .app-left {
-    float: left;
-    width: 66.66%;
-}
-
-.app-info .app-left .app-shouji {
-    float: left;
-    height: 100px;
-    width: 65%;
-    text-align: left;
-}
-
-.app-info .app-left p {
-    color: gray;
-    text-indent: 5px;
-}
-
-.app-info .app-left h1 a {
-    color: #3facfa;
-    font-size: 40px;
-    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
-    text-decoration: underline;
-}
-
-.app-info .app-left .app-addr {
-    float: right;
-    height: 100px;
-    width: 35%;
-    line-height: 105px;
-    text-align: left;
-}
-
-.app-info .liji-visit {
-    display: inline-block;
-    width: 180px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    background-color: #3facfa;
-    border-radius: 5px;
-    color: white;
-}
-
-.app-info .remind div {
-    font-size: 16px;
-    text-align: left;
-    font-family: Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜;
-}
-
-.app-info .remind div p {
-    height: 22px;
-    line-height: 22px;
-    font-size: 17px;
-    margin-left: -5px;
-}
-
-.app-info .app-right {
-    float: right;
-    width: 33.34%;
-}
-
-.app-info .app-model {
-    height: 250px;
-    margin-top: -20px;
-}
-
-.app-info .app-model img {
-    width: 250px;
+	#Cover .inner .title{
+		font-size: 28px; line-height: 28px;
+	}
 }
