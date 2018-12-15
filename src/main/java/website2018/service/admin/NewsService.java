@@ -13,10 +13,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import org.springside.modules.utils.mapper.BeanMapper;
+import website2018.domain.Match;
 import website2018.domain.News;
 import website2018.dto.NewsNoContentDTO;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
+import website2018.repository.MatchDao;
 import website2018.repository.NewsDao;
 
 @Service
@@ -24,6 +26,10 @@ public class NewsService {
 
     @Autowired
     NewsDao newsDao;
+
+    @Autowired
+    MatchDao matchDao;
+
 
     @Transactional(readOnly = true)
     public List<News> findAll(Specification spec) {
@@ -61,6 +67,9 @@ public class NewsService {
 
     @Transactional
     public void create(News news) {
+        if("1".equals(news.matchPreFlag)&&StringUtils.isNotEmpty(news.matchName)){
+            matchNewFlag(news.matchName);
+        }
         newsDao.save(news);
     }
 
@@ -81,14 +90,38 @@ public class NewsService {
         orginalNews.content = news.content;
         orginalNews.matchName=news.matchName;
         orginalNews.updateTime=new Date();
-        if(StringUtils.isNotEmpty(orginalNews.matchName)){
-            orginalNews.matchPreFlag="1";
-        }else{
-            orginalNews.matchPreFlag="0";
+        orginalNews.matchPreFlag=news.matchPreFlag;
+
+        if("1".equals(news.matchPreFlag)&&StringUtils.isNotEmpty(news.matchName)){
+            matchNewFlag(news.matchName);
         }
         newsDao.save(orginalNews);
     }
 
+    public void matchNewFlag(String matchName){
+        try{
+            if(StringUtils.isNotEmpty(matchName)){
+
+                String[] str=matchName.split("-");
+
+                if(str.length<=1){
+                    return;
+                }
+
+                Match match=    matchDao.findById(Long.parseLong(str[1]));
+                if(match==null){
+                    return;
+                }
+                match.matchNewFlag="1";
+
+                matchDao.save(match);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
     @Transactional
     public void delete(Long id) {
         News news = newsDao.findOne(id);

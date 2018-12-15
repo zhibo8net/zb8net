@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springside.modules.utils.mapper.BeanMapper;
+import website2018.cache.CacheUtils;
 import website2018.domain.Comment;
 import website2018.dto.CommentDTO;
 import website2018.dto.user.ReturnResponse;
@@ -76,8 +77,13 @@ public class CommentService {
             Date d=new Date();
             comment.addTime=d;
             comment.updateTime=d;
-            comment.comment= StrUtils.stringFilter( comment.comment);
+            comment.comment= StrUtils.stringFilter(comment.comment);
             comment.comment= StrUtils.stringFilterScriptChar( comment.comment);
+
+            List<String> sensitiveList= CacheUtils.getSensitiveList();
+            for(String str:sensitiveList){
+                comment.comment=comment.comment.replaceAll(str,"**");
+            }
             commentDao.save(comment);
 
             returnResponse.code="0000";

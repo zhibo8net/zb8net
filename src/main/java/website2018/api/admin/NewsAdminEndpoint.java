@@ -97,12 +97,7 @@ public class NewsAdminEndpoint extends BaseEndPoint {
             news.image ="";
         }
 
-        if(StringUtils.isNotEmpty(news.matchName)) {
-            news.matchPreFlag="1";
-        }
-        else{
-        news.matchPreFlag="0";
-    }
+
         newsService.create(news);
         
         logService.log("添加新闻", "/newsForm/" + news.id);

@@ -17,6 +17,7 @@ import org.springside.modules.utils.mapper.BeanMapper;
 import com.google.common.collect.Lists;
 
 import website2018.base.BaseEndPoint;
+import website2018.cache.CacheUtils;
 import website2018.domain.Ended;
 import website2018.domain.ImageBag;
 import website2018.domain.News;
@@ -37,146 +38,74 @@ public class IndexController extends BaseEndPoint {
     @Autowired
     ImageBagDao imageBagDao;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/download")
+    @ResponseBody
+    public String download(HttpServletRequest request, HttpServletResponse response) {
+        return "download";
+    }
+
+
+        @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public String index(HttpServletRequest request, HttpServletResponse response) {
         request.setAttribute("pageTitle", "体育直播吧");
         Calendar calendar=Calendar.getInstance();
         calendar.add(Calendar.YEAR, -10);
         //视屏
-        List<Ended> endedEntitys = indexService.findNewEndeds(calendar.getTime());
 
-        List<EndedDTO> endedDTOList = Lists.newArrayList();
-            List<PageEndedDTO> upPageEndedDTO = Lists.newArrayList();
-              int i=0;
-            for(Ended e : endedEntitys) {
-
-                EndedDTO ed = BeanMapper.map(e, EndedDTO.class);
-                if(i%8==0){
-                    ed.isFirstRow=true;
-                }
-                for(Video v : e.videos) {
-                if(v.type.equals("集锦")) {
-                    ed.hasJijin = true;
-                }else if(v.type.equals("录像")) {
-                    ed.hasLuxiang = true;
-                }else if(v.type.equals("视频")) {
-                    ed.hasShiping = true;
-                }else{
-                    ed.other = true;
-                }
-                    break;
-            }
-                endedDTOList.add(ed);
-                i++;
-           }
-        List<EndedDTO> list1 = Lists.newArrayList();
-        List<EndedDTO> list2 = Lists.newArrayList();
-        List<EndedDTO> list3 = Lists.newArrayList();
-        List<EndedDTO> list4 = Lists.newArrayList();
-        if(endedDTOList.size()>=8){
-            list1=endedDTOList.subList(0,8);
-            if(endedDTOList.size()>=16){
-                list2=endedDTOList.subList(8,16);
-
-                if(endedDTOList.size()>=24){
-                    list3=endedDTOList.subList(16,24);
-
-                    if(endedDTOList.size()>=32){
-                        list4=endedDTOList.subList(24,32);
-                    }else{
-                        list4=endedDTOList.subList(24,endedDTOList.size());
-                    }
-
-                }else{
-                    list3=endedDTOList.subList(16,endedDTOList.size());
-                }
-
-            }else{
-                list2=endedDTOList.subList(8,endedDTOList.size());
-            }
-
-        }else{
-            list1=endedDTOList;
-        }
-
-
-        List<PageEndedDTO> upList = Lists.newArrayList();
-        List<PageEndedDTO> downList = Lists.newArrayList();
-        for(int j=0;j<list1.size();j++){
-            PageEndedDTO upDTO=new PageEndedDTO();
-             upDTO.leftEndedDTO=list1.get(j);
-            if(j<list2.size()&&list2.size()!=0){
-                upDTO.rightEndedDTO=list2.get(j);
-            }
-            upList.add(upDTO);
-            PageEndedDTO downDTO=null;
-            if(j<list3.size()&&list3.size()!=0){
-                if(downDTO==null){
-                    downDTO= new PageEndedDTO();
-                }
-                downDTO.leftEndedDTO=list3.get(j);
-            }
-            if(j<list4.size()&&list4.size()!=0){
-                if(downDTO==null){
-                    downDTO= new PageEndedDTO();
-                }
-                downDTO.rightEndedDTO=list4.get(j);
-            }
-            if(downDTO!=null){
-                downList.add(downDTO);
-            }
-
-        }
-
-        request.setAttribute("upList", upList);
-        request.setAttribute("downList", downList);
+        List<Ended> endedEntitys =(List<Ended>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_ENDED");
+       if(endedEntitys==null||endedEntitys.size()==0){
+           endedEntitys=indexService.findNewEndeds(calendar.getTime());
+           CacheUtils.IndexCache.put("ZHIBO8_INDEX_ENDED",endedEntitys);
+       }
+          setIndexEndo(request,endedEntitys);
         //图片
 
-        List<ImageBag> imageBagList = imageBagDao.findTop10ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
-        request.setAttribute("imageBagList", imageBagList);
-        List<ImageDTO> imagelist = Lists.newArrayList();
-        List<ImageDTO> imagelist1 = Lists.newArrayList();
-        List<ImageDTO> imagelist2 = Lists.newArrayList();
-        int g=0;
-        for(ImageBag n:imageBagList){
-            ImageDTO ed = BeanMapper.map(n, ImageDTO.class);
-            if(g%5==0){
-                ed.isFirstRow=true;
+        List<ImageBag> imageBagList = (List<ImageBag>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_IMAGEBAG");
+            if(imageBagList==null||imageBagList.size()==0){
+                imageBagList=imageBagDao.findTop10ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
+                CacheUtils.IndexCache.put("ZHIBO8_INDEX_IMAGEBAG",imageBagList);
             }
-            if(StringUtils.isNotEmpty(ed.title)&&ed.title.length()>=8){
-                ed.title=ed.title.substring(0,8);
-            }
-            imagelist.add(ed);
-            g++;
-        }
-        if(imagelist.size()>=5){
-            imagelist1=imagelist.subList(0,5);
-            if(imagelist.size()>=10){
-                imagelist2=imagelist.subList(5,10);
-            }else{
-                imagelist2=imagelist.subList(5,imagelist.size());
-            }
-
-        }else{
-            imagelist1=imagelist;
-        }
-        List<PageImageDTO> upImageList = Lists.newArrayList();
-        for(int j=0;j<imagelist1.size();j++){
-            PageImageDTO upDTO=new PageImageDTO();
-            upDTO.leftImageDTO=imagelist1.get(j);
-            if(j<imagelist2.size()&&imagelist2.size()!=0){
-                upDTO.rightImageDTO=imagelist2.get(j);
-            }
-            upImageList.add(upDTO);
-        }
-        request.setAttribute("upImageList", upImageList);
-
-
+            setIndexImageBag(request,imageBagList);
         //新闻
+         List<News> newsListxzq = (List<News>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_newsListxzq");
+            if(newsListxzq==null||newsListxzq.size()==0){
+                newsListxzq=newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("足球", "0");
+                CacheUtils.IndexCache.put("ZHIBO8_INDEX_newsListxzq",newsListxzq);
+            }
+            List<News> newsListxlq = (List<News>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_newsListxlq");
+            if(newsListxlq==null||newsListxlq.size()==0){
+                newsListxlq=newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("篮球","0");
+                CacheUtils.IndexCache.put("ZHIBO8_INDEX_newsListxlq",newsListxlq);
+            }
+        setIndexNews(request,newsListxzq,newsListxlq);
+
+
+
+        List<DailyLivesDTO> dailyLives = indexService.dailyLives();
+        request.setAttribute("dailyLives", dailyLives);
+        
+        List<Video> videos = indexService.findVideos();
+        request.setAttribute("videos", videos);
+
+        List<Video> footballLuxiangs = indexService.findMyLuxiangs("足球");
+        request.setAttribute("footballLuxiangs", footballLuxiangs);
+
+
+        List<Video> basketballLuxiangs = indexService.findMyLuxiangs("篮球");
+        request.setAttribute("basketballLuxiangs", basketballLuxiangs);
+
+        
+        List<String> days = indexService.days();
+        request.setAttribute("days", days);
+
+        request.setAttribute("pageAds", indexService.pageAds());
+        
+        request.setAttribute("menu", "index");
+        return page(request, response, "index");
+    }
+    public void setIndexNews(HttpServletRequest request,   List<News> newsListxzq,List<News> newsListxlq  ){
         List<News> newsListx=Lists.newArrayList();
-         List<News> newsListxzq =   newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("足球","0");
-        List<News> newsListxlq =   newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("篮球","0");
         if(newsListxzq!=null&&newsListxlq.size()!=0){
             newsListx.addAll(newsListxzq);
         }
@@ -210,7 +139,7 @@ public class IndexController extends BaseEndPoint {
                 if(newsList.size()>=24){
                     newlist3=newsList.subList(16,24);
 
-                    if(endedDTOList.size()>=32){
+                    if(newsList.size()>=32){
                         newlist4=newsList.subList(24,32);
                     }else{
                         newlist4=newsList.subList(24,newsList.size());
@@ -258,30 +187,134 @@ public class IndexController extends BaseEndPoint {
 
         request.setAttribute("upNewList", upNewList);
         request.setAttribute("downNewList", downNewList);
-
-
-
-        List<DailyLivesDTO> dailyLives = indexService.dailyLives();
-        request.setAttribute("dailyLives", dailyLives);
-        
-        List<Video> videos = indexService.findVideos();
-        request.setAttribute("videos", videos);
-
-        List<Video> footballLuxiangs = indexService.findMyLuxiangs("足球");
-        request.setAttribute("footballLuxiangs", footballLuxiangs);
-
-
-        List<Video> basketballLuxiangs = indexService.findMyLuxiangs("篮球");
-        request.setAttribute("basketballLuxiangs", basketballLuxiangs);
-
-        
-        List<String> days = indexService.days();
-        request.setAttribute("days", days);
-
-        request.setAttribute("pageAds", indexService.pageAds());
-        
-        request.setAttribute("menu", "index");
-        return page(request, response, "index");
     }
+    public void setIndexImageBag(HttpServletRequest request,  List<ImageBag> imageBagList ){
+        request.setAttribute("imageBagList", imageBagList);
+        List<ImageDTO> imagelist = Lists.newArrayList();
+        List<ImageDTO> imagelist1 = Lists.newArrayList();
+        List<ImageDTO> imagelist2 = Lists.newArrayList();
+        int g=0;
+        for(ImageBag n:imageBagList){
+            ImageDTO ed = BeanMapper.map(n, ImageDTO.class);
+            if(g%5==0){
+                ed.isFirstRow=true;
+            }
+            if(StringUtils.isNotEmpty(ed.title)&&ed.title.length()>=8){
+                ed.title=ed.title.substring(0,8);
+            }
+            imagelist.add(ed);
+            g++;
+        }
+        if(imagelist.size()>=5){
+            imagelist1=imagelist.subList(0,5);
+            if(imagelist.size()>=10){
+                imagelist2=imagelist.subList(5,10);
+            }else{
+                imagelist2=imagelist.subList(5,imagelist.size());
+            }
 
+        }else{
+            imagelist1=imagelist;
+        }
+        List<PageImageDTO> upImageList = Lists.newArrayList();
+        for(int j=0;j<imagelist1.size();j++){
+            PageImageDTO upDTO=new PageImageDTO();
+            upDTO.leftImageDTO=imagelist1.get(j);
+            if(j<imagelist2.size()&&imagelist2.size()!=0){
+                upDTO.rightImageDTO=imagelist2.get(j);
+            }
+            upImageList.add(upDTO);
+        }
+        request.setAttribute("upImageList", upImageList);
+
+
+    }
+    public void setIndexEndo(HttpServletRequest request,  List<Ended> endedEntitys){
+
+        List<EndedDTO> endedDTOList = Lists.newArrayList();
+        List<PageEndedDTO> upPageEndedDTO = Lists.newArrayList();
+        int i=0;
+        for(Ended e : endedEntitys) {
+
+            EndedDTO ed = BeanMapper.map(e, EndedDTO.class);
+            if(i%8==0){
+                ed.isFirstRow=true;
+            }
+            for(Video v : e.videos) {
+                if(v.type.equals("集锦")) {
+                    ed.hasJijin = true;
+                }else if(v.type.equals("录像")) {
+                    ed.hasLuxiang = true;
+                }else if(v.type.equals("视频")) {
+                    ed.hasShiping = true;
+                }else{
+                    ed.other = true;
+                }
+                break;
+            }
+            endedDTOList.add(ed);
+            i++;
+        }
+        List<EndedDTO> list1 = Lists.newArrayList();
+        List<EndedDTO> list2 = Lists.newArrayList();
+        List<EndedDTO> list3 = Lists.newArrayList();
+        List<EndedDTO> list4 = Lists.newArrayList();
+        if(endedDTOList.size()>=8){
+            list1=endedDTOList.subList(0,8);
+            if(endedDTOList.size()>=16){
+                list2=endedDTOList.subList(8,16);
+
+                if(endedDTOList.size()>=24){
+                    list3=endedDTOList.subList(16,24);
+
+                    if(endedDTOList.size()>=32){
+                        list4=endedDTOList.subList(24,32);
+                    }else{
+                        list4=endedDTOList.subList(24,endedDTOList.size());
+                    }
+
+                }else{
+                    list3=endedDTOList.subList(16,endedDTOList.size());
+                }
+
+            }else{
+                list2=endedDTOList.subList(8,endedDTOList.size());
+            }
+
+        }else{
+            list1=endedDTOList;
+        }
+
+
+        List<PageEndedDTO> upList = Lists.newArrayList();
+        List<PageEndedDTO> downList = Lists.newArrayList();
+        for(int j=0;j<list1.size();j++){
+            PageEndedDTO upDTO=new PageEndedDTO();
+            upDTO.leftEndedDTO=list1.get(j);
+            if(j<list2.size()&&list2.size()!=0){
+                upDTO.rightEndedDTO=list2.get(j);
+            }
+            upList.add(upDTO);
+            PageEndedDTO downDTO=null;
+            if(j<list3.size()&&list3.size()!=0){
+                if(downDTO==null){
+                    downDTO= new PageEndedDTO();
+                }
+                downDTO.leftEndedDTO=list3.get(j);
+            }
+            if(j<list4.size()&&list4.size()!=0){
+                if(downDTO==null){
+                    downDTO= new PageEndedDTO();
+                }
+                downDTO.rightEndedDTO=list4.get(j);
+            }
+            if(downDTO!=null){
+                downList.add(downDTO);
+            }
+
+        }
+
+        request.setAttribute("upList", upList);
+        request.setAttribute("downList", downList);
+    }
 }

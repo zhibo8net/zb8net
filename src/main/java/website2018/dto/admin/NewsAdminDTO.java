@@ -11,5 +11,6 @@ public class NewsAdminDTO {
     public String image;
     public String content;
     public String matchName;
+    public String matchPreFlag;
 
 }

@@ -92,6 +92,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/footer_news");
         registrationBean.addUrlPatterns("/prospect");
         registrationBean.addUrlPatterns("/prospect.html");
+        registrationBean.addUrlPatterns("/download.html");
         return registrationBean;
     }
 

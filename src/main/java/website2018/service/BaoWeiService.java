@@ -110,7 +110,7 @@ public class BaoWeiService {
             }
 
         } catch (Exception ex) {
-            ex.printStackTrace();
+
 
         }
 

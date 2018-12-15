@@ -2,6 +2,7 @@ package website2018.service;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,7 +74,7 @@ public class IndexService {
     LiveDao liveDao;
     @PostConstruct
     public void init() {
-        dailyLivesCache = CacheBuilder.newBuilder().maximumSize(1).build();
+        dailyLivesCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterAccess(10, TimeUnit.MINUTES).build();
     }
 
     public List<DailyLivesDTO> dailyLives() {
@@ -95,8 +96,8 @@ public class IndexService {
 
     }
 
-    @Scheduled(cron = "0 0/5 * * * *")
-    @Transactional
+//    @Scheduled(cron = "0 0/5 * * * *")
+//    @Transactional
     public void refreshCache() {// 每5分钟刷新一次缓存
 
         List<DailyLivesDTO> dailyLives = queryDailyLives();
@@ -228,7 +229,7 @@ public class IndexService {
 
                     MatchDTO mdto = BeanMapper.map(m, MatchDTO.class);
 
-                    if(StringUtils.isNotEmpty(mdto.name)){
+                    if(StringUtils.isNotEmpty(mdto.name)&&"1".equals(m.matchNewFlag)){
                         mdto.newsNoContentDTOList=  newsService.findByMatchName(mdto.name+"-"+mdto.id);
                     }
 
