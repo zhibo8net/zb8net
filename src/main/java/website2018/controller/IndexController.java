@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,12 +39,11 @@ public class IndexController extends BaseEndPoint {
     @Autowired
     ImageBagDao imageBagDao;
 
-    @RequestMapping(value = "/download")
-    @ResponseBody
-    public String download(HttpServletRequest request, HttpServletResponse response) {
-        return "download";
-    }
 
+    @RequestMapping(value = "/userPage")
+    public String userPage(Model model) {
+        return "userPage";
+    }
 
         @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody

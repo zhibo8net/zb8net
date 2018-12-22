@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springside.modules.utils.mapper.BeanMapper;
+import website2018.cache.CacheUtils;
+import website2018.domain.Ended;
 import website2018.domain.User;
 import website2018.dto.user.ReturnResponse;
 import website2018.dto.user.UserDTO;
@@ -14,6 +16,7 @@ import website2018.utils.SysConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018/9/24.
@@ -46,13 +49,18 @@ public class UserLoginService {
         User user=   userDao.findByUserName(userDTO.userName);
         if(user==null){
             User  u = BeanMapper.map(userDTO, User.class);
+            u.userNickName=MobileUtils.hiddenMobile(userDTO.userName);
+            u.mobile=userDTO.userName;
             u.password=MD5Util.MD5(userDTO.password);
+            Date d=new Date();
+            u.addTime=d;
+            u.updateTime=d;
             userDao.save(u);
         }else{
             String password= MD5Util.MD5(userDTO.password);
             if(!password.equals(user.password)){
                 response.code="0003";
-                response.message="密码错误";
+                response.message="用户名或者密码错误";
                 return response;
             }
         }
@@ -84,6 +92,8 @@ public class UserLoginService {
         if(user==null){
             User  u = BeanMapper.map(userDTO, User.class);
             u.password=MD5Util.MD5(userDTO.password);
+            u.userNickName=MobileUtils.hiddenMobile(userDTO.userName);
+            u.mobile=userDTO.userName;
             Date d=new Date();
             u.addTime=d;
             u.updateTime=d;
@@ -98,4 +108,41 @@ public class UserLoginService {
         response.message="注册成功";
         return response;
     }
-}
+
+    public User getUser(UserDTO userDTO){
+        User user =(User) CacheUtils.UserCache.getIfPresent("ZHIBO8_INDEX_USER_"+userDTO.id);
+        if(user==null){
+            user=userDao.findByUserName(userDTO.userName);
+            CacheUtils.UserCache.put("ZHIBO8_INDEX_USER_"+userDTO.id,user);
+        }
+
+       return user;
+
+    }
+    public void updateUser(UserDTO userDTO){
+        User user=   userDao.findByUserName(userDTO.userName);
+        if(user==null){
+            return ;
+        }
+        user.userLink=userDTO.userLink;
+        userDao.save(user);
+    }
+    public ReturnResponse doUpdateUser(UserDTO loginUserDTO,UserDTO userDTO) {
+        ReturnResponse response = new ReturnResponse();
+        User user=   userDao.findByUserName(loginUserDTO.userName);
+        if(user==null){
+            response.code="0002";
+            response.message="用户不存在";
+            return response;
+        }
+        user.userNickName=userDTO.userNickName;
+        user.mobile=userDTO.mobile;
+        user.userEmail=userDTO.userEmail;
+        user.updateTime=new Date();
+
+        userDao.save(user);
+        response.code="0000";
+        response.message="修改成功";
+        return response;
+    }
+    }

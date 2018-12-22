@@ -4,7 +4,7 @@
 <head>
     <title th:text="${news.title}"></title>
     <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
-    <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
+    <meta name="description" th:content="${newsPageDesc}" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
     <meta name="baidu-site-verification" content="FeM2EtCC8T" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />

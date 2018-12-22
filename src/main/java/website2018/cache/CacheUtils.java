@@ -6,17 +6,16 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import website2018.base.BaseEndPoint;
-import website2018.domain.FriendLink;
-import website2018.domain.Sensitive;
-import website2018.domain.Tele;
+import website2018.domain.*;
 import website2018.dto.DailyLivesDTO;
-import website2018.repository.FriendLinkDao;
-import website2018.repository.SensitiveDao;
-import website2018.repository.TeleDao;
+import website2018.repository.*;
 import website2018.utils.SpringContextHolder;
+import website2018.utils.SysConstants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,9 +25,13 @@ public class CacheUtils {
 
 
     // 缓存数据
-   public static Cache<String,Object> baseFooterCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterAccess(10, TimeUnit.MINUTES).build();
+   public static Cache<String,Object> baseFooterCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES).build();
 
-    public static Cache<String,Object> IndexCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterAccess(5, TimeUnit.MINUTES).build();
+    public static Cache<String,Object> IndexCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(5, TimeUnit.MINUTES).build();
+
+    public static Cache<String,Object> UserCache= CacheBuilder.newBuilder().maximumSize(3000).expireAfterWrite(5, TimeUnit.MINUTES).build();
+
+    public static Cache<String,Object> baseCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES).build();
 
     public static List<Tele> getListTele(){
 
@@ -95,5 +98,38 @@ public class CacheUtils {
 
         }
         return sensitiveList;
+    }
+
+
+    public static List<Team> getListTeam(){
+
+        List<Team> listTeam = (List<Team>) baseFooterCache.getIfPresent("ZHIBO8_listTeam_LIST");
+
+        if(listTeam==null||listTeam.size()==0){
+            TeamDao    teamDao=  (TeamDao) SpringContextHolder.getApplicationContext().getBean("teamDao");
+            listTeam= (List<Team>)teamDao.findAll();
+            baseFooterCache.put("ZHIBO8_listTeam_LIST",listTeam);
+        }
+        return listTeam;
+
+    }
+
+
+    public static Map<String,String> getSysMap(){
+
+        Map<String,String> sysMap =(Map<String,String>) baseFooterCache.getIfPresent("ZHIBO8_sys_map");
+
+        if(sysMap==null||sysMap.isEmpty()){
+            SysParamDao sysParamDao=  (SysParamDao) SpringContextHolder.getApplicationContext().getBean("sysParamDao");
+            List<SysParam> sysParamList= (List<SysParam>) sysParamDao.findAll();
+            sysMap =new HashMap<String,String>();
+            for(SysParam sysParam:sysParamList){
+                sysMap.put(sysParam.sysKey,sysParam.sysValue);
+            }
+
+            baseFooterCache.put("ZHIBO8_sys_map",sysMap);
+        }
+        return sysMap;
+
     }
 }

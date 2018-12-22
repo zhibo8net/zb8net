@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,7 +35,10 @@ import website2018.repository.ImageBagDao;
 public class ImageController extends BaseEndPoint {
     
     @Autowired ImageBagDao imageBagDao;
-    
+    @RequestMapping(value = "/download")
+    public String download(Model model) {
+        return "download";
+    }
     @RequestMapping(value = "/image_1", method = RequestMethod.GET)
     public String image(Model model) {
 

@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import website2018.cache.CacheUtils;
 import website2018.domain.Team;
 import website2018.repository.TeamDao;
 import website2018.utils.SysConstants;
@@ -27,23 +27,23 @@ public class TeamCheckService {
     @Autowired
     BaoWeiService baoWeiService;
 
-    @Scheduled(cron = "0 0/10 * * * *")
-    public void refreshCache() {// 每10分钟刷新一次缓存
-
-        try{
-           List<Team> teamList= (List<Team>) teamDao.findAll();
-
-            SysConstants.cacheTeamList=teamList;
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
+//    @Scheduled(cron = "0 0/10 * * * *")
+//    public void refreshCache() {// 每10分钟刷新一次缓存
+//
+//        try{
+//           List<Team> teamList= (List<Team>) teamDao.findAll();
+//
+//            SysConstants.cacheTeamList=teamList;
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
     public Team lVCheckTeam(String teamZh,String project){
-        List<Team> teamList= SysConstants.cacheTeamList;
-        Map<String, String> sysParamMap = SysConstants.sysParamMap;
+        List<Team> teamList= CacheUtils.getListTeam();
+        Map<String, String> sysParamMap = CacheUtils.getSysMap();
         String lvStr= sysParamMap.get("LIVE_LV_MATCH_TEAM")==null?"0.5": sysParamMap.get("LIVE_LV_MATCH_TEAM");
         float lv1=Float.parseFloat(lvStr);
 

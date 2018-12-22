@@ -20,21 +20,21 @@ public class SysParamService {
     SysParamDao sysParamDao;
 
 
-    @Scheduled(cron = "0 0/10 * * * *")
-    public void refreshCache() {// 每10分钟刷新一次缓存
-
-        try{
-            Map<String, String> sysParamMap = SysConstants.sysParamMap;
-            sysParamMap.clear();
-            List<SysParam> sysParamList= (List<SysParam>) sysParamDao.findAll();
-            for(SysParam sysParam:sysParamList){
-                sysParamMap.put(sysParam.sysKey,sysParam.sysValue);
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
-    }
+//    @Scheduled(cron = "0 0/10 * * * *")
+//    public void refreshCache() {// 每10分钟刷新一次缓存
+//
+//        try{
+//            Map<String, String> sysParamMap = SysConstants.sysParamMap;
+//            sysParamMap.clear();
+//            List<SysParam> sysParamList= (List<SysParam>) sysParamDao.findAll();
+//            for(SysParam sysParam:sysParamList){
+//                sysParamMap.put(sysParam.sysKey,sysParam.sysValue);
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//
+//
+//    }
 }
 

@@ -93,6 +93,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/prospect");
         registrationBean.addUrlPatterns("/prospect.html");
         registrationBean.addUrlPatterns("/download.html");
+        registrationBean.addUrlPatterns("/userPage.html");
         return registrationBean;
     }
 

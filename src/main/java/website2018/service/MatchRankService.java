@@ -21,6 +21,7 @@ import website2018.repository.FootballSsbDao;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Administrator on 2018/10/14.
@@ -45,7 +46,7 @@ public class MatchRankService {
 
     @PostConstruct
     public void init() {
-        matchRankCache = CacheBuilder.newBuilder().maximumSize(10).build();
+        matchRankCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(10, TimeUnit.MINUTES).build();
     }
     public BasketMatchRankDTO queryBasketballRankDTO(){
         BasketMatchRankDTO basketMatchRankDTO= (BasketMatchRankDTO) matchRankCache.getIfPresent("basketMatchRankDTO");
@@ -100,8 +101,8 @@ public class MatchRankService {
     }
 
 
-    @Scheduled(cron = "0 0/10 * * * *")
-    @Transactional
+//    @Scheduled(cron = "0 0/10 * * * *")
+//    @Transactional
     public void refreshCache() {// 每10分钟刷新一次缓存
 
         BasketMatchRankDTO basketMatchRankDTO = getBasketMatchRankDTO();

@@ -2,6 +2,7 @@ package website2018.service.comment;
 
 
 import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,7 +83,7 @@ public class CommentService {
 
             List<String> sensitiveList= CacheUtils.getSensitiveList();
             for(String str:sensitiveList){
-                comment.comment=comment.comment.replaceAll(str,"**");
+                comment.comment=comment.comment.replaceAll(str,"*");
             }
             commentDao.save(comment);
 
@@ -122,8 +123,10 @@ public class CommentService {
             for(Comment comment:commentList){
                 CommentDTO commentDTO = BeanMapper.map(comment, CommentDTO.class);
                 commentDTO.addTimeStr=sdf.format(comment.addTime==null?new Date():comment.addTime);
-                commentDTO.updateTimeStr=sdf.format(comment.updateTime==null?new Date():comment.updateTime);
-                commentDTO.userName= MobileUtils.hiddenMobile(comment.user == null ? "" : comment.user.userName);
+                commentDTO.updateTimeStr=sdf.format(comment.updateTime == null ? new Date() : comment.updateTime);
+                commentDTO.userNickName=comment.user == null ? "" : comment.user.userNickName;
+                commentDTO.userName= StringUtils.isNotBlank(commentDTO.userNickName)?commentDTO.userNickName: MobileUtils.hiddenMobile(comment.user == null ? "" : comment.user.userName);
+                commentDTO.userLink=comment.user == null ? "" : comment.user.userLink;
                 commentDTO.pageNumber=pageNumber;
                 commentDTOList.add(commentDTO);
             }

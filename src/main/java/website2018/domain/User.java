@@ -24,4 +24,9 @@ public class User {
     public Date addTime;
     public Date updateTime;
 
+
+    public String userLink;
+
+
+    public String userEmail;
 }

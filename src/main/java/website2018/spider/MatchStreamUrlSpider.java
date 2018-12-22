@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import website2018.MyApplication;
 import website2018.base.BaseSpider;
+import website2018.cache.CacheUtils;
 import website2018.domain.Live;
 import website2018.domain.Match;
 import website2018.domain.MatchStream;
@@ -62,7 +63,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
 
     @Transactional
     public void matchStreamFetch() throws Exception {
-        Map<String, String> sysParamMap = SysConstants.sysParamMap;
+        Map<String, String> sysParamMap =CacheUtils.getSysMap();
         String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://liveplay.oadql.cn/live/":sysParamMap.get("LIVE_URL_PRE");
 
         Calendar calendar = Calendar.getInstance();
@@ -176,7 +177,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
         try{
 
 
-        Map<String, String> sysParamMap = SysConstants.sysParamMap;
+        Map<String, String> sysParamMap = CacheUtils.getSysMap();
         if(!"TRUE".equals(sysParamMap.get("LIVE_SAVE_MATCH"))){
            return;
         }

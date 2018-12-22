@@ -15,7 +15,7 @@ public class SysConstants {
 
     public static String USER_LOGIN_FLAG="user_login_flag";
 
-    public static Map<String,String> sysParamMap=new HashMap<String,String>();
+  //  public static Map<String,String> sysParamMap=new HashMap<String,String>();
 
-    public static List<Team> cacheTeamList= Lists.newArrayList();
+   // public static List<Team> cacheTeamList= Lists.newArrayList();
 }

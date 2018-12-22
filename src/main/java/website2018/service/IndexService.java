@@ -22,14 +22,8 @@ import com.google.common.collect.Maps;
 
 import website2018.MyApplication;
 import website2018.base.BaseEndPoint;
-import website2018.domain.Ad;
-import website2018.domain.Ended;
-import website2018.domain.FriendLink;
-import website2018.domain.Live;
-import website2018.domain.LiveSource;
-import website2018.domain.Match;
-import website2018.domain.PageAd;
-import website2018.domain.Video;
+import website2018.cache.CacheUtils;
+import website2018.domain.*;
 import website2018.dto.AdDTO;
 import website2018.dto.DailyLivesDTO;
 import website2018.dto.LiveDTO;
@@ -74,7 +68,7 @@ public class IndexService {
     LiveDao liveDao;
     @PostConstruct
     public void init() {
-        dailyLivesCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterAccess(10, TimeUnit.MINUTES).build();
+        dailyLivesCache = CacheBuilder.newBuilder().maximumSize(10).expireAfterWrite(5, TimeUnit.MINUTES).build();
     }
 
     public List<DailyLivesDTO> dailyLives() {
@@ -348,14 +342,27 @@ public class IndexService {
         return list1;
     }
     public List<Video> findVideos(){
-        return videoQueryer.findByProjectGameTypeCount(null, null, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT);
+
+        List<Video> list = (List<Video>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_video_list");
+        if(list==null||list.size()==0){
+            list=videoQueryer.findByProjectGameTypeCount(null, null, "视频", BaseEndPoint.RIGHT_VIDEO_COUNT);
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_video_list",list);
+        }
+        return list;
     }
 
     public List<Video> findLuxiangs(String project){
+
         return videoQueryer.findByProjectGameTypeCount(project, null, "录像", 20, true);
     }
     public List<Video> findMyLuxiangs(String project){
-        return videoQueryer.findByProjectGameTypeCount(project, null, "录像", 20, true);
+        List<Video> list = (List<Video>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_video_list_by_project");
+        if(list==null||list.size()==0){
+            list= videoQueryer.findByProjectGameTypeCount(project, null, "录像", 20, true);
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_video_list_by_project",list);
+        }
+        return list;
+
     }
     public List<FriendLink> findFriendLinks(){
         return (List<FriendLink>)friendLinkDao.findAll();
@@ -384,7 +391,13 @@ public class IndexService {
     
     public Map<String, PageAd> pageAds(){
         Map<String, PageAd> result = Maps.newHashMap();
-        for(PageAd pa : pageAdDao.findAll()) {
+
+        List<PageAd> list = (List<PageAd>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_page_ads");
+        if(list==null||list.size()==0){
+            list= (List<PageAd>)pageAdDao.findAll();
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_page_ads",list);
+        }
+        for(PageAd pa : list) {
             result.put(pa.adKey, pa);
         }
         return result;

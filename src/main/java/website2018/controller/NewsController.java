@@ -33,6 +33,7 @@ import website2018.repository.EndedDao;
 import website2018.repository.NewsDao;
 import website2018.repository.VideoDao;
 import website2018.service.MatchRankService;
+import website2018.utils.StrUtils;
 
 @Controller
 public class NewsController extends BaseEndPoint {
@@ -344,8 +345,10 @@ public class NewsController extends BaseEndPoint {
 
         mdto.createTime=sdf.format(news.addTime==null?new Date():news.addTime);
         model.addAttribute("news", mdto);
-
-
+        String newsPageDesc=StrUtils.delHTMLTag(StringUtils.isEmpty(mdto.content) ? "" : mdto.content);
+        newsPageDesc=newsPageDesc.length()>=250?newsPageDesc.substring(0,200):newsPageDesc;
+        newsPageDesc=  newsPageDesc.replaceAll("  ","").replaceAll("\\r\\n","").replaceAll("\\r","").replaceAll("\\n","");
+        model.addAttribute("newsPageDesc", newsPageDesc );
         return "news_detail";
     }
 

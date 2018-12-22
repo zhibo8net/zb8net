@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import website2018.MyApplication;
 import website2018.base.BaseSpider;
 
+import website2018.cache.CacheUtils;
 import website2018.domain.Match;
 import website2018.repository.MatchDao;
 import website2018.service.BaoWeiService;
@@ -109,7 +110,7 @@ public class SinaLiveSpider extends BaseSpider {
     }
 
     public void updateMatch(List<Match> matchList,String team1,String team2,Object sinaLiveUrl,Object resultUrl){
-        Map<String, String> sysParamMap = SysConstants.sysParamMap;
+        Map<String, String> sysParamMap = CacheUtils.getSysMap();
         String lvStr= sysParamMap.get("LIVE_LV_SINA_TEAM")==null?"0.5": sysParamMap.get("LIVE_LV_SINA_TEAM");
         float lv1=Float.parseFloat(lvStr);
 

@@ -20,6 +20,7 @@ public class CommentDTO {
     public String addTimeStr;
     public String updateTimeStr;
     public String userName;
-
+    public String userNickName;
+    public String userLink;
     public Integer pageNumber;
 }
