@@ -52,6 +52,7 @@ public class UserLoginService {
             u.userNickName=MobileUtils.hiddenMobile(userDTO.userName);
             u.mobile=userDTO.userName;
             u.password=MD5Util.MD5(userDTO.password);
+            u.userLink="/image_1/defalutUser.jpg";
             Date d=new Date();
             u.addTime=d;
             u.updateTime=d;
@@ -94,6 +95,7 @@ public class UserLoginService {
             u.password=MD5Util.MD5(userDTO.password);
             u.userNickName=MobileUtils.hiddenMobile(userDTO.userName);
             u.mobile=userDTO.userName;
+            u.userLink="/image_1/defalutUser.jpg";
             Date d=new Date();
             u.addTime=d;
             u.updateTime=d;

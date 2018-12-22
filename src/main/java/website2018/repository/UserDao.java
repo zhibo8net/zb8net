@@ -11,4 +11,5 @@ public interface UserDao extends PagingAndSortingRepository<User, Long>, JpaSpec
 
     public User findByUserName(String userName);
 
+    public List<User> findByUserNameLessThan(String userName);
 }

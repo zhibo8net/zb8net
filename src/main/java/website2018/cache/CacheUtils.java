@@ -33,6 +33,12 @@ public class CacheUtils {
 
     public static Cache<String,Object> baseCache= CacheBuilder.newBuilder().maximumSize(1000).expireAfterWrite(10, TimeUnit.MINUTES).build();
 
+    public static Cache<String,Object> fecthUserCache= CacheBuilder.newBuilder().maximumSize(3000).expireAfterWrite(15, TimeUnit.MINUTES).build();
+
+
+    public static Cache<String,Object> fecthCacheComment= CacheBuilder.newBuilder().maximumSize(100000).expireAfterWrite(2, TimeUnit.HOURS).build();
+
+
     public static List<Tele> getListTele(){
 
         List<Tele> listTele = (List<Tele>) baseFooterCache.getIfPresent("ZHIBO8_TELE_LIST");

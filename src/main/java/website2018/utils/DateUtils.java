@@ -1,5 +1,8 @@
 package website2018.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,7 +17,18 @@ public class DateUtils {
         return dateStrForQueryFormat.format(date);
     }
 
+    public static Date getDate(String data,String format){
+        if(StringUtils.isEmpty(data)){
+            return new Date();
+        }
+        SimpleDateFormat dateStrForQueryFormat = new SimpleDateFormat(format);
+        try {
+            return  dateStrForQueryFormat.parse(data);
+        } catch (ParseException e) {
 
+        }
+        return new Date();
+    }
 
 
 }

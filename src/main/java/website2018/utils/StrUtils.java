@@ -1,5 +1,6 @@
 package website2018.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -118,5 +119,50 @@ return(stringConnect(str_arr,"")).trim();
         htmlStr=m_html.replaceAll(""); //过滤html标签
 
         return htmlStr.trim(); //返回文本字符串
+    }
+
+    public static String fliterFourUnicode(String source) throws Exception {
+        try {
+            byte[] sourceBytes;
+
+            sourceBytes = source.getBytes("utf-8");
+            int subIndex = 0;
+            String str = "";
+            do {
+                int curByte = Byte.toUnsignedInt(sourceBytes[subIndex]);
+                if (curByte > 0x00 && curByte <= 0x7f) { //0xxxxxxx
+                    str = str + (char) sourceBytes[subIndex];
+                    subIndex++;
+                } else if (curByte >= 0xc0 && curByte <= 0xdf) { //110xxxxx
+                    byte[] bytes = {sourceBytes[subIndex], sourceBytes[subIndex + 1]};
+                    str = str + new String(bytes, "utf-8");
+                    subIndex += 2;
+                } else if (curByte >= 0xe0 && curByte <= 0xef) { //1110xxxx
+                    byte[] bytes = {sourceBytes[subIndex], sourceBytes[subIndex + 1], sourceBytes[subIndex + 2]};
+                    str = str + new String(bytes, "utf-8");
+                    subIndex += 3;
+                } else if (curByte >= 0xf0 && curByte <= 0xf7) { //11110xxx
+                    str = str + "*";
+                    subIndex += 4;
+                } else if (curByte >= 0xf8 && curByte <= 0xfb) { //111110xx
+                    str = str + "*";
+                    subIndex += 5;
+                } else if (curByte >= 0xfc && curByte <= 0xfd) { //1111110x
+                    str = str + "*";
+                    subIndex += 6;
+                } else if (curByte >= 0xfe) { //11111110
+                    str = str + "*";
+                    subIndex += 7;
+                } else { //解析失败不是UTF-8编码开头字符
+                    return str + "*";
+                }
+
+            } while (subIndex < sourceBytes.length);
+            return str;
+        }catch (Exception e){
+
+        }
+      return null;
+
     }
 }
