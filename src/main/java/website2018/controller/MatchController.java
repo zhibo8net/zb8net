@@ -20,54 +20,66 @@ import java.util.List;
  * Created by Administrator on 2018/9/16.
  */
 @Controller
-public class MatchController  extends BaseEndPoint {
+public class MatchController extends BaseEndPoint {
 
     @Autowired
     LiveService liveService;
     @Autowired
     IndexService indexService;
+
     @RequestMapping(value = "/match_1/{id}")
     public String live(@PathVariable Long id, Model model) {
+        try {
+            MatchDTO matchDTO = indexService.findMatchDTO(id);
+            if (matchDTO == null) {
+                return "redirect:http://www.zhibo8.net/";
+            }
+            List<FriendLink> friendLinks = liveService.findFriendLinks();
+            model.addAttribute("friendLinks", friendLinks);
+            model.addAttribute("matchDTO", matchDTO);
 
-      MatchDTO matchDTO= indexService.findMatchDTO(id);
-        if(matchDTO==null){
+            return "detail";
+        } catch (Exception e) {
             return "redirect:http://www.zhibo8.net/";
         }
-        List<FriendLink> friendLinks = liveService.findFriendLinks();
-        model.addAttribute("friendLinks", friendLinks);
-        model.addAttribute("matchDTO", matchDTO);
 
-        return "detail";
     }
 
     @RequestMapping(value = "/match_old_1/{id}")
     public String match_old_1(@PathVariable Long id, Model model) {
+        try {
+            MatchDTO matchDTO = indexService.findMatchDTO(id);
+            if (matchDTO == null) {
+                return "redirect:http://www.zhibo8.net/";
+            }
+            model.addAttribute("matchDTO", matchDTO);
 
-        MatchDTO matchDTO= indexService.findMatchDTO(id);
-        if(matchDTO==null){
+            return "detail-old";
+        } catch (Exception e) {
             return "redirect:http://www.zhibo8.net/";
         }
-        model.addAttribute("matchDTO", matchDTO);
-
-        return "detail-old";
     }
 
     @RequestMapping(value = "/live_play_inner/{id}")
     public String live_play_inner(@PathVariable Long id, Model model) {
-        Live live=liveService.findById(id);
-        if(live==null||live.match==null){
+        try {
+            Live live = liveService.findById(id);
+            if (live == null || live.match == null) {
+                return "redirect:http://www.zhibo8.net/";
+            }
+            LiveDTO liveDTO = BeanMapper.map(live, LiveDTO.class);
+            liveDTO.link = live.link;
+            model.addAttribute("liveDTO", liveDTO);
+
+            MatchDTO matchDTO = indexService.findMatchDTO(live.match.id);
+            if (matchDTO == null) {
+                return "redirect:http://www.zhibo8.net/";
+            }
+            model.addAttribute("matchDTO", matchDTO);
+
+            return "live-old";
+        } catch (Exception e) {
             return "redirect:http://www.zhibo8.net/";
         }
-        LiveDTO liveDTO = BeanMapper.map(live, LiveDTO.class);
-        liveDTO.link=live.link;
-        model.addAttribute("liveDTO", liveDTO);
-
-        MatchDTO matchDTO= indexService.findMatchDTO(live.match.id);
-        if(matchDTO==null){
-            return "redirect:http://www.zhibo8.net/";
-        }
-        model.addAttribute("matchDTO", matchDTO);
-
-        return "live-old";
     }
 }

@@ -36,7 +36,7 @@ public class CacheUtils {
     public static Cache<String,Object> fecthUserCache= CacheBuilder.newBuilder().maximumSize(3000).expireAfterWrite(15, TimeUnit.MINUTES).build();
 
 
-    public static Cache<String,Object> fecthCacheComment= CacheBuilder.newBuilder().maximumSize(100000).expireAfterWrite(2, TimeUnit.HOURS).build();
+    public static Cache<String,Object> fecthCacheComment= CacheBuilder.newBuilder().maximumSize(100000).expireAfterWrite(10, TimeUnit.HOURS).build();
 
 
     public static List<Tele> getListTele(){
