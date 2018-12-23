@@ -122,23 +122,23 @@ public class LiveCommentSpider extends BaseSpider {
                             }
                           String st= (String) CacheUtils.fecthCacheComment.getIfPresent("ZHIBO_" + match.id + "_" + DateUtils.getDateStr(createTime, "yyyyMMddHHmmss"));
                             if (StringUtils.isNotEmpty(st)){
-                                logger.warn("缓存 该评论已经抓取过，{}",content);
+                                logger.warn("缓存 该评论已经抓取过，{}", content);
                                 continue;
                             }
-                            List<Comment> commentList= commentDao.findByRelIdAndTypeAndUserTypeAndCommentAndAddTime(Integer.parseInt(match.id + ""), 1, 1, content, createTime);
-                            if(commentList!=null&&commentList.size()>0){
-                                logger.warn("数据库 该评论已经抓取过，{}",content);
-                                CacheUtils.fecthCacheComment.put("ZHIBO_" + match.id + "_" + DateUtils.getDateStr(createTime, "yyyyMMddHHmmss"), "1");
 
-                                continue;
-                            }
                             if( jsonObject2.get("username")!=null&& jsonObject2.get("content")!=null){
 
                                 content= StrUtils.delHTMLTag(content);
                                 content=StrUtils.fliterFourUnicode(content);
                                 userName= StrUtils.delHTMLTag(userName);
                                 userName=StrUtils.fliterFourUnicode(userName);
+                                List<Comment> commentList= commentDao.findByRelIdAndTypeAndUserTypeAndCommentAndAddTime(Integer.parseInt(match.id + ""), 1, 1, content, createTime);
+                                if(commentList!=null&&commentList.size()>0){
+                                    logger.warn("数据库 该评论已经抓取过，{}",content);
+                                    CacheUtils.fecthCacheComment.put("ZHIBO_" + match.id + "_" + DateUtils.getDateStr(createTime, "yyyyMMddHHmmss"), "1");
 
+                                    continue;
+                                }
                                     User userRandowm=fetchCommentService.getUserRandom();
                                     if(userRandowm==null){
                                         continue;

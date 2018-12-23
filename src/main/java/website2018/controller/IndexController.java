@@ -104,6 +104,67 @@ public class IndexController extends BaseEndPoint {
         request.setAttribute("menu", "index");
         return page(request, response, "index");
     }
+
+
+    @RequestMapping(value = "/mindex", method = RequestMethod.GET)
+    @ResponseBody
+    public String mindex(HttpServletRequest request, HttpServletResponse response) {
+        request.setAttribute("pageTitle", "体育直播吧");
+        Calendar calendar=Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -10);
+        //视屏
+
+        List<Ended> endedEntitys =(List<Ended>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_ENDED");
+        if(endedEntitys==null||endedEntitys.size()==0){
+            endedEntitys=indexService.findNewEndeds(calendar.getTime());
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_ENDED",endedEntitys);
+        }
+        setIndexEndo(request,endedEntitys);
+        //图片
+
+        List<ImageBag> imageBagList = (List<ImageBag>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_IMAGEBAG");
+        if(imageBagList==null||imageBagList.size()==0){
+            imageBagList=imageBagDao.findTop10ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_IMAGEBAG",imageBagList);
+        }
+        setIndexImageBag(request,imageBagList);
+        //新闻
+        List<News> newsListxzq = (List<News>)CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_newsListxzq");
+        if(newsListxzq==null||newsListxzq.size()==0){
+            newsListxzq=newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("足球", "0");
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_newsListxzq",newsListxzq);
+        }
+        List<News> newsListxlq = (List<News>) CacheUtils.IndexCache.getIfPresent("ZHIBO8_INDEX_newsListxlq");
+        if(newsListxlq==null||newsListxlq.size()==0){
+            newsListxlq=newsDao.findTop16ByProjectAndMatchPreFlagOrderByAddTimeDesc("篮球","0");
+            CacheUtils.IndexCache.put("ZHIBO8_INDEX_newsListxlq",newsListxlq);
+        }
+        setIndexNews(request,newsListxzq,newsListxlq);
+
+
+
+        List<DailyLivesDTO> dailyLives = indexService.dailyLives();
+        request.setAttribute("dailyLives", dailyLives);
+
+        List<Video> videos = indexService.findVideos();
+        request.setAttribute("videos", videos);
+
+        List<Video> footballLuxiangs = indexService.findMyLuxiangs("足球");
+        request.setAttribute("footballLuxiangs", footballLuxiangs);
+
+
+        List<Video> basketballLuxiangs = indexService.findMyLuxiangs("篮球");
+        request.setAttribute("basketballLuxiangs", basketballLuxiangs);
+
+
+        List<String> days = indexService.days();
+        request.setAttribute("days", days);
+
+        request.setAttribute("pageAds", indexService.pageAds());
+
+        request.setAttribute("menu", "index");
+        return page(request, response, "mindex");
+    }
     public void setIndexNews(HttpServletRequest request,   List<News> newsListxzq,List<News> newsListxlq  ){
         List<News> newsListx=Lists.newArrayList();
         if(newsListxzq!=null&&newsListxlq.size()!=0){
