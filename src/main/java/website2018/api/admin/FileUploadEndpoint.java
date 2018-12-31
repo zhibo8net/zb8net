@@ -23,6 +23,7 @@ public class FileUploadEndpoint extends BaseEndPoint {
     @RequestMapping(value = "/api/admin/file", method = RequestMethod.POST)
     @ResponseBody
     public String upload(@RequestParam("image") MultipartFile file) throws Exception {
+        assertAdmin();
 
         String ext = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
 
@@ -41,4 +42,34 @@ public class FileUploadEndpoint extends BaseEndPoint {
         return webImageBase + nameWithTimePrefix;
     }
 
+    @RequestMapping(value = "/admin_1/php/upload_json", method = RequestMethod.POST)
+    @ResponseBody
+    public ReturnImg upload_json(@RequestParam("imgFile") MultipartFile file) throws Exception {
+        String ext = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
+
+        String fileName = UUID.randomUUID().toString() + "." + ext;
+
+        String nameWithTimePrefix = UploadUtils.nameWithTimePrefix(fileName);
+
+        String fullPath = uploadPath + nameWithTimePrefix;
+
+        File diskFile = new File(fullPath);
+
+        Files.createParentDirs(diskFile);
+
+        file.transferTo(diskFile);
+        ReturnImg returnImg=new ReturnImg();
+        returnImg.url=(webImageBase + nameWithTimePrefix);
+        returnImg.message="上传成功";
+        returnImg.error=0;
+        return returnImg;
+    }
+
+    class ReturnImg{
+        public String url;
+
+        public String message;
+
+        public int error;
+    }
 }

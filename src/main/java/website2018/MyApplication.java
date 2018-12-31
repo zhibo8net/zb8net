@@ -37,6 +37,7 @@ public class MyApplication {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new RestFilter(accountService));
         registrationBean.addUrlPatterns("/api/admin/*");
+        registrationBean.addUrlPatterns("/admin_1/php/upload_json.php");
         registrationBean.addUrlPatterns("/api/matchRank/*");
 
         return registrationBean;
