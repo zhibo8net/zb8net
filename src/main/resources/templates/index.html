@@ -18,6 +18,13 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script> -->
+    <script>
+        $(function(){
+            if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                window.location.href = "https://www.zhibo8.net/mindex.html";
+            }
+        })
+    </script>
     <style>
         .pop-autoapp * {
             box-sizing: content-box;
@@ -449,7 +456,6 @@
                                                 <a th:href="${l.signals[0].playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+l.signals[0].liveId+'.html'}"
                                                    th:text="${l.signals[0].name}" target="_blank"></a>
                                             </div>
-
                                         </span>
                                         <span th:if="${m.sinaShujuUrl!=null}">
                                             <div th:remove="tag">
