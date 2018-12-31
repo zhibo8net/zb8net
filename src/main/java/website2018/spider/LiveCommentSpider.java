@@ -70,6 +70,9 @@ public class LiveCommentSpider extends BaseSpider {
 
     public void liveCommentFetch() throws Exception {
         try {
+            Calendar tempcreate = Calendar.getInstance();
+            tempcreate.add(Calendar.MINUTE,-6);
+
             Calendar tempEnd = Calendar.getInstance();
             tempEnd.add(Calendar.HOUR,-3);
             List<Match> matchList=matchDao.findByPlayDateGreaterThan(tempEnd.getTime());
@@ -111,11 +114,19 @@ public class LiveCommentSpider extends BaseSpider {
                             continue;
                         }
                         JSONArray jsonArray = JSONArray.fromObject(comnentDoc);
-                        for (int i = 0; i < jsonArray.size(); i++) {
+                      innerBreak:  for (int i = 0; i < jsonArray.size(); i++) {
+
+                            if(i>=6){
+                                break innerBreak;
+                            }
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                             String userName= jsonObject2.get("username")==null?null: (String) jsonObject2.get("username");
                             String content= jsonObject2.get("content")==null?null: (String) jsonObject2.get("content");
-                            Date createTime= DateUtils.getDate((String) jsonObject2.get("createtime"),"yyyy-MM-dd HH:mm:ss");
+                            Date createTime= DateUtils.getDate((String) jsonObject2.get("createtime"), "yyyy-MM-dd HH:mm:ss");
+
+                           if(tempcreate.getTime().after(createTime)){
+                               break innerBreak;
+                           }
                             List<String> sensitiveList= CacheUtils.getSensitiveList();
                             for(String str:sensitiveList){
                                 content=content.replaceAll(str,"*");

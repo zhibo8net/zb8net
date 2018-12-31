@@ -28,7 +28,7 @@ import website2018.repository.AccountDao;
 public class LoginService implements UserDetailsService {
 
     // 注入配置值
-    @Value("${app.loginTimeoutSecs:600}")
+    @Value("${app.loginTimeoutSecs:6000}")
     private int loginTimeoutSecs;
 
     // guava cache

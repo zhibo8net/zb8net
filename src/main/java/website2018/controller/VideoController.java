@@ -48,8 +48,8 @@ public class VideoController extends BaseEndPoint {
     public String ended(@PathVariable Long id, Model model) {
 
         Ended entity = endedDao.findOne(id);
-        if(entity == null) {
-            throw new ServiceException("不存在的比赛", ErrorCode.BAD_REQUEST);
+        if(entity==null){
+            return "redirect:http://www.zhibo8.net/";
         }
         model.addAttribute("entity", entity);
 
