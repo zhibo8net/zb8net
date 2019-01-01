@@ -96,6 +96,9 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/download.html");
         registrationBean.addUrlPatterns("/userPage.html");
         registrationBean.addUrlPatterns("/mindex.html");
+        registrationBean.addUrlPatterns("/mlogin.html");
+        registrationBean.addUrlPatterns("/mdetail/*");
+        registrationBean.addUrlPatterns("/mwrap/*");
         return registrationBean;
     }
 

@@ -104,7 +104,12 @@ public class IndexController extends BaseEndPoint {
         request.setAttribute("menu", "index");
         return page(request, response, "index");
     }
+    @RequestMapping(value = "/mlogin", method = RequestMethod.GET)
+    @ResponseBody
+    public String mlogin(HttpServletRequest request, HttpServletResponse response) {
 
+        return page(request, response, "mlogin");
+    }
 
     @RequestMapping(value = "/mindex", method = RequestMethod.GET)
     @ResponseBody
