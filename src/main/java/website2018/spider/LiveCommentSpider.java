@@ -125,7 +125,7 @@ public class LiveCommentSpider extends BaseSpider {
                             Date createTime= DateUtils.getDate((String) jsonObject2.get("createtime"), "yyyy-MM-dd HH:mm:ss");
 
                            if(tempcreate.getTime().after(createTime)){
-                               break innerBreak;
+                               continue;
                            }
                             List<String> sensitiveList= CacheUtils.getSensitiveList();
                             for(String str:sensitiveList){

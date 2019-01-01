@@ -27,6 +27,24 @@ public class MatchController extends BaseEndPoint {
     @Autowired
     IndexService indexService;
 
+    @RequestMapping(value = "/mwrap/{id}")
+    public String mwrap(@PathVariable Long id, Model model) {
+        try {
+            MatchDTO matchDTO = indexService.findMatchDTO(id);
+            if (matchDTO == null) {
+                return "redirect:http://www.zhibo8.net/mindex.html";
+            }
+            List<FriendLink> friendLinks = liveService.findFriendLinks();
+            model.addAttribute("friendLinks", friendLinks);
+            model.addAttribute("matchDTO", matchDTO);
+
+            return "mwrap";
+        } catch (Exception e) {
+            return "redirect:http://www.zhibo8.net/mindex.html";
+        }
+
+    }
+
     @RequestMapping(value = "/match_1/{id}")
     public String live(@PathVariable Long id, Model model) {
         try {

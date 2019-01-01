@@ -352,7 +352,50 @@ public class NewsController extends BaseEndPoint {
         return "news_detail";
     }
 
+    @RequestMapping(value = "/mdetail/{id}", method = RequestMethod.GET)
+    public String mdetail(@PathVariable Long id, Model model) {
+        News news = newsDao.findOne(id);
+        if(news==null){
+            return "redirect:http://www.zhibo8.net/mindex.html";
+        }
 
+
+        news.readCount=   news.readCount==null?1: news.readCount+1;
+        newsDao.save(news);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
+        for(int i=1;i<100;i++){
+            News nextNews = newsDao.findOne(id+i);
+
+            if(nextNews!=null){
+                NewsDTO nextmdto = BeanMapper.map(nextNews, NewsDTO.class);
+                nextmdto.createTime=sdf.format(news.addTime==null?new Date():news.addTime);
+                model.addAttribute("nextNews", nextmdto);
+                break;
+            }
+        }
+
+        for(int j=1;j<100;j++){
+            News preNews = newsDao.findOne(id-j);
+
+            if(preNews!=null) {
+                NewsDTO pretmdto = BeanMapper.map(preNews, NewsDTO.class);
+
+                pretmdto.createTime = sdf.format(news.addTime == null ? new Date() : news.addTime);
+                model.addAttribute("preNews", pretmdto);
+                break;
+            }
+        }
+        NewsDTO mdto = BeanMapper.map(news, NewsDTO.class);
+
+        mdto.createTime=sdf.format(news.addTime==null?new Date():news.addTime);
+        model.addAttribute("news", mdto);
+        String newsPageDesc=StrUtils.delHTMLTag(StringUtils.isEmpty(mdto.content) ? "" : mdto.content);
+        newsPageDesc=newsPageDesc.length()>=250?newsPageDesc.substring(0,200):newsPageDesc;
+        newsPageDesc=  newsPageDesc.replaceAll("  ","").replaceAll("\\r\\n","").replaceAll("\\r","").replaceAll("\\n","");
+        model.addAttribute("newsPageDesc", newsPageDesc );
+        return "mdetail";
+    }
     @RequestMapping(value = "/prospect", method = RequestMethod.GET)
     public String prospect(@RequestParam(defaultValue="0") Integer pageNumber, Model model) {
 

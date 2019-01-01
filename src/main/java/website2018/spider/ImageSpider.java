@@ -70,7 +70,7 @@ public class ImageSpider extends BaseSpider {
             Pattern p = Pattern.compile("/(\\d+)\\) ");
             imagesEach: for (Element l : links) {
                 String title = l.select("img").attr("alt");
-                System.out.println(title);
+               // System.out.println(title);
                 String _insideUrl = "http://tu.zhibo8.cc/" + l.attr("href");
 
                 // 在缓存中判断是否爬取过该url

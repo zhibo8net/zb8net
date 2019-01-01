@@ -1,6 +1,8 @@
 package website2018.api.admin;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
@@ -45,7 +47,22 @@ public class FileUploadEndpoint extends BaseEndPoint {
     @RequestMapping(value = "/admin_1/php/upload_json", method = RequestMethod.POST)
     @ResponseBody
     public ReturnImg upload_json(@RequestParam("imgFile") MultipartFile file) throws Exception {
+      List<String> list= new ArrayList<>();
+        list.add("png");
+        list.add("jpeg");
+        list.add("bmp");
+        list.add("jpg");
+        list.add("gif");
+        list.add("png");
+        ReturnImg returnImg=new ReturnImg();
+
         String ext = StringUtils.substringAfterLast(file.getOriginalFilename(), ".");
+        if(!list.contains(ext)){
+
+            returnImg.message="图片格式不正确";
+            returnImg.error=1;
+            return returnImg;
+        }
 
         String fileName = UUID.randomUUID().toString() + "." + ext;
 
@@ -58,7 +75,7 @@ public class FileUploadEndpoint extends BaseEndPoint {
         Files.createParentDirs(diskFile);
 
         file.transferTo(diskFile);
-        ReturnImg returnImg=new ReturnImg();
+
         returnImg.url=(webImageBase + nameWithTimePrefix);
         returnImg.message="上传成功";
         returnImg.error=0;

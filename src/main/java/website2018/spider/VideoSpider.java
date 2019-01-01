@@ -70,8 +70,8 @@ public class VideoSpider extends BaseSpider {
         List<Video> entitys = Lists.newArrayList();
 
         videoTypesEach: for (VideoType vt : videoTypes) {
-            System.out.println(vt.project);
-            System.out.println(vt.name);
+           // System.out.println(vt.project);
+           // System.out.println(vt.name);
 
             try {
                 
@@ -116,8 +116,8 @@ public class VideoSpider extends BaseSpider {
                                 String title = v.select(".video-title").html();
                                 String image = downloadFile(v.select(".cover>img").attr("src"));
         
-                                System.out.println("\t" + title);
-                                System.out.println("\t" + image);
+                               // System.out.println("\t" + title);
+                               // System.out.println("\t" + image);
                                 
                                 Video entity = new Video();
                                 entity.project = vt.project;

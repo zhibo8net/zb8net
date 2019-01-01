@@ -295,7 +295,7 @@ public class LiveSpider extends BaseSpider {
         Document mzhibo8 = readDocFrom("http://www.ccav5.com/");
         Elements matchs = mzhibo8.select(".live_lists .left");
 
-        System.out.println("CCAV5比赛数量：" + matchs.size());
+       // System.out.println("CCAV5比赛数量：" + matchs.size());
         for (Element m : matchs) {
             try {
                 boolean willSaveMatch = true;// 标识是否将要把Entity入库，如果锁定且未过期，则为false
@@ -469,7 +469,7 @@ public class LiveSpider extends BaseSpider {
                             maybeExistedEntity.emphasis = 0;
 
                             Elements es = innerDoc.select("#plugin-list a.item");
-                            System.out.println(es.size());
+                            //System.out.println(es.size());
                             for (Element l : es) {
                                 String text = l.text();
                                 String link = l.attr("href");
@@ -684,7 +684,7 @@ public class LiveSpider extends BaseSpider {
 
 
                                                         String tagz = s.substring(12, s.length() - 2);
-                                                        System.out.println(tagz);
+                                                       // System.out.println(tagz);
                                                         live.link = "http://sportstream365.com/viewer?sport=1&game=" + lk.substring(lk.indexOf("?id=") + 4) + "&tagz=" + tagz;
                                                         live.name = "俄罗斯体育频道";
                                                         Document vd = readDocFromByJsoup(lk);
