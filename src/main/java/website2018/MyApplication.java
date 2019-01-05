@@ -99,6 +99,10 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/mlogin.html");
         registrationBean.addUrlPatterns("/mdetail/*");
         registrationBean.addUrlPatterns("/mwrap/*");
+        registrationBean.addUrlPatterns("/mnews.html");
+        registrationBean.addUrlPatterns("/mvideo.html");
+
+
         return registrationBean;
     }
 

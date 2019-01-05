@@ -102,7 +102,26 @@ public class VideoController extends BaseEndPoint {
         model.addAttribute("menu", (project.equals("足球") ? "football" : "basketball")+"Video");
         return "projectVideo";
     }
-    @RequestMapping(value = "/footer_video", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/mvideo")
+    public String mvideo( Model model) throws Exception {
+        List<Video> videos = videoQueryer.findByProjectGameTypeCount(null, null, "视频", 100);
+        List<VideoDTO> videoDTOList = Lists.newArrayList();
+
+        for (Video video : videos) {
+            VideoDTO videoDTO = BeanMapper.map(video, VideoDTO.class);
+
+            if (video.name.length() > 25) {
+                videoDTO.name = video.name.substring(0, 25);
+            }
+            videoDTOList.add(videoDTO);
+
+        }
+        model.addAttribute("mvideoList", videoDTOList);
+
+        return "mvideo";
+    }
+        @RequestMapping(value = "/footer_video", method = RequestMethod.GET)
     public String footerVideo( Model model) throws Exception {
         List<Video> videos = videoQueryer.findByProjectGameTypeCount("足球", null, "视频", 13);
         List<VideoDTO> videoDTOList=Lists.newArrayList();
