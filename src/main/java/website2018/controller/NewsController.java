@@ -43,6 +43,17 @@ public class NewsController extends BaseEndPoint {
     @Autowired NewsDao newsDao;
     @Autowired
     MatchRankService matchRankService;
+
+    @RequestMapping(value = "/mnews")
+   public String mnews(Model model) {
+            List<News> mnewsList=newsDao.findTop100ByMatchPreFlagOrderByIdDesc("0");
+            for(News n:mnewsList){
+                n.content=null;
+            }
+          model.addAttribute("mnewsList", mnewsList);
+             return "mnews";
+}
+
     @RequestMapping(value = "/news_1", method = RequestMethod.GET)
     public String news(@RequestParam(defaultValue="") String project,@RequestParam(defaultValue="") String game, @RequestParam(defaultValue="0") Integer pageNumber, Model model) {
 
@@ -94,7 +105,8 @@ public class NewsController extends BaseEndPoint {
         return "news";
     }
 
-    @RequestMapping(value = "/nba_news", method = RequestMethod.GET)
+
+        @RequestMapping(value = "/nba_news", method = RequestMethod.GET)
     public String nbaNews(Model model) {
 
         //查询滚动图片
