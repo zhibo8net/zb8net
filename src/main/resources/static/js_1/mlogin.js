@@ -1,4 +1,5 @@
 var allObj = {};
+var nowType = 1;
         $(function () {
             // 只需初始化一次
             // initWatchman({
@@ -52,10 +53,12 @@ var allObj = {};
             $register.on('click', function () {
                 if (!is_register) {
                     $('.pageName').html('注册');
-                    $register.html('登录')
+                    $register.html('登录');
+                    nowType = 1;
                 } else {
                     $('.pageName').html('登录');
-                    $register.html('注册')
+                    $register.html('注册');
+                    nowType = 0;
                 }
                 is_register = !is_register;
             })
@@ -69,7 +72,11 @@ var allObj = {};
                 var tel = $tel.val(),
                     password = $code.val();
                 if (check(tel, password)) {
-
+                    if (!nowType) {
+                        login('/api/user/register')
+                    } else {
+                        login('/api/user/login')
+                    }
                 }
             });
 
@@ -80,30 +87,43 @@ var allObj = {};
                 } else if (!code) {
                     alertBox("请输入密码");
                     return false;
+                }else if (!(/^1[34578]\d{9}$/.test(tel))) {
+                    alertBox("手机号码有误，请重填");
+                    return false;
                 } else {
                     //						$scope.info='';
                     return true;
                 }
             }
-            //倒计时
-            function count_down(num) {
-                num = num || 60;
-                btn_able = false;
-                $btn_code.addClass("count-down");
-                (function f() {
-                    $btn_code.text('已发送(' + num + 's)');
-                    num--;
-                    if (num > 0) {
-                        setTimeout(function () {
-                            f();
-                        }, 1000);
-                    } else {
-                        $btn_code.text('获得验证码');
-                        $btn_code.removeClass("count-down");
-                        //							$scope.info='';
-                        btn_able = true;
+            function login(url) {
+                var phone = $tel.val(),
+                    password = $code.val();
+                var data = {
+                    userName: phone,
+                    password: hex_md5(password)
+                }
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    success: function (resp) {
+                        if (resp.code == '0000') {
+                            if (!nowType) {
+                                alert('注册成功')
+                            } else {
+                                alert('登录成功')
+                            }
+                            history.go(-1);
+                        } else {
+                            alert(resp.message)
+                        }
+                    },
+                    fail: function (err) {
+                        alert(err)
                     }
-                })();
+                })
             }
             //弹窗提示
             function alertBox(mesg) {

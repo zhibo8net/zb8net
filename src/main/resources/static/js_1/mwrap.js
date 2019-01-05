@@ -15,6 +15,9 @@ $(function () {
         team_a_id = 0,
         team_b_id = 0;
 
+    function locationToRe(param) {
+        $('.textfb,.post_content,#post_content').focus();
+    }
     //支持比例
     function changeLine(type, num) {
         if (type == 'guest') {

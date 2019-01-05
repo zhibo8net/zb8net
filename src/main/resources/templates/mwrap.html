@@ -7,21 +7,25 @@
     <meta name="format-detection" content="telephone=no" />
     <!-- 频道相关icon -->
     <link rel="apple-touch-icon" sizes="72x72" href="" />
-    <title>直播吧手机版</title>
-    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside_v2/css/footballStyle.css?v=1.0" /> -->
-    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside_v2/css/footballStyle.css?v=1.0" /> -->
+    <title>直播8手机版</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside_v2/css/footballStyle.css" /> -->
     <link rel="stylesheet" th:href="@{../styles_1/inside_v2/css/footballStyle.css?v=1.0}" />
     <!--评论-->
-    <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="../v2test/inside/css/mobile.css" />
-    <link rel="stylesheet" type="text/css" href="../v2test/inside/css/pinglun.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/reset.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/mobile.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="../static/styles_1/inside/css/pinglun.css" /> -->
+    <link rel="stylesheet" type="text/css" th:href="@{../styles_1/inside/css/pinglun.css?v=1.0}" />
     <!--竞猜-->
     <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside/css/jingcai.css" /> -->
     <!--more_lab-->
     <!-- <link rel="stylesheet" type="text/css" href="../v2test/inside_v2/css/lab_data.css" /> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
-    <script th:src="@{../js_1/mwrap.js}"></script>
+    <script th:src="@{../js_1/pl.js?v=1.1}"></script>
+    <script th:src="@{../js_1/mwrap.js?v=1.1}"></script>
+    <!-- <script src="../static/js_1/pl.js"></script>
+    <script src="../static/js_1/mwrap.js"></script> -->
     <!-- <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script> -->
     <!-- <script type="text/javascript" src="http://static4style.qiumibao.com/txt_m_js%2Fiscroll.js"></script>
     <script type="text/javascript" src="http://static4style.qiumibao.com/txt_m_js%2Favalon.js"></script> -->
@@ -67,10 +71,10 @@
                             <div class="inner">
                                 <div class="team_box">
                                     <img onerror="this.src='http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/zhudui.png'"
-                                    th:src="${matchDTO.masterTeamLink}" />
+                                        th:src="${matchDTO.masterTeamLink}" />
                                 </div>
                                 <span class="fore_team_name team_host" th:text="${matchDTO.masterTeamName}"></span>
-                                <input name="template_id" value="1" type="hidden"/>
+                                <input name="template_id" value="1" type="hidden" />
                             </div>
                         </div>
                         <div class="f_center">
@@ -82,18 +86,18 @@
                             <div class="inner">
                                 <div class="team_box">
                                     <img onerror="this.src='http://static4style.oss-cn-hangzhou.aliyuncs.com/txt_pc_img/kedui.png'"
-                                    th:src="${matchDTO.masterTeamLink}" />
+                                        th:src="${matchDTO.masterTeamLink}" />
                                 </div>
                                 <span class="fore_team_name team_guest" th:text="${matchDTO.guestTeamName}"></span>
                             </div>
                         </div>
                     </div>
                     <div class="mode_line">
-                        <div class="host_good"><a></a><span>4</span></div>
+                        <div class="host_good"><a></a><span>0</span></div>
                         <div class="match_mode_status">
                             <h1>视频直播</h1>
                         </div>
-                        <div class="guest_good"><a></a><span>4</span></div>
+                        <div class="guest_good"><a></a><span>0</span></div>
                     </div>
                     <dl class="match_mode_line">
                         <dt class="line_width" style="width: 50%;">
@@ -108,7 +112,7 @@
                             <li class="on" id="select_1"><a title="直播" href="javascript:;">直播</a></li>
                             <li id="select_2"><a title="首发" href="javascript:;">首发</a></li>
                             <li id="select_3"><a title="数据" href="javascript:;">数据</a></li>
-                            <li id="select_4"><a title="评论" href="javascript:;">评论<span class="pinglun_num">3</span></a></li>
+                            <li id="select_4"><a title="评论" href="javascript:;">评论<span class="pinglun_num"></span></a></li>
                             <li id="select_11"><a title="赔率" href="javascript:;">赔率</a></li>
                             <li id="select_5"><a title="竞猜" href="javascript:;">竞猜</a></li>
                             <li id="select_6"><a title="商城" href="javascript:;">商城</a></li>
@@ -142,8 +146,79 @@
                 </section>
                 <!-- card 流 -->
                 <!--评论-->
-                <section id="section_4" style="display: none; padding-top: 35px;" class="ng-scope">
-                    <p class="no_data_3">暂无数据</p>
+                <section id="section_4" style="display: none; padding-top: 10px;" class="ng-scope">
+                    <style class="ng-scope">
+                        #logindiv{
+                                    width:100%; height:auto; line-height:40px; position: relative;text-indent:10px;font-size: 14px;
+                                }
+                                #userinfo{
+                                    width:100%; height:auto; line-height:40px;text-indent:10px; font-size: 14px;
+                                }
+                                #re .face_img{
+                                    display: block;
+                                }
+                                #face_cat .current{
+                                    background: #ffffff;
+                                }
+                                .faces img{
+                                    cursor: pointer;
+                                }
+                                .close_btn{
+                                    height: auto; width: auto; padding: 0 5px; line-height: 20px; font-size: 12px; position: absolute; top: 2px; right: 2px; border: solid #666666 1px; background: #ffffff; cursor: pointer;
+                                }
+                                .bigimg{
+                                    top:40px;
+                                }
+                            </style>
+                    <div id="userinfo" style="display:none;" class="ng-scope">您好，<a href="http://www.zhibo8.net/mindex.html" class="ng-binding">****</a>！<a href="javascript:void(0);" onclick="locationToRe()"><font style="color:red;">开始发表评论</font></a> <a rel="#overlay" href="javascript:void(0);" ng-click="logout()">退出</a></div>
+                    <div id="logindiv" ng-show="!userid" class="ng-scope">
+                        <span class="login-info">登录后才能发表评论和回复</span> <span class="login-btn-area"><a href="../mlogin.html"
+                                class="l-b-l">登录</a> | <a class="l-b-r" href="../mlogin.html">注册</a></span>
+                    </div>
+                    <div class="ng-scope">
+                        <div class="pllist ng-scope">
+                            <div id="re">
+                                <div id="re_box" class="input_l_rel">
+                                    <div class="input">
+                                        <a class="face_button" title="点击选择你要添加的表情" ng-mouseover="show_smiley_box(true)"></a>
+                                        <div class="plate_03" ng-show="!replyname">发表评论:</div>
+                                        <div class="plate_03 ng-hide" style="display:none;">对<span style="color: red;"
+                                                class="ng-binding">【】</span>发表回复:</div>
+                                        <textarea id="post_content" ng-click="hideeditortip()" name="content"
+                                            ng-keydown="keyprocess($event);" rows="8" ng-model="$parent.pl_content"
+                                            class="ng-pristine ng-valid"></textarea>
+                                        <!-- ngIf: !userid -->
+                                        <div id="nouserinfo" ng-if="!userid" style="z-index:9;padding: 30px 5px 10px 0; background:#fff; width:100%; height: 72px; position:absolute; left:0; top:20px;text-align:center;"
+                                            class="ng-scope">
+                                            <div>
+                                                <div class="login-info">登录后才能发表评论和回复</div>
+                                                <div class="login-btn-area"><a href="../mlogin.html" class="l-b-l">登录</a>
+                                                    | <a class="l-b-r" href="../mlogin.html">注册</a></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- ngIf: isshoweditortip -->
+                                        <div id="editortip" ng-if="isshoweditortip" style="width:90%; line-height:130%; color:#A6CAF0; position:absolute; left:10px; top:30px; text-align:left;"
+                                            class="ng-scope">
+                                            <p ng-click="hideeditortip()">1.发言请遵守国家法律法规.<br />2.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.</p>
+                                            <!-- ngIf: is_rookie==1 -->
+                                        </div>
+                                        <input id="submit_btn" ng-click="postpinglun()" type="button" name="submit" value="回 复" />
+                                        <span style="color: #008000" class="ng-binding"></span>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+
+                            <div class="ng-binding nowplnum">已有<span class="num">****</span>条评论。 <a href="javascript:void(0);" class="reloadData" onclick="refresh()">刷新评论</a></div>
+
+                            <div id="pllist" class="pllist">
+
+                            </div>
+                            <div class="loadMore" ng-click="loadMore()" style="cursor: pointer; border: solid 1px #888; text-align: CENTER; font-size: 1.2em; line-height: 50px; height: 50px; margin-top: 10px;" ng-show="enable_show_load_btn"> 加载更多 </div>
+                        </div>
+                    </div>
+
                 </section>
                 <!--弹幕-->
                 <!-- <div class="dm_box">
