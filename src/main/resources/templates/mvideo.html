@@ -32,7 +32,7 @@
     <div class="global">
         <!-- header/S -->
         <div class="header">
-            <h1 class="logo"><a href="https://m.zhibo8.net/mindex.html">直播8</a></h1>
+            <h1 class="logo"><a href="https://www.zhibo8.net/mindex.html">直播8</a></h1>
             <div class="global_line"><a href="javascript:;" class="global_sel">篮球</a></div>
         </div>
         <!-- header/E -->
@@ -55,7 +55,7 @@
                 <div class="panel nba_p showtime">
                     <div class="list">
                         <ul class="ent">
-                            <li th:each="v:${mvideoList}" class="lite" th:type="${v.project=='足球' ? 'zuqiu' : 'nba'}" >
+                            <li th:each="v:${mvideoList}" class="lite" th:type="${v.project=='足球' ? 'zuqiu' : 'nba'}">
                                 <div class="icon_video">
                                     <a th:href="${v.link}">
                                         <img th:alt="${v.name}" th:src="${webImageBase + v.image}" onerror="javascript:this.src='https://www.zhibo8.net/image_1/logo.png'" /></a>

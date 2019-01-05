@@ -61,7 +61,7 @@
                 <header>
                     <div class="m_top">
                         <!-- <div class="fr fr_feedback"><a href="http://m.zhibo8.cc/feedback/" class="feedback">反馈</a></div> -->
-                        <div class="m_logo"><a href="javascript:history.go(-1);" class="back"></a><a href="https://m.zhibo8.net/mindex.html"
+                        <div class="m_logo"><a href="javascript:history.go(-1);" class="back"></a><a href="https://www.zhibo8.net/mindex.html"
                                 class="m_refresh"></a></div>
                     </div>
                 </header>
@@ -170,7 +170,10 @@
                                     top:40px;
                                 }
                             </style>
-                    <div id="userinfo" style="display:none;" class="ng-scope">您好，<a href="http://www.zhibo8.net/mindex.html" class="ng-binding">****</a>！<a href="javascript:void(0);" onclick="locationToRe()"><font style="color:red;">开始发表评论</font></a> <a rel="#overlay" href="javascript:void(0);" ng-click="logout()">退出</a></div>
+                    <div id="userinfo" style="display:none;" class="ng-scope">您好，<a href="http://www.zhibo8.net/mindex.html"
+                            class="ng-binding">****</a>！<a href="javascript:void(0);" onclick="locationToRe()">
+                            <font style="color:red;">开始发表评论</font>
+                        </a> <a rel="#overlay" href="javascript:void(0);" ng-click="logout()">退出</a></div>
                     <div id="logindiv" ng-show="!userid" class="ng-scope">
                         <span class="login-info">登录后才能发表评论和回复</span> <span class="login-btn-area"><a href="../mlogin.html"
                                 class="l-b-l">登录</a> | <a class="l-b-r" href="../mlogin.html">注册</a></span>
@@ -203,19 +206,22 @@
                                             <p ng-click="hideeditortip()">1.发言请遵守国家法律法规.<br />2.禁止发布任何宣传、广告、侮辱攻击他人、刷屏等信息.</p>
                                             <!-- ngIf: is_rookie==1 -->
                                         </div>
-                                        <input id="submit_btn" ng-click="postpinglun()" type="button" name="submit" value="回 复" />
+                                        <input id="submit_btn" ng-click="postpinglun()" type="button" name="submit"
+                                            value="回 复" />
                                         <span style="color: #008000" class="ng-binding"></span>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
 
-                            <div class="ng-binding nowplnum">已有<span class="num">****</span>条评论。 <a href="javascript:void(0);" class="reloadData" onclick="refresh()">刷新评论</a></div>
+                            <div class="ng-binding nowplnum">已有<span class="num">****</span>条评论。 <a href="javascript:void(0);"
+                                    class="reloadData" onclick="refresh()">刷新评论</a></div>
 
                             <div id="pllist" class="pllist">
 
                             </div>
-                            <div class="loadMore" ng-click="loadMore()" style="cursor: pointer; border: solid 1px #888; text-align: CENTER; font-size: 1.2em; line-height: 50px; height: 50px; margin-top: 10px;" ng-show="enable_show_load_btn"> 加载更多 </div>
+                            <div class="loadMore" ng-click="loadMore()" style="cursor: pointer; border: solid 1px #888; text-align: CENTER; font-size: 1.2em; line-height: 50px; height: 50px; margin-top: 10px;"
+                                ng-show="enable_show_load_btn"> 加载更多 </div>
                         </div>
                     </div>
 

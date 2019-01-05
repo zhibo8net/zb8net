@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="baidu-site-verification" content="FeM2EtCC8T" />
     <title>直播8-直播吧|JRS直播|足球直播|NBA直播 –全网免费超清无延时直播网</title>
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
     <meta name="keywords" content="直播8，直播吧，JRS直播，足球直播，NBA直播，英超直播 " />
     <meta name="description" content="直播8是知名体育赛事汇聚平台，主要提供免费赛事直播、足球集锦、NBA录像、英超直播等直播服务，直播8以全网最超清信号让您免费畅享五大联赛和NBA直播,并且打造国内最好体育赛事直播吧。" />
     <link rel="stylesheet" th:href="@{styles_1/mindex.css?version=2224}" />
@@ -31,7 +31,7 @@
     <div class="global">
         <!-- header/S -->
         <div class="header">
-            <h1 class="logo"><a href="https://m.zhibo8.net/mindex.html">直播8</a></h1>
+            <h1 class="logo"><a href="https://www.zhibo8.net/mindex.html">直播8</a></h1>
             <div class="global_line"><a href="javascript:;" class="global_sel">篮球</a></div>
             <!-- <div class="to_simple"><a href="//m.zhibo8.cc/wap"><img src="//static4style.qiumibao.com/m_images/jianban.png"></a></div>
             <a href="//www.zhibo8.cc/" class="jump"><img src="//static4style.qiumibao.com/m_images/towww.png"></a>
@@ -67,7 +67,8 @@
                             <li th:each="upNews:${upNewList}" class="lite news_lite" type="football" label='足球' style="display: none;">
                                 <h2 th:if="${upNews.leftNewsDTO!=null}">
                                     <a th:href="'/mdetail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank">
-                                        <img th:src="${upNews.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" alt="" />
+                                        <img th:src="${upNews.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'"
+                                            alt="" />
                                         <div class="line_tlt" th:text="${upNews.leftNewsDTO.title}"></div>
                                     </a>
                                 </h2>
@@ -75,7 +76,8 @@
                             <li th:each="downNews:${downNewList}" label="NBA,篮球" class="lite news_lite" type="basketball">
                                 <h2 th:if="${downNews.leftNewsDTO!=null}">
                                     <a th:href="'/mdetail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank">
-                                        <img th:src="${downNews.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" alt="" />
+                                        <img th:src="${downNews.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'"
+                                            alt="" />
                                         <div class="line_tlt" th:text="${downNews.leftNewsDTO.title}"></div>
                                     </a>
                                 </h2>
