@@ -39,7 +39,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/api/admin/*");
         registrationBean.addUrlPatterns("/admin_1/php/upload_json.php");
         registrationBean.addUrlPatterns("/api/matchRank/*");
-
+        registrationBean.addUrlPatterns("/api/matchSupport/*");
         return registrationBean;
     }
     @Bean

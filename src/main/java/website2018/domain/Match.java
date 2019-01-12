@@ -38,6 +38,9 @@ public class Match extends BaseEntity {
 
     public String matchNewFlag;
 
+    public Integer masterTeamSupport;
+
+    public Integer guestTeamSupport;
     @OneToMany(mappedBy = "match", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public List<Live> lives = Lists.newArrayList();
 

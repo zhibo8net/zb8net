@@ -22,7 +22,8 @@ public class CommentController extends BaseEndPoint {
     
     @Autowired
     CommentService commentService;
-    
+
+
     @RequestMapping(value = "/api/user/addComment", produces = MediaTypes.JSON_UTF_8)
     public ReturnResponse addComment(@RequestBody(required=false) CommentDTO commentDTO,HttpServletRequest request) {
 

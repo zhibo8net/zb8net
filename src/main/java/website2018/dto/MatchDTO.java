@@ -34,4 +34,11 @@ public class MatchDTO {
 
     public String playDateStr;
 
+    public Integer masterTeamSupport;
+
+    public Integer guestTeamSupport;
+
+
+
+
 }
