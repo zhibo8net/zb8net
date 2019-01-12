@@ -61,7 +61,7 @@
                             <li th:each="news:${mnewsList}" class="lite" th:type="${news.project=='足球' ? 'zuqiu' : 'nba'}" >
                                 <div class="icon_video">
                                     <a th:href="'/mdetail/'+${news.id}+'.html'">
-                                        <img th:src="${news.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" /></a>
+                                        <img th:src="${webImageBase+news.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" /></a>
                                 </div>
                                 <h2>
                                     <a th:href="'/mdetail/'+${news.id}+'.html'" th:text="${news.title}"></a>
