@@ -58,7 +58,7 @@
                             <li th:each="v:${mvideoList}" class="lite" th:type="${v.project=='足球' ? 'zuqiu' : 'nba'}">
                                 <div class="icon_video">
                                     <a th:href="${v.link}">
-                                        <img th:alt="${v.name}" th:src="${webImageBase + v.image}" onerror="javascript:this.src='https://www.zhibo8.net/image_1/logo.png'" /></a>
+                                        <img th:alt="${v.name}" th:src="${webImageBase + v.image}" onerror="javascript:this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'" /></a>
                                 </div>
                                 <h2>
                                     <a th:href="${v.link}" th:text="${v.name}"></a>

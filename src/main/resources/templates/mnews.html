@@ -41,7 +41,7 @@
             <ul>
                 <li><a href="/mindex.html">直播</a></li>
                 <!-- <li class="isend"><a href="v2/record.html">完赛</a></li> -->
-                <li><a href="/nba_video.html">视频</a></li>
+                <li><a href="/mvideo.html">视频</a></li>
                 <li class="current"><a href="/#">新闻</a></li>
                 <!-- <li><a href="//m.zhibo8.cc/json/paihang/v2/main.html">数据</a></li> -->
                 <li><a href="/image_1.html">图片</a></li>
@@ -61,7 +61,7 @@
                             <li th:each="news:${mnewsList}" class="lite" th:type="${news.project=='足球' ? 'zuqiu' : 'nba'}" >
                                 <div class="icon_video">
                                     <a th:href="'/mdetail/'+${news.id}+'.html'">
-                                        <img th:src="${webImageBase+news.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" /></a>
+                                        <img th:src="${webImageBase+news.image}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'" /></a>
                                 </div>
                                 <h2>
                                     <a th:href="'/mdetail/'+${news.id}+'.html'" th:text="${news.title}"></a>

@@ -43,7 +43,7 @@
             <ul>
                 <li class="current"><a href="/#">直播</a></li>
                 <!-- <li class="isend"><a href="v2/record.html">完赛</a></li> -->
-                <li><a href="/nba_video.html">视频</a></li>
+                <li><a href="/mvideo.html">视频</a></li>
                 <li><a href="/mnews.html">新闻</a></li>
                 <!-- <li><a href="//m.zhibo8.cc/json/paihang/v2/main.html">数据</a></li> -->
                 <li><a href="/image_1.html">图片</a></li>
@@ -67,7 +67,7 @@
                             <li th:each="upNews:${upNewList}" class="lite news_lite" type="football" label='足球' style="display: none;">
                                 <h2 th:if="${upNews.leftNewsDTO!=null}">
                                     <a th:href="'/mdetail/'+${upNews.leftNewsDTO.id}+'.html'" target="_blank">
-                                        <img th:src="${webImageBase+upNews.leftNewsDTO.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" alt="" />
+                                        <img th:src="${webImageBase+upNews.leftNewsDTO.image}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'" alt="" />
                                         <div class="line_tlt" th:text="${upNews.leftNewsDTO.title}"></div>
                                     </a>
                                 </h2>
@@ -75,7 +75,7 @@
                             <li th:each="downNews:${downNewList}" label="NBA,篮球" class="lite news_lite" type="basketball">
                                 <h2 th:if="${downNews.leftNewsDTO!=null}">
                                     <a th:href="'/mdetail/'+${downNews.leftNewsDTO.id}+'.html'" target="_blank">
-                                        <img th:src="${webImageBase+downNews.leftNewsDTO.image}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'" alt="" />
+                                        <img th:src="${webImageBase+downNews.leftNewsDTO.image}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'" alt="" />
                                         <div class="line_tlt" th:text="${downNews.leftNewsDTO.title}"></div>
                                     </a>
                                 </h2>
@@ -114,7 +114,7 @@
                                                     <td class="s_time" th:text="${m.playTime}"></td>
                                                     <td>
                                                         <div>
-                                                            <img class="lazy" th:src="${m.masterTeamLink}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'"
+                                                            <img class="lazy" th:if="${m.masterTeamLink}" th:src="${m.masterTeamLink}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.img'"
                                                                 alt="" style="display: inline;" />
                                                         </div>
                                                         <div th:if="${m.teamFlag=='TRUE'}"><b th:text="${m.masterTeamName}"></b></div>
@@ -143,7 +143,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <div><img class="lazy" th:src="${m.guestTeamLink}" onerror="this.src='https://www.zhibo8.net/image_1/logo.png'"
+                                                        <div><img class="lazy" th:if="${m.guestTeamLink}" th:src="${m.guestTeamLink}" onerror="this.src='https://www.zhibo8.net/image_1/defaultImg.jpg'"
                                                                 alt="" style="display: inline;" /></div>
                                                         <div th:if="${m.teamFlag=='TRUE'}"><b th:text="${m.guestTeamName}"></b></div>
                                                         <div th:if="${m.teamFlag=='FALSE'}"><b th:text="${m.name.indexOf('VS')>-1?m.name.split('VS')[1]:''}"></b></div>
