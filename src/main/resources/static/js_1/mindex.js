@@ -1,10 +1,10 @@
 (function(window,$,undefined){
-    $('li.lite').each(function () {
-        if(this.find('.masterDefaultImg').length > 0 && this.find('.masterTeamName b').html() != ''){
-            this.find('.masterDefaultImg').show();
+    $('.saishi li.lite').each(function () {
+        if($(this).find('.masterDefaultImg').length > 0 && $(this).find('.masterTeamName b').html() == ''){
+            $(this).find('.masterDefaultImg').show();
         }
-        if(this.find('.guestDefaultImg').length > 0 && this.find('.guestTeamName b').html() != ''){
-            this.find('.guestDefaultImg').show();
+        if($(this).find('.guestDefaultImg').length > 0 && $(this).find('.guestTeamName b').html() == ''){
+            $(this).find('.guestDefaultImg').show();
         }
      });
     /*------比分数据的分区*/
