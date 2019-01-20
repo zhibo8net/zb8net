@@ -1,12 +1,4 @@
 (function(window,$,undefined){
-    $('.saishi li.lite').each(function () {
-        if($(this).find('.masterDefaultImg').length > 0 && $(this).find('.masterTeamName b').html() == ''){
-            $(this).find('.masterDefaultImg').show();
-        }
-        if($(this).find('.guestDefaultImg').length > 0 && $(this).find('.guestTeamName b').html() == ''){
-            $(this).find('.guestDefaultImg').show();
-        }
-     });
     /*------比分数据的分区*/
         //比分
         var list_code;
@@ -329,6 +321,14 @@
     //		}
     /*--------------点击返回顶部，系统的判断------------*/
         $(function(){
+            $('.saishi li.lite').each(function () {
+                if($(this).find('.masterDefaultImg').length > 0 && $(this).find('.masterTeamName b').html() == ''){
+                    $(this).find('.masterDefaultImg').show();
+                }
+                if($(this).find('.guestDefaultImg').length > 0 && $(this).find('.guestTeamName b').html() == ''){
+                    $(this).find('.guestDefaultImg').show();
+                }
+             });
     //		$(".global").prepend(addAdv("https://s.click.taobao.com/HJM3UOx","http://tu.qiumibao.com/img/1111_480_60.jpg"));
     //		setTimeout(function(){top=$(".nav").offset().top},100);
             /*-------终端类型的判断-----------------*/
