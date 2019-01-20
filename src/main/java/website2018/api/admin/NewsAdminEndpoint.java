@@ -26,6 +26,7 @@ import website2018.base.BaseService;
 import website2018.domain.News;
 import website2018.dto.admin.NewsAdminDTO;
 import website2018.service.admin.NewsService;
+import website2018.utils.DateUtils;
 
 // Spring Restful MVC Controller的标识, 直接输出内容，不调用template引擎.
 @RestController
@@ -60,6 +61,8 @@ public class NewsAdminEndpoint extends BaseEndPoint {
             if(StringUtils.isNotBlank(dto.image)) {
                 dto.image = this.webImageBase + dto.image;
             }
+            Date d=dto.updateTime==null?dto.addTime:dto.updateTime;
+            dto.addTimeStr= DateUtils.getDateStr(d,"yyyy-MM-dd HH:mm:ss");
         }
 
         logService.log("查询新闻表", null);
