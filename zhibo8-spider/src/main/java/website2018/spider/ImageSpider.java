@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -101,7 +102,9 @@ public class ImageSpider extends BaseSpider {
                             Document oneImgDoc = readDocFrom(oneImgUrl);
                             String imageSrc = "http:" + oneImgDoc.select("#image_wrap img").attr("src");
                             String imageFilePath = downloadFile(imageSrc);
-                            
+                            if(StringUtils.isEmpty(imageFilePath)){
+                                imageFilePath=  downloadFile(imageSrc.replace("https","http"));
+                            }
                             Image image = new Image();
                             image.name = imageFilePath;
                             image.bag = bag;

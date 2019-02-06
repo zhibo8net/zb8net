@@ -57,7 +57,7 @@ public class DynamicSpecifications {
                             String[] strs = ((String)filter.value).split(",");
                             for(String s : strs) {
                                 values.add(s);
-                                System.out.println(s);
+                               // System.out.println(s);
                             }
                             predicates.add(expression.in(values));
                             break;

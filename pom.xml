@@ -15,6 +15,9 @@
         <module>zhibo8-web</module>
         <module>zhibo8-service</module>
         <module>zhibo8-spider</module>
+        <module>zhibo8-res</module>
+        <module>zhibo8-mobile</module>
+        <module>zhibo8-admin</module>
     </modules>
 <parent>
     <groupId>org.springframework.boot</groupId>
@@ -28,6 +31,7 @@
     <springside.version>5.0.0-SNAPSHOT</springside.version>
     
     <guava.version>20.0</guava.version>
+
 </properties>
 
 <dependencies>

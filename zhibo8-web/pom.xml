@@ -14,10 +14,9 @@
 
 <properties>
     <java.version>1.8</java.version>
-    
     <springside.version>5.0.0-SNAPSHOT</springside.version>
-    
     <guava.version>20.0</guava.version>
+    <zhibo8.version>0.0.1-SNAPSHOT</zhibo8.version>
 </properties>
 
     <dependencies>
@@ -25,7 +24,14 @@
         <dependency>
             <groupId>zhibo8</groupId>
             <artifactId>zhibo8-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${zhibo8.version}</version>
+        </dependency>
+
+        <!--引入zhibo8-res的依赖-->
+        <dependency>
+            <groupId>zhibo8</groupId>
+            <artifactId>zhibo8-res</artifactId>
+            <version>${zhibo8.version}</version>
         </dependency>
     </dependencies>
 <build>

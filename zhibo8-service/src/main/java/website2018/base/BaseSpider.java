@@ -196,6 +196,7 @@ public class BaseSpider {
             logger.error("未能获取图片：" + url);
             return "";
         }
+
     }
 
     public String game(String str) {
