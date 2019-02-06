@@ -18,6 +18,9 @@
         <module>zhibo8-res</module>
         <module>zhibo8-mobile</module>
         <module>zhibo8-admin</module>
+        <module>zhibo8-common</module>
+        <module>zhibo8-domain</module>
+        <module>zhibo8-repository</module>
     </modules>
 <parent>
     <groupId>org.springframework.boot</groupId>

@@ -11,8 +11,14 @@
 /zhibo8-spider/target
 /zhibo8-admin/target
 /zhibo8-web/target
+/zhibo8-domain/target
+/zhibo8-common/target
+/zhibo8-repository/target
 /*.iml
 /zhibo8-res/*.iml
 /zhibo8-service/*.iml
 /zhibo8-spider/*.iml
 /zhibo8-web/*.iml
+/zhibo8-common/*.iml
+/zhibo8-repository/*.iml
+/zhibo8-domain/*.iml

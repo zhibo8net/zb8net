@@ -7,30 +7,18 @@
     </parent>
 
     <groupId>zhibo8</groupId>
-    <artifactId>zhibo8-service</artifactId>
+    <artifactId>zhibo8-domain</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+
 <properties>
     <java.version>1.8</java.version>
+    
     <springside.version>5.0.0-SNAPSHOT</springside.version>
+    
     <guava.version>20.0</guava.version>
-    <zhibo8.version>0.0.1-SNAPSHOT</zhibo8.version>
-
 </properties>
-    <dependencies>
-        <!--引入zhibo8-service的依赖-->
-        <dependency>
-            <groupId>zhibo8</groupId>
-            <artifactId>zhibo8-common</artifactId>
-            <version>${zhibo8.version}</version>
-        </dependency>
-        <!--引入zhibo8-repository的依赖-->
-        <dependency>
-            <groupId>zhibo8</groupId>
-            <artifactId>zhibo8-repository</artifactId>
-            <version>${zhibo8.version}</version>
-        </dependency>
-    </dependencies>
+
 
 </project>

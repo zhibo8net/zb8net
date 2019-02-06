@@ -1,11 +1,6 @@
 package website2018.utils;
 
-import com.google.common.collect.Lists;
-import website2018.domain.Team;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2018/9/24.

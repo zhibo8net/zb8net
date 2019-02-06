@@ -37,7 +37,8 @@ public class ImageSpider extends BaseSpider {
         imageSources.add(new ImageSource("篮球", "直播吧篮球图片", "http://tu.zhibo8.cc/nba/all/"));
     }
 
-    @Scheduled(cron = "0 30 1/2 * * *")
+   @Scheduled(cron = "0 30 1/2 * * *")
+   // @Scheduled(cron = "0 0/2 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
@@ -100,11 +101,19 @@ public class ImageSpider extends BaseSpider {
                         for(int i = 1; i <= count; i++) {
                             String oneImgUrl = _insideUrl + "/" + i;
                             Document oneImgDoc = readDocFrom(oneImgUrl);
-                            String imageSrc = "http:" + oneImgDoc.select("#image_wrap img").attr("src");
+                            String imgUrlSrc=oneImgDoc.select("#image_wrap img").attr("src");
+                            String imageSrc ="";
+                            if(imgUrlSrc.startsWith("/redirect/pic")){
+                                 imageSrc = "http://tu.zhibo8.cc" + imgUrlSrc;
+                            }else{
+                                imageSrc = "http:" + imgUrlSrc;
+                            }
+
                             String imageFilePath = downloadFile(imageSrc);
                             if(StringUtils.isEmpty(imageFilePath)){
                                 imageFilePath=  downloadFile(imageSrc.replace("https","http"));
                             }
+
                             Image image = new Image();
                             image.name = imageFilePath;
                             image.bag = bag;
