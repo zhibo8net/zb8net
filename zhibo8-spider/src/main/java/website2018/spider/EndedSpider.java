@@ -5,6 +5,7 @@ import java.util.List;
 
 import freemarker.template.utility.StringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -19,6 +20,7 @@ import website2018.MyApplication;
 import website2018.base.BaseSpider;
 import website2018.domain.Ended;
 import website2018.domain.Video;
+import website2018.dto.VideoType;
 import website2018.repository.EndedDao;
 
 @Component
@@ -26,8 +28,17 @@ public class EndedSpider extends BaseSpider {
 
     @Autowired
     EndedDao endedDao;
+    List<VideoType> videoTypes = Lists.newArrayList();
 
-    @Scheduled(cron = "0 0 0/2 * * *")
+    @Override
+    public void initForOneSpider() {
+          videoTypes.add(new VideoType("足球", "录像", "http://www.azhibo.com/bisailuxiang/zuqiu"));
+        videoTypes.add(new VideoType("篮球", "录像", "http://www.azhibo.com/bisailuxiang/lanqiu"));
+
+
+    }
+    @Scheduled(cron = "0 11 1/2 * * *")
+    //  @Scheduled(cron = "0 0/1 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
@@ -38,7 +49,7 @@ public class EndedSpider extends BaseSpider {
             @Override
             public void run(){
                 try {
-                    fetchEnded();
+                    fetchEnded_20190216();
                 }catch(Exception e) {
                     logger.error(e.getLocalizedMessage());
                 }
@@ -46,7 +57,87 @@ public class EndedSpider extends BaseSpider {
         }, "EndedSpider - " + System.currentTimeMillis());
         t.start();
     }
-    
+    @Transactional
+    public void fetchEnded_20190216() throws Exception {
+        for (VideoType vt : videoTypes) {
+            try {
+                List<Ended> entitys = Lists.newArrayList();
+                Document doc = readDocFrom(vt.azhibo);
+                if(doc==null){
+                    logger.error("抓取ended错误："+ vt.azhibo+" 抓取数据为空 doc");
+                    continue ;
+                }
+                Elements endeds = doc.select(".video-tape>ul>li");
+                for (Element en : endeds) {
+                    try {
+                        Ended ended = new Ended();
+
+                        ended.project = vt.project;
+                        Elements  spanHtml = en.select("span");
+                        String game = spanHtml.get(0).html();
+                        String ename = spanHtml.get(1).html();
+                        ended.name = ename;
+                        ended.game=game;
+                        ended.addTime = new Date();
+
+                        Elements  aHtml = en.select(".content a");
+                        if(aHtml==null){
+                            continue;
+                        }
+                        boolean flag=false;
+                        for(Element e:aHtml){
+                          String vSource= "http://www.azhibo.com/"+ e.attr("href");
+                            if(!flag){
+                                ended.source= vSource;
+                                flag=true;
+                            }
+
+                            Document d = readDocFrom(vSource);
+                            if(d==null){
+                                continue;
+                            }
+                            String link = d.select(".player-box a").attr("href");
+                            if (StringUtils.isBlank(link)||StringUtils.isEmpty(link)) {
+                                String _insideHtml = d.select("#liveTemplate").html();
+                                Document doc_insideHtml = Jsoup.parse(_insideHtml);
+                                link = doc_insideHtml.select("iframe").attr("src");
+                            }
+                            if(StringUtils.isEmpty(link)){
+                                continue;
+                            }
+                            Video video = new Video();
+                            video.project = vt.project;
+                            video.game = ended.game;
+                            video.type = type(vt.name);
+
+                            video.name = e.html();
+                            video.link = link;
+                            String image = downloadFile(d.select("#player-sidebar .selected img").attr("src"));
+
+                            video.image = image;
+                            video.ended = ended;
+                            video.source = vSource;
+                            video.addTime = new Date();
+                            ended.videos.add(video);
+                        }
+                        entitys.add(ended);
+                    }catch (Exception e){
+                        logger.error("抓取ended错误",e);
+                    }
+
+                }
+                if(entitys!=null&&entitys.size()>0){
+                    endedDao.save(entitys);
+                }
+
+            } catch (Exception e) {
+                logger.error("抓取ended错误",vt.azhibo,e);
+            }
+
+
+        }
+    }
+
     @Transactional
     public void fetchEnded() throws Exception {
         try {
@@ -157,7 +248,10 @@ public class EndedSpider extends BaseSpider {
                     v.game = e.game;
                 }
             }
-            endedDao.save(entitys);
+            if(entitys!=null&&entitys.size()>0){
+                endedDao.save(entitys);
+            }
+
 
         }
     }catch (Exception e){

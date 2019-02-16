@@ -5,12 +5,8 @@ package website2018.Enum;
  */
 public enum ProblemType {
 
-    RADIO_2("RADIO_2","单选-2选项"),
-    RADIO_3("RADIO_3","单选-3选项"),
-    RADIO_4("RADIO_4","单选-4选项"),
-    CHECKBOX_2("CHECKBOX_2","多选-2选项"),
-    CHECKBOX_3("CHECKBOX_3","多选-3选项"),
-    CHECKBOX_4("CHECKBOX_4","多选-4选项")
+    RADIO("RADIO","单选-选项"),
+    CHECKBOX("CHECKBOX","多选-选项")
     ;
     private ProblemType(String code, String desc){
         this.code=code;

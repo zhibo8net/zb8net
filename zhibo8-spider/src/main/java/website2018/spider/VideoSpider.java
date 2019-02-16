@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -41,8 +42,7 @@ public class VideoSpider extends BaseSpider {
         videoTypes.add(new VideoType("足球", "法甲", "http://www.azhibo.com/zuqiushipin/tag/65"));
         videoTypes.add(new VideoType("足球", "中超", "http://www.azhibo.com/zuqiushipin/tag/59"));
     }
-   @Scheduled(cron = "0 30 1/2 * * *")
-   // @Scheduled(cron = "0/1 * * * * *")
+    @Scheduled(cron = "0 11 1/2 * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
@@ -66,7 +66,10 @@ public class VideoSpider extends BaseSpider {
     public void fetchVideo() throws Exception {
 
         Pattern p = Pattern.compile(".*http://player.youku.com/player.php/sid/(.*)/v.swf.*");
-        
+        Pattern p2 = Pattern.compile(".*http://tv.sohu.com/upload/swf/(.*)/Main.swf(.*)autoplay=true(.*)vid=(.*)\" scrolling=.*");
+        Pattern p3 = Pattern.compile(".*http://p.you.video.sina.com.cn/swf/bokePlayer20130801_V4_1_42_24.swf(.*)autoPlay=(.*)as=0(.*)vid=(.*)\" scrolling=.*");
+        Pattern p4 = Pattern.compile(".*http://v.qq.com/iframe/player.html(.*)tiny=0(.*)auto=1(.*)vid=(.*)\" onclick=.*");
+
         List<Video> entitys = Lists.newArrayList();
 
         videoTypesEach: for (VideoType vt : videoTypes) {
@@ -76,6 +79,10 @@ public class VideoSpider extends BaseSpider {
             try {
                 
                 Document doc = readDocFrom(vt.azhibo);
+                if(doc==null){
+                    logger.error("抓取视频内页出现错误："+ vt.azhibo+" 抓取数据为空 doc");
+                    continue ;
+                }
                 Elements videos = doc.select(".azhibo-video-thumbnials>ul>li");
     
                 videosEach: for (Element v : videos) {
@@ -98,15 +105,35 @@ public class VideoSpider extends BaseSpider {
         
                             if (StringUtils.isBlank(link)||StringUtils.isEmpty(link)) {
                                 String _insideHtml = _insideDoc.select("#liveTemplate").html();
+                                Document doc_insideHtml = Jsoup.parse(_insideHtml);
+                                 link=  doc_insideHtml.select("iframe").attr("src");
                                 //尝试获取优酷的视频
-                                Matcher m = p.matcher(_insideHtml);
-                                if(m.matches()) {
-                                    String id = m.group(1);
-                                    link = "http://v.youku.com/v_show/id_" + id + ".html";
-                                    System.out.println("拼成优酷视频：" + link);
-                                }else {
-                                    System.out.println("没能匹配" + _insideHtml);
+//                                Matcher m = p.matcher(_insideHtml);
+//                                if(m.matches()) {
+//                                    String id = m.group(1);
+//                                    link = "http://v.youku.com/v_show/id_" + id + ".html";
+//                                    System.out.println("拼成优酷视频：" + link);
+//                                }
+//                                 m = p2.matcher(_insideHtml);
+//                                if(m.matches()) {
+//                                    String mu1 = m.group(1);
+//                                    String mu2 = m.group(4);
+//                                    link = "http://tv.sohu.com/upload/swf/"+mu1+"/Main.swf?autoplay=true&vid="+mu2;
+//                                }
+//                                m = p3.matcher(_insideHtml);
+//                                if(m.matches()) {
+//                                    String id = m.group(4);
+//                                    link = "http://p.you.video.sina.com.cn/swf/bokePlayer20130801_V4_1_42_24.swf?autoPlay=1&as=0&vid="+id;
+//                                }
+//                                m = p4.matcher(_insideHtml);
+//                                if(m.matches()) {
+//                                    String id = m.group(4);
+//                                    link = "http://v.qq.com/iframe/player.html?tiny=0&auto=1&vid="+id;
+//                                }
+                                if(StringUtils.isEmpty(link)){
+                                    logger.warn("没能匹配" + _insideHtml);
                                 }
+
                             }
 
                             if(StringUtils.isNotBlank(link)&&StringUtils.isNotEmpty(link)) {
@@ -137,12 +164,13 @@ public class VideoSpider extends BaseSpider {
                                 Thread.sleep(1000 * 1);
                                 
                             }else {
-                                System.out.println("未获取到视频地址：" + _insideUrl);
+
+                                logger.warn("未获取到视频地址：" + _insideUrl);
                             }
                             
                         }catch(Exception e) {
-                            System.out.println("抓取视频内页出现错误：" + _insideUrl);
-                            continue videosEach;
+                            logger.error("抓取视频内页出现错误：" +_insideUrl,e);
+                          //  continue videosEach;
                         }
                     }
     
@@ -151,20 +179,39 @@ public class VideoSpider extends BaseSpider {
                 Thread.sleep(1000 * 1);
             
             }catch(Exception e) {
-                System.out.println("抓取视频列表出现错误：" + vt.azhibo);
+                logger.error("抓取视频列表出现错误：" + vt.azhibo,e);
                 continue videoTypesEach;
             }
         }
+        if(entitys!=null&&entitys.size()>0){
+            videoDao.save(entitys);
+        }
 
-        videoDao.save(entitys);
-        logger.warn("添加了Video条数：" + entitys.size());
+        logger.info("添加了Video条数：" + entitys.size());
     }
-    
-    public void test() throws Exception{
-        String src = readDocFrom("http://www.azhibo.com/zuqiushipin/hotVideos-2016-03-30-197873.html").select("#liveTemplate").html();
+
+    public static void main(String[] args)throws Exception{
+        Pattern p = Pattern.compile(".*http://tv.sohu.com/upload/swf/(.*)/Main.swf(.*)autoplay=true(.*)vid=(.*)\" scrolling=.*");
+        Matcher m = p.matcher("<iframe width=\"100%\" height=\"430\" src=\"http://tv.sohu.com/upload/swf/20111117/Main.swf?autoplay=true&amp;vid=2717090\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>");
+        if(m.matches()) {
+            String id = m.group(1);
+            String id2 = m.group(4);
+            String link = "http://v.youku.com/v_show/id_" + id + ".html";
+            System.out.println("拼成优酷视频：" + link);
+        }else {
+            System.out.println("没能匹配");
+        }
+
+        String b="<iframe width=\"100%\" height=\"430\" src=\"http://p.you.video.sina.com.cn/swf/quotePlayer20130808_V4_4_42_7.swf?autoPlay=1&as=0&vid=140939781&uid=0\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>";
+        Document doc = Jsoup.parse(b);
+      String s=  doc.select("iframe").attr("src");
+        System.out.println("没能匹配"+s);
+    }
+    public  void test() throws Exception{
+        String src = readDocFrom("http://www.azhibo.com/lanqiushipin/hotVideos-2016-01-17-178762.html").select("#liveTemplate").html();
         System.out.println(src);
 
-        Pattern p = Pattern.compile(".*http://player.youku.com/player.php/sid/(.*)/v.swf.*");
+        Pattern p = Pattern.compile(".*http://tv.sohu.com/upload/swf/(.*)/Main.swf?autoplay=true&vid=(.*)");
 
         //尝试获取优酷的视频
         Matcher m = p.matcher(src);

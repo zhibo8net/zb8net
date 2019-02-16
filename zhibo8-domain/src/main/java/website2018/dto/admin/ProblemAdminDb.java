@@ -1,7 +1,10 @@
 package website2018.dto.admin;
 
 
+import com.google.common.collect.Lists;
+
 import java.util.Date;
+import java.util.List;
 
 public class ProblemAdminDb {
     public Long id;
@@ -17,17 +20,7 @@ public class ProblemAdminDb {
     //题目标题
     public String problemTitle;
 
-    //答案1
-    public String answerOne;
 
-    //答案1
-    public String answerTwo;
-
-    //答案1
-    public String answerThree;
-
-    //答案1
-    public String answerFour;
 
     //正确答案
     public String answer;
@@ -38,5 +31,6 @@ public class ProblemAdminDb {
 
     public String updateTimeStr;
 
+    public List<ProblemContentAdminDTO> problemContentList = Lists.newArrayList();
 
 }

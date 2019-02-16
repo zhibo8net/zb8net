@@ -54,7 +54,7 @@ public class BaseSpider {
         String userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36";
         RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5 * 1000).setConnectTimeout(5 * 1000)
                 .build();
-        httpClient = HttpClientBuilder.create().setUserAgent(userAgent).setMaxConnTotal(1).setMaxConnPerRoute(1)
+        httpClient = HttpClientBuilder.create().setUserAgent(userAgent).setMaxConnTotal(500).setMaxConnPerRoute(200)
                 .setDefaultRequestConfig(requestConfig).build();
 
         // 已爬取过的url们
@@ -177,7 +177,7 @@ public class BaseSpider {
     }
 
     @Value("${upload.uploadPath}")
-    String baseDir;
+   public String baseDir;
 
     //返回例如2018/2/2/aakjfkasjfk.jpeg
     public String downloadFile(String url) {
@@ -186,10 +186,19 @@ public class BaseSpider {
             String urlWithoutParam = url.indexOf("?") < 0 ? url : url.substring(0, url.indexOf("?"));
             String ext = urlWithoutParam.indexOf(".") < 0 ? ".ext"
                     : urlWithoutParam.substring(urlWithoutParam.lastIndexOf("."));
-            String filename = UUID.randomUUID().toString() + ext;
+            String filename ="";
+            if(url.indexOf("redirect")>=0){
+
+                filename = UUID.randomUUID().toString()+".gif";
+            }else{
+                filename = UUID.randomUUID().toString() + ext;
+            }
+
             String nameWithTimePrefix = UploadUtils.nameWithTimePrefix(filename);
             String fullPath = baseDir + nameWithTimePrefix;
             FileUtils.copyURLToFile(new URL(url), new File(fullPath));
+
+
             System.out.println("保存图片到：" + fullPath);
             return nameWithTimePrefix;
         } catch (Exception e) {

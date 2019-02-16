@@ -1,5 +1,6 @@
 package website2018.spider;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -37,8 +38,8 @@ public class ImageSpider extends BaseSpider {
         imageSources.add(new ImageSource("篮球", "直播吧篮球图片", "http://tu.zhibo8.cc/nba/all/"));
     }
 
-   @Scheduled(cron = "0 30 1/2 * * *")
-   // @Scheduled(cron = "0 0/2 * * * *")
+    @Scheduled(cron = "0 30 1/2 * * *")
+    // @Scheduled(cron = "0 0/2 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
@@ -103,15 +104,23 @@ public class ImageSpider extends BaseSpider {
                             Document oneImgDoc = readDocFrom(oneImgUrl);
                             String imgUrlSrc=oneImgDoc.select("#image_wrap img").attr("src");
                             String imageSrc ="";
-                            if(imgUrlSrc.startsWith("/redirect/pic")){
-                                 imageSrc = "http://tu.zhibo8.cc" + imgUrlSrc;
+                            if(imgUrlSrc.indexOf("redirect")>=0){
+                                 imageSrc = "https://tu.zhibo8.cc" + imgUrlSrc;
                             }else{
                                 imageSrc = "http:" + imgUrlSrc;
                             }
 
                             String imageFilePath = downloadFile(imageSrc);
+
+
+
                             if(StringUtils.isEmpty(imageFilePath)){
                                 imageFilePath=  downloadFile(imageSrc.replace("https","http"));
+                            }else{
+                                File file=new File(baseDir+imageFilePath);
+                                if(file.length()<=1){
+                                    imageFilePath=  downloadFile(imageSrc.replace("https","http"));
+                                }
                             }
 
                             Image image = new Image();
@@ -132,8 +141,10 @@ public class ImageSpider extends BaseSpider {
 
             Thread.sleep(100 * 1);
         }
+        if(entitys!=null&&entitys.size()>0){
+            imageBagDao.save(entitys);
+        }
 
-        imageBagDao.save(entitys);
         logger.warn("添加了图片条数：" + entitys.size());
     }
 }

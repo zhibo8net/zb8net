@@ -1,9 +1,11 @@
 package website2018.domain;
 
+import com.google.common.collect.Lists;
 import website2018.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "zhibo_problem_db")
@@ -21,17 +23,6 @@ public class ProblemDb extends BaseEntity {
     //题目标题
     public String problemTitle;
 
-    //答案1
-    public String answerOne;
-
-    //答案1
-    public String answerTwo;
-
-    //答案1
-    public String answerThree;
-
-    //答案1
-    public String answerFour;
 
     //正确答案
     public String answer;
@@ -40,6 +31,8 @@ public class ProblemDb extends BaseEntity {
 
     public Date updateTime;
 
+    @OneToMany(mappedBy = "problemDb", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public List<ProblemContent> problemContentList = Lists.newArrayList();
 
 
 

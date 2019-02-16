@@ -80,8 +80,10 @@ public class NewsSpider extends BaseSpider {
         //fetchFromZhibo8(entitys, replaceWords);
         
         fetchFrom90VS(entitys, replaceWords);
+        if(entitys!=null&&entitys.size()>0){
+            newsDao.save(entitys);
+        }
 
-        newsDao.save(entitys);
         logger.warn("添加了新闻条数：" + entitys.size());
     }
     
