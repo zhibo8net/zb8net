@@ -54,5 +54,6 @@ public class IssueAdminDTO  {
 
     public List<IssueProblemAdminDTO> issueProblemList= Lists.newArrayList();
 
+    public List<IssueUserAdminDTO> issueUserList= Lists.newArrayList();
 
 }

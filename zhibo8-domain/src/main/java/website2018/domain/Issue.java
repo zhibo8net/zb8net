@@ -58,5 +58,7 @@ public class Issue extends BaseEntity {
     @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<IssueProblem> issueProblemList = Lists.newArrayList();
 
+    @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<IssueUser> issueUserList = Lists.newArrayList();
 
 }
