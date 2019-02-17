@@ -51,8 +51,7 @@ public class NewsSpider extends BaseSpider {
         newsSources2.add(new NewsSource("足球", "法甲", "90VS_法甲", "http://www.90vs.com/news2/list_150_1.html"));
     }
 
-    @Scheduled(cron = "0 30 1/2 * * *")
-    @Transactional
+   @Scheduled(cron = "0 30 1/2 * * *")
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
             return;
@@ -71,7 +70,7 @@ public class NewsSpider extends BaseSpider {
         t.start();
     }
     
-    @Transactional
+
     public void fetchNews() throws Exception {
         List<ReplaceWord> replaceWords = (List<ReplaceWord>)replaceWordDao.findAll();
         
@@ -172,9 +171,12 @@ public class NewsSpider extends BaseSpider {
         for (NewsSource ns : newsSources2) {
 
             Document doc = readDocFrom(ns.link);
+            if(doc==null){
+                continue;
+            }
             Elements links = doc.select(".list-dot li a");
 
-            newssEach: for (Element l : links) {
+           for (Element l : links) {
                 
                 try {
                     
@@ -182,13 +184,13 @@ public class NewsSpider extends BaseSpider {
 
                     // 在缓存中判断是否爬取过该url
                     if (fetched.getIfPresent(_insideUrl) != null) {
-                        System.out.println("已抓过的链接，不重复抓取（从缓存中判断）");
-                        continue newssEach;
+                        logger.warn("已抓过的链接，不重复抓取（从缓存中判断）");
+                        continue ;
                     }
 
                     List<News> maybeExistedEntitys = newsDao.findBySource(_insideUrl);
                     if (maybeExistedEntitys.size() > 0) {
-                        System.out.println("已存在的新闻，不重复抓取（从数据库中判断）");
+                        logger.warn("已存在的新闻，不重复抓取（从数据库中判断）");
                     } else {
                         Document _insideDoc = readDocFrom(_insideUrl);
                         fetched.put(_insideUrl, "1");
@@ -214,8 +216,8 @@ public class NewsSpider extends BaseSpider {
                         content = content.replaceAll("【更多.*资讯】", "");
                         
                         if(content.length() > 20000) {
-                            System.out.println("这篇新闻过于长了。");
-                            continue newssEach;
+                           logger.warn("这篇新闻过于长了。", title);
+                            continue ;
                         }
                         
                         News news = new News();
@@ -230,14 +232,15 @@ public class NewsSpider extends BaseSpider {
                         news.matchPreFlag="0";
                         entitys.add(news);
                     }
-                    System.out.println("从90VS成功抓取到一篇新闻……");
                 }catch(Exception e) {
-                    logger.error("从90VS抓取新闻出现错误……");
-                    continue newssEach;
+                    logger.error("从90VS抓取新闻出现错误……",e);
                 }
 
             }
-
+            if(entitys!=null&&entitys.size()>0){
+                newsDao.save(entitys);
+                entitys=Lists.newArrayList();
+            }
             Thread.sleep(100 * 1);
         }
     }

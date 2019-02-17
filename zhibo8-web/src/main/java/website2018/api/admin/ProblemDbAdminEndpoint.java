@@ -10,8 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springside.modules.utils.mapper.BeanMapper;
 import org.springside.modules.web.MediaTypes;
+import website2018.Enum.ProblemFlag;
 import website2018.Enum.ProblemType;
 import website2018.base.BaseEndPoint;
+import website2018.base.BaseService;
 import website2018.domain.Issue;
 import website2018.domain.ProblemDb;
 import website2018.dto.admin.IssueAdminDTO;
@@ -96,5 +98,28 @@ public class ProblemDbAdminEndpoint extends BaseEndPoint {
         problemDbAdminService.create(problemDb);
 
         logService.log("添加竞猜题库", "/problemForm/" + problemDb.id);
+    }
+
+    @RequestMapping(value = "/api/admin/problemDb/{id}", method = RequestMethod.PUT, consumes = MediaTypes.JSON_UTF_8)
+    public void modifyMatch(@RequestBody ProblemAdminDb problemAdminDb) throws Exception{
+
+        assertAdmin();
+
+        ProblemDb problemDb = BeanMapper.map(problemAdminDb, ProblemDb.class);
+
+
+
+        problemDbAdminService.modify(problemDb);
+        logService.log("修改题库", "/problemForm/" + problemDb.id);
+    }
+
+    @RequestMapping(value = "/api/admin/problemAdminDbs", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public List<ProblemAdminDb> listAllProblemAdminDb() throws Exception{
+
+        assertAdmin();
+
+        List<ProblemDb> problemDbs = problemDbAdminService.findByProblemFlag(ProblemFlag.DEFALUT.getCode());
+
+        return BeanMapper.mapList(problemDbs, ProblemDb.class, ProblemAdminDb.class);
     }
 }

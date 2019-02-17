@@ -80,8 +80,8 @@ public class IssueAdminService {
         issue.addTime=d;
         issue.updateTime=d;
 
-        issue.status= IssueStatus.DOING.getCode();
-        issue.statusDesc= IssueStatus.DOING.getDesc();
+        issue.status= IssueStatus.INIT.getCode();
+        issue.statusDesc= IssueStatus.INIT.getDesc();
         String maxIssue=issueDao.findMaxIssue();
         Integer  integer=1;
         if (StringUtils.isNotEmpty(maxIssue)){

@@ -4,7 +4,7 @@ package website2018.Enum;
  * Created by Administrator on 2019/1/27.
  */
 public enum IssueStatus {
-
+    INIT("INIT","初始化"),
     DOING("DOING","竞猜中"),
     MATCH_END("MATCHEND","比赛结束"),
     DRAW("DRAW","已开奖"),

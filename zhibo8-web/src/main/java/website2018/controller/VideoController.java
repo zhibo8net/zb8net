@@ -76,9 +76,9 @@ public class VideoController extends BaseEndPoint {
         model.addAttribute("projectEnglish", project.equals("足球") ? "football" : "basketball");
         List<String> games = Lists.newArrayList();
         if(project.equals("篮球")) {
-            games = Lists.newArrayList("NBA|CBA".split("\\|"));
+            games = Lists.newArrayList("NBA|CBA|热门".split("\\|"));
         }else {
-            games = Lists.newArrayList("英超|意甲|西甲|法甲|德甲|中超|欧冠".split("\\|"));
+            games = Lists.newArrayList("英超|意甲|西甲|法甲|德甲|中超|欧冠|热门".split("\\|"));
         }
         
         List<ProjectVideo> projectVideos = Lists.newArrayList();
@@ -142,7 +142,7 @@ public class VideoController extends BaseEndPoint {
         //最新视频
         List<Video> newVideos = videoQueryer.findByProjectGameTypeCount("足球",null, "视频", 20);
         model.addAttribute("newVideos", newVideos);
-        List<Video> hotVideos = videoQueryer.findByProjectGameTypeCount("足球", null, "录像", 10);
+        List<Video> hotVideos = videoQueryer.findByProjectGameTypeCount("足球", "热门", "视频", 10);
         model.addAttribute("hotVideos", hotVideos);
         //英超|意甲|西甲|法甲|德甲|中超|欧冠
         List<Video> ycVideos = videoQueryer.findByProjectGameTypeCount("足球", "英超", "视频", 20);
@@ -215,7 +215,7 @@ public class VideoController extends BaseEndPoint {
         List<Video> newVideos = videoQueryer.findByProjectGameTypeCount("篮球",null, "视频", 20);
         model.addAttribute("newVideos", newVideos);
 
-        List<Video> hotVideos = videoQueryer.findByProjectGameTypeCount("篮球", "NBA", "录像", 10);
+        List<Video> hotVideos = videoQueryer.findByProjectGameTypeCount("篮球", "热门", "视频", 10);
         model.addAttribute("hotVideos", hotVideos);
 
         List<Video> cbaNewVideos = videoQueryer.findByProjectGameTypeCount("篮球", "CBA", "视频", 10);

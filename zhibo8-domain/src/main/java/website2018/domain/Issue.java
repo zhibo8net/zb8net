@@ -1,9 +1,11 @@
 package website2018.domain;
 
+import com.google.common.collect.Lists;
 import website2018.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "zhibo_issue")
@@ -40,8 +42,8 @@ public class Issue extends BaseEntity {
     public String awardNum;
     //问题数
     public String problemNum;
-
-
+    //开奖结果
+    public String issueAnswer;
 
     public Date addTime;
 
@@ -53,6 +55,8 @@ public class Issue extends BaseEntity {
     @JoinColumn(name = "match_id")
     public Match match;
 
+    @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<IssueProblem> issueProblemList = Lists.newArrayList();
 
 
 }

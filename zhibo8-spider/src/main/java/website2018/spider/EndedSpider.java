@@ -37,9 +37,9 @@ public class EndedSpider extends BaseSpider {
 
 
     }
-    @Scheduled(cron = "0 11 1/2 * * *")
+    @Scheduled(cron = "0 6 1/2 * * *")
     //  @Scheduled(cron = "0 0/1 * * * *")
-    @Transactional
+
     public void runSchedule() throws Exception {
         if(MyApplication.DONT_RUN_SCHEDULED) {
             return;
@@ -49,6 +49,8 @@ public class EndedSpider extends BaseSpider {
             @Override
             public void run(){
                 try {
+                    fetchEnded();
+
                     fetchEnded_20190216();
                 }catch(Exception e) {
                     logger.error(e.getLocalizedMessage());
@@ -57,7 +59,7 @@ public class EndedSpider extends BaseSpider {
         }, "EndedSpider - " + System.currentTimeMillis());
         t.start();
     }
-    @Transactional
+
     public void fetchEnded_20190216() throws Exception {
         for (VideoType vt : videoTypes) {
             try {
@@ -68,7 +70,7 @@ public class EndedSpider extends BaseSpider {
                     continue ;
                 }
                 Elements endeds = doc.select(".video-tape>ul>li");
-                for (Element en : endeds) {
+               outEnd: for (Element en : endeds) {
                     try {
                         Ended ended = new Ended();
 
@@ -89,7 +91,12 @@ public class EndedSpider extends BaseSpider {
                           String vSource= "http://www.azhibo.com/"+ e.attr("href");
                             if(!flag){
                                 ended.source= vSource;
+                                List<Ended> existeds = endedDao.findBySource(vSource);
                                 flag=true;
+                                if(existeds!=null&&existeds.size()>0){
+                                    continue outEnd;
+                                }
+
                             }
 
                             Document d = readDocFrom(vSource);
@@ -138,7 +145,7 @@ public class EndedSpider extends BaseSpider {
         }
     }
 
-    @Transactional
+
     public void fetchEnded() throws Exception {
         try {
 

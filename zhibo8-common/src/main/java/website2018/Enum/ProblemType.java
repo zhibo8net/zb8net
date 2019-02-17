@@ -16,7 +16,7 @@ public enum ProblemType {
     private String desc;
     public static ProblemType getEnum(String value) {
         for (ProblemType paymentTypeEnum : ProblemType.values()) {
-            if (value == paymentTypeEnum.getCode()) {
+            if (value.equals(paymentTypeEnum.getCode())) {
                 return paymentTypeEnum;
             }
         }

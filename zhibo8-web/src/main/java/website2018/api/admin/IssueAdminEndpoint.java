@@ -1,6 +1,5 @@
 package website2018.api.admin;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,26 +11,19 @@ import org.springframework.web.bind.annotation.*;
 import org.springside.modules.utils.mapper.BeanMapper;
 import org.springside.modules.web.MediaTypes;
 import website2018.base.BaseEndPoint;
-import website2018.base.BaseService;
 import website2018.domain.Issue;
-import website2018.domain.News;
-import website2018.domain.ReplaceWord;
 import website2018.dto.admin.IssueAdminDTO;
-import website2018.dto.admin.NewsAdminDTO;
-import website2018.dto.admin.ReplaceWordAdminDTO;
 import website2018.service.admin.IssueAdminService;
-import website2018.service.admin.ReplaceWordService;
 import website2018.utils.DateUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 
 
 @RestController
-public class IssueWordAdminEndpoint extends BaseEndPoint {
+public class IssueAdminEndpoint extends BaseEndPoint {
 
-    private static Logger logger = LoggerFactory.getLogger(IssueWordAdminEndpoint.class);
+    private static Logger logger = LoggerFactory.getLogger(IssueAdminEndpoint.class);
 
     @Autowired
     private IssueAdminService issueAdminService;

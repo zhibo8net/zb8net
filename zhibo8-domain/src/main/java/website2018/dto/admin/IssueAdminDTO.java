@@ -1,7 +1,10 @@
 package website2018.dto.admin;
 
 
+import com.google.common.collect.Lists;
+
 import java.util.Date;
+import java.util.List;
 
 public class IssueAdminDTO  {
 
@@ -40,13 +43,16 @@ public class IssueAdminDTO  {
     //中奖人数
     public String awardNum;
 
+    //开奖结果
+    public String issueAnswer;
+
     public Date addTime;
 
     public Date updateTime;
     public String addTimeStr;
     public String updateTimeStr;
 
-
+    public List<IssueProblemAdminDTO> issueProblemList= Lists.newArrayList();
 
 
 }

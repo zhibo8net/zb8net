@@ -31,7 +31,7 @@ public class ProblemDb extends BaseEntity {
 
     public Date updateTime;
 
-    @OneToMany(mappedBy = "problemDb", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "problemDb", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<ProblemContent> problemContentList = Lists.newArrayList();
 
 

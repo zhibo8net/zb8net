@@ -5,7 +5,7 @@ package website2018.Enum;
  */
 public enum ProblemFlag {
 
-    DEFALUT("DEFALUT","默认题目"),
+    DEFALUT("DEFAULT","默认题目"),
     NORMAL("NORMAL","一般题目")
     ;
     private ProblemFlag(String code, String desc){
