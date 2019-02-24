@@ -11,4 +11,5 @@ public interface IssueDao extends PagingAndSortingRepository<Issue, Long>, JpaSp
     @Query(" select max(issue) from Issue ")
     String findMaxIssue();
 
+    Issue findById(long id);
 }

@@ -11,4 +11,5 @@ public interface ProblemDbDao extends PagingAndSortingRepository<ProblemDb, Long
 
     List<ProblemDb> findByProblemFlagOrderByIdDesc(String problemFlag );
 
+    ProblemDb findById(Long id);
 }

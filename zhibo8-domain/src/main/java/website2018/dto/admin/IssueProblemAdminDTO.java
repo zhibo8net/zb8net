@@ -1,8 +1,6 @@
 package website2018.dto.admin;
 
 
-import website2018.domain.Issue;
-import website2018.domain.ProblemDb;
 
 import java.util.Date;
 
@@ -13,7 +11,8 @@ public class IssueProblemAdminDTO  {
 
     public String answer;
 
-    public ProblemDb problemDb;
+    public ProblemAdminDb problemDb;
 
-    public Issue issue;
+    public Long problemId;
+
 }

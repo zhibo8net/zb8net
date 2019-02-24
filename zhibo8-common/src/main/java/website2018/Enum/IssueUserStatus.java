@@ -3,12 +3,12 @@ package website2018.Enum;
 /**
  * Created by Administrator on 2019/1/27.
  */
-public enum MatchFlag {
-
-    NEWS_FLAG("1","赛事前瞻"),
-    ATIVE_FLAG("2","竞猜活动"),
-    NEWS_ATIVE_FLAG("3","赛事前瞻") ;
-    private MatchFlag(String code, String desc){
+public enum IssueUserStatus {
+    INIT("INIT","待开奖"),
+    AWARD("AWARD","中奖"),
+    UMAWARD("UMAWARD","未中奖")
+    ;
+    private IssueUserStatus(String code, String desc){
         this.code=code;
         this.desc=desc;
     }
