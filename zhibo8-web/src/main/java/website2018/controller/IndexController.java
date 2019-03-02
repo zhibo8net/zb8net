@@ -306,6 +306,7 @@ public class IndexController extends BaseEndPoint {
             if(i%8==0){
                 ed.isFirstRow=true;
             }
+
             for(Video v : e.videos) {
                 if(v.type.equals("集锦")) {
                     ed.hasJijin = true;
@@ -317,6 +318,9 @@ public class IndexController extends BaseEndPoint {
                     ed.other = true;
                 }
                 break;
+            }
+            if(e.videos.size()==0){
+                ed.other = true;
             }
             endedDTOList.add(ed);
             i++;

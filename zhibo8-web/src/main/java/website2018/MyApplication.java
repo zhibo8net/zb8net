@@ -101,7 +101,8 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/mwrap/*");
         registrationBean.addUrlPatterns("/mnews.html");
         registrationBean.addUrlPatterns("/mvideo.html");
-
+        registrationBean.addUrlPatterns("/jingcai.html");
+        registrationBean.addUrlPatterns("/jingcainotice.html");
 
         return registrationBean;
     }

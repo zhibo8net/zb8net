@@ -51,7 +51,7 @@ public class EndedSpider extends BaseSpider {
                 try {
                     fetchEnded();
 
-                    fetchEnded_20190216();
+                    //fetchEnded_20190216();
                 }catch(Exception e) {
                     logger.error(e.getLocalizedMessage());
                 }

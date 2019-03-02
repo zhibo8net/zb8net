@@ -97,7 +97,7 @@ public class IssueWordAdminEndpoint extends BaseEndPoint {
 
 
 
-        issueAdminService.create(issue);
+        issueAdminService.create(issueAdminDTO);
 
         logService.log("添加竞猜期次", "/issueForm/" + issue.id);
     }

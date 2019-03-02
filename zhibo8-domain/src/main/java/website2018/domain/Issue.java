@@ -55,10 +55,11 @@ public class Issue extends BaseEntity {
     @JoinColumn(name = "match_id")
     public Match match;
 
-    @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    public List<IssueProblem> issueProblemList = Lists.newArrayList();
 
     @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public List<IssueUser> issueUserList = Lists.newArrayList();
+
+    @OneToMany(mappedBy = "issue", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<IssueQuestion> issueQuestionList = Lists.newArrayList();
 
 }

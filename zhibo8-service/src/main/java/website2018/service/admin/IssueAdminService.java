@@ -13,11 +13,9 @@ import website2018.Enum.IssueUserStatus;
 import website2018.Enum.MatchFlag;
 import website2018.domain.*;
 import website2018.dto.admin.IssueAdminDTO;
-import website2018.dto.admin.IssueProblemAdminDTO;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
 import website2018.repository.IssueDao;
-import website2018.repository.IssueProblemDao;
 import website2018.repository.MatchDao;
 import website2018.repository.ProblemDbDao;
 import website2018.utils.StrUtils;
@@ -38,8 +36,6 @@ public class IssueAdminService {
     @Autowired
     MatchDao matchDao;
 
-    @Autowired
-    IssueProblemDao issueProblemDao;
 
     @Autowired
     ProblemDbDao problemDbDao;
@@ -94,25 +90,6 @@ public class IssueAdminService {
             matchDao.save(m);
         }
 
-        List<IssueProblem> problemList=issue.issueProblemList;
-        for(IssueProblem issueProblem:problemList){
-            issueProblemDao.delete(issueProblem);
-        }
-        problemList.clear();
-        List<IssueProblemAdminDTO> issueProblemList=issueAdminDTO.issueProblemList;
-        for(IssueProblemAdminDTO issueProblemAdminDTO:issueProblemList) {
-            ProblemDb prDb=problemDbDao.findById(issueProblemAdminDTO.problemId);
-            if(prDb!=null){
-                IssueProblem issueProblem=   new IssueProblem();
-                issueProblem.issue=issue;
-                issueProblem.problemDb=prDb;
-                issueProblem.addTime=new Date();
-                issueProblem.updateTime=new Date();
-                problemList.add(issueProblem);
-            }
-        }
-        issue.problemNum=problemList.size()+"";
-        issue.issueProblemList.addAll(problemList);
         issueDao.save(issue);
         }
         @Transactional
@@ -159,22 +136,7 @@ public class IssueAdminService {
         issue.issue=StrUtils.addZeroForNum(integer.toString(),6);
         issueDao.save(issue);
 
-        //保存管理题录
-        List<IssueProblem> problemList=Lists.newArrayList();
-        List<IssueProblemAdminDTO> issueProblemList=issueAdminDTO.issueProblemList;
-        for(IssueProblemAdminDTO issueProblemAdminDTO:issueProblemList){
-            ProblemDb prDb=problemDbDao.findById(issueProblemAdminDTO.problemId);
-            if(prDb!=null){
-                IssueProblem issueProblem=   new IssueProblem();
-                issueProblem.issue=issue;
-                issueProblem.problemDb=prDb;
-                issueProblem.addTime=new Date();
-                issueProblem.updateTime=new Date();
-                problemList.add(issueProblem);
-            }
-        }
-         issue.problemNum=problemList.size()+"";
-        issue.issueProblemList.addAll(problemList);
+
         issueDao.save(issue);
     }
 

@@ -6,7 +6,7 @@ package website2018.Enum;
 public enum IssueUserStatus {
     INIT("INIT","待开奖"),
     AWARD("AWARD","中奖"),
-    UMAWARD("UMAWARD","未中奖")
+    UMAWARD("UNAWARD","未中奖")
     ;
     private IssueUserStatus(String code, String desc){
         this.code=code;

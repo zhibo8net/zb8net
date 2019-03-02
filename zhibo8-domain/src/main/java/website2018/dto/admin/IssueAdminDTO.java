@@ -52,8 +52,9 @@ public class IssueAdminDTO  {
     public String addTimeStr;
     public String updateTimeStr;
 
-    public List<IssueProblemAdminDTO> issueProblemList= Lists.newArrayList();
 
     public List<IssueUserAdminDTO> issueUserList= Lists.newArrayList();
+
+    public List<IssueQuestionAdminDTO> issueQuestionList= Lists.newArrayList();
 
 }

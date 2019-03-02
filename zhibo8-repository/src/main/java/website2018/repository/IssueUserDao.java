@@ -7,4 +7,5 @@ import website2018.domain.IssueUser;
 
 public interface IssueUserDao extends PagingAndSortingRepository<IssueUser, Long>, JpaSpecificationExecutor<IssueUser> {
 
+    IssueUser findByUserIdAndIssueId(long userId,long issueId);
 }

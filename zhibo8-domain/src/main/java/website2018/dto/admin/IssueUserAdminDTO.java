@@ -1,8 +1,6 @@
 package website2018.dto.admin;
 
-import website2018.base.BaseEntity;
-import website2018.domain.Issue;
-import website2018.domain.User;
+
 import website2018.dto.user.UserDTO;
 
 import java.util.Date;
