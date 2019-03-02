@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>zhibo8</groupId>
+        <artifactId>zhibo8-parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <groupId>zhibo8</groupId>
+    <artifactId>zhibo8-repository</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+
+<properties>
+    <java.version>1.8</java.version>
+    
+    <springside.version>5.0.0-SNAPSHOT</springside.version>
+    
+    <guava.version>20.0</guava.version>
+    <zhibo8.version>0.0.1-SNAPSHOT</zhibo8.version>
+
+</properties>
+    <dependencies>
+        <!--引入zhibo8-domain的依赖-->
+        <dependency>
+            <groupId>zhibo8</groupId>
+            <artifactId>zhibo8-domain</artifactId>
+            <version>${zhibo8.version}</version>
+        </dependency>
+    </dependencies>
+</project>
