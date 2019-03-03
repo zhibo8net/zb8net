@@ -42,6 +42,14 @@ public class MatchService {
 
         return matchDao.findTop100ByPlayDateGreaterThanOrderByPlayDateAsc(new Date());
     }
+
+    @Transactional(readOnly = true)
+    public List<Match> matchListByProject(String project) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        return matchDao.findTop100ByPlayDateGreaterThanAndProjectOrderByPlayDateAsc(new Date(), project);
+    }
+
     @Transactional(readOnly = true)
     public Page<Match> findAll(Pageable pageable) {
         return matchDao.findAll(pageable);

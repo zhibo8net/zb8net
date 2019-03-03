@@ -16,6 +16,7 @@ import website2018.dto.web.*;
 import website2018.repository.IssueDao;
 import website2018.repository.IssueUserDao;
 import website2018.repository.UserDao;
+import website2018.utils.DateUtils;
 import website2018.utils.MobileUtils;
 import website2018.utils.SysConstants;
 
@@ -72,10 +73,11 @@ public class IssueService {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -10);
         Issue issue = issueDao.findTop1ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
-        issue.issueUserList.clear();
+
         if (issue == null) {
             return null;
         }
+        issue.issueUserList.clear();
         List<IssueQuestion> tempList = Lists.newArrayList();
         List<IssueQuestion> issueQuestionList = issue.issueQuestionList;
         for (IssueQuestion issueQuestion : issueQuestionList) {
@@ -86,7 +88,7 @@ public class IssueService {
 
         issue.issueQuestionList = tempList;
         IssueWebDTO issueWebDTO = BeanMapper.map(issue, IssueWebDTO.class);
-
+        issueWebDTO.playDateStr= DateUtils.getDateStr(issueWebDTO.playDate,"yyyy年MM月dd日 hh:mm");
 
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute(SysConstants.USER_LOGIN_FLAG);
 
@@ -95,7 +97,9 @@ public class IssueService {
         if (userDTO == null) {
             return issueWebDTO;
         }
-        IssueUser issueUser = issueUserDao.findByUserIdAndIssueId(userDTO.id, issueWebDTO.id);
+        User u=userDao.findByUserName(userDTO.userName);
+
+        IssueUser issueUser = issueUserDao.findByUserIdAndIssueId(u.id, issueWebDTO.id);
 
         if (issueUser == null) {
             return issueWebDTO;
@@ -173,7 +177,14 @@ public class IssueService {
                 return   returnResponse;
             }
             String[] asw=addIssueDTO.answer.split("-");
-            if(asw.length!=issue.issueQuestionList.size()){
+            List<IssueQuestion> tempList = Lists.newArrayList();
+            List<IssueQuestion> issueQuestionList = issue.issueQuestionList;
+            for (IssueQuestion issueQuestion : issueQuestionList) {
+                if (StringUtils.equals(issueQuestion.issueChecked, IssueCheck.CHECKED.getCode())) {
+                    tempList.add(issueQuestion);
+                }
+            }
+            if(asw.length!=tempList.size()){
                 returnResponse.code="0004";
                 returnResponse.message="竞猜答案不合法";
                 return   returnResponse;
@@ -184,15 +195,16 @@ public class IssueService {
                 }
 
             }
+            User u=userDao.findByUserName(userDTO.userName);
 
-            IssueUser issueUser = issueUserDao.findByUserIdAndIssueId(userDTO.id, issue.id);
+            IssueUser issueUser = issueUserDao.findByUserIdAndIssueId(u.id, issue.id);
             if(issueUser!=null){
                 returnResponse.code="0005";
                 returnResponse.message="您已经参与过来，请勿重复操作";
                 return   returnResponse;
             }
             returnResponse.code="0000";
-            returnResponse.message="添加评论成功";
+            returnResponse.message="竞猜成功";
 
             IssueUser issueUserTemp=new IssueUser();
             issueUserTemp.status= IssueUserStatus.INIT.getCode();
@@ -200,15 +212,17 @@ public class IssueService {
             issueUserTemp.updateTime=issueUserTemp.addTime;
             issueUserTemp.issue=issue;
 
-            User u=userDao.findOne(userDTO.id);
             issueUserTemp.user=u;
-            issueUserTemp.userMobile=u.mobile;
+            issueUserTemp.userMobile=u.userName;
             issueUserTemp.answer=addIssueDTO.answer;
             issueUserTemp.userWx=addIssueDTO.userWx;
 
-            issueUserDao.save(issueUserTemp);
-
+//            issueUserDao.save(issueUserTemp);
+            issue.partNum=StringUtils.isEmpty(issue.partNum)?"1":(Integer.parseInt(issue.partNum)+1)+"";
+            issue.issueUserList.add(issueUserTemp);
+            issueDao.save(issue);
         }catch (Exception e){
+            e.printStackTrace();
             returnResponse.code="0007";
             returnResponse.message="系统异常稍后再试";
         }

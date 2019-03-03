@@ -14,11 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springside.modules.utils.mapper.BeanMapper;
 import org.springside.modules.web.MediaTypes;
 
@@ -84,7 +80,20 @@ public class MatchAdminEndpoint extends BaseEndPoint {
 
         return dtoPage;
     }
+    @RequestMapping(value = "/api/admin/matchListByProject", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public String matchListByProject(@RequestParam String project) {
 
+        List<Match> matchs = matchService.matchListByProject(project);
+        StringBuffer sb=new StringBuffer();
+
+        for(Match match:matchs){
+            if(StringUtils.isNotEmpty(match.name)){
+                sb.append(match.name).append("-").append(match.id).append("|");
+            }
+
+        }
+        return sb.toString();
+    }
     @RequestMapping(value = "/api/admin/matchs/{id}", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
     public MatchAdminDTO listOneMatch(@PathVariable("id") Long id) {
 

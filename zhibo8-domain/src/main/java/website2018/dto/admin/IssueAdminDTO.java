@@ -24,6 +24,7 @@ public class IssueAdminDTO  {
 
     public String game;
 
+    public String userShowFlag;
     //状态
     public String status;
 
@@ -56,5 +57,5 @@ public class IssueAdminDTO  {
     public List<IssueUserAdminDTO> issueUserList= Lists.newArrayList();
 
     public List<IssueQuestionAdminDTO> issueQuestionList= Lists.newArrayList();
-
+    public List<IssueQuestionAdminDTO> otherQuestionList= Lists.newArrayList();
 }

@@ -41,7 +41,8 @@ public class IssueQuestionAdminDTO  {
 
     public Date updateTime;
 
-    public List<IssueQuestionContentAdminDTO> issueQuestionContentList = Lists.newArrayList();
+    public List<IssueQuestionContentAdminDTO> problemContentList = Lists.newArrayList();
 
+    public List<IssueQuestionContentAdminDTO> issueQuestionContentList = Lists.newArrayList();
 
 }

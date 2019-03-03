@@ -20,96 +20,105 @@
 </head>
 
 <body>
-    <div th:replace="layout/header :: header"></div>
+<div th:replace="layout/header :: header"></div>
 
 
-    <div id="main" class="container">
-        <div class="left">
-            <div class="breadcrumbs">
-                <a href="https://www.zhibo8.net">直播首页</a>&gt;
-                <span>竞猜活动</span>
+<div id="main" class="container" th:if="${issue!=null}">
+    <div class="left">
+        <div class="breadcrumbs">
+            <a href="https://www.zhibo8.net">直播首页</a>&gt;
+            <span>竞猜活动</span>
 
-                <span class="getId" style="display:none;" th:text="${issue.issue}"></span>
-            </div>
-            <div class="banner">
-
-            </div>
-            <p class="matchTitle">在 <span th:text="${issue.playDateStr}"></span> <span th:text="${issue.matchName}"></span>的这场比赛中：</p>
-            <ul>
-                <li th:each="question:${issue.issueQuestionList}">
-                    <p class="title" th:text="${question.problemTitle}"></p>
-                    <p class="optionCon single">
-                        <span th:each="options:${question.issueQuestionContentList}" th:classappend="|${options.userChecked=='checked'?'mychoice':''} ${options.answerFlag=='true'?'true':''}"
-                            th:text="${options.questionContent}"></span>
-                    </p>
-                </li>
-                <li>
-                    <p class="title">请填写您的微信号码：<input type="text" class="userWx" /></p>
-                </li>
-            </ul>
-            <button class="submit">确认并提交</button>
+            <span class="getId" style="display:none;" th:text="${issue.issue}"></span>
+        </div>
+        <div class="banner">
 
         </div>
-        <div class="right">
-            <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
-        </div>
+        <p class="matchTitle">在 <span th:text="${issue.playDateStr}"></span> <span th:text="${issue.matchName}"></span>的这场比赛中：</p>
+        <ul>
+            <li th:each="question:${issue.issueQuestionList}">
+                <p class="title" th:text="${question.problemTitle}"></p>
+                <p class="optionCon single">
+                        <span th:each="options:${question.issueQuestionContentList}" th:classappend="|${options.userChecked=='CHECKED'?'mychoice':''} ${options.answerFlag=='true'?'true':''}"
+                              th:text="${options.questionContent}"></span>
+                </p>
+            </li>
+            <li>
+                <p class="title">请填写您的微信号码：<input type="text" class="userWx" /></p>
+            </li>
+        </ul>
+        <button class="submit">确认并提交</button>
+
     </div>
+    <div class="right">
+        <img src="https://ubmcmm.baidustatic.com/media/v1/0f000j5HUw14INYAcbnkM0.jpg" alt="" />
+    </div>
+</div>
+<div id="main2" class="container" th:if="${issue==null}">
+    <div class="breadcrumbs">
+        <a href="https://www.zhibo8.net">直播首页</a>&gt;
+        <span>竞猜活动</span>
 
-    <div th:replace="layout/footer :: footer"></div>
-    <script>
-        $(function () {
-            var issue = $('.getId').html();
+        <span class="getId" style="display:none;"></span>
+    </div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
+<script>
+    $(function () {
+        var issue = $('.getId').html();
 
-            $('.optionCon span').click(function (e) {
-                var that = $(this);
-                that.siblings().removeClass('mychoice')
-                if (that.hasClass('mychoice')) {
-                    that.removeClass('mychoice')
-                } else if (!that.hasClass('mychoice')) {
-                    that.addClass('mychoice')
+        $('.optionCon span').click(function (e) {
+            var that = $(this);
+            that.siblings().removeClass('mychoice')
+            if (that.hasClass('mychoice')) {
+                that.removeClass('mychoice')
+            } else if (!that.hasClass('mychoice')) {
+                that.addClass('mychoice')
+            }
+        });
+        $('.submit').click(function (e) {
+            var list = [];
+            if (!$('.userWx').val()) {
+                alert('请输入微信号')
+                return false
+            }
+            $('.optionCon').each(function (i, e) {
+                var i = $(e).find('.mychoice').index();
+                if (i == -1) {
+                    i = ''
+                } else {
+                    i++;
                 }
+                list.push(i);
             });
-            $('.submit').click(function (e) {
-                var list = [];
-                if (!$('.userWx').val()) {
-                    alert('请输入微信号')
-                    return false
-                }
-                $('.optionCon').each(function (i, e) {
-                    var i = $(e).find('.mychoice').index();
-                    if (i == -1) {
-                        i = ''
-                    } else {
-                        i++;
-                    }
-                    list.push(i);
-                });
-                var data = {
-                    issue: issue,
-                    answer: list.join('-'),
-                    userWx: $('.userWx').val() || ''
-                }
-                $.ajax({
-                    url: '/api/user/addIssue.html',
-                    type: 'POST',
-                    data: JSON.stringify(data),
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: "json",
-                    success: function (resp) {
-                        console.log(resp)
+            var data = {
+                issue: issue,
+                answer: list.join('-'),
+                userWx: $('.userWx').val() || ''
+            }
+            $.ajax({
+                url: '/api/user/addIssue',
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                success: function (resp) {
+                    console.log(resp)
 
-                        if (resp.code == '0000') {} else {
-                            alert(resp.message)
-                        }
-                    },
-                    fail: function (err) {
-                        alert(err)
+                    if (resp.code == '0000') {
+                        alert(resp.message)
+                    } else {
+                        alert(resp.message)
                     }
-                })
+                },
+                fail: function (err) {
+                    alert(err)
+                }
             })
         })
-    </script>
-    <script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
+    })
+</script>
+<script src="https://s13.cnzz.com/z_stat.php?id=1273166609&amp;web_id=1273166609" language="JavaScript"></script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 package website2018.api.admin;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +11,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 import org.springside.modules.utils.mapper.BeanMapper;
 import org.springside.modules.web.MediaTypes;
+import website2018.Enum.IssueStatus;
 import website2018.base.BaseEndPoint;
 import website2018.domain.Issue;
+import website2018.domain.Match;
 import website2018.dto.admin.IssueAdminDTO;
+import website2018.dto.admin.IssueQuestionAdminDTO;
+import website2018.dto.admin.IssueUserAdminDTO;
 import website2018.dto.admin.MatchAdminDTO;
 import website2018.service.admin.IssueAdminService;
 import website2018.utils.DateUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -76,8 +84,19 @@ public class IssueAdminEndpoint extends BaseEndPoint {
         Issue issue = issueAdminService.findOne(id);
 
         IssueAdminDTO dto = BeanMapper.map(issue, IssueAdminDTO.class);
+        if(!StringUtils.equals(dto.status, IssueStatus.DRAW.getCode())&&
+                !StringUtils.equals(dto.status, IssueStatus.PIE_AWARD.getCode())&&
+                !StringUtils.equals(dto.status, IssueStatus.DRAWING.getCode())){
+            dto. userShowFlag="DISPLAY";
+        }
+        Collections.sort(dto.issueUserList, new Comparator<IssueUserAdminDTO>() {
+            public int compare(IssueUserAdminDTO arg0, IssueUserAdminDTO arg1) {
+                BigDecimal data1 = new BigDecimal(arg0.answerRate);
+                BigDecimal data2 = new BigDecimal(arg1.answerRate);
 
-
+                return data2.compareTo(data1);
+            }
+        });
         return dto;
     }
 
@@ -127,5 +146,21 @@ public class IssueAdminEndpoint extends BaseEndPoint {
         issueAdminService.issueEnd(issueAdminDTO);
 
         logService.log("结束竞猜期次", "/issuePublic/" + issueAdminDTO.id);
+    }
+    @RequestMapping(value = "/api/admin/issueAward", method = RequestMethod.POST, consumes = MediaTypes.JSON_UTF_8)
+    public void issueAward(@RequestBody IssueAdminDTO issueAdminDTO) {
+
+        assertAdmin();
+
+
+        issueAdminService.issueAward(issueAdminDTO);
+
+        logService.log("竞猜开奖", "/issuePublic/" + issueAdminDTO.id);
+    }
+    @RequestMapping(value = "/api/admin/getQuestionByProject", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
+    public List<IssueQuestionAdminDTO> getQuestionByProject(@RequestParam String project) {
+
+
+        return issueAdminService.getQuestionByProject(project);
     }
 }

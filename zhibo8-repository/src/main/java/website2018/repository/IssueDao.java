@@ -6,6 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import website2018.domain.Issue;
 
 import java.util.Date;
+import java.util.List;
 
 
 public interface IssueDao extends PagingAndSortingRepository<Issue, Long>, JpaSpecificationExecutor<Issue> {
@@ -20,4 +21,6 @@ public interface IssueDao extends PagingAndSortingRepository<Issue, Long>, JpaSp
     Issue findTop1ByAddTimeGreaterThanOrderByIdDesc(Date addTime);
 
     Issue findTop1ByStatusOrderByIdDesc(String status);
+
+    List<Issue> findByStatus(String status);
 }

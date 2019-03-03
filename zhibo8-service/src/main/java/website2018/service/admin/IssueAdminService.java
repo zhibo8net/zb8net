@@ -8,18 +8,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import website2018.Enum.IssueStatus;
-import website2018.Enum.IssueUserStatus;
-import website2018.Enum.MatchFlag;
+import org.springside.modules.utils.mapper.BeanMapper;
+import website2018.Enum.*;
 import website2018.domain.*;
 import website2018.dto.admin.IssueAdminDTO;
+import website2018.dto.admin.IssueQuestionAdminDTO;
+import website2018.dto.admin.IssueQuestionContentAdminDTO;
 import website2018.exception.ErrorCode;
 import website2018.exception.ServiceException;
 import website2018.repository.IssueDao;
+import website2018.repository.IssueQuestionDao;
 import website2018.repository.MatchDao;
 import website2018.repository.ProblemDbDao;
 import website2018.utils.StrUtils;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +42,9 @@ public class IssueAdminService {
 
     @Autowired
     ProblemDbDao problemDbDao;
+
+    @Autowired
+    IssueQuestionDao issueQuestionDao;
 
     @Transactional(readOnly = true)
     public Page<Issue> findAll(Specification<Issue> specification, Pageable pageable) {
@@ -62,14 +68,10 @@ public class IssueAdminService {
     }
     @Transactional
     public void modifyIssue(IssueAdminDTO issueAdminDTO) {
-        if(issueAdminDTO==null||StringUtils.isEmpty(issueAdminDTO.matchNameAndId)){
+        if(issueAdminDTO==null){
             throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
         }
-        String[] str=issueAdminDTO.matchNameAndId.split("-");
 
-        if(str.length<=1){
-            throw new ServiceException("对阵信息不正确", ErrorCode.BAD_MESSAGE_REQUEST);
-        }
         Issue issue=issueDao.findById(issueAdminDTO.id);
         if(issue==null){
             throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
@@ -77,23 +79,53 @@ public class IssueAdminService {
         if(!IssueStatus.INIT.getCode().equals(issue.status)){
             throw new ServiceException("只能操作已初始化状态的竞猜活动", ErrorCode.BAD_MESSAGE_REQUEST);
         }
-        if(!issue.matchNameAndId.equals(issueAdminDTO.matchNameAndId)){
-            Match match=    matchDao.findById(Long.parseLong(str[1]));
-            if(match==null){
-                throw new ServiceException("对阵信息不正确", ErrorCode.BAD_MESSAGE_REQUEST);
-            }
-            match.matchActiveFlag= MatchFlag.ATIVE_FLAG.getCode();
-
-            matchDao.save(match);
-            Match m=issue.match;
-            m.matchNewFlag= "0";
-            matchDao.save(m);
+        List<IssueQuestionAdminDTO> otherIssueQuestionAdminDTOList=issueAdminDTO.otherQuestionList;
+        for(IssueQuestionAdminDTO issueQuestionAdminDTO:otherIssueQuestionAdminDTOList){
+            issueQuestionAdminDTO.issueChecked= IssueCheck.CHECKED.getCode();
+            issueQuestionAdminDTO.problemType= ProblemType.RADIO.getCode();
+            issueQuestionAdminDTO.problemFlag=ProblemFlag.NORMAL.getCode();
+            issueQuestionAdminDTO.inputFlag="UNINPUT";
+            issueAdminDTO.issueQuestionList.add(issueQuestionAdminDTO);
         }
 
+        List<IssueQuestion> temp=BeanMapper.mapList(issueAdminDTO.issueQuestionList, IssueQuestionAdminDTO.class, IssueQuestion.class);
+
+        issue.issueQuestionList=temp;
+        int i=0;
+        for(IssueQuestion issueQuestion:issue.issueQuestionList){
+            if(StringUtils.equals(issueQuestion.issueChecked, IssueCheck.CHECKED.getCode())){
+                issueQuestion.issueChecked=IssueCheck.CHECKED.getCode();
+                i++;
+            }else{
+                issueQuestion.issueChecked=IssueCheck.UNCHECKED.getCode();
+            }
+            issueQuestion.issue=issue;
+            issueQuestion.addTime=issueQuestion.addTime==null?new Date():issueQuestion.addTime;
+            issueQuestion.updateTime=new Date();
+            List<IssueQuestionContent> tempIssueQuestionContent=Lists.newArrayList();
+            for(IssueQuestionContent issueQuestionContent:issueQuestion.issueQuestionContentList){
+                issueQuestionContent.issueQuestion=issueQuestion;
+                issueQuestionContent.addTime=issueQuestionContent.addTime==null?new Date():issueQuestionContent.addTime;
+                issueQuestionContent.updateTime=new Date();
+                tempIssueQuestionContent.add(issueQuestionContent);
+
+            }
+            issueQuestion.issueQuestionContentList=tempIssueQuestionContent;
+        }
+        issue.problemNum=i+"";
         issueDao.save(issue);
         }
-        @Transactional
+
     public void create(IssueAdminDTO issueAdminDTO) {
+
+            Calendar calendar=Calendar.getInstance();
+            calendar.add(Calendar.YEAR, -10);
+           Issue is= issueDao.findTop1ByAddTimeGreaterThanOrderByIdDesc(calendar.getTime());
+            if(is!=null){
+                if(!StringUtils.equals(is.status,IssueStatus.PIE_AWARD.getCode())){
+                    throw new ServiceException("前一期次未结束,不能新增期次", ErrorCode.BAD_MESSAGE_REQUEST);
+                }
+            }
       if(issueAdminDTO==null|| StringUtils.isEmpty(issueAdminDTO.matchNameAndId)){
           throw new ServiceException("请选择对阵", ErrorCode.BAD_MESSAGE_REQUEST);
       }
@@ -114,6 +146,7 @@ public class IssueAdminService {
 
         matchDao.save(match);
 
+
         Date d=new Date();
         Issue issue=new Issue();
         issue.matchNameAndId=issueAdminDTO.matchNameAndId;
@@ -133,10 +166,45 @@ public class IssueAdminService {
             integer= Integer.parseInt(maxIssue)+1;
         }
 
-        issue.issue=StrUtils.addZeroForNum(integer.toString(),6);
+            issue.issue=StrUtils.addZeroForNum(integer.toString(),6);
         issueDao.save(issue);
+            List<IssueQuestionAdminDTO> issueQuestionAdminDTOList=issueAdminDTO.issueQuestionList;
+            List<IssueQuestionAdminDTO> otherIssueQuestionAdminDTOList=issueAdminDTO.otherQuestionList;
+            for(IssueQuestionAdminDTO issueQuestionAdminDTO:otherIssueQuestionAdminDTOList){
+                issueQuestionAdminDTO.issueChecked= IssueCheck.CHECKED.getCode();
+                issueQuestionAdminDTO.problemType= ProblemType.RADIO.getCode();
+                issueQuestionAdminDTO.problemFlag=ProblemFlag.NORMAL.getCode();
+                issueQuestionAdminDTO.inputFlag="UNINPUT";
+                issueQuestionAdminDTOList.add(issueQuestionAdminDTO);
+            }
+            int i=0;
+           for(IssueQuestionAdminDTO issueQuestionAdminDTO:issueQuestionAdminDTOList){
+               issueQuestionAdminDTO.id=null;
+                IssueQuestion issueQuestion=BeanMapper.map(issueQuestionAdminDTO,IssueQuestion.class);
+               issueQuestion.updateTime=d;
+               issueQuestion.addTime=d;
+               issueQuestion.issue=issue;
+               if(StringUtils.equals(issueQuestion.issueChecked, IssueCheck.CHECKED.getCode())){
+                   issueQuestion.issueChecked=IssueCheck.CHECKED.getCode();
+                   i++;
+               }else{
+                   issueQuestion.issueChecked=IssueCheck.UNCHECKED.getCode();
+               }
 
 
+               for(IssueQuestionContentAdminDTO issueQuestionContentAdminDTO:issueQuestionAdminDTO.problemContentList){
+
+                   IssueQuestionContent issueQuestionContent=BeanMapper.map(issueQuestionContentAdminDTO,IssueQuestionContent.class);
+                   issueQuestionContent.id=null;
+                   issueQuestionContent.issueQuestion=issueQuestion;
+                   issueQuestionContent.addTime=d;
+                   issueQuestionContent.updateTime=d;
+                   issueQuestion.issueQuestionContentList.add(issueQuestionContent);
+               }
+                  issue.issueQuestionList.add(issueQuestion);
+            }
+
+            issue.problemNum=i+"";
         issueDao.save(issue);
     }
 
@@ -205,9 +273,9 @@ public class IssueAdminService {
         if(issueAdminDTO==null){
             throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
         }
-        if(StringUtils.isEmpty(issueAdminDTO.issueAnswer)){
-            throw new ServiceException("请设置竞猜答案", ErrorCode.BAD_MESSAGE_REQUEST);
-        }
+//        if(StringUtils.isEmpty(issueAdminDTO.issueAnswer)){
+//            throw new ServiceException("请设置竞猜答案", ErrorCode.BAD_MESSAGE_REQUEST);
+//        }
         Issue issue=issueDao.findById(issueAdminDTO.id);
         if(issue==null){
             throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
@@ -216,10 +284,37 @@ public class IssueAdminService {
         if(!IssueStatus.DOING.getCode().equals(issue.status)){
             throw new ServiceException("只能操作竞猜中状态的竞猜活动", ErrorCode.BAD_MESSAGE_REQUEST);
         }
-        issue.issueAnswer=issueAdminDTO.issueAnswer;
+//        issue.issueAnswer=issueAdminDTO.issueAnswer;
         issue.status=IssueStatus.MATCH_END.getCode();
         issue.statusDesc=IssueStatus.MATCH_END.getDesc();
         issue.updateTime=new Date();
         issueDao.save(issue);
+    }
+    @Transactional
+    public void issueAward(IssueAdminDTO issueAdminDTO) {
+        if(issueAdminDTO==null){
+            throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
+        }
+        if(StringUtils.isEmpty(issueAdminDTO.issueAnswer)){
+            throw new ServiceException("请设置竞猜答案", ErrorCode.BAD_MESSAGE_REQUEST);
+        }
+        Issue issue=issueDao.findById(issueAdminDTO.id);
+        if(issue==null){
+            throw new ServiceException("请求参数错误", ErrorCode.BAD_MESSAGE_REQUEST);
+        }
+
+        if(!IssueStatus.MATCH_END.getCode().equals(issue.status)){
+            throw new ServiceException("只能操作比赛结束状态的竞猜活动", ErrorCode.BAD_MESSAGE_REQUEST);
+        }
+        issue.issueAnswer=issueAdminDTO.issueAnswer;
+        issue.status=IssueStatus.DRAWING.getCode();
+        issue.statusDesc=IssueStatus.DRAWING.getDesc();
+        issue.updateTime=new Date();
+        issueDao.save(issue);
+    }
+    public List<IssueQuestionAdminDTO> getQuestionByProject(String project){
+      List<ProblemDb> problemDbList=  problemDbDao.findByProjectOrderByIdDesc(project);
+        List<IssueQuestionAdminDTO> dtos = BeanMapper.mapList(problemDbList, ProblemDb.class, IssueQuestionAdminDTO.class);
+        return dtos;
     }
     }

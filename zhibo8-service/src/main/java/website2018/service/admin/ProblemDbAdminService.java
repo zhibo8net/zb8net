@@ -91,8 +91,8 @@ public class ProblemDbAdminService {
         orginalProblemDb.problemTitle=problemDb.problemTitle;
         orginalProblemDb.answer = problemDb.answer;
         orginalProblemDb.updateTime = new Date();
-
-
+        orginalProblemDb.inputContent=problemDb.inputContent;
+        orginalProblemDb.inputFlag=problemDb.inputFlag;
         // 删掉原有的数据
         for (ProblemContent problemContent : orginalProblemDb.problemContentList) {
             problemContentDao.delete(problemContent.id);

@@ -36,6 +36,8 @@ public class MyApplication {
     public FilterRegistrationBean restFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new RestFilter(accountService));
+        registrationBean.addUrlPatterns("/test1.html");
+        registrationBean.addUrlPatterns("/test2.html");
         registrationBean.addUrlPatterns("/api/admin/*");
         registrationBean.addUrlPatterns("/admin_1/php/upload_json.php");
         registrationBean.addUrlPatterns("/api/matchRank/*");
@@ -104,6 +106,9 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/jingcai.html");
         registrationBean.addUrlPatterns("/jingcainotice.html");
 
+
+        registrationBean.addUrlPatterns("/test1.html");
+        registrationBean.addUrlPatterns("/test2.html");
         return registrationBean;
     }
 

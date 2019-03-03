@@ -20,7 +20,11 @@ public class ProblemAdminDb {
     //题目标题
     public String problemTitle;
 
+    public String inputFlag;
 
+    public String inputContent;
+
+    public String project;
 
     //正确答案
     public String answer;
