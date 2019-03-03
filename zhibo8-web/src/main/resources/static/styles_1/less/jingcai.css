@@ -67,12 +67,18 @@ a[title='站长统计'] {
 #main ul p.optionCon span.mychoice,
 #main li p.optionCon span.mychoice {
   background-color: #4184f3;
+}
+#main ul p.optionCon span.mychoice em,
+#main li p.optionCon span.mychoice em {
   color: #fff;
 }
 #main ul p.optionCon span.true,
 #main li p.optionCon span.true {
   background-color: #f00;
   border: 0;
+}
+#main ul p.optionCon span.true em,
+#main li p.optionCon span.true em {
   color: #fff;
 }
 #main button {
