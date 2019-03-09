@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import website2018.MyApplication;
 import website2018.base.BaseSpider;
+import website2018.cache.CacheUtils;
 import website2018.domain.*;
 import website2018.repository.*;
 import website2018.service.TeamCheckService;
@@ -60,9 +61,15 @@ public class MatchStreamSpider extends BaseSpider {
     //    for(int fetchMatchId=1;fetchMatchId<=6;fetchMatchId++){
         int fetchMatchId=1;
             try {
-                Document matchStreamDoc = readDocFrom("http://api.sstream365.com");
+                Map<String, String> sysParamMap = CacheUtils.getSysMap();
+                String url=sysParamMap.get("LIVE_FETCH_URL");
+                if(StringUtils.isEmpty(url)){
+                    logger.info(" 抓取数据为空 地址为空 LIVE_FETCH_URL"+url);
+                    return;
+                }
+                Document matchStreamDoc = readDocFrom(url);
                 if (matchStreamDoc == null) {
-                    logger.info("http://api.sstream365.com/?id="+fetchMatchId+" 抓取数据为空");
+                    logger.info(" 抓取数据为空"+url);
                     return;
                 }
                 Calendar calendar = Calendar.getInstance();

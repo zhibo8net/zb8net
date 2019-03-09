@@ -26,6 +26,8 @@ public interface MatchDao extends PagingAndSortingRepository<Match, Long>, JpaSp
 
     public List<Match> findTop100ByPlayDateGreaterThanAndProjectOrderByPlayDateAsc(Date d,String project);
 
+    public List<Match> findTop10000ByPlayDateGreaterThanAndProjectOrderByPlayDateAsc(Date d,String project);
+
     @Query(" select count(*) ,project  from Match t where addTime>= :addTime  group by project")
     List findByAddTimeGreaterThan(@Param("addTime") Date addTime);
 

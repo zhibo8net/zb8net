@@ -47,7 +47,7 @@ public class MatchService {
     public List<Match> matchListByProject(String project) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-        return matchDao.findTop100ByPlayDateGreaterThanAndProjectOrderByPlayDateAsc(new Date(), project);
+        return matchDao.findTop10000ByPlayDateGreaterThanAndProjectOrderByPlayDateAsc(new Date(), project);
     }
 
     @Transactional(readOnly = true)

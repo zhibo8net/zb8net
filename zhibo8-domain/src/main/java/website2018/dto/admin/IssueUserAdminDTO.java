@@ -9,7 +9,7 @@ public class IssueUserAdminDTO {
     public Long id;
     public Date addTime;
     public Date updateTime;
-
+    public String addTimeStr;
 
     public UserDTO user;
 

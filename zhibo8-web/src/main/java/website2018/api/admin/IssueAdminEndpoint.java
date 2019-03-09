@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 
@@ -97,6 +98,9 @@ public class IssueAdminEndpoint extends BaseEndPoint {
                 return data2.compareTo(data1);
             }
         });
+        for(IssueUserAdminDTO issueUserAdminDTO:dto.issueUserList){
+            issueUserAdminDTO.addTimeStr=DateUtils.getDateStr(issueUserAdminDTO.addTime==null?new Date():issueUserAdminDTO.addTime,"yyyy-MM-dd HH:mm:ss");
+        }
         return dto;
     }
 

@@ -17,7 +17,7 @@ public class MobileUtils {
     }
 
     public static String hiddenMobile(String str){
-        return hiddenStr(str,3,8,"*");
+        return hiddenStr(str,3,7,"*");
     }
     public static String hiddenStr(String str, Integer startIndex, Integer endIndex, String encryptionStr){
         try {
