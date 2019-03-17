@@ -195,7 +195,7 @@
         }
 
         switch(stype){
-            //      	case 'zhongyao': $(".global_sel").text("重要");break;
+            case 'zhongyao': $(".global_sel").text("重要");break;
             case 'football': $(".global_sel").text("足球");break;
             case 'basketball': $(".global_sel").text("篮球");break;
             case 'other': $(".global_sel").text("其他");break;
