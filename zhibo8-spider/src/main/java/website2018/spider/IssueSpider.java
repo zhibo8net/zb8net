@@ -16,6 +16,7 @@ import website2018.base.BaseSpider;
 import website2018.domain.*;
 import website2018.repository.*;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 @Component
@@ -60,7 +61,7 @@ public class IssueSpider extends BaseSpider {
             for(Issue issue:issueList){
                 try {
                     if(StringUtils.isEmpty(issue.issueAnswer)){
-                        logger.error("开奖错误{},{}", JSONObject.toJSONString(issue), "未设置开奖结果");
+                        logger.error("开奖错误{},{}", issue.issue, "未设置开奖结果");
                         continue;
                     }
 
@@ -74,7 +75,7 @@ public class IssueSpider extends BaseSpider {
                         }
                     }
                     if(tem.size()!=ans.length){
-                        logger.error("开奖错误{},{}", JSONObject.toJSONString(issue), "未设置开奖结果");
+                        logger.error("开奖错误{},{}",issue.issue, "开奖结果长度不对");
                         continue;
                     }
                     int len=ans.length;
@@ -100,9 +101,10 @@ public class IssueSpider extends BaseSpider {
                                   }
                               }
                           }
-                          issueUser.answerRate=Math.round((t/len)*100);
+                          DecimalFormat df = new DecimalFormat("#.00");
+                          issueUser.answerRate=Double.parseDouble(df.format((t*100/len)));
                       }catch (Exception e){
-                          logger.error("开奖错误{},{}", JSONObject.toJSONString(issue), JSONObject.toJSONString(issueUser));
+                          logger.error("开奖错误{},{}", issue.issue,issueUser.userMobile);
 
                       }
                       issueUserDao.save(issueUserList);
@@ -112,7 +114,7 @@ public class IssueSpider extends BaseSpider {
                     issue.updateTime=new Date();
                     issueDao.save(issue);
                 }catch (Exception e){
-                    logger.error("开机错误{}，{}", JSONObject.toJSONString(issue),e);
+                    logger.error("开机错误{}，{}", issue.issue,e);
                 }
             }
 

@@ -66,6 +66,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     public void matchStreamFetch() throws Exception {
         Map<String, String> sysParamMap =CacheUtils.getSysMap();
         String url=sysParamMap.get("LIVE_URL_PRE")==null?"http://liveplay.oadql.cn/live/":sysParamMap.get("LIVE_URL_PRE");
+        String liveSplit=sysParamMap.get("LIVE_SPLIT");
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, -150);
@@ -75,7 +76,13 @@ public class MatchStreamUrlSpider extends BaseSpider {
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThanAndUpdateTimeLessThan(d, d1);
         outer: for(MatchStream matchStream:matchStreamList){
-            String matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+            String matchStreamUrl="";
+            if(StringUtils.isEmpty(liveSplit)){
+                 matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+            }else{
+                 matchStreamUrl=url+matchStream.matchStreamName.replace("stream",liveSplit)+".m3u8";
+            }
+
             if(!baoWeiService.isConnect(matchStreamUrl)){
                 logger.warn("连接地址无效："+matchStreamUrl);
                 continue;

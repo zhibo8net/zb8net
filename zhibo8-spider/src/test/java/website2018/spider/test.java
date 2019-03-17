@@ -18,12 +18,15 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import org.jsoup.nodes.Element;
+import website2018.domain.Match;
 import website2018.utils.UploadUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -78,8 +81,11 @@ public class test {
 
      //   testFetchBasketballRank();
 
-        File file=new File("E:\\webroot\\2019\\02\\07\\fa608219-6a5d-4e73-9617-15f5ab8d3c20.gif");
-        long l=file.length();
+    //    File file=new File("E:\\webroot\\2019\\02\\07\\fa608219-6a5d-4e73-9617-15f5ab8d3c20.gif");
+       // long l=file.length();
+        DecimalFormat df = new DecimalFormat("#.00");
+                  System.out.println(Double.parseDouble(df.format(1D*100/9)));
+
         //  String doc=    t.readDocFromByJsoupReqJson("http://tu.zhibo8.cc/redirect/pic?url=aHR0cHM6Ly93eDEuc2luYWltZy5jbi9tdzY5MC8wMDZla3hvZ2d5MWZ6cWloNWJ4NWlnMzBjdDA2ZDFsMC5naWY&sign=e0103cca707862a9");
      //  downloadFile("http://tu.zhibo8.cc/redirect/pic?url=aHR0cDovL3R1LmR1b2R1b2Nkbi5jb20vdXBsb2Fkcy9kYXlfMTkwMjA2LzIwMTkwMjA2MTYzNzE0NzA1Ny5qcGc&sign=039fe52dd9606738");
 
