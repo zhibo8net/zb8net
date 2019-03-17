@@ -218,7 +218,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
         Live live=new Live();
         live.playFlag = "INNER";
         live.match = matchSave;
-        live.name = "直播视频";
+        live.name = "视频直播";
         live.link = matchSave.matchStreamUrl;
         live.addTime = new Date();
         matchSave.lives.add(live);
@@ -245,7 +245,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
                 Live live=new Live();
                 live.playFlag = "INNER";
                 live.match = match;
-                live.name = "直播视频";
+                live.name = "视频直播";
                 live.link =url;
                 live.addTime = new Date();
                 match.lives.add(live);

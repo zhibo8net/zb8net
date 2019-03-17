@@ -61,10 +61,10 @@ public class NewsController extends BaseEndPoint {
         boolean other = project.equals("") && game.equals("其他");
         
         if(! (all || other || projectWhiteList.contains(project))) {
-            throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
+            return "redirect:http://www.zhibo8.net/";
         }
         if(! (all || other || gameWhiteList.contains(game))) {
-            throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
+            return "redirect:http://www.zhibo8.net/";
         }
         
         model.addAttribute("project", project);

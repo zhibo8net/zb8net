@@ -44,18 +44,31 @@
                                     <span class="time" th:text="${m.playTime}"></span>
                                     <span class="game" th:text="${m.game}"></span>
                                     <span class="match" th:text="${m.name}"></span>
-                                    <span class="live" th:each="l:${m.lives}">
-                                        <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
-                                            <span th:text="${l.name}"></span>(<a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
-                                        </div>
-                                        <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                            <a th:href="${'/match_1/'+m.id}" th:text="${l.signals[0].name}"></a>
-                                        </div>
+                                    <!--<span class="live" th:each="l:${m.lives}">-->
+                                        <!--<div th:if="${l.signals.size() &gt; 1}" th:remove="tag">-->
+                                            <!--<span th:text="${l.name}"></span>(<a th:each="s:${l.signals}" th:href="${'/match_1/'+m.id}" th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)-->
+                                        <!--</div>-->
+                                        <!--<div th:if="${l.signals.size() == 1}" th:remove="tag">-->
+                                            <!--<a th:href="${'/match_1/'+m.id}" th:text="${l.signals[0].name}"></a>-->
+                                        <!--</div>-->
 
-                                    </span>
-                                     <span th:if="${m.sinaShujuUrl!=null}">
+                                    <!--</span>-->
+
+                                     <span class="live" th:each="l:${m.lives}">
+                                            <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
+                                                <span th:text="${l.name}"></span>(
+                                                <a th:each="s:${l.signals}" th:if="${l.signals[0].playFlag=='INNER'}"  th:href="${'/live_play_inner/'+s.liveId+'.html'}"
+                                                   th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
+                                            </div>
+                                            <div th:if="${l.signals.size() == 1}" th:remove="tag">
+                                                <a th:if="${l.signals[0].playFlag=='INNER'}" th:href="${'/live_play_inner/'+l.signals[0].liveId+'.html'}"
+                                                   th:text="${l.signals[0].name}" target="_blank"></a>
+                                            </div>
+                                        </span>
+
+                                     <span>
                                        <div  th:remove="tag">
-                                           <a th:href="${'/match_1/'+m.id}" >图文直播</a>
+                                           <a th:href="${'/match_1/'+m.id}" >互动直播</a>
                                        </div>
                                     </span>
                                     <a th:each="a:${m.ads}" th:href="${a.link}" th:text="${a.name}" th:classappend="|${a.light==1 ? 'important' : ''}|" target="_blank"></a>

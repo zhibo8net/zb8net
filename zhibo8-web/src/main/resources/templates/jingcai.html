@@ -60,7 +60,7 @@
                     <p class="optionCon single">
                         <span th:each="options:${question.issueQuestionContentList}" th:classappend="|${options.userChecked=='CHECKED'?'mychoice':''} ${options.answerFlag=='true'?'true':''}">
                             <em th:text="${options.questionContent}"></em>
-                            <em th:if="${question.inputFlag=='INPUT'}" th:text="${question.inputContent}"></em>
+                            <!--<em th:if="${question.inputFlag=='INPUT'}" th:text="${question.inputContent}"></em>-->
                         </span>
                     </p>
                 </li>
