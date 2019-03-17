@@ -7,6 +7,7 @@ public class IssueQuestionContentWebDTO {
     public Date addTime;
     public Date updateTime;
 
+
     //用户是否选择 checked
     public String userChecked;
 

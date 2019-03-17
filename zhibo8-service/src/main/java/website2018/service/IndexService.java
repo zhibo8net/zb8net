@@ -33,7 +33,21 @@ import website2018.service.admin.NewsService;
 public class IndexService {
 
     public static final String[] weeks = {"周日","周一","周二","周三","周四","周五","周六"};
-    
+    public static final List<String> gameList = Lists.newArrayList();
+    {
+        gameList.add("NBA");
+        gameList.add("CBA");
+        gameList.add("亚冠");
+        gameList.add("欧冠");
+        gameList.add("欧联杯");
+
+        gameList.add("中超");
+        gameList.add("英超");
+        gameList.add("西甲");
+        gameList.add("德甲");
+        gameList.add("意甲");
+    }
+
     // 缓存数据
     private Cache<String, List<DailyLivesDTO>> dailyLivesCache;
 
@@ -236,7 +250,7 @@ public class IndexService {
                     mdto.lives = Lists.newArrayList();
                     
                     for(Live l : m.lives) {
-                        if(l.name.contains("CCTV5")) {
+                        if(gameList.contains(m.game)) {
                             mdto.emphasis = 1;
                         }
                         Matcher matcher = p.matcher(l.name);

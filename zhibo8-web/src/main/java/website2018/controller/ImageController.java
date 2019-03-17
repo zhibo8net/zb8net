@@ -59,7 +59,7 @@ public class ImageController extends BaseEndPoint {
     public String projectImage(String project,@RequestParam(defaultValue="0") Integer pageNumber, Model model) {
 
         if(! (projectWhiteList.contains(project))) {
-            throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
+            return "redirect:http://www.zhibo8.net/";
         }
 
         model.addAttribute("project", project);
@@ -84,7 +84,7 @@ public class ImageController extends BaseEndPoint {
 
         ImageBag imageBag = imageBagDao.findOne(bagId);
         if(imageBag == null) {
-            throw new ServiceException("请正常使用网站", ErrorCode.BAD_REQUEST);
+            return "redirect:http://www.zhibo8.net/";
         }
         imageBag.readCount=imageBag.readCount==null?1:imageBag.readCount+1;
         imageBagDao.save(imageBag);
