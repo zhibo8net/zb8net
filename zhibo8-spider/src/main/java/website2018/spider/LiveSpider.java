@@ -136,7 +136,7 @@ public class LiveSpider extends BaseSpider {
             for (Match m : entitys) {
                 for (Live l : m.lives) {
                     if (l.name.contains("CCTV5")) {
-                        m.emphasis = 1;
+                        m.emphasis = 0;
                     }
                 }
             }
