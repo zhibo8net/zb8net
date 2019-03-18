@@ -35,7 +35,7 @@ public class IssueController extends BaseEndPoint {
                                 if(StringUtils.equals(issueQuestionContentWebDTO.questionContent,"主队")){
 
                                     issueQuestionContentWebDTO.questionContent= issueQuestionContentWebDTO.questionContent+((-d)>=0d?("+"+(-d)):(-d));
-                                }else if(StringUtils.equals(issueQuestionContentWebDTO.questionContent,"主队")){
+                                }else if(StringUtils.equals(issueQuestionContentWebDTO.questionContent,"客队")){
                                       issueQuestionContentWebDTO.questionContent= issueQuestionContentWebDTO.questionContent+(d>=0d?("+"+d):d);
                                   }else{
                                     issueQuestionContentWebDTO.questionContent= issueQuestionContentWebDTO.questionContent+(d);
