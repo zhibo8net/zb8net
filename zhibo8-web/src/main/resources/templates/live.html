@@ -54,18 +54,17 @@
 
                                     <!--</span>-->
 
-                                    
                                      <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
-                                                 <a th:each="s,iterStat:${l.signals}" th:if="${s.playFlag=='INNER'}"  th:href="${'/live_play_inner/'+s.liveId+'.html'}"
-                                                   th:text="${'&nbsp;' + l.name + '&nbsp;'}" target="_blank"></a>
+                                                <span th:text="${l.name}"></span>(
+                                                <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+s.liveId+'.html'}"
+                                                   th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                                             </div>
                                             <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                                <a th:if="${l.signals[0].playFlag=='INNER'}" th:href="${'/live_play_inner/'+l.signals[0].liveId+'.html'}"
+                                                <a th:href="${l.signals[0].playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+l.signals[0].liveId+'.html'}"
                                                    th:text="${l.signals[0].name}" target="_blank"></a>
                                             </div>
                                         </span>
-
                                      <span>
                                        <div  th:remove="tag">
                                            <a th:href="${'/match_1/'+m.id}" >互动直播</a>

@@ -392,14 +392,14 @@
                             <div class="day-div-top">
                                 <label th:text="${dl.dateStr}" class="day"></label>
                                 <ul class="nav nav-tabs schedule-tabs">
-                                    <li role="presentation" class="tab-all" id="">
+                                    <li role="presentation" class="active tab-all" id="">
                                         <a href="javascript:switchTo('all')">
                                             <!-- <span class="iconfont icon0">&#xe636;</span> -->
                                             <span class="iconImg"></span>
                                             <!-- <span class="iconfont icon1">&#xe636;</span> -->
                                             全部</a>
                                     </li>
-                                    <li role="presentation" class="active tab-emphasis">
+                                    <li role="presentation" class=" tab-emphasis">
                                         <a href="javascript:switchTo('emphasis')">
                                             <!-- <img th:src="@{image_1/icon/important-0.png}" class="icon-20 icon0" /> -->
                                             <!-- <img th:src="@{image_1/icon/important-1.png}" class="icon-20 icon1" /> -->
@@ -446,14 +446,15 @@
                                     <!--<a th:href="${'/match_old_1/'+m.id+'.html'}" target="_blank">视频直播</a>-->
                                     <!--</div>-->
                                     <!--</span>-->
-                                       <span class="live" th:each="l:${m.lives}">
+
+                                     <span class="live" th:each="l:${m.lives}">
                                             <div th:if="${l.signals.size() &gt; 1}" th:remove="tag">
-                                                
-                                                <a th:each="s,iterStat:${l.signals}" th:if="${s.playFlag=='INNER'}"  th:href="${'/live_play_inner/'+s.liveId+'.html'}"
-                                                   th:text="${'&nbsp;' + l.name + '&nbsp;'}" target="_blank"></a>
+                                                <span th:text="${l.name}"></span>(
+                                                <a th:each="s:${l.signals}" th:href="${s.playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+s.liveId+'.html'}"
+                                                   th:text="${'&nbsp;' + s.indexName + '&nbsp;'}" target="_blank"></a>)
                                             </div>
                                             <div th:if="${l.signals.size() == 1}" th:remove="tag">
-                                                <a th:if="${l.signals[0].playFlag=='INNER'}" th:href="${'/live_play_inner/'+l.signals[0].liveId+'.html'}"
+                                                <a th:href="${l.signals[0].playFlag!='INNER'?'/match_1/'+m.id+'.html':'/live_play_inner/'+l.signals[0].liveId+'.html'}"
                                                    th:text="${l.signals[0].name}" target="_blank"></a>
                                             </div>
                                         </span>

@@ -13,7 +13,7 @@ window.switchTo = function(tag){
 }
 
 $(function(){
-	switchTo('emphasis')
+	//switchTo('all')
 	//日期定位
 	$(".scroller li").click(function(e){
 		e.preventDefault();
