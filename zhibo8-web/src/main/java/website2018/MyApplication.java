@@ -42,6 +42,7 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/admin_1/php/upload_json.php");
         registrationBean.addUrlPatterns("/api/matchRank/*");
         registrationBean.addUrlPatterns("/api/matchSupport/*");
+        registrationBean.addUrlPatterns("/liveRest/*");
         return registrationBean;
     }
     @Bean
