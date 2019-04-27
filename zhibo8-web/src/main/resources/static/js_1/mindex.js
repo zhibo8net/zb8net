@@ -195,7 +195,7 @@
         }
 
         switch(stype){
-            case 'zhongyao': $(".global_sel").text("重要");break;
+            // case 'zhongyao': $(".global_sel").text("重要");break;
             case 'football': $(".global_sel").text("足球");break;
             case 'basketball': $(".global_sel").text("篮球");break;
             case 'other': $(".global_sel").text("其他");break;
@@ -315,7 +315,7 @@
         if(flag){
             var html='';
             html+='<div class="box"><div class="box_bg"></div>';
-            html+='<div class="box_box"><div class="box_ent"><div class="box_center"><h2 class="box_t">选择你的属性</h2><ul><li><a href="javascript:;" value="basketball">只看篮球</a></li><li><a href="javascript:;" value="football">只看足球</a></li><li><a href="javascript:;" value="zhongyao">重要</a></li></ul></div></div></div></div>';
+            html+='<div class="box_box"><div class="box_ent"><div class="box_center"><h2 class="box_t">选择你的属性</h2><ul><li><a href="javascript:;" value="basketball">只看篮球</a></li><li><a href="javascript:;" value="football">只看足球</a></li><li><a href="javascript:;" value="zhongyao">全部</a></li></ul></div></div></div></div>';
             $(".global").append(html);
         }else{
             $(".global").find(".box").remove();
