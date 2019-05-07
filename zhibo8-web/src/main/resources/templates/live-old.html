@@ -6,16 +6,16 @@
     <meta name="keywords" content="直播吧,直播8,足球直播,篮球直播,NBA直播,世界杯直播,在线直播,体育直播" />
     <meta name="description" content="直播吧是国内最好的体育直播平台,主要提供足球直播、篮球直播、NBA直播、CBA直播、世界杯直播、球赛直播、比分直播、英超直播以及CCTV5在线直播等体育赛事。" />
     <link rel="shortcut icon" type="image/x-icon" href="/favicon_1.ico" />
-    <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
+    <!-- <link rel="stylesheet" th:href="@{../styles_1/common.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/detail.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/details_ft.min.css}" />
     <link rel="stylesheet" th:href="@{../styles_1/details_common.min.css}" />
-    <link rel="stylesheet" th:href="@{../styles_1/login.css}" />
-    <!-- <link rel="stylesheet" href="../static/styles_1/common.css" />
+    <link rel="stylesheet" th:href="@{../styles_1/login.css}" /> -->
+    <link rel="stylesheet" href="../static/styles_1/common.css" />
   <link rel="stylesheet" href="../static/styles_1/detail.css" />
   <link rel="stylesheet" href="../static/styles_1/details_ft.min.css" />
   <link rel="stylesheet" href="../static/styles_1/details_common.min.css" />
-  <link rel="stylesheet" href="../static/styles_1/login.css"> -->
+  <link rel="stylesheet" href="../static/styles_1/login.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
     <!-- <script th:src="@{js_1/index.js}"></script> -->
     <meta name="baidu-site-verification" content="FeM2EtCC8T" />
@@ -37,6 +37,18 @@
     <style>
         .pllist * {
             font-size: 12px;
+        }
+        .ckplayerBox{
+            position: relative;
+        }
+        .ckplayerBox img{
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            max-width: 100%;
         }
     </style>
 </head>
@@ -94,21 +106,9 @@
                         <div class="play-animate"></div>
                         <div class="play-nosignal"></div>
                         <div th:if="${liveDTO.link!=null}" id="id_test_video" style="width:100%; height:100%; background-color: rgb(0, 0, 0); overflow: hidden; position: relative;">
-                            <div class="ckplayerchcibnbibhcozinnmu" style="background-color: rgb(0, 0, 0); width: 100%; height: 100%;"><object
-                                    pluginspage="http://www.macromedia.com/go/getflashplayer" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"
-                                    codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=11,3,0,0"
-                                    width="100%" height="100%" id="chzwhoybbhsxakofwl" name="chzwhoybbhsxakofwl" align="middle">
-                                <param name="allowScriptAccess" value="always" />
-                                <param name="allowFullScreen" value="true" />
-                                <param name="quality" value="high" />
-                                <param name="bgcolor" value="#000" />
-                                <param name="movie" value="https://douyuplayer.gz.bcebos.com/ckplayer/ckplayer.swf" />
-                                <param name="flashvars" value="variable=player&amp;volume=0.8&amp;autoplay=1&amp;live=1&amp;video=http%3A%2F%2Fpull.stager.jp.8686c.com%2Fstager%2F822427%2Fplaylist.m3u8&amp;playbackrate=1&amp;width=16&amp;height=9" />
-                                <embed
-                                        allowscriptaccess="always" allowfullscreen="true" quality="high" bgcolor="#000" src="https://douyuplayer.gz.bcebos.com/ckplayer/ckplayer.swf"
-                                        flashvars="variable=player&amp;volume=0.8&amp;autoplay=1&amp;live=1&amp;video=http%3A%2F%2Fpull.stager.jp.8686c.com%2Fstager%2F822427%2Fplaylist.m3u8&amp;playbackrate=1&amp;width=16&amp;height=9"
-                                        width="100%" height="100%" id="chzwhoybbhsxakofwl" name="chzwhoybbhsxakofwl" align="middle"
-                                        type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/></object></div>
+                            <div class="ckplayerBox" style="background-color: rgb(0, 0, 0); width: 100%; height: 100%;">
+                                <img src="/image_1/play.png" />
+                            <div>
                         </div>
                         <span class="geturl" th:text="${liveDTO.link}" style="display:none;"></span>
                         <script>
