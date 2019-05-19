@@ -5,7 +5,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 
 public class LiveDTO {
-
+    public Long id;
     public String name;
    public String link;
     public List<SignalDTO> signals = Lists.newArrayList();

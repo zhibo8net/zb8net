@@ -12,6 +12,7 @@ import website2018.domain.FriendLink;
 import website2018.domain.Live;
 import website2018.dto.LiveDTO;
 import website2018.dto.MatchDTO;
+import website2018.dto.VedioDTO;
 import website2018.service.IndexService;
 import website2018.service.LiveService;
 
@@ -27,7 +28,7 @@ public class LiveRestController extends BaseEndPoint {
     LiveService liveService;
 
     @RequestMapping(value = "/liveRest/{id}")
-    public LiveDTO live_play_inner(@PathVariable Long id) {
+    public LiveDTO liveRest(@PathVariable Long id) {
         try {
             Live live = liveService.findById(id);
             if (live == null || live.match == null) {
@@ -40,6 +41,24 @@ public class LiveRestController extends BaseEndPoint {
             return liveDTO;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @RequestMapping(value = "/liveVedioRest/{id}")
+    public VedioDTO vedioDTO(@PathVariable Long id) {
+        VedioDTO vedioDTO=new VedioDTO();
+        try {
+            Live live = liveService.findById(id);
+            if (live == null || live.match == null) {
+                return vedioDTO;
+            }
+
+            vedioDTO.video = live.link;
+
+
+            return vedioDTO;
+        } catch (Exception e) {
+            return vedioDTO;
         }
     }
 }

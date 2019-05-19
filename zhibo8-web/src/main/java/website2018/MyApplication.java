@@ -43,6 +43,8 @@ public class MyApplication {
         registrationBean.addUrlPatterns("/api/matchRank/*");
         registrationBean.addUrlPatterns("/api/matchSupport/*");
         registrationBean.addUrlPatterns("/liveRest/*");
+        registrationBean.addUrlPatterns("/liveVedioRest/*");
+
         return registrationBean;
     }
     @Bean

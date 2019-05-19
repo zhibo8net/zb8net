@@ -18,6 +18,8 @@ import website2018.domain.MatchStream;
 import website2018.repository.MatchDao;
 import website2018.repository.MatchStreamDao;
 import website2018.service.BaoWeiService;
+import website2018.utils.DateUtils;
+import website2018.utils.MD5Util;
 import website2018.utils.SysConstants;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +42,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
     @Autowired
     BaoWeiService baoWeiService;
 
-    @Scheduled(cron = "0 0/5 * * * *")
+    @Scheduled(cron = "0 0/2 * * * *")
     @Transactional
     public void runSchedule() throws Exception {
         if (MyApplication.DONT_RUN_SCHEDULED) {
@@ -62,6 +64,14 @@ public class MatchStreamUrlSpider extends BaseSpider {
         t.start();
     }
 
+    private String getKeyUrl(String url,String key,String matchStreamName){
+        String txTime= DateUtils.to16Hex(new Date());
+      String   txSecret= MD5Util.MD5(key + matchStreamName + txTime);
+        StringBuffer sb=new StringBuffer();
+        sb.append(url);
+        sb.append("?txTime=").append(txTime).append("&txSecret=").append(txSecret);
+        return sb.toString();
+    }
     @Transactional
     public void matchStreamFetch() throws Exception {
         Map<String, String> sysParamMap =CacheUtils.getSysMap();
@@ -82,6 +92,10 @@ public class MatchStreamUrlSpider extends BaseSpider {
             }else{
                  matchStreamUrl=url+matchStream.matchStreamName.replace("stream",liveSplit)+".m3u8";
             }
+            String KEY=sysParamMap.get("LIVE_ZHIBO_KEY")==null?"":sysParamMap.get("LIVE_ZHIBO_KEY");
+
+            //获取加密数据
+            matchStreamUrl=  getKeyUrl(matchStreamUrl,KEY,matchStream.matchStreamName);
 
             if(!baoWeiService.isConnect(matchStreamUrl)){
                 logger.warn("连接地址无效："+matchStreamUrl);
@@ -176,12 +190,12 @@ public class MatchStreamUrlSpider extends BaseSpider {
             }
 
            if(! liveFlag){
-               saveMatch(matchStream);
+               saveMatch(matchStream,matchStreamUrl);
            }
         }
     }
 
-    public void saveMatch(MatchStream matchStream){
+    public void saveMatch(MatchStream matchStream,String matchStreamUrl){
         try{
 
 
@@ -210,7 +224,7 @@ public class MatchStreamUrlSpider extends BaseSpider {
         matchSave.name=matchStream.matchName;
         matchSave.project=matchStream.project;
         matchSave.game=matchStream.game;
-        matchSave.matchStreamUrl=url+matchStream.matchStreamName+".m3u8";
+        matchSave.matchStreamUrl=matchStreamUrl;
         matchSave.playDate=sdf1.parse(sdf.format(date)+"-"+playTimeStr[0]+" "+playTimeStr[1]);
         matchSave.playTime=playTimeStr[1];
         matchSave.playDateStr=sdf.format(date)+"-"+playTimeStr[0];
@@ -233,10 +247,21 @@ public class MatchStreamUrlSpider extends BaseSpider {
             List<Live> liveList= match.lives;
             boolean flag=false;
             for(Live live:liveList){
-                if(url.equals(live.link)){
-                    flag=true;
-                    break;
+                if(StringUtils.isNotEmpty(live.link)){
+                    String ld=null;
+                    if(live.link.indexOf("?")>0){
+                      ld=live.link.substring(0,live.link.indexOf("?"));
+                    }else{
+                      ld=live.link;
+                    }
+
+                    if(url.contains(ld)){
+                        flag=true;
+                        live.link=url;
+                        break;
+                    }
                 }
+
             }
             if(flag){
                 return;
