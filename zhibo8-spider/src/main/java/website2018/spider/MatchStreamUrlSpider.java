@@ -79,9 +79,9 @@ public class MatchStreamUrlSpider extends BaseSpider {
         String liveSplit=sysParamMap.get("LIVE_SPLIT");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, -150);
+        calendar.add(Calendar.MINUTE, -240);
         Date d=calendar.getTime();
-        calendar.add(Calendar.MINUTE, 200);
+        calendar.add(Calendar.MINUTE, 300);
         Date d1=calendar.getTime();
         List<Match> matchList=matchDao.findByPlayDateGreaterThanAndPlayDateLessThan(d,d1);
         List<MatchStream> matchStreamList=matchStreamDao.findByUpdateTimeGreaterThanAndUpdateTimeLessThan(d, d1);
